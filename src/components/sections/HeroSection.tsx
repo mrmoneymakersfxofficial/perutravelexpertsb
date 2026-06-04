@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Separate component to avoid hydration mismatch from Math.random()
 function Particles() {
@@ -210,19 +211,21 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
-          <Button
-            onClick={() => handleNavClick('#tours')}
-            className="btn-gold rounded-full px-8 py-3 text-base tracking-wide"
-          >
-            {t.hero.cta}
-          </Button>
-          <Button
-            onClick={() => handleNavClick('#tours')}
-            variant="outline"
-            className="btn-gold-outline rounded-full px-8 py-3 text-base tracking-wide"
-          >
-            {t.hero.ctaSecondary}
-          </Button>
+          <Link href="/tour-packages">
+            <Button
+              className="btn-gold rounded-full px-8 py-3 text-base tracking-wide"
+            >
+              {t.hero.cta}
+            </Button>
+          </Link>
+          <Link href="/customized-tours">
+            <Button
+              variant="outline"
+              className="btn-gold-outline rounded-full px-8 py-3 text-base tracking-wide"
+            >
+              {t.hero.ctaSecondary}
+            </Button>
+          </Link>
         </div>
       </div>
 

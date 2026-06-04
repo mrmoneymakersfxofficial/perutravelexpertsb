@@ -82,6 +82,8 @@ export interface Translations {
     highlight2Desc: string;
     highlight3Title: string;
     highlight3Desc: string;
+    mission: string;
+    vision: string;
   };
   tours: {
     title: string;
@@ -141,5 +143,52 @@ export interface Translations {
     send: string;
     close: string;
     tourDetails: string;
+  };
+  pageHeaders: {
+    aboutUs: string;
+    customizedTours: string;
+    tourPackages: string;
+    toursCities: string;
+    projectsWeSupport: string;
+    contact: string;
+  };
+  destinations: {
+    cusco: string;
+    puno: string;
+    amazon: string;
+    arequipa: string;
+    'lima-ica': string;
+  };
+  tourDetail: {
+    includes: string;
+    itinerary: string;
+    day: string;
+    relatedTours: string;
+    gallery: string;
+    bookThisTour: string;
+    viewAllTours: string;
+    toursIn: string;
+    destinations: string;
+    ourDestinations: string;
+    viewTours: string;
+    toursCount: string;
+  };
+  customized: {
+    title: string;
+    subtitle: string;
+    viewPackage: string;
+  };
+  projects: {
+    title: string;
+    subtitle: string;
+  };
+  communityTours: {
+    title: string;
+    subtitle: string;
+  };
+  home: {
+    featuredTours: string;
+    whyChooseUs: string;
+    viewAllPackages: string;
   };
 }

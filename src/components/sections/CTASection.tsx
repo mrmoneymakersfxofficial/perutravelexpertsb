@@ -5,16 +5,10 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { Sparkles, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function CTASection() {
   const { t } = useLanguage();
-
-  const handleBookNow = () => {
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#0C0C14' }}>
@@ -49,13 +43,14 @@ export default function CTASection() {
             {t.cta.subtitle}
           </p>
 
-          <Button
-            onClick={handleBookNow}
-            className="btn-gold rounded-full px-10 py-4 text-lg tracking-wide flex items-center gap-2"
-          >
-            {t.cta.bookNow}
-            <ChevronRight className="w-5 h-5" />
-          </Button>
+          <Link href="/tour-packages">
+            <Button
+              className="btn-gold rounded-full px-10 py-4 text-lg tracking-wide flex items-center gap-2"
+            >
+              {t.cta.bookNow}
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

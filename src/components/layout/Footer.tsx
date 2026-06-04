@@ -5,9 +5,17 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Separator } from '@/components/ui/separator';
 import { MapPin, Mail, Phone, Instagram, Facebook } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   const { t, locale } = useLanguage();
+
+  const quickLinks = [
+    { label: t.nav.tours, href: '/tour-packages' },
+    { label: t.nav.about, href: '/about-us' },
+    { label: t.nav.contact, href: '/contact' },
+    { label: locale === 'es' ? 'Tours Personalizados' : 'Customized Tours', href: '/customized-tours' },
+  ];
 
   return (
     <footer className="bg-[#0C0C14] text-white">
@@ -16,14 +24,14 @@ export default function Footer() {
         <div className="py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
+            <Link href="/" className="flex items-center gap-3 mb-4">
               <div className="relative w-10 h-10 rounded-full overflow-hidden gold-glow">
                 <Image src="/logo.svg" alt="Intiquilla" fill className="object-cover" />
               </div>
               <span className="font-playfair text-xl font-bold gold-text tracking-wider">
                 INTIQUILLA
               </span>
-            </div>
+            </Link>
             <p className="text-warm-gray text-sm leading-relaxed">
               {locale === 'es'
                 ? 'Tu agencia de viajes boutique en Cusco. Experiencias VIP únicas e inolvidables.'
@@ -37,23 +45,14 @@ export default function Footer() {
               {locale === 'es' ? 'Enlaces Rápidos' : 'Quick Links'}
             </h4>
             <ul className="space-y-3">
-              {[
-                { label: t.nav.tours, href: '#tours' },
-                { label: t.nav.about, href: '#about' },
-                { label: t.nav.testimonials, href: '#testimonials' },
-                { label: t.nav.contact, href: '#contact' },
-              ].map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
-                    }}
                     className="text-warm-gray hover:text-gold transition-colors text-sm"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
