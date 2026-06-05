@@ -95,15 +95,12 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-10 h-10 md:w-[52px] md:h-[52px] rounded-lg overflow-hidden gold-glow">
-              <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-cover" priority />
+          <Link href="/" className="flex items-center">
+            <div className="relative w-28 h-[70px] md:w-36 md:h-[90px] shrink-0">
+              <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" priority sizes="144px" />
             </div>
-            <span className="font-playfair text-sm md:text-base font-bold text-[#D6B37F] tracking-wide leading-tight">
-              PeruTravelExpertsB
-            </span>
           </Link>
 
           {/* Desktop Nav — 4 items only */}
@@ -209,11 +206,10 @@ export default function Header() {
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between p-6 border-b border-gold/10">
-                    <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                      <div className="relative w-10 h-10 rounded-lg overflow-hidden gold-glow">
-                        <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-cover" />
+                    <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
+                      <div className="relative w-24 h-16 shrink-0">
+                        <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="96px" />
                       </div>
-                      <span className="font-playfair text-sm font-bold text-[#D6B37F] leading-tight">PeruTravelExpertsB</span>
                     </Link>
                     <button onClick={() => setMobileOpen(false)} className="text-warm-gray hover:text-gold transition-colors">
                       <X className="w-5 h-5" />

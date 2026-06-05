@@ -33,11 +33,10 @@ export default function Footer() {
         <div className="py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden gold-glow">
-                <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-cover" />
+            <Link href="/" className="flex items-center mb-4">
+              <div className="relative w-32 h-[85px] shrink-0">
+                <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="128px" />
               </div>
-              <span className="font-playfair text-xl font-bold gold-text tracking-wider">PeruTravelExpertsB</span>
             </Link>
             <p className="text-warm-gray text-sm leading-relaxed">
               {locale === 'es'
