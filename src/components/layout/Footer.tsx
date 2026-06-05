@@ -34,8 +34,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden gold-glow">
-                <Image src="/logo.svg" alt="PeruTravelExpertsB" fill className="object-cover" />
+              <div className="relative w-10 h-10 rounded-lg overflow-hidden gold-glow">
+                <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-cover" />
               </div>
               <span className="font-playfair text-xl font-bold gold-text tracking-wider">PeruTravelExpertsB</span>
             </Link>

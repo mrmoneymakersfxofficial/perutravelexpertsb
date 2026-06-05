@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import {
   Menu, Globe, ChevronDown, X, ChevronRight,
-  MapPin, Users, Sparkles, HelpCircle, MessageCircle, Package,
+  MapPin,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,6 +19,7 @@ interface NavItem {
   children?: { key: string; href: string; icon?: React.ElementType }[];
 }
 
+// Only 4 main navigation items — clean, elegant
 const navItems: NavItem[] = [
   {
     key: 'tours',
@@ -32,12 +33,8 @@ const navItems: NavItem[] = [
       { key: 'lima-ica', href: '/tour-packages/lima-ica', icon: MapPin },
     ],
   },
-  { key: 'customizedTours', href: '/customized-tours' },
-  { key: 'communityTours', href: '/tours-cities' },
   { key: 'about', href: '/about-us' },
   { key: 'testimonials', href: '/testimonials' },
-  { key: 'projects', href: '/projects-we-support' },
-  { key: 'faq', href: '/faq' },
   { key: 'contact', href: '/contact' },
 ];
 
@@ -101,15 +98,15 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-10 h-10 md:w-[52px] md:h-[52px] rounded-full overflow-hidden gold-glow">
-              <Image src="/logo.svg" alt="PeruTravelExpertsB" fill className="object-cover" priority />
+            <div className="relative w-10 h-10 md:w-[52px] md:h-[52px] rounded-lg overflow-hidden gold-glow">
+              <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-cover" priority />
             </div>
-            <span className="font-playfair text-base md:text-lg font-bold text-[#D6B37F] tracking-wide">
+            <span className="font-playfair text-sm md:text-base font-bold text-[#D6B37F] tracking-wide leading-tight">
               PeruTravelExpertsB
             </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav — 4 items only */}
           <nav className="hidden lg:flex items-center gap-1">
             {/* Tours Dropdown */}
             <div className="relative" data-tours-dropdown onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -124,7 +121,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-1 w-64 glass-card rounded-xl overflow-hidden shadow-xl py-2"
+                    className="absolute top-full left-0 mt-1 w-56 glass-card rounded-xl overflow-hidden shadow-xl py-2"
                   >
                     {toursItem?.children?.map((child) => (
                       <Link
@@ -136,20 +133,12 @@ export default function Header() {
                         {getNavLink(child.key)}
                       </Link>
                     ))}
-                    <div className="my-1 border-t border-white/5" />
-                    <Link
-                      href="/customized-tours"
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-warm-gray hover:text-gold hover:bg-white/5 transition-colors"
-                    >
-                      <Package className="w-4 h-4 text-gold/60" />
-                      {getNavLink('customizedTours')}
-                    </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Other nav items */}
+            {/* Other 3 nav items */}
             {otherNavItems.map((item) => (
               <Link
                 key={item.key}
@@ -221,10 +210,10 @@ export default function Header() {
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between p-6 border-b border-gold/10">
                     <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                      <div className="relative w-10 h-10 rounded-full overflow-hidden gold-glow">
-                        <Image src="/logo.svg" alt="PeruTravelExpertsB" fill className="object-cover" />
+                      <div className="relative w-10 h-10 rounded-lg overflow-hidden gold-glow">
+                        <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-cover" />
                       </div>
-                      <span className="font-playfair text-base font-bold text-[#D6B37F]">PeruTravelExpertsB</span>
+                      <span className="font-playfair text-sm font-bold text-[#D6B37F] leading-tight">PeruTravelExpertsB</span>
                     </Link>
                     <button onClick={() => setMobileOpen(false)} className="text-warm-gray hover:text-gold transition-colors">
                       <X className="w-5 h-5" />
