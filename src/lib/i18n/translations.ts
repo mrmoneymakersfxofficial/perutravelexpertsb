@@ -12,9 +12,9 @@ export const translations: Record<Locale, Translations> = {
       ctaSecondary: 'Ver Paquetes',
     },
     about: {
-      title: 'Sobre Intiquilla',
+      title: 'Sobre PeruTravelExpertsB',
       subtitle: 'Tu agencia de viajes de confianza en Cusco',
-      description: 'Intiquilla es una agencia de turismo boutique especializada en experiencias auténticas del Cusco y Machu Picchu. Con años de experiencia, ofrecemos tours personalizados que combinan cultura, aventura y lujo para crear recuerdos inolvidables.',
+      description: 'PeruTravelExpertsB es una agencia de turismo boutique especializada en experiencias auténticas del Cusco y Machu Picchu. Con años de experiencia, ofrecemos tours personalizados que combinan cultura, aventura y lujo para crear recuerdos inolvidables.',
       highlight1Title: 'Experiencia Local',
       highlight1Desc: 'Guías expertos nacidos en Cusco con profundo conocimiento de la cultura andina.',
       highlight2Title: 'Servicio VIP',
@@ -167,9 +167,9 @@ export const translations: Record<Locale, Translations> = {
       ctaSecondary: 'View Packages',
     },
     about: {
-      title: 'About Intiquilla',
+      title: 'About PeruTravelExpertsB',
       subtitle: 'Your trusted travel agency in Cusco',
-      description: 'Intiquilla is a boutique tourism agency specializing in authentic Cusco and Machu Picchu experiences. With years of expertise, we offer personalized tours that combine culture, adventure, and luxury to create unforgettable memories.',
+      description: 'PeruTravelExpertsB is a boutique tourism agency specializing in authentic Cusco and Machu Picchu experiences. With years of expertise, we offer personalized tours that combine culture, adventure, and luxury to create unforgettable memories.',
       highlight1Title: 'Local Expertise',
       highlight1Desc: 'Expert guides born in Cusco with deep knowledge of Andean culture.',
       highlight2Title: 'VIP Service',

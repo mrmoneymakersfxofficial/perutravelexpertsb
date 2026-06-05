@@ -27,7 +27,7 @@ function Particles() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="particle absolute w-1 h-1 rounded-full bg-[#C8A97E]/40"
+          className="particle absolute w-1 h-1 rounded-full bg-[#D6B37F]/40"
           style={{
             left: `${p.left}%`,
             top: `${p.top}%`,
@@ -141,7 +141,7 @@ export default function HeroSection() {
     <section
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#0C0C14' }}
+      style={{ backgroundColor: '#0F0F0F' }}
     >
       {/* Background Image with overlay */}
       <div className="absolute inset-0">
@@ -159,8 +159,8 @@ export default function HeroSection() {
             }}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0C0C14]/60 via-[#0C0C14]/40 to-[#0C0C14]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0C0C14]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/40 to-[#0F0F0F]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/50 to-transparent" />
       </div>
 
       {/* Floating particles */}
@@ -177,8 +177,8 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
         >
-          <Sparkles className="w-4 h-4 text-[#C8A97E]" />
-          <span className="text-sm text-[#C8A97E] font-medium tracking-wider uppercase">
+          <Sparkles className="w-4 h-4 text-[#D6B37F]" />
+          <span className="text-sm text-[#D6B37F] font-medium tracking-wider uppercase">
             {locale === 'es' ? 'Viajeros VIP' : 'VIP Travelers'}
           </span>
         </motion.div>
@@ -232,7 +232,7 @@ export default function HeroSection() {
       {/* Scroll Indicator */}
       <button
         onClick={handleScrollDown}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-[#C8A97E]/60 hover:text-[#C8A97E] transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-[#D6B37F]/60 hover:text-[#D6B37F] transition-colors"
         aria-label="Scroll down"
       >
         <ChevronDown className="w-8 h-8" />

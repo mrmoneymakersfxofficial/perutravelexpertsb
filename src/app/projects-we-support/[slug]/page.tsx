@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ProjectDetailClient from './ProjectDetailClient';
 import { projects, getProjectBySlug } from '@/lib/tours-data';
 
-const BASE_URL = 'https://intiquilla.com';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -19,17 +19,17 @@ export async function generateMetadata({
   const project = getProjectBySlug(slug);
 
   if (!project) {
-    return { title: 'Project Not Found | Intiquilla' };
+    return { title: 'Project Not Found | PeruTravelExpertsB' };
   }
 
   return {
-    title: `${project.nameEn} | Intiquilla Projects`,
+    title: `${project.nameEn} | PeruTravelExpertsB Projects`,
     description: project.descriptionEn.slice(0, 160),
     openGraph: {
-      title: `${project.nameEn} | Intiquilla`,
+      title: `${project.nameEn} | PeruTravelExpertsB`,
       description: project.descriptionEn.slice(0, 160),
       url: `${BASE_URL}/projects-we-support/${slug}`,
-      siteName: 'Intiquilla',
+      siteName: 'PeruTravelExpertsB',
       type: 'article',
       images: [{ url: project.image, width: 1200, height: 630 }],
     },

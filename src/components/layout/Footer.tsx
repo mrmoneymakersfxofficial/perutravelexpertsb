@@ -27,7 +27,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0C0C14] text-white">
+    <footer className="bg-[#0F0F0F] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -35,9 +35,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">
               <div className="relative w-10 h-10 rounded-full overflow-hidden gold-glow">
-                <Image src="/logo.svg" alt="Intiquilla" fill className="object-cover" />
+                <Image src="/logo.svg" alt="PeruTravelExpertsB" fill className="object-cover" />
               </div>
-              <span className="font-playfair text-xl font-bold gold-text tracking-wider">INTIQUILLA</span>
+              <span className="font-playfair text-xl font-bold gold-text tracking-wider">PeruTravelExpertsB</span>
             </Link>
             <p className="text-warm-gray text-sm leading-relaxed">
               {locale === 'es'
@@ -104,7 +104,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2 text-warm-gray text-sm">
                 <Mail className="w-4 h-4 text-gold flex-shrink-0" />
-                <span>info@intiquilla.com</span>
+                <span>info@perutravelexpertsb.com</span>
               </li>
               <li className="flex items-start gap-2 text-warm-gray text-sm">
                 <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
@@ -119,11 +119,11 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-warm-gray text-xs">
-            © {new Date().getFullYear()} Intiquilla. {t.footer.rights}
+            © {new Date().getFullYear()} PeruTravelExpertsB. {t.footer.rights}
           </p>
           <p className="text-xs text-warm-gray">
             {t.footer.credit}{' '}
-            <a href="https://www.fastpagepro.com" target="_blank" rel="noopener noreferrer" className="text-[#C8A97E] hover:underline font-medium">
+            <a href="https://www.fastpagepro.com" target="_blank" rel="noopener noreferrer" className="text-[#D6B37F] hover:underline font-medium">
               fastpagepro.com
             </a>
           </p>

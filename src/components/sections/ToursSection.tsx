@@ -145,7 +145,7 @@ export default function ToursSection() {
     : sampleTours;
 
   return (
-    <section id="tours" className="py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
+    <section id="tours" className="py-20 md:py-28" style={{ backgroundColor: '#F8F6F2' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -156,7 +156,7 @@ export default function ToursSection() {
           className="text-center mb-12"
         >
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#2C1810' }}
+            style={{ color: '#1C1C1C' }}
           >
             {t.tours.title}
           </h2>
@@ -172,7 +172,7 @@ export default function ToursSection() {
             className={`rounded-full px-6 flex items-center gap-2 transition-all ${
               !showFavorites
                 ? 'btn-gold'
-                : 'border-[#C8A97E]/30 text-[#8B8680] hover:text-[#C8A97E] hover:border-[#C8A97E]'
+                : 'border-[#D6B37F]/30 text-[#8B8680] hover:text-[#D6B37F] hover:border-[#D6B37F]'
             }`}
           >
             <LayoutGrid className="w-4 h-4" />
@@ -184,13 +184,13 @@ export default function ToursSection() {
             className={`rounded-full px-6 flex items-center gap-2 transition-all ${
               showFavorites
                 ? 'btn-gold'
-                : 'border-[#C8A97E]/30 text-[#8B8680] hover:text-[#C8A97E] hover:border-[#C8A97E]'
+                : 'border-[#D6B37F]/30 text-[#8B8680] hover:text-[#D6B37F] hover:border-[#D6B37F]'
             }`}
           >
             <Heart className="w-4 h-4" />
             {t.tours.favorites}
             {favorites.size > 0 && (
-              <span className="ml-1 w-5 h-5 rounded-full bg-[#0C0C14] text-white text-xs flex items-center justify-center">
+              <span className="ml-1 w-5 h-5 rounded-full bg-[#0F0F0F] text-white text-xs flex items-center justify-center">
                 {favorites.size}
               </span>
             )}

@@ -101,11 +101,11 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden gold-glow">
-              <Image src="/logo.svg" alt="Intiquilla" fill className="object-cover" priority />
+            <div className="relative w-10 h-10 md:w-[52px] md:h-[52px] rounded-full overflow-hidden gold-glow">
+              <Image src="/logo.svg" alt="PeruTravelExpertsB" fill className="object-cover" priority />
             </div>
-            <span className="font-playfair text-xl md:text-2xl font-bold gold-text tracking-wider">
-              INTIQUILLA
+            <span className="font-playfair text-base md:text-lg font-bold text-[#D6B37F] tracking-wide">
+              PeruTravelExpertsB
             </span>
           </Link>
 
@@ -220,8 +220,11 @@ export default function Header() {
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between p-6 border-b border-gold/10">
-                    <Link href="/" onClick={() => setMobileOpen(false)}>
-                      <span className="font-playfair text-lg font-bold gold-text">INTIQUILLA</span>
+                    <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden gold-glow">
+                        <Image src="/logo.svg" alt="PeruTravelExpertsB" fill className="object-cover" />
+                      </div>
+                      <span className="font-playfair text-base font-bold text-[#D6B37F]">PeruTravelExpertsB</span>
                     </Link>
                     <button onClick={() => setMobileOpen(false)} className="text-warm-gray hover:text-gold transition-colors">
                       <X className="w-5 h-5" />

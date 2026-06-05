@@ -14,10 +14,10 @@ export default function CustomizedToursClient() {
   const { t, locale } = useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader title={t.customized.title} subtitle={t.customized.subtitle} breadcrumbs={[{ label: locale === 'es' ? 'Inicio' : 'Home', href: '/' }, { label: t.customized.title }]} />
 
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#8B8680] text-lg leading-relaxed mb-6">
             {locale === 'es'
@@ -28,7 +28,7 @@ export default function CustomizedToursClient() {
         </div>
       </section>
 
-      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {customizedTours.map((pkg, index) => {
@@ -54,7 +54,7 @@ export default function CustomizedToursClient() {
                         <p className="text-[#8B8680] text-sm leading-relaxed mb-4 line-clamp-3">{desc}</p>
                         <div className="flex flex-wrap gap-2 mb-4">
                           {pkg.destinations.map((dest) => (
-                            <span key={dest} className="text-xs px-2.5 py-1 rounded-full bg-[#FAF8F5] text-[#8B8680] border border-[#E8D5B5]/30 flex items-center gap-1">
+                            <span key={dest} className="text-xs px-2.5 py-1 rounded-full bg-[#F8F6F2] text-[#8B8680] border border-[#E8D5B5]/30 flex items-center gap-1">
                               <MapPin className="w-3 h-3" />{(t.destinations as Record<string, string>)[dest] || dest}
                             </span>
                           ))}
@@ -62,17 +62,17 @@ export default function CustomizedToursClient() {
                         <div className="mb-4">
                           <div className="flex flex-wrap gap-1.5">
                             {includes.slice(0, 4).map((item, i) => (
-                              <span key={i} className="text-xs px-2 py-1 rounded-md bg-[#FAF8F5] text-[#8B8680] border border-[#E8D5B5]/30">{item}</span>
+                              <span key={i} className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2] text-[#8B8680] border border-[#E8D5B5]/30">{item}</span>
                             ))}
-                            {includes.length > 4 && <span className="text-xs px-2 py-1 rounded-md bg-[#FAF8F5] text-[#8B8680]">+{includes.length - 4}</span>}
+                            {includes.length > 4 && <span className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2] text-[#8B8680]">+{includes.length - 4}</span>}
                           </div>
                         </div>
                         <div className="flex items-center justify-between pt-4 border-t border-[#E8D5B5]/20">
                           <div>
-                            <span className="text-2xl font-bold font-playfair" style={{ color: '#2C1810' }}>${Math.round(pkg.priceUSD)}</span>
+                            <span className="text-2xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(pkg.priceUSD)}</span>
                             <span className="text-xs text-[#8B8680] ml-1">{t.tours.perPerson}</span>
                           </div>
-                          <span className="flex items-center gap-1 text-sm font-medium text-[#C8A97E] group-hover:gap-2 transition-all">{t.customized.viewPackage}<ArrowRight className="w-4 h-4" /></span>
+                          <span className="flex items-center gap-1 text-sm font-medium text-[#D6B37F] group-hover:gap-2 transition-all">{t.customized.viewPackage}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>
                     </div>

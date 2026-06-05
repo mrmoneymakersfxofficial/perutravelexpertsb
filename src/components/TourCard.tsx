@@ -139,13 +139,13 @@ export default function TourCard({ tour, locale }: TourCardProps) {
                 {includes.slice(0, 3).map((item, i) => (
                   <span
                     key={i}
-                    className="text-xs px-2 py-1 rounded-md bg-[#FAF8F5] text-[#8B8680] border border-[#E8D5B5]/30"
+                    className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2] text-[#8B8680] border border-[#E8D5B5]/30"
                   >
                     {item}
                   </span>
                 ))}
                 {includes.length > 3 && (
-                  <span className="text-xs px-2 py-1 rounded-md bg-[#FAF8F5] text-[#8B8680]">
+                  <span className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2] text-[#8B8680]">
                     +{includes.length - 3}
                   </span>
                 )}
@@ -158,7 +158,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
             <div>
               <div className="flex items-baseline gap-1">
                 <span className="text-xs text-[#8B8680]">{t.tours.price}</span>
-                <span className="text-2xl font-bold font-playfair" style={{ color: '#2C1810' }}>
+                <span className="text-2xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>
                   ${Math.round(tour.priceUSD)}
                 </span>
               </div>

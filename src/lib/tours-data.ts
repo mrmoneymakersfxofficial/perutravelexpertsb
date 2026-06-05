@@ -1,4 +1,4 @@
-// Comprehensive tour data for Intiquilla website
+// Comprehensive tour data for PeruTravelExpertsB website
 // Used by all tour-related pages as static data source
 
 export interface ItineraryDay {

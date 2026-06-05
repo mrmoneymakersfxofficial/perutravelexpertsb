@@ -34,9 +34,9 @@ export default function TourDetailClient({
 
   if (!tour || !dest) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FAF8F5' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="text-center">
-          <h1 className="font-playfair text-3xl font-bold" style={{ color: '#2C1810' }}>
+          <h1 className="font-playfair text-3xl font-bold" style={{ color: '#1C1C1C' }}>
             {locale === 'es' ? 'Tour no encontrado' : 'Tour not found'}
           </h1>
           <Link href="/tour-packages">
@@ -82,7 +82,7 @@ export default function TourDetailClient({
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader
         title={name}
         breadcrumbs={[
@@ -100,7 +100,7 @@ export default function TourDetailClient({
         ) : (
           <div className={`w-full h-full bg-gradient-to-br ${gradientFallbacks[tour.id] || 'from-gray-800 to-gray-600'}`} />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C14]/80 via-[#0C0C14]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/80 via-[#0F0F0F]/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-12">
             <div className="flex flex-wrap items-center gap-3 mb-3">
@@ -112,7 +112,7 @@ export default function TourDetailClient({
             <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3">{name}</h1>
             <div className="flex items-baseline gap-2">
               <span className="text-[#8B8680] text-sm">{t.tours.price}</span>
-              <span className="text-3xl md:text-4xl font-bold font-playfair text-[#C8A97E]">${Math.round(tour.priceUSD)}</span>
+              <span className="text-3xl md:text-4xl font-bold font-playfair text-[#D6B37F]">${Math.round(tour.priceUSD)}</span>
               <span className="text-[#8B8680] text-sm">{t.tours.perPerson}</span>
               {tour.highSeasonPrice && (
                 <span className="text-[#8B8680] text-sm ml-2">({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})</span>
@@ -123,17 +123,17 @@ export default function TourDetailClient({
       </section>
 
       {/* Content */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             <div className="lg:col-span-2">
               <div className="mb-10">
-                <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#2C1810' }}>{locale === 'es' ? 'Descripción' : 'Description'}</h2>
+                <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{locale === 'es' ? 'Descripción' : 'Description'}</h2>
                 <p className="text-[#8B8680] text-base leading-relaxed">{description}</p>
               </div>
               {tour.gallery && tour.gallery.length > 0 && (
                 <div className="mb-10">
-                  <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#2C1810' }}>{t.tourDetail.gallery}</h2>
+                  <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.gallery}</h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {tour.gallery.map((img, i) => (
                       <div key={i} className="relative h-48 rounded-xl overflow-hidden">
@@ -144,21 +144,21 @@ export default function TourDetailClient({
                 </div>
               )}
               <div className="mb-10">
-                <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#2C1810' }}>{t.tourDetail.includes}</h2>
+                <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {includes.map((item, i) => (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white border border-[#E8D5B5]/20">
                       <div className="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3.5 h-3.5 text-[#0C0C14]" />
+                        <Check className="w-3.5 h-3.5 text-[#0F0F0F]" />
                       </div>
-                      <span className="text-sm text-[#2C1810]/80">{item}</span>
+                      <span className="text-sm text-[#1C1C1C]/80">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
               {itinerary && itinerary.length > 0 && (
                 <div className="mb-10">
-                  <h2 className="font-playfair text-2xl font-bold mb-6" style={{ color: '#2C1810' }}>{t.tourDetail.itinerary}</h2>
+                  <h2 className="font-playfair text-2xl font-bold mb-6" style={{ color: '#1C1C1C' }}>{t.tourDetail.itinerary}</h2>
                   <div className="space-y-6">
                     {itinerary.map((day) => {
                       const dayTitle = locale === 'es' ? day.titleEs : day.titleEn;
@@ -166,11 +166,11 @@ export default function TourDetailClient({
                       return (
                         <motion.div key={day.day} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }} className="flex gap-4">
                           <div className="flex flex-col items-center">
-                            <div className="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-[#0C0C14] font-bold text-sm flex-shrink-0">{day.day}</div>
+                            <div className="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-[#0F0F0F] font-bold text-sm flex-shrink-0">{day.day}</div>
                             <div className="w-0.5 flex-1 bg-[#E8D5B5] mt-2" />
                           </div>
                           <div className="pb-6">
-                            <h3 className="font-playfair text-lg font-bold mb-2" style={{ color: '#2C1810' }}>{t.tourDetail.day} {day.day}: {dayTitle}</h3>
+                            <h3 className="font-playfair text-lg font-bold mb-2" style={{ color: '#1C1C1C' }}>{t.tourDetail.day} {day.day}: {dayTitle}</h3>
                             <p className="text-[#8B8680] text-sm leading-relaxed">{dayDesc}</p>
                           </div>
                         </motion.div>
@@ -185,13 +185,13 @@ export default function TourDetailClient({
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E8D5B5]/20">
                   <div className="text-center mb-6">
                     <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
-                    <p className="text-4xl font-bold font-playfair" style={{ color: '#2C1810' }}>${Math.round(tour.priceUSD)}</p>
+                    <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</p>
                     <p className="text-xs text-[#8B8680]">{t.tours.perPerson}</p>
                   </div>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-[#8B8680]">{t.tours.duration}</span>
-                      <span className="font-medium" style={{ color: '#2C1810' }}>{tour.duration} {t.tours.days}</span>
+                      <span className="font-medium" style={{ color: '#1C1C1C' }}>{tour.duration} {t.tours.days}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-[#8B8680]">{t.tours.difficulty}</span>
@@ -199,18 +199,18 @@ export default function TourDetailClient({
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-[#8B8680]">{locale === 'es' ? 'Destino' : 'Destination'}</span>
-                      <span className="font-medium" style={{ color: '#2C1810' }}>{destName}</span>
+                      <span className="font-medium" style={{ color: '#1C1C1C' }}>{destName}</span>
                     </div>
                   </div>
                   <Button onClick={() => setBookingOpen(true)} className="btn-gold rounded-full w-full py-3 text-base">{t.tourDetail.bookThisTour}</Button>
                   <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">WhatsApp</a>
                 </div>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E8D5B5]/20">
-                  <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#2C1810' }}>{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
+                  <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
                   <nav className="space-y-2">
-                    <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C8A97E] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
-                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C8A97E] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
-                    <Link href="/customized-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C8A97E] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
+                    <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
+                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
+                    <Link href="/customized-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
                   </nav>
                 </div>
               </div>
@@ -220,10 +220,10 @@ export default function TourDetailClient({
       </section>
 
       {related.length > 0 && (
-        <section className="py-16 md:py-20 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#FAF8F5' }}>
+        <section className="py-16 md:py-20 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#F8F6F2' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3" style={{ color: '#2C1810' }}>{t.tourDetail.relatedTours}</h2>
+              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3" style={{ color: '#1C1C1C' }}>{t.tourDetail.relatedTours}</h2>
               <div className="w-20 h-0.5 mx-auto gold-gradient" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

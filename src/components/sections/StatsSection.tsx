@@ -80,7 +80,7 @@ export default function StatsSection() {
     <section className="py-16 md:py-20 relative overflow-hidden">
       {/* Gold gradient background */}
       <div className="absolute inset-0 gold-gradient opacity-95" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0C0C14]/20 via-transparent to-[#0C0C14]/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/20 via-transparent to-[#0F0F0F]/20" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
@@ -99,14 +99,14 @@ export default function StatsSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-12 h-12 rounded-full bg-[#0C0C14]/20 flex items-center justify-center mx-auto mb-3">
-                  <Icon className="w-6 h-6 text-[#0C0C14]" />
+                <div className="w-12 h-12 rounded-full bg-[#0F0F0F]/20 flex items-center justify-center mx-auto mb-3">
+                  <Icon className="w-6 h-6 text-[#0F0F0F]" />
                 </div>
-                <div className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#0C0C14] mb-1">
+                <div className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F0F0F] mb-1">
                   <span data-count={stat.value}>0</span>
                   <span>{stat.suffix}</span>
                 </div>
-                <p className="text-[#0C0C14]/70 text-sm font-medium">{label}</p>
+                <p className="text-[#0F0F0F]/70 text-sm font-medium">{label}</p>
               </motion.div>
             );
           })}

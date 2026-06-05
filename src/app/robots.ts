@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://intiquilla.com/sitemap.xml',
+    sitemap: 'https://perutravelexpertsb.com/sitemap.xml',
   };
 }

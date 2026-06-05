@@ -21,11 +21,11 @@ export default function ContactSection() {
     const message = formData.get('contact-message') as string;
 
     const text =
-      `✈️ *${t.contact.title} - Intiquilla*\n\n` +
+      `✈️ *${t.contact.title} - PeruTravelExpertsB*\n\n` +
       `👤 ${name}\n` +
       `📧 ${email}\n` +
       `💬 ${message}\n\n` +
-      `_${locale === 'es' ? 'Enviado desde Intiquilla.com' : 'Sent from Intiquilla.com'}_`;
+      `_${locale === 'es' ? 'Enviado desde PeruTravelExpertsB.com' : 'Sent from PeruTravelExpertsB.com'}_`;
 
     const whatsappUrl = `https://wa.me/51984000000?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
@@ -33,7 +33,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
+    <section id="contact" className="py-20 md:py-28" style={{ backgroundColor: '#F8F6F2' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -44,7 +44,7 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#2C1810' }}
+            style={{ color: '#1C1C1C' }}
           >
             {t.contact.title}
           </h2>
@@ -63,17 +63,17 @@ export default function ContactSection() {
             <div className="space-y-6 mb-8">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-6 h-6 text-[#0C0C14]" />
+                  <MessageCircle className="w-6 h-6 text-[#0F0F0F]" />
                 </div>
                 <div>
-                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#2C1810' }}>
+                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#1C1C1C' }}>
                     {t.contact.whatsapp}
                   </h4>
                   <a
                     href="https://wa.me/51984000000"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#8B8680] hover:text-[#C8A97E] transition-colors"
+                    className="text-[#8B8680] hover:text-[#D6B37F] transition-colors"
                   >
                     +51 984 000 000
                   </a>
@@ -82,27 +82,27 @@ export default function ContactSection() {
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-[#0C0C14]" />
+                  <Mail className="w-6 h-6 text-[#0F0F0F]" />
                 </div>
                 <div>
-                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#2C1810' }}>
+                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#1C1C1C' }}>
                     {t.contact.email}
                   </h4>
                   <a
-                    href="mailto:info@intiquilla.com"
-                    className="text-[#8B8680] hover:text-[#C8A97E] transition-colors"
+                    href="mailto:info@perutravelexpertsb.com"
+                    className="text-[#8B8680] hover:text-[#D6B37F] transition-colors"
                   >
-                    info@intiquilla.com
+                    info@perutravelexpertsb.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-[#0C0C14]" />
+                  <MapPin className="w-6 h-6 text-[#0F0F0F]" />
                 </div>
                 <div>
-                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#2C1810' }}>
+                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#1C1C1C' }}>
                     {t.contact.location}
                   </h4>
                   <p className="text-[#8B8680]">Cusco, Perú</p>
@@ -111,10 +111,10 @@ export default function ContactSection() {
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-[#0C0C14]" />
+                  <Phone className="w-6 h-6 text-[#0F0F0F]" />
                 </div>
                 <div>
-                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#2C1810' }}>
+                  <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#1C1C1C' }}>
                     Teléfono
                   </h4>
                   <p className="text-[#8B8680]">+51 084 000 000</p>
@@ -146,19 +146,19 @@ export default function ContactSection() {
               className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#E8D5B5]/20 space-y-5"
             >
               <div>
-                <Label htmlFor="contact-name" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+                <Label htmlFor="contact-name" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                   {t.booking.name} *
                 </Label>
                 <Input
                   id="contact-name"
                   name="contact-name"
                   required
-                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E]"
+                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]"
                   placeholder={t.booking.name}
                 />
               </div>
               <div>
-                <Label htmlFor="contact-email" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+                <Label htmlFor="contact-email" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                   {t.booking.email} *
                 </Label>
                 <Input
@@ -166,12 +166,12 @@ export default function ContactSection() {
                   name="contact-email"
                   type="email"
                   required
-                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E]"
+                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]"
                   placeholder={t.booking.email}
                 />
               </div>
               <div>
-                <Label htmlFor="contact-message" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+                <Label htmlFor="contact-message" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                   {t.booking.message} *
                 </Label>
                 <Textarea
@@ -179,7 +179,7 @@ export default function ContactSection() {
                   name="contact-message"
                   required
                   rows={4}
-                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E] resize-none"
+                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F] resize-none"
                   placeholder={
                     locale === 'es'
                       ? '¿En qué podemos ayudarte?'

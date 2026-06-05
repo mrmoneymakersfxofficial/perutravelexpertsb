@@ -49,7 +49,7 @@ export default function AboutSection() {
     <section
       id="about"
       className="py-20 md:py-28"
-      style={{ backgroundColor: '#FAF8F5' }}
+      style={{ backgroundColor: '#F8F6F2' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -61,7 +61,7 @@ export default function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#2C1810' }}
+            style={{ color: '#1C1C1C' }}
           >
             {t.about.title}
           </h2>
@@ -69,7 +69,7 @@ export default function AboutSection() {
           <p className="text-[#8B8680] text-lg max-w-2xl mx-auto mb-4">
             {t.about.subtitle}
           </p>
-          <p className="text-[#2C1810]/70 text-base max-w-3xl mx-auto leading-relaxed">
+          <p className="text-[#1C1C1C]/70 text-base max-w-3xl mx-auto leading-relaxed">
             {t.about.description}
           </p>
         </motion.div>
@@ -92,9 +92,9 @@ export default function AboutSection() {
                 className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-[#E8D5B5]/30"
               >
                 <div className="w-14 h-14 rounded-xl gold-gradient flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="w-7 h-7 text-[#0C0C14]" />
+                  <Icon className="w-7 h-7 text-[#0F0F0F]" />
                 </div>
-                <h3 className="font-playfair text-xl font-bold mb-3" style={{ color: '#2C1810' }}>
+                <h3 className="font-playfair text-xl font-bold mb-3" style={{ color: '#1C1C1C' }}>
                   {t.about[item.titleKey]}
                 </h3>
                 <p className="text-[#8B8680] leading-relaxed text-sm">

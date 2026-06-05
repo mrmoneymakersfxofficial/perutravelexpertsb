@@ -26,8 +26,8 @@ const testimonials = [
     tour: 'Full Day Sacred Valley',
   },
   {
-    textEs: 'Servicio de primera clase desde el momento de la reserva. El equipo de Intiquilla hizo que cada momento fuera especial. Recomiendo 100%.',
-    textEn: 'First-class service from the moment of booking. The Intiquilla team made every moment special. I recommend 100%.',
+    textEs: 'Servicio de primera clase desde el momento de la reserva. El equipo de PeruTravelExpertsB hizo que cada momento fuera especial. Recomiendo 100%.',
+    textEn: 'First-class service from the moment of booking. The PeruTravelExpertsB team made every moment special. I recommend 100%.',
     author: 'Carlos Mendoza',
     country: 'México',
     flag: '🇲🇽',
@@ -111,7 +111,7 @@ export default function TestimonialsClient() {
   const { t, locale } = useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader
         title={t.pageHeaders.testimonials}
         subtitle={t.testimonials.subtitle}
@@ -122,7 +122,7 @@ export default function TestimonialsClient() {
       />
 
       {/* Testimonials Grid */}
-      <section className="py-12 md:py-20" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="py-12 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -139,23 +139,23 @@ export default function TestimonialsClient() {
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-[#E8D5B5]/20 relative"
               >
                 {/* Quote icon */}
-                <Quote className="w-8 h-8 text-[#C8A97E]/30 mb-4" />
+                <Quote className="w-8 h-8 text-[#D6B37F]/30 mb-4" />
 
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#C8A97E] text-[#C8A97E] star-gold" />
+                    <Star key={i} className="w-4 h-4 fill-[#D6B37F] text-[#D6B37F] star-gold" />
                   ))}
                 </div>
 
                 {/* Text */}
-                <p className="text-[#2C1810]/80 text-sm leading-relaxed mb-6">
+                <p className="text-[#1C1C1C]/80 text-sm leading-relaxed mb-6">
                   &ldquo;{locale === 'es' ? testimonial.textEs : testimonial.textEn}&rdquo;
                 </p>
 
                 {/* Tour tag */}
                 <div className="mb-4">
-                  <span className="text-xs px-3 py-1 rounded-full bg-[#FAF8F5] text-[#C8A97E] border border-[#E8D5B5]/30 font-medium">
+                  <span className="text-xs px-3 py-1 rounded-full bg-[#F8F6F2] text-[#D6B37F] border border-[#E8D5B5]/30 font-medium">
                     {testimonial.tour}
                   </span>
                 </div>
@@ -164,7 +164,7 @@ export default function TestimonialsClient() {
                 <div className="flex items-center gap-3 pt-4 border-t border-[#E8D5B5]/20">
                   <div className="text-2xl">{testimonial.flag}</div>
                   <div>
-                    <p className="font-medium text-sm" style={{ color: '#2C1810' }}>{testimonial.author}</p>
+                    <p className="font-medium text-sm" style={{ color: '#1C1C1C' }}>{testimonial.author}</p>
                     <p className="text-[#8B8680] text-xs">{testimonial.country}</p>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function TestimonialsClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#0C0C14' }}>
+      <section className="py-16 md:py-20" style={{ backgroundColor: '#0F0F0F' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -188,14 +188,14 @@ export default function TestimonialsClient() {
             </h3>
             <p className="text-[#8B8680] mb-6 max-w-xl mx-auto">
               {locale === 'es'
-                ? 'Únete a cientos de viajeros que ya han vivido experiencias inolvidables con Intiquilla.'
-                : 'Join hundreds of travelers who have already experienced unforgettable moments with Intiquilla.'}
+                ? 'Únete a cientos de viajeros que ya han vivido experiencias inolvidables con PeruTravelExpertsB.'
+                : 'Join hundreds of travelers who have already experienced unforgettable moments with PeruTravelExpertsB.'}
             </p>
             <a
               href="https://wa.me/51984000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full gold-gradient text-[#0C0C14] font-semibold hover:shadow-[0_0_30px_rgba(200,169,126,0.4)] transition-all text-sm"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full gold-gradient text-[#0F0F0F] font-semibold hover:shadow-[0_0_30px_rgba(200,169,126,0.4)] transition-all text-sm"
             >
               {t.nav.book}
             </a>

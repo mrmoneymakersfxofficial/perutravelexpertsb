@@ -36,7 +36,7 @@ export default function FAQClient() {
   const questions = t.faq.questions;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader
         title={t.pageHeaders.faq}
         subtitle={t.faq.subtitle}
@@ -47,7 +47,7 @@ export default function FAQClient() {
       />
 
       {/* FAQ Section */}
-      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -61,11 +61,11 @@ export default function FAQClient() {
                 <motion.div key={index} variants={itemVariants}>
                   <AccordionItem
                     value={`item-${index}`}
-                    className="bg-white rounded-xl border border-[#E8D5B5]/20 px-6 data-[state=open]:shadow-md data-[state=open]:border-[#C8A97E]/30 transition-all"
+                    className="bg-white rounded-xl border border-[#E8D5B5]/20 px-6 data-[state=open]:shadow-md data-[state=open]:border-[#D6B37F]/30 transition-all"
                   >
-                    <AccordionTrigger className="text-left font-playfair text-base font-semibold py-5 hover:no-underline" style={{ color: '#2C1810' }}>
+                    <AccordionTrigger className="text-left font-playfair text-base font-semibold py-5 hover:no-underline" style={{ color: '#1C1C1C' }}>
                       <div className="flex items-start gap-3 pr-4">
-                        <HelpCircle className="w-5 h-5 text-[#C8A97E] flex-shrink-0 mt-0.5" />
+                        <HelpCircle className="w-5 h-5 text-[#D6B37F] flex-shrink-0 mt-0.5" />
                         <span>{faq.q}</span>
                       </div>
                     </AccordionTrigger>
@@ -88,7 +88,7 @@ export default function FAQClient() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-16 bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-[#E8D5B5]/20 text-center"
           >
-            <h3 className="font-playfair text-xl md:text-2xl font-bold mb-3" style={{ color: '#2C1810' }}>
+            <h3 className="font-playfair text-xl md:text-2xl font-bold mb-3" style={{ color: '#1C1C1C' }}>
               {locale === 'es' ? '¿Aún tienes preguntas?' : 'Still have questions?'}
             </h3>
             <p className="text-[#8B8680] text-sm mb-6 max-w-lg mx-auto">

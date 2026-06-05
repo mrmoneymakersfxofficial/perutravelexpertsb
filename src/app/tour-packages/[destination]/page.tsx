@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import DestinationClient from './DestinationClient';
 import { destinations, getDestinationBySlug } from '@/lib/tours-data';
 
-const BASE_URL = 'https://intiquilla.com';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export function generateStaticParams() {
   return destinations.map((dest) => ({
@@ -19,17 +19,17 @@ export async function generateMetadata({
   const dest = getDestinationBySlug(destination);
 
   if (!dest) {
-    return { title: 'Destination Not Found | Intiquilla' };
+    return { title: 'Destination Not Found | PeruTravelExpertsB' };
   }
 
   return {
-    title: `Tours in ${dest.nameEn} | Intiquilla`,
+    title: `Tours in ${dest.nameEn} | PeruTravelExpertsB`,
     description: dest.descriptionEn.slice(0, 160),
     openGraph: {
-      title: `Tours in ${dest.nameEn} | Intiquilla`,
+      title: `Tours in ${dest.nameEn} | PeruTravelExpertsB`,
       description: dest.descriptionEn.slice(0, 160),
       url: `${BASE_URL}/tour-packages/${destination}`,
-      siteName: 'Intiquilla',
+      siteName: 'PeruTravelExpertsB',
       type: 'website',
       images: [{ url: dest.image, width: 1200, height: 630 }],
     },

@@ -11,11 +11,11 @@ export default function NotFound() {
   const { t, locale } = useLanguage();
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-[80vh] flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#F8F6F2' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#C8A97E]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C8A97E]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#D6B37F]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#D6B37F]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-lg mx-auto">
@@ -38,11 +38,11 @@ export default function NotFound() {
             transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
             className="w-20 h-20 rounded-full gold-gradient flex items-center justify-center mx-auto mb-8"
           >
-            <Compass className="w-10 h-10 text-[#0C0C14]" />
+            <Compass className="w-10 h-10 text-[#0F0F0F]" />
           </motion.div>
 
           {/* Title */}
-          <h2 className="font-playfair text-2xl md:text-3xl font-bold mb-4" style={{ color: '#2C1810' }}>
+          <h2 className="font-playfair text-2xl md:text-3xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
             {t.notFound.title}
           </h2>
 

@@ -14,7 +14,7 @@ export default function FeaturedToursSection() {
   const featuredTours = getFeaturedTours().slice(0, 4);
 
   return (
-    <section id="tours" className="py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
+    <section id="tours" className="py-20 md:py-28" style={{ backgroundColor: '#F8F6F2' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -25,7 +25,7 @@ export default function FeaturedToursSection() {
           className="text-center mb-12"
         >
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#2C1810' }}
+            style={{ color: '#1C1C1C' }}
           >
             {t.home.featuredTours}
           </h2>

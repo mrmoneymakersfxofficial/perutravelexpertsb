@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import ProjectsWeSupportClient from './ProjectsWeSupportClient';
 
-const BASE_URL = 'https://intiquilla.com';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export const metadata: Metadata = {
-  title: 'Projects We Support | Intiquilla - Social Responsibility',
+  title: 'Projects We Support | PeruTravelExpertsB - Social Responsibility',
   description:
-    'Intiquilla actively supports community projects that preserve Andean culture and improve the quality of life for local families in Peru.',
+    'PeruTravelExpertsB actively supports community projects that preserve Andean culture and improve the quality of life for local families in Peru.',
   openGraph: {
-    title: 'Projects We Support | Intiquilla',
+    title: 'Projects We Support | PeruTravelExpertsB',
     description: 'Committed to the development of Andean communities.',
     url: `${BASE_URL}/projects-we-support`,
-    siteName: 'Intiquilla',
+    siteName: 'PeruTravelExpertsB',
     type: 'website',
   },
 };

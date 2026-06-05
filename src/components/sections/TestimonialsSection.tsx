@@ -23,8 +23,8 @@ const testimonials = [
     rating: 5,
   },
   {
-    textEs: 'Servicio de primera clase desde el momento de la reserva. El equipo de Intiquilla hizo que cada momento fuera especial. Recomiendo 100%.',
-    textEn: 'First-class service from the moment of booking. The Intiquilla team made every moment special. I recommend 100%.',
+    textEs: 'Servicio de primera clase desde el momento de la reserva. El equipo de PeruTravelExpertsB hizo que cada momento fuera especial. Recomiendo 100%.',
+    textEn: 'First-class service from the moment of booking. The PeruTravelExpertsB team made every moment special. I recommend 100%.',
     author: 'Carlos Mendoza',
     country: 'México',
     flag: '🇲🇽',
@@ -56,12 +56,12 @@ export default function TestimonialsSection() {
     <section
       id="testimonials"
       className="py-20 md:py-28 relative overflow-hidden"
-      style={{ backgroundColor: '#0C0C14' }}
+      style={{ backgroundColor: '#0F0F0F' }}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#C8A97E]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#C8A97E]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D6B37F]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#D6B37F]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,12 +96,12 @@ export default function TestimonialsSection() {
               className="glass-card rounded-2xl p-8 relative"
             >
               {/* Quote icon */}
-              <Quote className="w-10 h-10 text-[#C8A97E]/30 mb-4" />
+              <Quote className="w-10 h-10 text-[#D6B37F]/30 mb-4" />
 
               {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#C8A97E] text-[#C8A97E] star-gold" />
+                  <Star key={i} className="w-4 h-4 fill-[#D6B37F] text-[#D6B37F] star-gold" />
                 ))}
               </div>
 

@@ -27,26 +27,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Intiquilla | Tours VIP en Cusco - Machu Picchu",
+  title: "PeruTravelExpertsB | Luxury Tours in Peru - Machu Picchu & Cusco",
   description:
-    "Experiencias exclusivas y tours VIP en Cusco y Machu Picchu. Tu agencia de turismo boutique de confianza. Exclusive VIP tours in Cusco and Machu Picchu.",
+    "Exclusive luxury travel experiences in Peru. Machu Picchu, Cusco, Sacred Valley, Amazon & more. Premium VIP tours with expert local guides.",
   keywords: [
-    "Cusco",
-    "Machu Picchu",
-    "VIP tours",
     "Peru travel",
+    "Machu Picchu tours",
+    "luxury travel Peru",
+    "Cusco tours",
+    "VIP tours Peru",
     "Sacred Valley",
     "Inca Trail",
-    "Intiquilla",
-    "luxury travel",
-    "Cusco tours",
+    "PeruTravelExpertsB",
   ],
-  authors: [{ name: "Intiquilla" }],
+  authors: [{ name: "PeruTravelExpertsB" }],
   openGraph: {
-    title: "Intiquilla | Tours VIP en Cusco - Machu Picchu",
+    title: "PeruTravelExpertsB | Luxury Tours in Peru - Machu Picchu & Cusco",
     description:
-      "Experiencias exclusivas y tours VIP en Cusco y Machu Picchu. Exclusive VIP tours in Cusco and Machu Picchu.",
-    siteName: "Intiquilla",
+      "Exclusive luxury travel experiences in Peru. Premium VIP tours with expert local guides.",
+    siteName: "PeruTravelExpertsB",
     type: "website",
   },
 };
@@ -60,7 +59,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
-        style={{ backgroundColor: '#FAF8F5' }}
+        style={{ backgroundColor: '#F8F6F2' }}
       >
         <LanguageProvider>
           <FavoritesProvider>

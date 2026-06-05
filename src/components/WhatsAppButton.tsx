@@ -10,7 +10,7 @@ export default function WhatsAppButton() {
 
   return (
     <motion.a
-      href="https://wa.me/51984000000?text=Hola%2C%20me%20interesa%20información%20sobre%20los%20tours%20de%20Intiquilla"
+      href="https://wa.me/51984000000?text=Hola%2C%20me%20interesa%20información%20sobre%20los%20tours%20de%20PeruTravelExpertsB"
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, scale: 0.8 }}

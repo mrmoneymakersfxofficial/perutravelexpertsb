@@ -85,11 +85,11 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* Luxury travel colors */
-  --gold: #C8A97E;
+  --gold: #D6B37F;
   --gold-light: #E8D5B5;
-  --dark-bg: #0C0C14;
-  --cream: #FAF8F5;
-  --rich-brown: #2C1810;
+  --dark-bg: #0F0F0F;
+  --cream: #F8F6F2;
+  --rich-brown: #1C1C1C;
   --warm-gray: #8B8680;
 }
 
@@ -145,11 +145,11 @@
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, #C8A97E 0%, #E8D5B5 50%, #C8A97E 100%);
+  background: linear-gradient(135deg, #D6B37F 0%, #E8D5B5 50%, #D6B37F 100%);
 }
 
 .gold-text {
-  background: linear-gradient(135deg, #C8A97E, #E8D5B5);
+  background: linear-gradient(135deg, #D6B37F, #E8D5B5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -183,11 +183,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0C0C14;
+  background: #0F0F0F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C8A97E;
+  background: #D6B37F;
   border-radius: 4px;
 }
 
@@ -224,13 +224,13 @@
 /* Section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #C8A97E, transparent);
+  background: linear-gradient(90deg, transparent, #D6B37F, transparent);
 }
 
 /* Gold button styles */
 .btn-gold {
-  background: linear-gradient(135deg, #C8A97E 0%, #E8D5B5 50%, #C8A97E 100%);
-  color: #0C0C14;
+  background: linear-gradient(135deg, #D6B37F 0%, #E8D5B5 50%, #D6B37F 100%);
+  color: #0F0F0F;
   font-weight: 600;
   transition: all 0.3s ease;
 }
@@ -241,8 +241,8 @@
 }
 
 .btn-gold-outline {
-  border: 2px solid #C8A97E;
-  color: #C8A97E;
+  border: 2px solid #D6B37F;
+  color: #D6B37F;
   background: transparent;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -284,6 +284,6 @@
 
 /* Star rating */
 .star-gold {
-  color: #C8A97E;
+  color: #D6B37F;
   text-shadow: 0 0 10px rgba(200, 169, 126, 0.5);
 }

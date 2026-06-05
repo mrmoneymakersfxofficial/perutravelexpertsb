@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import CustomizedTourDetailClient from './CustomizedTourDetailClient';
 import { customizedTours, getCustomizedTourBySlug } from '@/lib/tours-data';
 
-const BASE_URL = 'https://intiquilla.com';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export function generateStaticParams() {
   return customizedTours.map((pkg) => ({
@@ -19,17 +19,17 @@ export async function generateMetadata({
   const pkg = getCustomizedTourBySlug(slug);
 
   if (!pkg) {
-    return { title: 'Package Not Found | Intiquilla' };
+    return { title: 'Package Not Found | PeruTravelExpertsB' };
   }
 
   return {
-    title: `${pkg.nameEn} | Intiquilla Custom Tours`,
+    title: `${pkg.nameEn} | PeruTravelExpertsB Custom Tours`,
     description: pkg.descriptionEn.slice(0, 160),
     openGraph: {
-      title: `${pkg.nameEn} | Intiquilla`,
+      title: `${pkg.nameEn} | PeruTravelExpertsB`,
       description: pkg.descriptionEn.slice(0, 160),
       url: `${BASE_URL}/customized-tours/${slug}`,
-      siteName: 'Intiquilla',
+      siteName: 'PeruTravelExpertsB',
       type: 'article',
       images: [{ url: pkg.image, width: 1200, height: 630 }],
     },

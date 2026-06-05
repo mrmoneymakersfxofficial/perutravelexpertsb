@@ -49,7 +49,7 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
       `👥 ${t.booking.travelers}: ${travelers}\n` +
       `📅 ${t.booking.date}: ${date}\n` +
       `💬 ${t.booking.message}: ${message || locale === 'es' ? 'N/A' : 'N/A'}\n\n` +
-      `_${locale === 'es' ? 'Enviado desde Intiquilla.com' : 'Sent from Intiquilla.com'}_`;
+      `_${locale === 'es' ? 'Enviado desde PeruTravelExpertsB.com' : 'Sent from PeruTravelExpertsB.com'}_`;
 
     const whatsappUrl = `https://wa.me/51984000000?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
@@ -60,28 +60,28 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto p-0 bg-white rounded-2xl">
         <DialogHeader className="p-6 pb-0">
-          <DialogTitle className="font-playfair text-2xl font-bold" style={{ color: '#2C1810' }}>
+          <DialogTitle className="font-playfair text-2xl font-bold" style={{ color: '#1C1C1C' }}>
             {t.booking.title}
           </DialogTitle>
         </DialogHeader>
 
         <div className="px-6 pb-6">
           {/* Tour Summary */}
-          <div className="bg-[#FAF8F5] rounded-xl p-4 mb-6 border border-[#E8D5B5]/30">
-            <h4 className="font-playfair text-lg font-bold mb-3" style={{ color: '#2C1810' }}>
+          <div className="bg-[#F8F6F2] rounded-xl p-4 mb-6 border border-[#E8D5B5]/30">
+            <h4 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>
               {name}
             </h4>
             <div className="flex flex-wrap gap-4 text-sm text-[#8B8680]">
               <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-[#C8A97E]" />
+                <Clock className="w-4 h-4 text-[#D6B37F]" />
                 <span>{tour.duration} {t.tours.days}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Star className="w-4 h-4 text-[#C8A97E]" />
+                <Star className="w-4 h-4 text-[#D6B37F]" />
                 <span>{diffLabels[tour.difficulty]}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-[#2C1810]">${Math.round(tour.priceUSD)}</span>
+                <span className="font-bold text-[#1C1C1C]">${Math.round(tour.priceUSD)}</span>
                 <span>{t.tours.perPerson}</span>
               </div>
             </div>
@@ -90,19 +90,19 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="name" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+              <Label htmlFor="name" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                 {t.booking.name} *
               </Label>
               <Input
                 id="name"
                 name="name"
                 required
-                className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E]"
+                className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]"
                 placeholder={t.booking.name}
               />
             </div>
             <div>
-              <Label htmlFor="email" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+              <Label htmlFor="email" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                 {t.booking.email} *
               </Label>
               <Input
@@ -110,13 +110,13 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
                 name="email"
                 type="email"
                 required
-                className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E]"
+                className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]"
                 placeholder={t.booking.email}
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="travelers" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+                <Label htmlFor="travelers" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                   {t.booking.travelers} *
                 </Label>
                 <Input
@@ -127,11 +127,11 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
                   max="20"
                   required
                   defaultValue="2"
-                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E]"
+                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]"
                 />
               </div>
               <div>
-                <Label htmlFor="date" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+                <Label htmlFor="date" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                   {t.booking.date} *
                 </Label>
                 <Input
@@ -139,19 +139,19 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
                   name="date"
                   type="date"
                   required
-                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E]"
+                  className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]"
                 />
               </div>
             </div>
             <div>
-              <Label htmlFor="message" className="text-sm font-medium" style={{ color: '#2C1810' }}>
+              <Label htmlFor="message" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
                 {t.booking.message}
               </Label>
               <Textarea
                 id="message"
                 name="message"
                 rows={3}
-                className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#C8A97E] resize-none"
+                className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F] resize-none"
                 placeholder={locale === 'es' ? '¿Tienes alguna solicitud especial?' : 'Any special requests?'}
               />
             </div>

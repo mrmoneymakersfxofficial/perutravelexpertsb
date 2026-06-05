@@ -32,7 +32,7 @@ export default function ScrollToTop() {
           className="fixed bottom-24 right-4 md:right-6 z-50 w-12 h-12 rounded-full gold-gradient flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-5 h-5 text-[#0C0C14]" />
+          <ArrowUp className="w-5 h-5 text-[#0F0F0F]" />
         </motion.button>
       )}
     </AnimatePresence>

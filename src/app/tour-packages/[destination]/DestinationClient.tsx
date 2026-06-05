@@ -25,9 +25,9 @@ export default function DestinationClient({
 
   if (!dest) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FAF8F5' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="text-center">
-          <h1 className="font-playfair text-3xl font-bold" style={{ color: '#2C1810' }}>
+          <h1 className="font-playfair text-3xl font-bold" style={{ color: '#1C1C1C' }}>
             {locale === 'es' ? 'Destino no encontrado' : 'Destination not found'}
           </h1>
           <Link href="/tour-packages">
@@ -42,7 +42,7 @@ export default function DestinationClient({
   const destDesc = locale === 'es' ? dest.descriptionEs : dest.descriptionEn;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader
         title={`${t.tourDetail.toursIn} ${destName}`}
         subtitle={destDesc}
@@ -56,14 +56,14 @@ export default function DestinationClient({
       <section className="relative h-64 md:h-80 overflow-hidden">
         <div className="absolute inset-0">
           <Image src={dest.image} alt={destName} fill sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0C0C14]/70 to-[#0C0C14]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/70 to-[#0F0F0F]" />
         </div>
         <div className="relative z-10 flex items-end justify-center h-full pb-12">
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white">{destName}</h2>
         </div>
       </section>
 
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="py-16 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}

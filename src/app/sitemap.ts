@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { tours, destinations, customizedTours, communityTours, projects } from '@/lib/tours-data';
 
-const BASE_URL = 'https://intiquilla.com';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

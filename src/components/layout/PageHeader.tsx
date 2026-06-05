@@ -20,7 +20,7 @@ export default function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderP
   const { t } = useLanguage();
 
   return (
-    <section className="pt-28 pb-12 md:pt-36 md:pb-16" style={{ backgroundColor: '#FAF8F5' }}>
+    <section className="pt-28 pb-12 md:pt-36 md:pb-16" style={{ backgroundColor: '#F8F6F2' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ export default function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderP
           <Breadcrumbs items={breadcrumbs} />
           <h1
             className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#2C1810' }}
+            style={{ color: '#1C1C1C' }}
           >
             {title}
           </h1>

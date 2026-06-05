@@ -13,10 +13,10 @@ export default function ToursCitiesClient() {
   const { t, locale } = useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#FAF8F5' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader title={t.communityTours.title} subtitle={t.communityTours.subtitle} breadcrumbs={[{ label: locale === 'es' ? 'Inicio' : 'Home', href: '/' }, { label: t.communityTours.title }]} />
 
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#8B8680] text-lg leading-relaxed mb-6">
             {locale === 'es'
@@ -27,7 +27,7 @@ export default function ToursCitiesClient() {
         </div>
       </section>
 
-      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {communityTours.map((tour, index) => {
@@ -51,8 +51,8 @@ export default function ToursCitiesClient() {
                       <div className="p-6">
                         <p className="text-[#8B8680] text-sm leading-relaxed mb-4 line-clamp-3">{desc}</p>
                         <div className="flex items-center justify-between pt-4 border-t border-[#E8D5B5]/20">
-                          <span className="text-2xl font-bold font-playfair" style={{ color: '#2C1810' }}>${Math.round(tour.priceUSD)}</span>
-                          <span className="flex items-center gap-1 text-sm font-medium text-[#C8A97E] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
+                          <span className="text-2xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</span>
+                          <span className="flex items-center gap-1 text-sm font-medium text-[#D6B37F] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>
                     </div>
