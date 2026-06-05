@@ -95,11 +95,11 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-24 md:h-[140px]">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-28 h-[70px] md:w-36 md:h-[90px] shrink-0">
-              <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" priority sizes="144px" />
+            <div className="relative w-48 h-20 md:w-56 md:h-[130px] shrink-0">
+              <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" priority sizes="224px" />
             </div>
           </Link>
 
@@ -207,8 +207,8 @@ export default function Header() {
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between p-6 border-b border-gold/10">
                     <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
-                      <div className="relative w-24 h-16 shrink-0">
-                        <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="96px" />
+                      <div className="relative w-44 h-[110px] shrink-0">
+                        <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="176px" />
                       </div>
                     </Link>
                     <button onClick={() => setMobileOpen(false)} className="text-warm-gray hover:text-gold transition-colors">
