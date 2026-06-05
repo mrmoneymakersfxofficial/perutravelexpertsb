@@ -6,6 +6,8 @@ import { FavoritesProvider } from "@/components/FavoritesProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -68,6 +70,8 @@ export default function RootLayout({
               <Footer />
             </div>
             <Toaster />
+            <ScrollToTop />
+            <WhatsAppButton />
           </FavoritesProvider>
         </LanguageProvider>
       </body>

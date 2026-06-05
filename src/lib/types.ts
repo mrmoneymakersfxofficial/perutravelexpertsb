@@ -64,6 +64,11 @@ export interface Translations {
     testimonials: string;
     contact: string;
     book: string;
+    customizedTours: string;
+    communityTours: string;
+    projects: string;
+    faq: string;
+    allDestinations: string;
   };
   hero: {
     title: string;
@@ -151,6 +156,8 @@ export interface Translations {
     toursCities: string;
     projectsWeSupport: string;
     contact: string;
+    testimonials: string;
+    faq: string;
   };
   destinations: {
     cusco: string;
@@ -190,5 +197,18 @@ export interface Translations {
     featuredTours: string;
     whyChooseUs: string;
     viewAllPackages: string;
+  };
+  faq: {
+    title: string;
+    subtitle: string;
+    questions: { q: string; a: string }[];
+  };
+  notFound: {
+    title: string;
+    description: string;
+    backHome: string;
+  };
+  whatsapp: {
+    tooltip: string;
   };
 }

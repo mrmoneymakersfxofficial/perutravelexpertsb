@@ -1,23 +1,18 @@
-'use client';
+import type { Metadata } from 'next';
+import HomeClient from './HomeClient';
 
-import React from 'react';
-import HeroSection from '@/components/sections/HeroSection';
-import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import FeaturedToursSection from '@/components/sections/FeaturedToursSection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection';
-import StatsSection from '@/components/sections/StatsSection';
-import CTASection from '@/components/sections/CTASection';
+export const metadata: Metadata = {
+  title: 'Intiquilla | Tours VIP en Cusco - Machu Picchu',
+  description:
+    'Experiencias exclusivas y tours VIP en Cusco y Machu Picchu. Tu agencia de turismo boutique de confianza. Exclusive VIP tours in Cusco and Machu Picchu.',
+  openGraph: {
+    title: 'Intiquilla | Tours VIP en Cusco - Machu Picchu',
+    description: 'Experiencias exclusivas y tours VIP en Cusco y Machu Picchu.',
+    siteName: 'Intiquilla',
+    type: 'website',
+  },
+};
 
 export default function HomePage() {
-  return (
-    <>
-      <HeroSection />
-      <WhyChooseUsSection />
-      <div className="section-divider" />
-      <FeaturedToursSection />
-      <TestimonialsSection />
-      <StatsSection />
-      <CTASection />
-    </>
-  );
+  return <HomeClient />;
 }

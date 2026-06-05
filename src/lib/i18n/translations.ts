@@ -3,7 +3,7 @@ import type { Translations } from '@/lib/types';
 
 export const translations: Record<Locale, Translations> = {
   es: {
-    nav: { tours: 'Tours', about: 'Nosotros', testimonials: 'Testimonios', contact: 'Contacto', book: 'Reservar' },
+    nav: { tours: 'Tours', about: 'Nosotros', testimonials: 'Testimonios', contact: 'Contacto', book: 'Reservar', customizedTours: 'Tours Personalizados', communityTours: 'Tours Comunitarios', projects: 'Proyectos', faq: 'FAQ', allDestinations: 'Todos los Destinos' },
     hero: {
       title: 'Descubre Cusco',
       subtitle: 'como nunca antes',
@@ -90,6 +90,8 @@ export const translations: Record<Locale, Translations> = {
       toursCities: 'Tours por Ciudad',
       projectsWeSupport: 'Proyectos que Apoyamos',
       contact: 'Contacto',
+      testimonials: 'Testimonios',
+      faq: 'Preguntas Frecuentes',
     },
     destinations: {
       cusco: 'Cusco',
@@ -130,9 +132,33 @@ export const translations: Record<Locale, Translations> = {
       whyChooseUs: '¿Por Qué Elegirnos?',
       viewAllPackages: 'Ver Todos los Paquetes',
     },
+    faq: {
+      title: 'Preguntas Frecuentes',
+      subtitle: 'Todo lo que necesitas saber para planificar tu viaje a Cusco y Perú',
+      questions: [
+        { q: '¿Cuál es la mejor época para visitar Cusco?', a: 'La temporada seca (mayo a octubre) es ideal, con días soleados y noches frías. La temporada de lluvias (noviembre a abril) tiene menos turistas y paisajes más verdes.' },
+        { q: '¿Necesito un permiso especial para el Camino Inca?', a: 'Sí, los permisos del Camino Inca son limitados a 500 personas por día (incluyendo guías y porteadores). Te recomendamos reservar con al menos 3-6 meses de anticipación.' },
+        { q: '¿Qué es el mal de altura y cómo prevenirlo?', a: 'El mal de altura (soroche) afecta a muchas personas al llegar a Cusco (3,400 msnm). Recomendamos descansar el primer día, beber mucha agua, comer liviano y evitar el alcohol. También puedes tomar té de hoja de coca.' },
+        { q: '¿Qué debo empacar para mis tours?', a: 'Ropa en capas (hace frío de noche y calor de día), zapatos cómodos para caminar, protector solar, gorra, bloqueador, cámara, botella de agua reutilizable y lluvia ligera.' },
+        { q: '¿Es seguro viajar a Cusco?', a: 'Sí, Cusco es una ciudad turística segura. Como en cualquier destino, toma precauciones básicas: cuida tus pertenencias, usa taxis oficiales y evita caminar solo de noche en áreas poco iluminadas.' },
+        { q: '¿Aceptan tarjetas de crédito en los tours?', a: 'La mayoría de nuestros tours se pagan en efectivo (soles o dólares). Aceptamos transferencias bancarias y pagos por PayPal para reservas anticipadas.' },
+        { q: '¿Puedo hacer el tour estando embarazada?', a: 'Depende del tour. Tours de ciudad y Valle Sagrado son aptos. Para trekings como Montaña de Colores o Camino Inca, consultamos con tu médico antes de confirmar.' },
+        { q: '¿Qué incluye el servicio VIP?', a: 'Nuestro servicio VIP incluye guía privado bilingüe, transporte privado, entradas preferentes, grupos reducidos (máximo 8 personas), y atención personalizada durante todo el viaje.' },
+        { q: '¿Cómo llegar a Machu Picchu?', a: 'Hay dos formas principales: en tren desde Cusco o por el Camino Inca. El tren toma unas 3.5 horas hasta Aguas Calientes, y luego un bus de 25 minutos hasta la citadela.' },
+        { q: '¿Ofrecen tours vegetarianos o veganos?', a: '¡Por supuesto! Avisanos al momento de la reserva y adaptamos todos los almuerzos y comidas incluidas a tus preferencias dietéticas.' },
+      ],
+    },
+    notFound: {
+      title: 'Página No Encontrada',
+      description: 'Lo sentimos, la página que buscas no existe o ha sido movida.',
+      backHome: 'Volver al Inicio',
+    },
+    whatsapp: {
+      tooltip: 'Chatea con nosotros por WhatsApp',
+    },
   },
   en: {
-    nav: { tours: 'Tours', about: 'About Us', testimonials: 'Testimonials', contact: 'Contact', book: 'Book Now' },
+    nav: { tours: 'Tours', about: 'About Us', testimonials: 'Testimonials', contact: 'Contact', book: 'Book Now', customizedTours: 'Customized Tours', communityTours: 'Community Tours', projects: 'Projects', faq: 'FAQ', allDestinations: 'All Destinations' },
     hero: {
       title: 'Discover Cusco',
       subtitle: 'like never before',
@@ -219,6 +245,8 @@ export const translations: Record<Locale, Translations> = {
       toursCities: 'Tours Cities',
       projectsWeSupport: 'Projects We Support',
       contact: 'Contact',
+      testimonials: 'Testimonials',
+      faq: 'Frequently Asked Questions',
     },
     destinations: {
       cusco: 'Cusco',
@@ -258,6 +286,30 @@ export const translations: Record<Locale, Translations> = {
       featuredTours: 'Featured Tours',
       whyChooseUs: 'Why Choose Us',
       viewAllPackages: 'View All Packages',
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'Everything you need to know to plan your trip to Cusco and Peru',
+      questions: [
+        { q: 'What is the best time to visit Cusco?', a: 'The dry season (May to October) is ideal, with sunny days and cold nights. The rainy season (November to April) has fewer tourists and greener landscapes.' },
+        { q: 'Do I need a special permit for the Inca Trail?', a: 'Yes, Inca Trail permits are limited to 500 people per day (including guides and porters). We recommend booking at least 3-6 months in advance.' },
+        { q: 'What is altitude sickness and how to prevent it?', a: 'Altitude sickness (soroche) affects many people arriving in Cusco (3,400 masl). We recommend resting the first day, drinking plenty of water, eating light meals, and avoiding alcohol. Coca leaf tea is also helpful.' },
+        { q: 'What should I pack for my tours?', a: 'Layered clothing (cold at night, warm during the day), comfortable walking shoes, sunscreen, hat, sunglasses, camera, reusable water bottle, and a light rain jacket.' },
+        { q: 'Is it safe to travel to Cusco?', a: 'Yes, Cusco is a safe tourist city. As with any destination, take basic precautions: watch your belongings, use official taxis, and avoid walking alone at night in poorly lit areas.' },
+        { q: 'Do you accept credit cards for tours?', a: 'Most of our tours are paid in cash (soles or dollars). We accept bank transfers and PayPal payments for advance bookings.' },
+        { q: 'Can I do tours while pregnant?', a: 'It depends on the tour. City tours and Sacred Valley are suitable. For treks like Rainbow Mountain or Inca Trail, we consult with your doctor before confirming.' },
+        { q: 'What does the VIP service include?', a: 'Our VIP service includes a private bilingual guide, private transport, preferred entrance tickets, small groups (maximum 8 people), and personalized attention throughout your trip.' },
+        { q: 'How do I get to Machu Picchu?', a: 'There are two main ways: by train from Cusco or via the Inca Trail. The train takes about 3.5 hours to Aguas Calientes, then a 25-minute bus ride to the citadel.' },
+        { q: 'Do you offer vegetarian or vegan tour options?', a: 'Of course! Let us know at the time of booking and we will adapt all included meals to your dietary preferences.' },
+      ],
+    },
+    notFound: {
+      title: 'Page Not Found',
+      description: 'Sorry, the page you are looking for does not exist or has been moved.',
+      backHome: 'Back to Home',
+    },
+    whatsapp: {
+      tooltip: 'Chat with us on WhatsApp',
     },
   },
 };
