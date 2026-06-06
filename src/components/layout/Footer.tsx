@@ -116,7 +116,7 @@ export default function Footer() {
         <Separator className="bg-gold/10" />
 
         {/* Bottom Footer */}
-        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="py-6 pb-24 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-warm-gray text-xs">
             © {new Date().getFullYear()} PeruTravelExpertsB. {t.footer.rights}
           </p>

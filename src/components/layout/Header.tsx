@@ -88,7 +88,7 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed top-0 left-0 w-full z-[9999]"
+        className="fixed top-0 left-0 w-full z-[9999] glass-header"
       >
         {/* Desktop: 70px | Tablet: 65px | Mobile: 60px */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
