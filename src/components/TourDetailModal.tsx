@@ -240,7 +240,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
           </div>
 
           {/* Scrollable Body */}
-          <div className="overflow-y-auto px-0 pb-6 scrollbar-hide" style={{ maxHeight: 'calc(90vh - 70px)' }}>
+          <div className="overflow-y-auto px-0 scrollbar-hide" style={{ maxHeight: 'calc(90vh - 70px)', paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom))' }}>
             {Body}
           </div>
         </SheetContent>

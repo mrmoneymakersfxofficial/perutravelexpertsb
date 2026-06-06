@@ -3,7 +3,8 @@
 import React, { useState, use } from 'react';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
-import { motion } from 'framer-motion';
+import { useModal } from '@/components/ModalContext';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, Star, Check, ArrowRight, ChevronRight, Heart, MessageCircle } from 'lucide-react';
@@ -28,6 +29,7 @@ export default function TourDetailClient({
   const { destination, slug } = use(params);
   const { t, locale } = useLanguage();
   const { isFavorite, toggleFavorite } = useFavorites();
+  const { searchOpen, favoritesOpen, detailOpen } = useModal();
 
   const sectionIds = ['tour-hero', 'tour-content', 'tour-related'];
   useSectionObserver({ sectionIds });
@@ -258,21 +260,33 @@ export default function TourDetailClient({
         </div>
       </section>
 
-      {/* Sticky Mobile CTA Bar - above bottom nav */}
-      <div className="lg:hidden fixed bottom-16 left-0 right-0 z-[9997] px-3 sm:px-4 py-2.5 sm:py-3" style={{ backgroundColor: 'rgba(248,246,242,0.95)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(214,179,127,0.1)' }}>
-        <div className="max-w-7xl mx-auto flex items-center gap-2 sm:gap-3">
-          <a href={`https://wa.me/51984000000?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors shadow-lg">
-            <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span className="hidden sm:inline">WhatsApp</span>
-          </a>
-          <Button onClick={() => setBookingOpen(true)} className="flex-1 sm:flex-none sm:px-5 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 shadow-lg" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>
-            {t.tours.bookNow}
-          </Button>
-          <button onClick={() => toggleFavorite(tour.id)} className="w-10 h-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center border transition-colors shrink-0" style={{ borderColor: isFav ? '#ef4444' : 'rgba(214,179,127,0.2)', backgroundColor: isFav ? 'rgba(239,68,68,0.1)' : 'rgba(214,179,127,0.05)' }}>
-            <Heart className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#D6B37F]'}`} />
-          </button>
-        </div>
-      </div>
+      {/* Sticky Mobile CTA Bar - hides when modals open */}
+      <AnimatePresence>
+        {!searchOpen && !favoritesOpen && !detailOpen && !bookingOpen && (
+          <motion.div
+            key="sticky-cta"
+            initial={{ y: '100%', opacity: 0 }}
+            animate={{ y: '0%', opacity: 1 }}
+            exit={{ y: '100%', opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+            className="lg:hidden fixed bottom-0 left-0 right-0 z-[9997] px-3 sm:px-4 py-2.5 sm:py-3"
+            style={{ backgroundColor: 'rgba(248,246,242,0.97)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(214,179,127,0.1)', paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))' }}
+          >
+            <div className="max-w-7xl mx-auto flex items-center gap-2 sm:gap-3">
+              <a href={`https://wa.me/51984000000?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors shadow-lg">
+                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">WhatsApp</span>
+              </a>
+              <Button onClick={() => setBookingOpen(true)} className="flex-1 sm:flex-none sm:px-5 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 shadow-lg" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>
+                {t.tours.bookNow}
+              </Button>
+              <button onClick={() => toggleFavorite(tour.id)} className="w-10 h-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center border transition-colors shrink-0" style={{ borderColor: isFav ? '#ef4444' : 'rgba(214,179,127,0.2)', backgroundColor: isFav ? 'rgba(239,68,68,0.1)' : 'rgba(214,179,127,0.05)' }}>
+                <Heart className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#D6B37F]'}`} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {related.length > 0 && (
         <section id="tour-related" className="py-12 sm:py-16 md:py-20 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#F8F6F2' }}>

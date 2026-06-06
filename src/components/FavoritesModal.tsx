@@ -174,7 +174,7 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect }: Fav
             <SheetTitle>{t.tours.favorites}</SheetTitle>
           </SheetHeader>
           {Header}
-          <div className="px-4 pb-6">
+          <div className="px-4 pb-6" style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom))' }}>
             {favoritedTours.length === 0 ? EmptyState : TourList}
           </div>
         </SheetContent>
