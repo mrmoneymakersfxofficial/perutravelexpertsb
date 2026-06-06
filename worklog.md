@@ -136,3 +136,30 @@ Stage Summary:
 - Vercel auto-deploys from GitHub (no CLI token available in this session)
 - All favorites, tours, and mobile responsive issues addressed
 
+---
+Task ID: 2
+Agent: Main Agent
+Task: Rebuild FavoritesModal + TourDetailModal professional, fix scrollbar, push Git+Vercel
+
+Work Log:
+- Analyzed 3 reference images showing favorites modal, home page, and tour detail modal issues
+- Fixed global scrollbar: 4px thin gold scrollbar with transparent track, scrollbar-hide utility
+- Rebuilt FavoritesModal from scratch:
+  - Clean header with heart icon badge + tour count subtitle
+  - Compact tour items with 60px/72px thumbnails, info, book+remove actions
+  - Scrollable list with scrollbar-hide, AnimatePresence scale animations
+  - Desktop: max-w-[440px] dialog, Mobile: rounded-t-[28px] sheet at 80vh
+- Rebuilt TourDetailModal from scratch:
+  - Snap-scroll gallery with proper mobile padding offsets
+  - Clean sections: tags, description, includes (2-col grid), itinerary accordion
+  - Desktop: max-w-[680px] dialog, Mobile: rounded-t-[28px] sheet at 90vh
+  - All body content in scrollbar-hide container
+  - Compact CTA bar with WhatsApp + Book Now buttons
+  - Touch-friendly active:scale-95 transitions
+- Build successful, committed as 57bf720, pushed to GitHub
+
+Stage Summary:
+- 15 files changed, 349 insertions(+), 157 deletions(-)
+- Commit: 57bf720 pushed to GitHub
+- Vercel auto-deploys from GitHub to perutravelexpertsb.vercel.app
+
