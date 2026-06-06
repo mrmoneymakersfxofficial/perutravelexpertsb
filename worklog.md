@@ -163,3 +163,26 @@ Stage Summary:
 - Commit: 57bf720 pushed to GitHub
 - Vercel auto-deploys from GitHub to perutravelexpertsb.vercel.app
 
+---
+Task ID: 3
+Agent: Main Agent
+Task: Fix BottomNav clipping modals, safe areas, professional UX
+
+Work Log:
+- Analyzed user images showing tours and favorites being clipped by Bottom Navigation
+- Implemented Airbnb/Booking pattern: Bottom Nav hides when ANY modal is open
+- BottomNavigation: AnimatePresence with translateY(100%) + opacity:0 exit
+  triggered by searchOpen || favoritesOpen || detailOpen
+- FloatingPanel: same pattern - hides when any modal is open
+- TourDetailClient sticky CTA: AnimatePresence, hides when modals/booking open,
+  repositioned to bottom-0 with safe-area-inset-bottom padding
+- Added env(safe-area-inset-bottom) to all bottom Sheets (Favorites, TourDetail)
+- Added min-height: 44px touch targets on all Bottom Nav items
+- Build successful, committed as 9af4ca7, pushed to GitHub
+
+Stage Summary:
+- 7 files changed, 121 insertions(+), 72 deletions(-)
+- Commit: 9af4ca7 → GitHub → Vercel auto-deploy
+- Bottom Nav now smoothly slides away when modals open (250ms ease-out)
+- No more clipped tours, favorites, or modals
+
