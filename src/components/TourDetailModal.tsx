@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
@@ -19,10 +18,10 @@ import { tourToView } from '@/lib/tours-data';
 
 interface TourDetailModalProps { tour: TourData | null; open: boolean; onOpenChange: (open: boolean) => void; }
 
-const difficultyConfig = {
-  beginner: { es: 'Principiante', en: 'Beginner', color: 'bg-emerald-100 text-emerald-800 border-emerald-200' },
-  moderate: { es: 'Moderado', en: 'Moderate', color: 'bg-amber-100 text-amber-800 border-amber-200' },
-  advanced: { es: 'Avanzado', en: 'Advanced', color: 'bg-red-100 text-red-800 border-red-200' },
+const diffCfg = {
+  beginner: { es: 'Principiante', en: 'Beginner', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+  moderate:  { es: 'Moderado',    en: 'Moderate',  cls: 'bg-amber-50 text-amber-700 border-amber-200' },
+  advanced:  { es: 'Avanzado',    en: 'Advanced',  cls: 'bg-red-50 text-red-700 border-red-200' },
 } as const;
 
 export default function TourDetailModal({ tour, open, onOpenChange }: TourDetailModalProps) {
@@ -30,125 +29,220 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
   const { isFavorite, toggleFavorite } = useFavorites();
   const { addViewed } = useRecentlyViewed();
   const [bookingOpen, setBookingOpen] = useState(false);
-  const galleryScrollRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { if (tour && open) addViewed(tour.id); }, [tour, open, addViewed]);
   if (!tour) return null;
 
-  const name = locale === 'es' ? tour.nameEs : tour.nameEn;
+  const name        = locale === 'es' ? tour.nameEs : tour.nameEn;
   const description = locale === 'es' ? tour.descriptionEs : tour.descriptionEn;
-  const includes = locale === 'es' ? tour.includesEs : tour.includesEn;
-  const itinerary = locale === 'es' ? tour.itineraryEs : tour.itineraryEn;
-  const diff = difficultyConfig[tour.difficulty];
-  const diffLabel = locale === 'es' ? diff.es : diff.en;
-  const isFav = isFavorite(tour.id);
-  const heartClass = 'w-4 h-4 sm:w-5 sm:h-5 transition-colors ' + (isFav ? 'text-red-500 fill-red-500' : 'text-[#8B8680]');
-  const galleryImages = tour.gallery?.length ? [tour.image, ...tour.gallery] : [tour.image];
+  const includes    = locale === 'es' ? tour.includesEs : tour.includesEn;
+  const itinerary   = locale === 'es' ? tour.itineraryEs : tour.itineraryEn;
+  const diff        = diffCfg[tour.difficulty];
+  const diffLabel   = locale === 'es' ? diff.es : diff.en;
+  const isFav       = isFavorite(tour.id);
+  const images      = tour.gallery?.length ? [tour.image, ...tour.gallery] : [tour.image];
+  const destName    = (t.nav as Record<string, string>)[tour.destination] || tour.destination;
+  const waMsg       = encodeURIComponent(`Hola, me interesa el tour "${name}" ($${tour.priceUSD} USD). ¿Podrían darme más información?`);
 
-  const whatsappMessage = encodeURIComponent(`Hola, me interesa el tour "${name}" ($${tour.priceUSD} USD). ¿Podrían darme más información?`);
-  const scrollGallery = (direction: 'left' | 'right') => {
-    if (galleryScrollRef.current) galleryScrollRef.current.scrollBy({ left: direction === 'left' ? -280 : 280, behavior: 'smooth' });
+  const scroll = (dir: 'left' | 'right') => {
+    galleryRef.current?.scrollBy({ left: dir === 'left' ? -260 : 260, behavior: 'smooth' });
   };
 
-  const Content = (
-    <div className="space-y-4 sm:space-y-6">
-      <div className="relative">
-        <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-hide" ref={galleryScrollRef}>
-          {galleryImages.map((img, idx) => (
-            <div key={idx} className="relative w-full min-w-[240px] sm:min-w-[280px] h-44 sm:h-56 md:h-64 rounded-lg sm:rounded-xl overflow-hidden shrink-0">
-              <Image src={img} alt={`${name} - ${idx + 1}`} fill sizes="400px" className="object-cover" />
-            </div>
-          ))}
+  /* ───── Gallery ───── */
+  const Gallery = (
+    <div className="relative -mx-5 sm:-mx-6 md:mx-0">
+      <div
+        ref={galleryRef}
+        className="flex gap-2 overflow-x-auto px-5 sm:px-6 md:px-0 scrollbar-hide snap-x snap-mandatory"
+      >
+        {images.map((img, i) => (
+          <div key={i} className="relative w-[260px] sm:w-[300px] md:w-full md:min-w-0 h-[180px] sm:h-[220px] md:h-[260px] rounded-lg sm:rounded-xl overflow-hidden shrink-0 snap-start">
+            <Image src={img} alt={`${name} ${i + 1}`} fill sizes="400px" className="object-cover" />
+          </div>
+        ))}
+      </div>
+      {images.length > 1 && (
+        <>
+          <button onClick={() => scroll('left')}  className="absolute left-1.5 sm:left-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-card flex items-center justify-center z-10 active:scale-90 transition-transform"><ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /></button>
+          <button onClick={() => scroll('right')} className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-card flex items-center justify-center z-10 active:scale-90 transition-transform"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /></button>
+        </>
+      )}
+    </div>
+  );
+
+  /* ───── Tags ───── */
+  const Tags = (
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge variant="outline" className={`text-[10px] sm:text-xs font-medium ${diff.cls}`}>{diffLabel}</Badge>
+      <span className="flex items-center gap-1 text-[11px] sm:text-xs" style={{ color: '#8B8680' }}><Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{tour.duration} {t.tours.days}</span>
+      <span className="flex items-center gap-1 text-[11px] sm:text-xs" style={{ color: '#8B8680' }}><MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{destName}</span>
+    </div>
+  );
+
+  /* ───── Description ───── */
+  const Desc = (
+    <p className="text-xs sm:text-sm leading-relaxed" style={{ color: '#8B8680' }}>{description}</p>
+  );
+
+  /* ───── Includes ───── */
+  const Includes = (
+    <div>
+      <h4 className="font-playfair font-semibold text-xs sm:text-sm mb-2.5" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h4>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+        {includes.map((item, i) => (
+          <li key={i} className="flex items-start gap-2 text-[11px] sm:text-xs" style={{ color: '#8B8680' }}>
+            <Check className="w-3.5 h-3.5 shrink-0 mt-px" style={{ color: '#D6B37F' }} />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  /* ───── Itinerary ───── */
+  const Itinerary = itinerary && itinerary.length > 0 && (
+    <div>
+      <h4 className="font-playfair font-semibold text-xs sm:text-sm mb-2.5" style={{ color: '#1C1C1C' }}>{t.tourDetail.itinerary}</h4>
+      <Accordion type="single" collapsible className="space-y-1.5">
+        {itinerary.map((day, i) => {
+          const title = locale === 'es' ? day.titleEs : day.titleEn;
+          const desc  = locale === 'es' ? day.descriptionEs : day.descriptionEn;
+          return (
+            <AccordionItem key={i} value={`d-${i}`} className="rounded-lg px-3" style={{ border: '1px solid rgba(232,213,181,0.15)' }}>
+              <AccordionTrigger className="py-2.5 text-[11px] sm:text-xs font-medium" style={{ color: '#1C1C1C' }}>
+                <span className="flex items-center gap-2">
+                  <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-white shrink-0" style={{ backgroundColor: '#D6B37F' }}>{day.day}</span>
+                  {title}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p className="text-[11px] sm:text-xs leading-relaxed pb-1 pl-7" style={{ color: '#8B8680' }}>{desc}</p>
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
+    </div>
+  );
+
+  /* ───── Bottom CTA ───── */
+  const BottomCTA = (
+    <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid rgba(232,213,181,0.15)' }}>
+      <div className="min-w-0 mr-3">
+        <div className="flex items-baseline gap-1">
+          <span className="text-[10px] sm:text-xs" style={{ color: '#8B8680' }}>{t.tours.price}</span>
+          <span className="text-lg sm:text-xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</span>
         </div>
-        {galleryImages.length > 1 && (
-          <>
-            <button onClick={() => scrollGallery('left')} className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-card flex items-center justify-center hover:bg-white/20 transition-colors"><ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /></button>
-            <button onClick={() => scrollGallery('right')} className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-card flex items-center justify-center hover:bg-white/20 transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /></button>
-          </>
+        <span className="text-[10px]" style={{ color: '#8B8680' }}>{t.tours.perPerson}</span>
+        {tour.highSeasonPrice && (
+          <p className="text-[10px] mt-0.5" style={{ color: '#8B8680' }}>
+            {locale === 'es' ? 'Temp. alta: ' : 'High season: '}<span className="font-medium">${Math.round(tour.highSeasonPrice)}</span>
+          </p>
         )}
       </div>
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-        <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>{diffLabel}</Badge>
-        <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#8B8680]"><Clock className="w-3 h-3 sm:w-4 sm:h-4" />{tour.duration} {t.tours.days}</span>
-        <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#8B8680]"><MapPin className="w-3 h-3 sm:w-4 sm:h-4" />{(t.nav as Record<string, string>)[tour.destination] || tour.destination}</span>
-      </div>
-      <p className="text-xs sm:text-sm text-[#8B8680] leading-relaxed">{description}</p>
-      <div>
-        <h4 className="font-playfair font-semibold text-xs sm:text-sm mb-2 sm:mb-3" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h4>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">{includes.map((item, idx) => (
-          <li key={idx} className="flex items-start gap-1.5 sm:gap-2 text-xs sm:text-sm text-[#8B8680]"><Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D6B37F] shrink-0 mt-0.5" /><span>{item}</span></li>
-        ))}</ul>
-      </div>
-      {itinerary && itinerary.length > 0 && (
-        <div>
-          <h4 className="font-playfair font-semibold text-xs sm:text-sm mb-2 sm:mb-3" style={{ color: '#1C1C1C' }}>{t.tourDetail.itinerary}</h4>
-          <Accordion type="single" collapsible className="space-y-1.5 sm:space-y-2">
-            {itinerary.map((day, idx) => {
-              const title = locale === 'es' ? day.titleEs : day.titleEn;
-              const desc = locale === 'es' ? day.descriptionEs : day.descriptionEn;
-              return (
-                <AccordionItem key={idx} value={`day-${idx}`} className="border border-[#E8D5B5]/20 rounded-lg px-3 sm:px-4">
-                  <AccordionTrigger className="text-xs sm:text-sm font-medium py-2.5 sm:py-3" style={{ color: '#1C1C1C' }}>
-                    <span className="flex items-center gap-1.5 sm:gap-2"><span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] sm:text-[11px] font-bold text-white shrink-0" style={{ backgroundColor: '#D6B37F' }}>{day.day}</span>{title}</span>
-                  </AccordionTrigger>
-                  <AccordionContent><p className="text-xs sm:text-sm text-[#8B8680] leading-relaxed pl-6 sm:pl-8 pb-1">{desc}</p></AccordionContent>
-                </AccordionItem>
-              );
-            })}
-          </Accordion>
-        </div>
-      )}
-      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-[#E8D5B5]/20">
-        <div>
-          <div className="flex items-baseline gap-0.5 sm:gap-1"><span className="text-[10px] sm:text-xs text-[#8B8680]">{t.tours.price}</span><span className="text-xl sm:text-2xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</span></div>
-          <span className="text-[10px] sm:text-xs text-[#8B8680]">{t.tours.perPerson}</span>
-          {tour.highSeasonPrice && <p className="text-[10px] sm:text-[11px] text-[#8B8680] mt-0.5">{locale === 'es' ? 'Temporada alta: ' : 'High season: '}<span className="font-medium">${Math.round(tour.highSeasonPrice)}</span></p>}
-        </div>
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          <a href={`https://wa.me/51984000000?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 sm:gap-2 h-9 sm:h-10 px-3 sm:px-5 rounded-full text-[11px] sm:text-[13px] font-semibold bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors shadow-lg"><MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" /><span className="hidden sm:inline">WhatsApp</span></a>
-          <Button onClick={() => setBookingOpen(true)} className="h-9 sm:h-10 px-3 sm:px-5 rounded-full text-[11px] sm:text-[13px] font-semibold transition-all duration-200 shadow-lg" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>{t.tours.bookNow}</Button>
-        </div>
+      <div className="flex items-center gap-2 shrink-0">
+        <a
+          href={`https://wa.me/51984000000?text=${waMsg}`}
+          target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 h-9 sm:h-10 px-3 sm:px-4 rounded-full text-[11px] sm:text-xs font-semibold text-white shadow-md active:scale-95 transition-transform"
+          style={{ backgroundColor: '#25D366' }}
+        >
+          <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span className="hidden sm:inline">WhatsApp</span>
+        </a>
+        <Button
+          onClick={() => setBookingOpen(true)}
+          className="h-9 sm:h-10 px-4 sm:px-5 rounded-full text-[11px] sm:text-xs font-semibold shadow-md active:scale-95 transition-transform"
+          style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
+        >
+          {t.tours.bookNow}
+        </Button>
       </div>
     </div>
   );
 
+  /* ───── Scrollable body content ───── */
+  const Body = (
+    <div className="space-y-4 sm:space-y-5">
+      {Gallery}
+      {Tags}
+      {Desc}
+      {Includes}
+      {Itinerary}
+      {BottomCTA}
+    </div>
+  );
+
+  /* ════════════════════════════════════════════
+     RENDER — Desktop Dialog + Mobile Sheet
+     ════════════════════════════════════════════ */
   return (
     <>
-      {/* Desktop Dialog */}
+      {/* ── Desktop ── */}
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="hidden md:block max-w-3xl max-h-[85vh] overflow-y-auto p-6 rounded-2xl" style={{ backgroundColor: '#F8F6F2' }}>
-          <div className="flex items-start justify-between mb-2">
-            <DialogHeader><DialogTitle className="font-playfair text-2xl font-bold" style={{ color: '#1C1C1C' }}>{name}</DialogTitle></DialogHeader>
-            <div className="flex items-center gap-2 shrink-0">
+        <DialogContent
+          className="hidden md:block max-w-[680px] p-0 rounded-2xl overflow-hidden"
+          style={{ backgroundColor: '#F8F6F2' }}
+        >
+          {/* Header */}
+          <div className="flex items-start justify-between px-6 pt-5 pb-3">
+            <DialogHeader>
+              <DialogTitle className="font-playfair text-xl sm:text-2xl font-bold" style={{ color: '#1C1C1C' }}>{name}</DialogTitle>
+            </DialogHeader>
+            <div className="flex items-center gap-1.5 shrink-0 -mt-0.5">
               <ShareTour tourName={name} tourSlug={tour.slug} />
-              <button onClick={() => toggleFavorite(tour.id)} className="h-10 w-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                <Heart className={heartClass} />
+              <button
+                onClick={() => toggleFavorite(tour.id)}
+                className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+                style={{ backgroundColor: isFav ? 'rgba(239,68,68,0.08)' : 'rgba(0,0,0,0.04)' }}
+              >
+                <Heart className={`w-4 h-4 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#8B8680]'}`} />
               </button>
             </div>
           </div>
-          {Content}
+          {/* Body */}
+          <div className="px-6 pb-6 max-h-[75vh] overflow-y-auto scrollbar-hide">
+            {Body}
+          </div>
         </DialogContent>
       </Dialog>
 
-      {/* Mobile Sheet */}
+      {/* ── Mobile Sheet ── */}
       <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetContent side="bottom" className="md:hidden h-[90vh] rounded-t-2xl overflow-y-auto p-4 sm:p-5 pb-6 sm:pb-8" style={{ backgroundColor: '#F8F6F2' }}>
-          {/* Custom drag handle */}
-          <div className="flex justify-center pt-2 pb-1 mb-1">
-            <div className="w-10 h-1 rounded-full bg-[#E8D5B5]/40" />
+        <SheetContent
+          side="bottom"
+          className="md:hidden rounded-t-[28px] overflow-hidden p-0"
+          style={{ backgroundColor: '#F8F6F2', maxHeight: '90vh' }}
+        >
+          {/* Drag handle */}
+          <div className="flex justify-center pt-3 pb-1">
+            <div className="w-9 h-[3px] rounded-full" style={{ backgroundColor: 'rgba(0,0,0,0.08)' }} />
           </div>
-          <SheetHeader>
-            <div className="flex items-start justify-between pr-6">
-              <SheetTitle className="font-playfair text-lg sm:text-xl font-bold" style={{ color: '#1C1C1C' }}>{name}</SheetTitle>
-              <div className="flex items-center gap-1">
-                <ShareTour tourName={name} tourSlug={tour.slug} />
-                <button onClick={() => toggleFavorite(tour.id)} className="h-8 w-8 sm:h-9 sm:w-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
-                  <Heart className={heartClass} />
-                </button>
-              </div>
-            </div>
+
+          <SheetHeader className="sr-only">
+            <SheetTitle>{name}</SheetTitle>
           </SheetHeader>
-          <div className="mt-3 sm:mt-4">{Content}</div>
+
+          {/* Header */}
+          <div className="flex items-start justify-between px-5 pt-2 pb-3 pr-5">
+            <h2 className="font-playfair text-lg font-bold leading-tight flex-1 min-w-0" style={{ color: '#1C1C1C' }}>{name}</h2>
+            <div className="flex items-center gap-1 shrink-0 ml-2 -mr-1">
+              <ShareTour tourName={name} tourSlug={tour.slug} />
+              <button
+                onClick={() => toggleFavorite(tour.id)}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                style={{ backgroundColor: isFav ? 'rgba(239,68,68,0.08)' : 'rgba(0,0,0,0.04)' }}
+              >
+                <Heart className={`w-4 h-4 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#8B8680]'}`} />
+              </button>
+            </div>
+          </div>
+
+          {/* Scrollable Body */}
+          <div className="overflow-y-auto px-0 pb-6 scrollbar-hide" style={{ maxHeight: 'calc(90vh - 70px)' }}>
+            {Body}
+          </div>
         </SheetContent>
       </Sheet>
 
