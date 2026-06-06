@@ -93,7 +93,7 @@ export default function TestimonialsSection() {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -4, transition: { duration: 0.3 } }}
-              className="glass-card rounded-2xl p-8 relative"
+              className="rounded-2xl p-8 relative border border-white/[0.06]"
             >
               {/* Quote icon */}
               <Quote className="w-10 h-10 text-[#D6B37F]/30 mb-4" />

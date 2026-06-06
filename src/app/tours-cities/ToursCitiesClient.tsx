@@ -37,7 +37,7 @@ export default function ToursCitiesClient() {
               return (
                 <motion.div key={tour.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: index * 0.1 }} whileHover={{ y: -6, transition: { duration: 0.3 } }}>
                   <Link href={`/tours-cities/${tour.slug}`} className="group block">
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#E8D5B5]/20">
+                    <div className="rounded-2xl overflow-hidden transition-all duration-300">
                       <div className="relative h-56 overflow-hidden">
                         <Image src={tour.image} alt={name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="tour-image-overlay absolute inset-0" />

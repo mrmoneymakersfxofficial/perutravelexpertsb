@@ -77,7 +77,7 @@ export default function StatsSection() {
   }, []);
 
   return (
-    <section className="py-16 md:py-20 relative overflow-hidden">
+    <section id="stats" className="py-16 md:py-20 relative overflow-hidden">
       {/* Gold gradient background */}
       <div className="absolute inset-0 gold-gradient opacity-95" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/20 via-transparent to-[#0F0F0F]/20" />

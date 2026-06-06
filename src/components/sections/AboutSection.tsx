@@ -89,7 +89,7 @@ export default function AboutSection() {
                 key={index}
                 variants={cardVariants}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-[#E8D5B5]/30"
+                className="group rounded-2xl p-8 transition-shadow duration-300"
               >
                 <div className="w-14 h-14 rounded-xl gold-gradient flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Icon className="w-7 h-7 text-[#0F0F0F]" />

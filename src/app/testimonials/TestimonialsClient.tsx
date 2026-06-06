@@ -136,7 +136,7 @@ export default function TestimonialsClient() {
                 key={index}
                 variants={cardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-[#E8D5B5]/20 relative"
+                className="rounded-2xl p-6 md:p-8 transition-all duration-300 relative"
               >
                 {/* Quote icon */}
                 <Quote className="w-8 h-8 text-[#D6B37F]/30 mb-4" />

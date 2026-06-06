@@ -69,8 +69,8 @@ export default function TourCard({ tour, locale }: TourCardProps) {
     <>
       <motion.div
         variants={cardVariants}
-        whileHover={{ y: -4, transition: { duration: 0.3 } }}
-        className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#E8D5B5]/20"
+        whileHover={{ y: -3, transition: { duration: 0.3 } }}
+        className="group rounded-2xl overflow-hidden transition-all duration-300"
       >
         {/* Image */}
         <div className="relative h-56 overflow-hidden">
@@ -119,7 +119,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-5 pt-4">
           {/* Difficulty */}
           <div className="mb-3">
             <Badge variant="outline" className={`text-xs ${diff.color}`}>
@@ -139,7 +139,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
                 {includes.slice(0, 3).map((item, i) => (
                   <span
                     key={i}
-                    className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2] text-[#8B8680] border border-[#E8D5B5]/30"
+                    className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2]/60 text-[#8B8680]"
                   >
                     {item}
                   </span>
@@ -154,7 +154,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
           )}
 
           {/* Price and CTA */}
-          <div className="flex items-center justify-between pt-4 border-t border-[#E8D5B5]/20">
+          <div className="flex items-center justify-between pt-3">
             <div>
               <div className="flex items-baseline gap-1">
                 <span className="text-xs text-[#8B8680]">{t.tours.price}</span>

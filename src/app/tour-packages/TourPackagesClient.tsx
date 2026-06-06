@@ -54,7 +54,7 @@ export default function TourPackagesClient() {
             {destinationData.map((dest, index) => (
               <motion.div key={dest.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: index * 0.1 }} whileHover={{ y: -6, transition: { duration: 0.3 } }}>
                 <Link href={`/tour-packages/${dest.slug}`} className="group block">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#E8D5B5]/20">
+                  <div className="rounded-2xl overflow-hidden transition-all duration-300">
                     <div className="relative h-48 overflow-hidden">
                       <Image src={dest.image} alt={locale === 'es' ? dest.nameEs : dest.nameEn} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="tour-image-overlay absolute inset-0" />
@@ -67,7 +67,7 @@ export default function TourPackagesClient() {
                     </div>
                     <div className="p-5">
                       <p className="text-[#8B8680] text-sm leading-relaxed mb-4 line-clamp-2">{locale === 'es' ? dest.descriptionEs : dest.descriptionEn}</p>
-                      <div className="flex items-center justify-between pt-3 border-t border-[#E8D5B5]/20">
+                      <div className="flex items-center justify-between pt-3">
                         <span className="text-xs text-[#8B8680]">From ${Math.min(...getToursByDestination(dest.slug).map(t => t.priceUSD))}</span>
                         <span className="flex items-center gap-1 text-sm font-medium text-[#D6B37F] group-hover:gap-2 transition-all">{t.tourDetail.viewTours}<ArrowRight className="w-4 h-4" /></span>
                       </div>

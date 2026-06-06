@@ -3,11 +3,13 @@ import { Playfair_Display, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { FavoritesProvider } from "@/components/FavoritesProvider";
+import { RecentlyViewedProvider } from "@/components/RecentlyViewedProvider";
+import { ModalProvider } from "@/components/ModalContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Toaster } from "@/components/ui/toaster";
-import ScrollToTop from "@/components/ScrollToTop";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import BottomNavigation from "@/components/BottomNavigation";
+import { Toaster } from "@/components/ui/sonner";
+import FloatingPanel from "@/components/FloatingPanel";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -63,14 +65,20 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <FavoritesProvider>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <Toaster />
-            <ScrollToTop />
-            <WhatsAppButton />
+            <RecentlyViewedProvider>
+              <ModalProvider>
+                <div className="min-h-screen flex flex-col">
+                  <Header />
+                  <main className="flex-1 pt-[60px] md:pt-[65px] lg:pt-[70px] pb-[72px] lg:pb-0">
+                    {children}
+                  </main>
+                  <Footer />
+                </div>
+                <Toaster />
+                <FloatingPanel />
+                <BottomNavigation />
+              </ModalProvider>
+            </RecentlyViewedProvider>
           </FavoritesProvider>
         </LanguageProvider>
       </body>

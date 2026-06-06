@@ -11,7 +11,7 @@ export default function CTASection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#0F0F0F' }}>
+    <section id="cta" className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#0F0F0F' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D6B37F]/10 rounded-full blur-3xl" />

@@ -2,16 +2,20 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/components/LanguageProvider';
+import { useFavorites } from '@/components/FavoritesProvider';
+import { useModal } from '@/components/ModalContext';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import {
   Menu, Globe, ChevronDown, X, ChevronRight,
-  MapPin,
+  MapPin, Search, Heart,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { destinations } from '@/lib/tours-data';
+import SearchModal from '@/components/SearchModal';
+import FavoritesModal from '@/components/FavoritesModal';
+import TourDetailModal from '@/components/TourDetailModal';
 
 interface NavItem {
   key: string;
@@ -19,7 +23,7 @@ interface NavItem {
   children?: { key: string; href: string; icon?: React.ElementType }[];
 }
 
-// Only 4 main navigation items — clean, elegant
+// 4 main navigation items
 const navItems: NavItem[] = [
   {
     key: 'tours',
@@ -40,19 +44,12 @@ const navItems: NavItem[] = [
 
 export default function Header() {
   const { locale, setLocale, t } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
+  const { favoritesCount } = useFavorites();
+  const { searchOpen, setSearchOpen, favoritesOpen, setFavoritesOpen, detailTour, detailOpen, setDetailOpen, openDetail } = useModal();
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -86,160 +83,248 @@ export default function Header() {
   const otherNavItems = navItems.filter(item => item.key !== 'tours');
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'glass-header shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24 md:h-[140px]">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <div className="relative w-48 h-20 md:w-56 md:h-[130px] shrink-0">
-              <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" priority sizes="224px" />
-            </div>
-          </Link>
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="fixed top-0 left-0 w-full z-[9999]"
+      >
+        {/* Desktop: 70px | Tablet: 65px | Mobile: 60px */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[60px] md:h-[65px] lg:h-[70px]">
 
-          {/* Desktop Nav — 4 items only */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {/* Tours Dropdown */}
-            <div className="relative" data-tours-dropdown onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <button className="flex items-center gap-1.5 text-sm font-medium text-warm-gray hover:text-gold transition-colors duration-300 tracking-wide uppercase px-3 py-2">
-                {getNavLink('tours')}
-                <ChevronDown className={`w-3 h-3 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <AnimatePresence>
-                {dropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-1 w-56 glass-card rounded-xl overflow-hidden shadow-xl py-2"
-                  >
-                    {toursItem?.children?.map((child) => (
-                      <Link
-                        key={child.key}
-                        href={child.href}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-warm-gray hover:text-gold hover:bg-white/5 transition-colors"
-                      >
-                        <MapPin className="w-4 h-4 text-gold/60" />
-                        {getNavLink(child.key)}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Other 3 nav items */}
-            {otherNavItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="text-sm font-medium text-warm-gray hover:text-gold transition-colors duration-300 tracking-wide uppercase px-3 py-2"
-              >
-                {getNavLink(item.key)}
-              </Link>
-            ))}
-
-            {/* Language Selector */}
-            <div className="relative ml-2" data-lang-dropdown>
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 text-sm text-warm-gray hover:text-gold transition-colors duration-300"
-              >
-                <Globe className="w-4 h-4" />
-                <span className="uppercase font-medium">{locale}</span>
-                <ChevronDown className={`w-3 h-3 transition-transform ${langOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <AnimatePresence>
-                {langOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full mt-2 right-0 glass-card rounded-lg overflow-hidden"
-                  >
-                    {(['es', 'en'] as const).map((l) => (
-                      <button
-                        key={l}
-                        onClick={() => { setLocale(l); setLangOpen(false); }}
-                        className={`block px-4 py-2 text-sm transition-colors w-full text-left ${
-                          locale === l ? 'text-gold bg-white/10' : 'text-warm-gray hover:text-gold hover:bg-white/5'
-                        }`}
-                      >
-                        {l === 'es' ? 'Español' : 'English'}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Book CTA */}
-            <Link href="/contact" className="ml-2">
-              <Button className="btn-gold rounded-full px-6 py-2 text-sm tracking-wide">{t.nav.book}</Button>
+            {/* Logo — panoramic 3.3:1, fills header height */}
+            <Link href="/" className="flex items-center h-full py-1 shrink-0">
+              <Image
+                src="/logo.png"
+                alt="PeruTravelExpertsB"
+                width={1107}
+                height={334}
+                sizes="400px"
+                className="h-full w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] transition-transform duration-200 hover:scale-[1.02]"
+                priority
+              />
             </Link>
-          </nav>
 
-          {/* Mobile Menu */}
-          <div className="flex items-center gap-3 lg:hidden">
-            <button
-              onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
-              className="flex items-center gap-1 text-sm text-gold font-medium"
-            >
-              <Globe className="w-4 h-4" />{locale.toUpperCase()}
-            </button>
-
-            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-gold hover:bg-white/10">
-                  <Menu className="w-6 h-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[320px] bg-dark-bg border-gold/20 p-0">
-                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-                <div className="flex flex-col h-full">
-                  <div className="flex items-center justify-between p-6 border-b border-gold/10">
-                    <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
-                      <div className="relative w-44 h-[110px] shrink-0">
-                        <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="176px" />
-                      </div>
-                    </Link>
-                    <button onClick={() => setMobileOpen(false)} className="text-warm-gray hover:text-gold transition-colors">
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                  <nav className="flex-1 overflow-y-auto p-6 space-y-1">
-                    {navItems.map((item) => (
-                      <React.Fragment key={item.key}>
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-8">
+              {/* Tours Dropdown */}
+              <div className="relative" data-tours-dropdown onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <button className="flex items-center gap-1 text-[13px] font-medium text-white/80 hover:text-[#D6B37F] transition-colors duration-200 tracking-wider uppercase">
+                  {getNavLink('tours')}
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {dropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-52 rounded-xl overflow-hidden shadow-2xl shadow-black/40 py-1"
+                      style={{ background: 'rgba(20,20,20,0.95)', backdropFilter: 'blur(16px)', border: '1px solid rgba(214,179,127,0.12)' }}
+                    >
+                      {toursItem?.children?.map((child) => (
                         <Link
-                          href={item.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="flex items-center justify-between text-left text-base font-medium text-warm-gray hover:text-gold transition-colors py-3 border-b border-white/5 tracking-wide"
+                          key={child.key}
+                          href={child.href}
+                          className="flex items-center gap-2.5 px-4 py-2 text-[13px] text-white/70 hover:text-[#D6B37F] hover:bg-white/[0.04] transition-colors"
                         >
-                          {getNavLink(item.key)}
-                          <ChevronRight className="w-4 h-4 text-gold/40" />
+                          <MapPin className="w-3.5 h-3.5 text-[#D6B37F]/50" />
+                          {getNavLink(child.key)}
                         </Link>
-                      </React.Fragment>
-                    ))}
-                  </nav>
-                  <div className="p-6 border-t border-gold/10">
-                    <Link href="/contact" onClick={() => setMobileOpen(false)}>
-                      <Button className="btn-gold rounded-full w-full py-3 text-base tracking-wide">{t.nav.book}</Button>
-                    </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Other 3 nav items */}
+              {otherNavItems.map((item) => (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className="text-[13px] font-medium text-white/80 hover:text-[#D6B37F] transition-colors duration-200 tracking-wider uppercase"
+                >
+                  {getNavLink(item.key)}
+                </Link>
+              ))}
+
+              {/* Separator */}
+              <div className="w-px h-5 bg-white/10" />
+
+              {/* Search & Favorites icons */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                className="text-white/70 hover:text-[#D6B37F] transition-colors duration-200 p-1"
+                aria-label="Search"
+              >
+                <Search className="w-[18px] h-[18px]" />
+              </button>
+              <button
+                onClick={() => setFavoritesOpen(true)}
+                className="text-white/70 hover:text-[#D6B37F] transition-colors duration-200 p-1 relative"
+                aria-label={t.tours.favorites}
+              >
+                <Heart className="w-[18px] h-[18px]" />
+                {favoritesCount > 0 && (
+                  <span className="absolute -top-1 -right-1.5 w-4 h-4 rounded-full text-[9px] font-bold text-[#0F0F0F] flex items-center justify-center" style={{ backgroundColor: '#D6B37F' }}>
+                    {favoritesCount > 9 ? '9+' : favoritesCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Separator */}
+              <div className="w-px h-5 bg-white/10" />
+
+              {/* Language Selector */}
+              <div className="relative" data-lang-dropdown>
+                <button
+                  onClick={() => setLangOpen(!langOpen)}
+                  className="flex items-center gap-1 text-[13px] text-white/60 hover:text-[#D6B37F] transition-colors duration-200"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  <span className="uppercase font-medium">{locale}</span>
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {langOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full right-0 mt-2 rounded-lg overflow-hidden shadow-2xl shadow-black/40"
+                      style={{ background: 'rgba(20,20,20,0.95)', backdropFilter: 'blur(16px)', border: '1px solid rgba(214,179,127,0.12)' }}
+                    >
+                      {(['es', 'en'] as const).map((l) => (
+                        <button
+                          key={l}
+                          onClick={() => { setLocale(l); setLangOpen(false); }}
+                          className={`block px-4 py-2 text-[13px] transition-colors w-full text-left ${
+                            locale === l ? 'text-[#D6B37F] bg-white/[0.06]' : 'text-white/70 hover:text-[#D6B37F] hover:bg-white/[0.03]'
+                          }`}
+                        >
+                          {l === 'es' ? 'Español' : 'English'}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Book CTA */}
+              <Link href="/contact">
+                <Button className="h-10 px-6 rounded-full text-[13px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-lg shadow-[#D6B37F]/20 hover:shadow-[#D6B37F]/30">
+                  {t.nav.book}
+                </Button>
+              </Link>
+            </nav>
+
+            {/* Mobile — logo + spacer + lang + hamburger */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <button
+                onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
+                className="flex items-center gap-1 text-[12px] text-white/60 hover:text-[#D6B37F] font-medium transition-colors"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span className="uppercase">{locale}</span>
+              </button>
+
+              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+                <SheetTrigger asChild>
+                  <button className="text-white/70 hover:text-[#D6B37F] transition-colors p-1">
+                    <Menu className="w-6 h-6" />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] bg-[#0F0F0F] border-white/[0.06] p-0">
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06]">
+                      <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
+                        <Image src="/logo.png" alt="PeruTravelExpertsB" width={1107} height={334} sizes="200px" className="h-9 w-auto object-contain" />
+                      </Link>
+                      <button onClick={() => setMobileOpen(false)} className="text-white/50 hover:text-[#D6B37F] transition-colors">
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+                    <nav className="flex-1 overflow-y-auto px-5 py-4 space-y-0.5">
+                      {navItems.map((item) => (
+                        <React.Fragment key={item.key}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="flex items-center justify-between text-left text-[15px] font-medium text-white/70 hover:text-[#D6B37F] transition-colors py-3 border-b border-white/[0.04] tracking-wide"
+                          >
+                            {getNavLink(item.key)}
+                            <ChevronRight className="w-4 h-4 text-[#D6B37F]/30" />
+                          </Link>
+                        </React.Fragment>
+                      ))}
+
+                      {/* Mobile Search & Favorites */}
+                      <button
+                        onClick={() => { setSearchOpen(true); setMobileOpen(false); }}
+                        className="flex items-center justify-between text-left text-[15px] font-medium text-white/70 hover:text-[#D6B37F] transition-colors py-3 border-b border-white/[0.04] tracking-wide w-full"
+                      >
+                        <span className="flex items-center gap-3">
+                          <Search className="w-4 h-4" />
+                          {locale === 'es' ? 'Buscar' : 'Search'}
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-[#D6B37F]/30" />
+                      </button>
+                      <button
+                        onClick={() => { setFavoritesOpen(true); setMobileOpen(false); }}
+                        className="flex items-center justify-between text-left text-[15px] font-medium text-white/70 hover:text-[#D6B37F] transition-colors py-3 border-b border-white/[0.04] tracking-wide w-full"
+                      >
+                        <span className="flex items-center gap-3">
+                          <Heart className="w-4 h-4" />
+                          {t.tours.favorites}
+                          {favoritesCount > 0 && (
+                            <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(214,179,127,0.2)', color: '#D6B37F' }}>
+                              {favoritesCount}
+                            </span>
+                          )}
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-[#D6B37F]/30" />
+                      </button>
+                    </nav>
+                    <div className="px-5 py-5 border-t border-white/[0.06]">
+                      <Link href="/contact" onClick={() => setMobileOpen(false)}>
+                        <Button className="h-11 rounded-full w-full text-[14px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200">
+                          {t.nav.book}
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
-      </div>
-    </motion.header>
+      </motion.header>
+
+      {/* Search Modal */}
+      <SearchModal
+        open={searchOpen}
+        onOpenChange={setSearchOpen}
+        onTourSelect={openDetail}
+      />
+
+      {/* Favorites Modal */}
+      <FavoritesModal
+        open={favoritesOpen}
+        onOpenChange={setFavoritesOpen}
+        onTourSelect={openDetail}
+      />
+
+      {/* Tour Detail Modal */}
+      <TourDetailModal
+        tour={detailTour}
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+      />
+    </>
   );
 }
