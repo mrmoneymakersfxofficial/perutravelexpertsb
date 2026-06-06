@@ -78,3 +78,35 @@ Stage Summary:
 - All pages have Header, Footer, Breadcrumbs, PageHeader
 - Tour detail pages include: hero banner, description, includes, itinerary timeline, booking modal, related tours
 - Lint: 0 errors, 0 warnings
+---
+Task ID: 5
+Agent: Main Agent
+Task: Premium UX features + Hero fix + Invisible cards + Deep linking
+
+Work Log:
+- Pushed 3 unpushed logo commits to GitHub (force push after rebase conflict)
+- Fixed hero vertical centering: changed min-h-screen to height: 100vh/100dvh for true viewport fill
+- Removed white line at top: glass-header border-bottom set to none
+- Removed logo from mobile hamburger menu (replaced with clean close-only button)
+- Made ALL cards invisible across 23 files for luxury editorial feel (Aman/Four Seasons style):
+  - Pattern: bg-white/[0.02], border-[#E8D5B5]/[0.04], no shadows
+  - TourCard, TestimonialsSection, AboutSection, WhyChooseUsSection
+  - TestimonialsClient, FAQClient, AboutUsClient, ContactClient
+  - TourDetailClient, ToursCitiesDetailClient, CustomizedTourDetailClient, ProjectDetailClient
+  - TourPackagesClient, CustomizedToursClient, ToursCitiesClient, ProjectsWeSupportClient
+  - RecentlyViewedCarousel, FavoritesModal
+- Added Section Deep Linking + Scroll Spy to 13 inner pages:
+  - Unique section IDs on every <section> tag
+  - useSectionObserver hook with IntersectionObserver for auto URL updates
+  - useHandleHashScroll hook for hash navigation support
+  - History API replaceState (no page reload)
+- Fixed TourDetailModal Turbopack parsing error (template literal → string concat)
+- Build: SUCCESS (44+ pages, all SSG)
+- Commit: 47cf070
+- Push: GitHub + Vercel auto-deploy
+
+Stage Summary:
+- All pending UX features implemented and deployed
+- Invisible cards create luxury editorial feel across entire site
+- Section deep linking works on all pages via IntersectionObserver + History API
+- Hero properly centered, white line removed, hamburger menu cleaned up
