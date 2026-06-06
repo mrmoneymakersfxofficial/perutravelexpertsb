@@ -140,8 +140,8 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-[60px] md:-mt-[65px] lg:-mt-[70px] pt-[60px] md:pt-[65px] lg:pt-[70px]"
-      style={{ backgroundColor: '#0F0F0F' }}
+      className="relative flex items-center justify-center overflow-hidden -mt-[60px] md:-mt-[65px] lg:-mt-[70px] pt-[60px] md:pt-[65px] lg:pt-[70px]"
+      style={{ backgroundColor: '#0F0F0F', height: '100vh', height: '100dvh' }}
     >
       {/* Background Image with overlay */}
       <div className="absolute inset-0">

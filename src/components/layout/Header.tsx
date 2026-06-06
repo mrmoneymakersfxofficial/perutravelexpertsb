@@ -241,10 +241,7 @@ export default function Header() {
                 <SheetContent side="right" className="w-[300px] bg-[#0F0F0F] border-white/[0.06] p-0">
                   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   <div className="flex flex-col h-full">
-                    <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06]">
-                      <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
-                        <Image src="/logo.png" alt="PeruTravelExpertsB" width={1107} height={334} sizes="200px" className="h-9 w-auto object-contain" />
-                      </Link>
+                    <div className="flex items-center justify-end px-5 py-3 border-b border-white/[0.06]">
                       <button onClick={() => setMobileOpen(false)} className="text-white/50 hover:text-[#D6B37F] transition-colors">
                         <X className="w-5 h-5" />
                       </button>

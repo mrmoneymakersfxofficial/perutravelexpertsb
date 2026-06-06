@@ -9,6 +9,7 @@ import { Clock, Check, MessageCircle } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
 import { getCustomizedTourBySlug } from '@/lib/tours-data';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 export default function CustomizedTourDetailClient({
   params,
@@ -17,6 +18,11 @@ export default function CustomizedTourDetailClient({
 }) {
   const { slug } = use(params);
   const { t, locale } = useLanguage();
+
+  const sectionIds = ['customized-hero', 'customized-content'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
+
   const pkg = getCustomizedTourBySlug(slug);
 
   if (!pkg) {
@@ -50,7 +56,7 @@ export default function CustomizedTourDetailClient({
         ]}
       />
 
-      <section className="relative h-72 sm:h-96 overflow-hidden">
+      <section id="customized-hero" className="relative h-72 sm:h-96 overflow-hidden">
         <Image src={pkg.image} alt={name} fill sizes="100vw" className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/80 via-[#0F0F0F]/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-10">
@@ -65,7 +71,7 @@ export default function CustomizedTourDetailClient({
         </div>
       </section>
 
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="customized-content" className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             <div className="lg:col-span-2">
@@ -76,7 +82,7 @@ export default function CustomizedTourDetailClient({
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white border border-[#E8D5B5]/20">
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-[#E8D5B5]/[0.04]">
                       <div className="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Check className="w-3.5 h-3.5 text-[#0F0F0F]" />
                       </div>
@@ -111,7 +117,7 @@ export default function CustomizedTourDetailClient({
             </div>
             <div className="lg:col-span-1">
               <div className="sticky top-24">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E8D5B5]/20">
+                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#E8D5B5]/[0.04]">
                   <div className="text-center mb-6">
                     <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
                     <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(pkg.priceUSD)}</p>

@@ -10,6 +10,7 @@ import PageHeader from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
 import TourCard from '@/components/TourCard';
 import { getDestinationBySlug, getToursByDestination, tourToView } from '@/lib/tours-data';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 export default function DestinationClient({
   params,
@@ -19,6 +20,10 @@ export default function DestinationClient({
   const { destination } = use(params);
   const { t, locale } = useLanguage();
   const { favorites } = useFavorites();
+
+  const sectionIds = ['destination-hero', 'destination-tours'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
 
   const dest = getDestinationBySlug(destination);
   const destTours = getToursByDestination(destination);
@@ -53,7 +58,7 @@ export default function DestinationClient({
         ]}
       />
 
-      <section className="relative h-64 md:h-80 overflow-hidden">
+      <section id="destination-hero" className="relative h-64 md:h-80 overflow-hidden">
         <div className="absolute inset-0">
           <Image src={dest.image} alt={destName} fill sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/70 to-[#0F0F0F]" />
@@ -63,7 +68,7 @@ export default function DestinationClient({
         </div>
       </section>
 
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="destination-tours" className="py-16 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}

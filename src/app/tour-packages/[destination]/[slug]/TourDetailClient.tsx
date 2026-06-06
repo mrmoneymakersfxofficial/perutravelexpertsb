@@ -17,6 +17,7 @@ import {
   getRelatedTours,
   tourToView,
 } from '@/lib/tours-data';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 export default function TourDetailClient({
   params,
@@ -25,6 +26,11 @@ export default function TourDetailClient({
 }) {
   const { destination, slug } = use(params);
   const { t, locale } = useLanguage();
+
+  const sectionIds = ['tour-hero', 'tour-content', 'tour-related'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
+
   const [bookingOpen, setBookingOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
 
@@ -94,7 +100,7 @@ export default function TourDetailClient({
       />
 
       {/* Hero Image */}
-      <section className="relative h-72 sm:h-96 md:h-[500px] overflow-hidden">
+      <section id="tour-hero" className="relative h-72 sm:h-96 md:h-[500px] overflow-hidden">
         {!imgError ? (
           <Image src={tour.image} alt={name} fill sizes="100vw" className="object-cover" priority onError={() => setImgError(true)} />
         ) : (
@@ -123,7 +129,7 @@ export default function TourDetailClient({
       </section>
 
       {/* Content */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="tour-content" className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             <div className="lg:col-span-2">
@@ -147,7 +153,7 @@ export default function TourDetailClient({
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white border border-[#E8D5B5]/20">
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-[#E8D5B5]/[0.04]">
                       <div className="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Check className="w-3.5 h-3.5 text-[#0F0F0F]" />
                       </div>
@@ -182,7 +188,7 @@ export default function TourDetailClient({
             </div>
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E8D5B5]/20">
+                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#E8D5B5]/[0.04]">
                   <div className="text-center mb-6">
                     <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
                     <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</p>
@@ -205,7 +211,7 @@ export default function TourDetailClient({
                   <Button onClick={() => setBookingOpen(true)} className="btn-gold rounded-full w-full py-3 text-base">{t.tourDetail.bookThisTour}</Button>
                   <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">WhatsApp</a>
                 </div>
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E8D5B5]/20">
+                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#E8D5B5]/[0.04]">
                   <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
                   <nav className="space-y-2">
                     <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
@@ -220,7 +226,7 @@ export default function TourDetailClient({
       </section>
 
       {related.length > 0 && (
-        <section className="py-16 md:py-20 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#F8F6F2' }}>
+        <section id="tour-related" className="py-16 md:py-20 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#F8F6F2' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3" style={{ color: '#1C1C1C' }}>{t.tourDetail.relatedTours}</h2>

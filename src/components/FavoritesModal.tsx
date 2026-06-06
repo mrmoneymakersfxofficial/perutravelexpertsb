@@ -41,7 +41,7 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect }: Fav
           const name = locale === 'es' ? tour.nameEs : tour.nameEn;
           const destination = (t.nav as Record<string, string>)[tour.destination] || tour.destination;
           return (
-            <motion.div key={tour.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }} layout transition={{ delay: index * 0.05 }} onClick={() => handleReserve(tour)} className="flex items-center gap-4 p-3 rounded-xl cursor-pointer hover:bg-white/60 transition-colors border border-[#E8D5B5]/10">
+            <motion.div key={tour.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }} layout transition={{ delay: index * 0.05 }} onClick={() => handleReserve(tour)} className="flex items-center gap-4 p-3 rounded-xl cursor-pointer hover:bg-white/[0.04] transition-colors border border-[#E8D5B5]/[0.04]">
               <div className="relative w-20 h-20 rounded-xl overflow-hidden shrink-0"><Image src={tour.image} alt={name} fill sizes="80px" className="object-cover" /></div>
               <div className="flex-1 min-w-0">
                 <p className="font-playfair font-semibold text-sm truncate" style={{ color: '#1C1C1C' }}>{name}</p>

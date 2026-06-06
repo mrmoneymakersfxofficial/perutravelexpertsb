@@ -9,9 +9,14 @@ import { Label } from '@/components/ui/label';
 import { MessageCircle, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import PageHeader from '@/components/layout/PageHeader';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 export default function ContactClient() {
   const { t, locale } = useLanguage();
+
+  const sectionIds = ['contact-form'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
 
   const handleWhatsAppSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,7 +41,7 @@ export default function ContactClient() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader title={t.pageHeaders.contact} subtitle={t.contact.subtitle} breadcrumbs={[{ label: locale === 'es' ? 'Inicio' : 'Home', href: '/' }, { label: t.pageHeaders.contact }]} />
 
-      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="contact-form" className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
@@ -73,7 +78,7 @@ export default function ContactClient() {
               <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
                 <MessageCircle className="w-5 h-5" />{t.contact.sendWhatsApp}
               </a>
-              <div className="mt-8 rounded-2xl overflow-hidden border border-[#E8D5B5]/30">
+              <div className="mt-8 rounded-2xl overflow-hidden border border-[#E8D5B5]/[0.06]">
                 <div className="w-full h-64 bg-[#E8D5B5]/20 flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="w-10 h-10 text-[#D6B37F] mx-auto mb-2" />
@@ -85,7 +90,7 @@ export default function ContactClient() {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <form onSubmit={handleWhatsAppSubmit} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#E8D5B5]/20 space-y-5">
+              <form onSubmit={handleWhatsAppSubmit} className="bg-white/[0.02] rounded-2xl p-6 md:p-8 border border-[#E8D5B5]/[0.04] space-y-5">
                 <div>
                   <Label htmlFor="contact-name" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>{t.booking.name} *</Label>
                   <Input id="contact-name" name="contact-name" required className="mt-1.5 border-[#E8D5B5]/40 focus:border-[#D6B37F]" placeholder={t.booking.name} />

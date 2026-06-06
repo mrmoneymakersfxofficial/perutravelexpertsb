@@ -8,15 +8,20 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { projects } from '@/lib/tours-data';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 export default function ProjectsWeSupportClient() {
   const { t, locale } = useLanguage();
+
+  const sectionIds = ['projects-description', 'projects-grid'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader title={t.projects.title} subtitle={t.projects.subtitle} breadcrumbs={[{ label: locale === 'es' ? 'Inicio' : 'Home', href: '/' }, { label: t.projects.title }]} />
 
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="projects-description" className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#8B8680] text-lg leading-relaxed mb-6">
             {locale === 'es'
@@ -27,7 +32,7 @@ export default function ProjectsWeSupportClient() {
         </div>
       </section>
 
-      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="projects-grid" className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => {
@@ -37,7 +42,7 @@ export default function ProjectsWeSupportClient() {
               return (
                 <motion.div key={project.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: index * 0.1 }} whileHover={{ y: -6, transition: { duration: 0.3 } }}>
                   <Link href={`/projects-we-support/${project.slug}`} className="group block">
-                    <div className="rounded-2xl overflow-hidden transition-all duration-300">
+                    <div className="rounded-2xl overflow-hidden transition-all duration-300 border border-[#E8D5B5]/[0.04]">
                       <div className="relative h-56 overflow-hidden">
                         <Image src={project.image} alt={name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="tour-image-overlay absolute inset-0" />
@@ -47,7 +52,7 @@ export default function ProjectsWeSupportClient() {
                       </div>
                       <div className="p-6">
                         <p className="text-[#8B8680] text-sm leading-relaxed mb-4 line-clamp-4">{desc}</p>
-                        <div className="flex items-center justify-end pt-4 border-t border-[#E8D5B5]/20">
+                        <div className="flex items-center justify-end pt-4 border-t border-[#E8D5B5]/[0.06]">
                           <span className="flex items-center gap-1 text-sm font-medium text-[#D6B37F] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>

@@ -70,7 +70,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -3, transition: { duration: 0.3 } }}
-        className="group rounded-2xl overflow-hidden transition-all duration-300"
+        className="group rounded-2xl overflow-hidden transition-all duration-300 bg-white/[0.02] border border-[#E8D5B5]/[0.04]"
       >
         {/* Image */}
         <div className="relative h-56 overflow-hidden">

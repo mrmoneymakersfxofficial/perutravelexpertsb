@@ -5,6 +5,7 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Star, Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 import PageHeader from '@/components/layout/PageHeader';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 const testimonials = [
   {
@@ -110,6 +111,10 @@ const cardVariants = {
 export default function TestimonialsClient() {
   const { t, locale } = useLanguage();
 
+  const sectionIds = ['testimonials-grid', 'testimonials-cta'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
+
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader
@@ -122,7 +127,7 @@ export default function TestimonialsClient() {
       />
 
       {/* Testimonials Grid */}
-      <section className="py-12 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="testimonials-grid" className="py-12 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -136,7 +141,7 @@ export default function TestimonialsClient() {
                 key={index}
                 variants={cardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="rounded-2xl p-6 md:p-8 transition-all duration-300 relative"
+                className="rounded-2xl p-6 md:p-8 transition-all duration-300 relative bg-white/[0.02] border border-[#E8D5B5]/[0.04]"
               >
                 {/* Quote icon */}
                 <Quote className="w-8 h-8 text-[#D6B37F]/30 mb-4" />
@@ -161,7 +166,7 @@ export default function TestimonialsClient() {
                 </div>
 
                 {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-[#E8D5B5]/20">
+                <div className="flex items-center gap-3 pt-4 border-t border-[#E8D5B5]/[0.06]">
                   <div className="text-2xl">{testimonial.flag}</div>
                   <div>
                     <p className="font-medium text-sm" style={{ color: '#1C1C1C' }}>{testimonial.author}</p>
@@ -175,7 +180,7 @@ export default function TestimonialsClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: '#0F0F0F' }}>
+      <section id="testimonials-cta" className="py-16 md:py-20" style={{ backgroundColor: '#0F0F0F' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

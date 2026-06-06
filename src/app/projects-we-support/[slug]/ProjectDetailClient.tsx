@@ -9,6 +9,7 @@ import { Heart } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
 import { getProjectBySlug } from '@/lib/tours-data';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 export default function ProjectDetailClient({
   params,
@@ -17,6 +18,11 @@ export default function ProjectDetailClient({
 }) {
   const { slug } = use(params);
   const { t, locale } = useLanguage();
+
+  const sectionIds = ['project-hero', 'project-content'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
+
   const project = getProjectBySlug(slug);
 
   if (!project) {
@@ -48,7 +54,7 @@ export default function ProjectDetailClient({
         ]}
       />
 
-      <section className="relative h-72 sm:h-96 overflow-hidden">
+      <section id="project-hero" className="relative h-72 sm:h-96 overflow-hidden">
         <Image src={project.image} alt={name} fill sizes="100vw" className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/80 via-[#0F0F0F]/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 z-10">
@@ -58,7 +64,7 @@ export default function ProjectDetailClient({
         </div>
       </section>
 
-      <section className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="project-content" className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="flex items-center gap-3 mb-6">
@@ -70,7 +76,7 @@ export default function ProjectDetailClient({
               </span>
             </div>
             <p className="text-[#1C1C1C]/80 text-lg leading-relaxed mb-8">{desc}</p>
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#E8D5B5]/20">
+            <div className="bg-white/[0.02] rounded-2xl p-6 md:p-8 border border-[#E8D5B5]/[0.04]">
               <h3 className="font-playfair text-xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
                 {locale === 'es' ? '¿Cómo puedes ayudar?' : 'How can you help?'}
               </h3>

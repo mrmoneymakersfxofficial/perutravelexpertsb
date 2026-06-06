@@ -42,6 +42,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
   const diff = difficultyConfig[tour.difficulty];
   const diffLabel = locale === 'es' ? diff.es : diff.en;
   const isFav = isFavorite(tour.id);
+  const heartClass = 'w-5 h-5 transition-colors ' + (isFav ? 'text-red-500 fill-red-500' : 'text-[#8B8680]');
   const galleryImages = tour.gallery?.length ? [tour.image, ...tour.gallery] : [tour.image];
 
   const whatsappMessage = encodeURIComponent(`Hola, me interesa el tour "${name}" ($${tour.priceUSD} USD). ¿Podrían darme más información?`);
@@ -117,7 +118,12 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
         <DialogContent className="hidden md:block max-w-3xl max-h-[85vh] overflow-y-auto p-6 rounded-2xl" style={{ backgroundColor: '#F8F6F2' }}>
           <div className="flex items-start justify-between mb-2">
             <DialogHeader><DialogTitle className="font-playfair text-2xl font-bold" style={{ color: '#1C1C1C' }}>{name}</DialogTitle></DialogHeader>
-            <div className="flex items-center gap-2 shrink-0"><ShareTour tourName={name} tourSlug={tour.slug} /><button onClick={() => toggleFavorite(tour.id)} className="h-10 w-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"><Heart className={`w-5 h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#8B8680]}`} /></button></div>
+            <div className="flex items-center gap-2 shrink-0">
+              <ShareTour tourName={name} tourSlug={tour.slug} />
+              <button onClick={() => toggleFavorite(tour.id)} className="h-10 w-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+                <Heart className={heartClass} />
+              </button>
+            </div>
           </div>
           {Content}
         </DialogContent>
@@ -127,7 +133,12 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
           <SheetHeader>
             <div className="flex items-start justify-between pr-6">
               <SheetTitle className="font-playfair text-xl font-bold" style={{ color: '#1C1C1C' }}>{name}</SheetTitle>
-              <div className="flex items-center gap-1"><ShareTour tourName={name} tourSlug={tour.slug} /><button onClick={() => toggleFavorite(tour.id)} className="h-9 w-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"><Heart className={`w-5 h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#8B8680]}`} /></button></div>
+              <div className="flex items-center gap-1">
+                <ShareTour tourName={name} tourSlug={tour.slug} />
+                <button onClick={() => toggleFavorite(tour.id)} className="h-9 w-9 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+                  <Heart className={heartClass} />
+                </button>
+              </div>
             </div>
           </SheetHeader>
           <div className="mt-4">{Content}</div>

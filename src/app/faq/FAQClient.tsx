@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { MessageCircle, HelpCircle } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
+import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 import { Button } from '@/components/ui/button';
 import {
   Accordion,
@@ -35,6 +36,10 @@ export default function FAQClient() {
   const { t, locale } = useLanguage();
   const questions = t.faq.questions;
 
+  const sectionIds = ['faq-list'];
+  useSectionObserver({ sectionIds });
+  useHandleHashScroll();
+
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
       <PageHeader
@@ -47,7 +52,7 @@ export default function FAQClient() {
       />
 
       {/* FAQ Section */}
-      <section className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
+      <section id="faq-list" className="pb-16 md:pb-20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -61,7 +66,7 @@ export default function FAQClient() {
                 <motion.div key={index} variants={itemVariants}>
                   <AccordionItem
                     value={`item-${index}`}
-                    className="bg-white rounded-xl border border-[#E8D5B5]/20 px-6 data-[state=open]:shadow-md data-[state=open]:border-[#D6B37F]/30 transition-all"
+                    className="bg-white/[0.02] rounded-xl border border-[#E8D5B5]/[0.04] px-6 data-[state=open]:border-[#D6B37F]/30 transition-all"
                   >
                     <AccordionTrigger className="text-left font-playfair text-base font-semibold py-5 hover:no-underline" style={{ color: '#1C1C1C' }}>
                       <div className="flex items-start gap-3 pr-4">
@@ -86,7 +91,7 @@ export default function FAQClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-16 bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-[#E8D5B5]/20 text-center"
+            className="mt-16 bg-white/[0.02] rounded-2xl p-8 md:p-10 border border-[#E8D5B5]/[0.04] text-center"
           >
             <h3 className="font-playfair text-xl md:text-2xl font-bold mb-3" style={{ color: '#1C1C1C' }}>
               {locale === 'es' ? '¿Aún tienes preguntas?' : 'Still have questions?'}

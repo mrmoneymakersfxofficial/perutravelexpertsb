@@ -40,7 +40,7 @@ export default function RecentlyViewedCarousel({ onTourClick }: RecentlyViewedCa
         <div ref={scrollRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {recentTours.map((tour, index) => (
             <motion.div key={tour.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }} className="snap-start shrink-0 w-[240px] sm:w-[260px]">
-              <button onClick={() => onTourClick?.(tour)} className="w-full group rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-[#E8D5B5]/10 text-left" style={{ backgroundColor: '#F8F6F2' }}>
+              <button onClick={() => onTourClick?.(tour)} className="w-full group rounded-xl overflow-hidden transition-all duration-300 border border-[#E8D5B5]/[0.04] text-left" style={{ backgroundColor: 'rgba(248,246,242,0.02)' }}>
                 <div className="relative h-36 overflow-hidden">
                   <Image src={tour.image} alt={locale === 'es' ? tour.nameEs : tour.nameEn} fill sizes="260px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
