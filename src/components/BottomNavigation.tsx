@@ -28,30 +28,30 @@ export default function BottomNavigation() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-[9998] lg:hidden" style={{ backgroundColor: 'rgba(15,15,15,0.95)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(214,179,127,0.1)', paddingBottom: 'env(safe-area-inset-bottom)' }} aria-label="Bottom navigation">
-      <div className="flex items-center justify-around h-16 px-2 max-w-lg mx-auto">
+      <div className="flex items-center justify-around h-14 sm:h-16 px-1 sm:px-2 max-w-lg mx-auto">
         {items.map((item) => {
           if (item.external) {
             return (
-              <a key={item.key} href={item.href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-1 w-full h-full relative">
-                <MessageCircle className="w-[22px] h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} />
-                <span className="text-[10px] font-medium transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }}>{item.label}</span>
+              <a key={item.key} href={item.href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-0.5 sm:gap-1 w-full h-full relative">
+                <MessageCircle className="w-5 h-5 sm:w-[22px] sm:h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} />
+                <span className="text-[9px] sm:text-[10px] font-medium transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }}>{item.label}</span>
               </a>
             );
           }
           if (item.action && !item.href) {
             return (
-              <button key={item.key} onClick={item.action} className="flex flex-col items-center justify-center gap-1 w-full h-full relative" aria-label={item.label}>
-                <div className="relative"><item.icon className="w-[22px] h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} />
-                  {item.badge && item.badge > 0 && <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-1.5 -right-2 min-w-[16px] h-4 px-1 rounded-full text-[9px] font-bold flex items-center justify-center" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>{item.badge > 9 ? '9+' : item.badge}</motion.span>}
+              <button key={item.key} onClick={item.action} className="flex flex-col items-center justify-center gap-0.5 sm:gap-1 w-full h-full relative" aria-label={item.label}>
+                <div className="relative"><item.icon className="w-5 h-5 sm:w-[22px] sm:h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} />
+                  {item.badge && item.badge > 0 && <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-1 sm:-top-1.5 -right-1.5 sm:-right-2 min-w-[14px] sm:min-w-[16px] h-3.5 sm:h-4 px-0.5 sm:px-1 rounded-full text-[8px] sm:text-[9px] font-bold flex items-center justify-center" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>{item.badge > 9 ? '9+' : item.badge}</motion.span>}
                 </div>
-                <span className="text-[10px] font-medium transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }}>{item.label}</span>
+                <span className="text-[9px] sm:text-[10px] font-medium transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }}>{item.label}</span>
               </button>
             );
           }
           return (
-            <Link key={item.key} href={item.href!} onClick={item.action} className="flex flex-col items-center justify-center gap-1 w-full h-full relative">
-              <div className="relative"><item.icon className="w-[22px] h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} /></div>
-              <span className="text-[10px] font-medium transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }}>{item.label}</span>
+            <Link key={item.key} href={item.href!} onClick={item.action} className="flex flex-col items-center justify-center gap-0.5 sm:gap-1 w-full h-full relative">
+              <div className="relative"><item.icon className="w-5 h-5 sm:w-[22px] sm:h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} /></div>
+              <span className="text-[9px] sm:text-[10px] font-medium transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }}>{item.label}</span>
               {item.active && <motion.div layoutId="bottomNavIndicator" className="absolute -top-0.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full" style={{ backgroundColor: '#D6B37F' }} transition={{ type: 'spring', stiffness: 350, damping: 30 }} />}
             </Link>
           );

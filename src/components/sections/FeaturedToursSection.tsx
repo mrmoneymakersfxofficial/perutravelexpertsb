@@ -34,7 +34,7 @@ export default function FeaturedToursSection() {
         </motion.div>
 
         {/* Featured Tours Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
           {featuredTours.map((tour) => (
             <TourCard key={tour.id} tour={tourToView(tour)} locale={locale} />
           ))}

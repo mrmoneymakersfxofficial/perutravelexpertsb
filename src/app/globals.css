@@ -163,10 +163,11 @@
 }
 
 .glass-header {
-  background: rgba(15, 15, 15, 0.90);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: none;
+  background: rgba(15, 15, 15, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(214, 179, 127, 0.08);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
 
 .gold-border {

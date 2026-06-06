@@ -73,7 +73,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
         className="group rounded-2xl overflow-hidden transition-all duration-300 bg-white/[0.02] border border-[#E8D5B5]/[0.04]"
       >
         {/* Image */}
-        <div className="relative h-56 overflow-hidden">
+        <div className="relative h-44 sm:h-48 md:h-52 lg:h-56 overflow-hidden">
           {!imgError ? (
             <Image
               src={tour.image}
@@ -94,58 +94,58 @@ export default function TourCard({ tour, locale }: TourCardProps) {
               e.stopPropagation();
               toggleFavorite(tour.id);
             }}
-            className="absolute top-4 right-4 w-10 h-10 rounded-full glass-card flex items-center justify-center z-10 hover:bg-white/20 transition-colors"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full glass-card flex items-center justify-center z-10 hover:bg-white/20 active:bg-white/30 transition-colors"
             aria-label={isFav ? t.tours.removeFromFavorites : t.tours.addToFavorites}
           >
             <Heart
-              className={`w-5 h-5 transition-colors ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${
                 isFav ? 'text-red-500 fill-red-500' : 'text-white'
               }`}
             />
           </button>
 
           {/* Duration badge */}
-          <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card text-white text-xs font-medium">
-            <Clock className="w-3.5 h-3.5" />
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full glass-card text-white text-[10px] sm:text-xs font-medium">
+            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             {tour.duration} {t.tours.days}
           </div>
 
           {/* Tour name overlay */}
-          <div className="absolute bottom-4 left-4 right-4 z-10">
-            <h3 className="font-playfair text-xl font-bold text-white drop-shadow-lg">
+          <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-12 sm:right-12 z-10">
+            <h3 className="font-playfair text-base sm:text-lg md:text-xl font-bold text-white drop-shadow-lg leading-tight">
               {name}
             </h3>
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-5 pt-4">
+        <div className="p-3.5 sm:p-4 md:p-5 pt-3 sm:pt-4">
           {/* Difficulty */}
-          <div className="mb-3">
-            <Badge variant="outline" className={`text-xs ${diff.color}`}>
+          <div className="mb-2 sm:mb-3">
+            <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>
               {diffLabel}
             </Badge>
           </div>
 
           {/* Description */}
-          <p className="text-[#8B8680] text-sm leading-relaxed mb-4 line-clamp-3">
+          <p className="text-[#8B8680] text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3">
             {description}
           </p>
 
           {/* Includes preview */}
           {includes.length > 0 && (
-            <div className="mb-4">
-              <div className="flex flex-wrap gap-1.5">
+            <div className="mb-3 sm:mb-4">
+              <div className="flex flex-wrap gap-1 sm:gap-1.5">
                 {includes.slice(0, 3).map((item, i) => (
                   <span
                     key={i}
-                    className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2]/60 text-[#8B8680]"
+                    className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-[#F8F6F2]/60 text-[#8B8680]"
                   >
                     {item}
                   </span>
                 ))}
                 {includes.length > 3 && (
-                  <span className="text-xs px-2 py-1 rounded-md bg-[#F8F6F2] text-[#8B8680]">
+                  <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-[#F8F6F2] text-[#8B8680]">
                     +{includes.length - 3}
                   </span>
                 )}
@@ -154,19 +154,19 @@ export default function TourCard({ tour, locale }: TourCardProps) {
           )}
 
           {/* Price and CTA */}
-          <div className="flex items-center justify-between pt-3">
+          <div className="flex items-center justify-between pt-2 sm:pt-3">
             <div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-xs text-[#8B8680]">{t.tours.price}</span>
-                <span className="text-2xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>
+              <div className="flex items-baseline gap-0.5 sm:gap-1">
+                <span className="text-[10px] sm:text-xs text-[#8B8680]">{t.tours.price}</span>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>
                   ${Math.round(tour.priceUSD)}
                 </span>
               </div>
-              <span className="text-xs text-[#8B8680]">{t.tours.perPerson}</span>
+              <span className="text-[10px] sm:text-xs text-[#8B8680]">{t.tours.perPerson}</span>
             </div>
             <Button
               onClick={() => setBookingOpen(true)}
-              className="btn-gold rounded-full px-5 py-2 text-sm"
+              className="btn-gold rounded-full px-3.5 sm:px-5 py-1.5 sm:py-2 text-[11px] sm:text-sm"
             >
               {t.tours.bookNow}
             </Button>

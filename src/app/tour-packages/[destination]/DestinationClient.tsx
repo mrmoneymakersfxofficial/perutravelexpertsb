@@ -75,7 +75,7 @@ export default function DestinationClient({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
           >
             {destTours.map((tour) => (
               <TourCard key={tour.id} tour={tourToView(tour)} locale={locale} />
