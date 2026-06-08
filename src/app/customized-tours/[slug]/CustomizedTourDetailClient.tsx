@@ -10,6 +10,7 @@ import PageHeader from '@/components/layout/PageHeader';
 import { Button } from '@/components/ui/button';
 import { getCustomizedTourBySlug } from '@/lib/tours-data';
 import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
+import { getWhatsAppLink } from '@/lib/whatsapp';
 
 export default function CustomizedTourDetailClient({
   params,
@@ -123,7 +124,7 @@ export default function CustomizedTourDetailClient({
                     <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(pkg.priceUSD)}</p>
                     <p className="text-xs text-[#8B8680]">{t.tours.perPerson}</p>
                   </div>
-                  <a href="https://wa.me/51984215157" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
+                  <a href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
                     <MessageCircle className="w-5 h-5" />
                     {locale === 'es' ? 'Consultar por WhatsApp' : 'Inquire via WhatsApp'}
                   </a>

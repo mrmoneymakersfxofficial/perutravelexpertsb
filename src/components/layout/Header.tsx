@@ -46,12 +46,11 @@ const navItems: NavItem[] = [
 export default function Header() {
   const { locale, setLocale, t } = useLanguage();
   const { favoritesCount } = useFavorites();
-  const { searchOpen, setSearchOpen, favoritesOpen, setFavoritesOpen, detailTour, detailOpen, setDetailOpen, openDetail } = useModal();
+  const { searchOpen, setSearchOpen, favoritesOpen, setFavoritesOpen, detailTour, detailOpen, setDetailOpen, openDetail, bookingOpen, setBookingOpen } = useModal();
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [bookingModalOpen, setBookingModalOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -217,7 +216,7 @@ export default function Header() {
               </div>
 
               {/* Book CTA - opens BookingModal */}
-              <Button onClick={() => setBookingModalOpen(true)} className="h-10 px-6 rounded-full text-[13px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-lg shadow-[#D6B37F]/20 hover:shadow-[#D6B37F]/30">
+              <Button onClick={() => setBookingOpen(true)} className="h-10 px-6 rounded-full text-[13px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-lg shadow-[#D6B37F]/20 hover:shadow-[#D6B37F]/30">
                   {t.nav.book}
                 </Button>
             </nav>
@@ -288,7 +287,7 @@ export default function Header() {
                       </button>
                     </nav>
                     <div className="px-5 py-5 border-t border-white/[0.06]">
-                      <Button onClick={() => { setMobileOpen(false); setBookingModalOpen(true); }} className="h-11 rounded-full w-full text-[14px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200">
+                      <Button onClick={() => { setMobileOpen(false); setBookingOpen(true); }} className="h-11 rounded-full w-full text-[14px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200">
                         {t.nav.book}
                       </Button>
                     </div>
@@ -323,8 +322,8 @@ export default function Header() {
 
       {/* Booking Modal (standalone, no tour pre-selected) */}
       <BookingModal
-        open={bookingModalOpen}
-        onOpenChange={setBookingModalOpen}
+        open={bookingOpen}
+        onOpenChange={setBookingOpen}
         locale={locale}
       />
     </>

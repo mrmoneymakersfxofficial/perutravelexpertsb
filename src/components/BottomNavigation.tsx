@@ -8,18 +8,16 @@ import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { useModal } from '@/components/ModalContext';
+import { getWhatsAppLink } from '@/lib/whatsapp';
 
-const WHATSAPP_URL = 'https://wa.me/51984215157?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20los%20tours%20de%20PeruTravelExpertsB';
+const WHATSAPP_URL = getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB');
 
 export default function BottomNavigation() {
   const pathname = usePathname();
   const { locale, t } = useLanguage();
   const { favoritesCount } = useFavorites();
-  const { searchOpen, favoritesOpen, detailOpen } = useModal();
+  const { anyModalOpen } = useModal();
   const isHome = pathname === '/';
-
-  // Hide bottom nav when ANY modal is open (Airbnb/Booking pattern)
-  const anyModalOpen = searchOpen || favoritesOpen || detailOpen;
 
   const items = [
     { key: 'home' as const, icon: Home, label: locale === 'es' ? 'Inicio' : 'Home', href: '/', action: () => { if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' }); }, active: isHome },

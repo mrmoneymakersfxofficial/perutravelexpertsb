@@ -15,6 +15,7 @@ import { ShareTour } from '@/components/ShareTour';
 import type { TourData } from '@/lib/tours-data';
 import BookingModal from '@/components/BookingModal';
 import { tourToView } from '@/lib/tours-data';
+import { getWhatsAppLink } from '@/lib/whatsapp';
 
 interface TourDetailModalProps { tour: TourData | null; open: boolean; onOpenChange: (open: boolean) => void; }
 
@@ -43,7 +44,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
   const isFav       = isFavorite(tour.id);
   const images      = tour.gallery?.length ? [tour.image, ...tour.gallery] : [tour.image];
   const destName    = (t.nav as Record<string, string>)[tour.destination] || tour.destination;
-  const waMsg       = encodeURIComponent(`Hola, me interesa el tour "${name}" ($${tour.priceUSD} USD). ¿Podrían darme más información?`);
+  const waMsg = `Hola, me interesa el tour "${name}" ($${tour.priceUSD} USD). ¿Podrían darme más información?`;
 
   const scroll = (dir: 'left' | 'right') => {
     galleryRef.current?.scrollBy({ left: dir === 'left' ? -260 : 260, behavior: 'smooth' });
@@ -143,7 +144,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
       </div>
       <div className="flex items-center gap-2 shrink-0">
         <a
-          href={`https://wa.me/51984215157?text=${waMsg}`}
+          href={getWhatsAppLink(waMsg)}
           target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 h-9 sm:h-10 px-3 sm:px-4 rounded-full text-[11px] sm:text-xs font-semibold text-white shadow-md active:scale-95 transition-transform"
           style={{ backgroundColor: '#25D366' }}
