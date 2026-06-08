@@ -211,3 +211,32 @@ Stage Summary:
 - WhatsApp number: +51 984 215 157 across entire site
 - Professional booking with tour/date/time/pax → WhatsApp
 
+---
+Task ID: 1
+Agent: Main Agent
+Task: Full-bleed immersive heroes on all tour/destination sub-pages + ItineraryAccordion component
+
+Work Log:
+- Explored entire codebase: 16 routes, 4 hero patterns identified
+- Found duplicate hero problem: PageHeader (white bg) + inline image hero on 7 pages
+- Created ItineraryAccordion.tsx component with hour-by-hour accordion UI
+- Fixed tour-packages listing: removed PageHeader + inline hero → single ImmersiveHero (65vh, dark theme)
+- Fixed customized-tours listing: PageHeader → ImmersiveHero (65vh)
+- Fixed tours-cities listing: PageHeader → ImmersiveHero (65vh)
+- Fixed projects-we-support listing: PageHeader → ImmersiveHero (65vh)
+- Fixed customized-tours/[slug] detail: removed dual-header → single ImmersiveHero (70vh)
+- Fixed tours-cities/[slug] detail: removed dual-header → single ImmersiveHero (70vh)
+- Fixed projects-we-support/[slug] detail: removed dual-header → single ImmersiveHero (70vh)
+- All listing pages now use dark theme (#0F0F0F) with gold accent cards
+- Detail pages use glass badges (duration, location, multi-destination)
+- Fixed WhatsApp messages to include tour/package name
+- Build verified: all 61 pages generated successfully
+- Pushed commit 9b7f505 to GitHub → Vercel auto-deploy
+
+Stage Summary:
+- 8 files changed (7 modified + 1 new component)
+- Eliminated all duplicate hero headers across 7 pages
+- Created reusable ItineraryAccordion component ready for integration
+- All tour/destination sub-pages now have consistent 65-75vh full-bleed immersive heroes
+- Deployed to https://perutravelexpertsb.vercel.app
+
