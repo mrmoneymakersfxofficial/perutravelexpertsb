@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { useModal } from '@/components/ModalContext';
@@ -9,23 +9,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   Clock,
-  Check,
   ArrowRight,
   ChevronRight,
   Heart,
   MessageCircle,
   MapPin,
-  DollarSign,
   Mountain,
 } from 'lucide-react';
-import ImmersiveHero from '@/components/ImmersiveHero';
+import TourSubpageHeroUltimate from '@/components/TourSubpageHeroUltimate';
+import TourInfoTabs from '@/components/TourInfoTabs';
+import TourImageGallery from '@/components/TourImageGallery';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import BookingModal from '@/components/BookingModal';
 import { getWhatsAppLink } from '@/lib/whatsapp';
 import { tours, destinations, tourToView, getRelatedTours } from '@/lib/tours-data';
 import type { TourData } from '@/lib/tours-data';
-import type { TourView } from '@/lib/types';
 
 interface TourSlugClientProps {
   tour: TourData | null | undefined;
@@ -36,27 +34,21 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const { anyModalOpen, bookingOpen, setBookingOpen } = useModal();
 
-  const [imgError, setImgError] = useState(false);
-  const [galleryErrors, setGalleryErrors] = useState<Set<number>>(new Set());
-
   // ── 404 State ──
   if (!tour) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F6F2' }}>
+      <div className="min-h-screen flex items-center justify-center bg-[#0F0F0F]">
         <div className="text-center px-4">
-          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
+          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             {locale === 'es' ? 'Tour no encontrado' : 'Tour not found'}
           </h1>
-          <p className="text-[#8B8680] mb-6 text-sm sm:text-base">
+          <p className="text-white/50 mb-6 text-sm sm:text-base">
             {locale === 'es'
               ? 'Lo sentimos, el tour que buscas no existe o ha sido removido.'
               : 'Sorry, the tour you are looking for does not exist or has been removed.'}
           </p>
           <Link href="/tours">
-            <Button
-              className="rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wide"
-              style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
-            >
+            <Button className="rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wide" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>
               <ArrowRight className="w-4 h-4 mr-2" />
               {locale === 'es' ? 'Ver todos los tours' : 'View all tours'}
             </Button>
@@ -70,361 +62,127 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
   const name = locale === 'es' ? tour.nameEs : tour.nameEn;
   const description = locale === 'es' ? tour.descriptionEs : tour.descriptionEn;
   const includes = locale === 'es' ? tour.includesEs : tour.includesEn;
-  const itinerary = locale === 'es' ? tour.itineraryEs : tour.itineraryEn;
   const isFav = isFavorite(tour.id);
   const related = getRelatedTours(tour.id, tour.destination, 3);
 
   const destination = destinations.find((d) => d.slug === tour.destination);
   const destName = destination
-    ? locale === 'es'
-      ? destination.nameEs
-      : destination.nameEn
+    ? locale === 'es' ? destination.nameEs : destination.nameEn
     : tour.destination;
 
-  const diffConfig: Record<string, { es: string; en: string; color: string }> = {
-    beginner: { es: 'Principiante', en: 'Beginner', color: 'bg-emerald-100 text-emerald-800 border-emerald-200' },
-    moderate: { es: 'Moderado', en: 'Moderate', color: 'bg-amber-100 text-amber-800 border-amber-200' },
-    advanced: { es: 'Avanzado', en: 'Advanced', color: 'bg-red-100 text-red-800 border-red-200' },
+  const diffConfig: Record<string, { es: string; en: string }> = {
+    beginner: { es: 'Principiante', en: 'Beginner' },
+    moderate: { es: 'Moderado', en: 'Moderate' },
+    advanced: { es: 'Avanzado', en: 'Advanced' },
   };
-  const diff = diffConfig[tour.difficulty];
-  const diffLabel = locale === 'es' ? diff.es : diff.en;
-
-  const gradientFallbacks: Record<string, string> = {
-    'city-tour-cusco': 'from-amber-800 to-orange-600',
-    'valle-sagrado': 'from-green-800 to-lime-600',
-    'machu-picchu': 'from-emerald-800 to-teal-600',
-    'montana-colores': 'from-rose-800 to-violet-600',
-    'lake-humantay': 'from-cyan-800 to-blue-600',
-    'inka-trail-2d': 'from-stone-800 to-amber-700',
-    'inka-trail-4d': 'from-stone-800 to-amber-700',
-    'inka-trail-5d': 'from-stone-800 to-amber-700',
-    'full-day-titikaka-lake': 'from-blue-800 to-cyan-600',
-    'home-stay-2d-1n': 'from-blue-800 to-cyan-600',
-    'amazon-3d-2n': 'from-green-800 to-emerald-600',
-    'amazon-4d-3n': 'from-green-800 to-emerald-600',
-    'city-tour-arequipa': 'from-gray-800 to-white/20',
-    'colca-canyon-2d': 'from-red-800 to-amber-600',
-    'ica-2d-1n': 'from-amber-700 to-yellow-500',
-    'ica-3d-2n': 'from-amber-700 to-yellow-500',
-  };
+  const diffLabel = locale === 'es' ? diffConfig[tour.difficulty].es : diffConfig[tour.difficulty].en;
 
   const whatsappMessage = `Hola, estoy en la web revisando el tour "${name}" y deseo reservar.`;
 
-  const handleOpenBooking = () => {
-    setBookingOpen(true);
-  };
-
-  const handleGalleryImgError = (index: number) => {
-    setGalleryErrors((prev) => new Set(prev).add(index));
-  };
-
-  // ── Section animation variants ──
   const sectionVariant = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
-      {/* ── Full-Bleed Immersive Hero (75vh) ── */}
-      <ImmersiveHero
+    <div className="min-h-screen flex flex-col bg-[#0F0F0F]">
+
+      {/* ══════════════════════════════════════════════
+          100dvh FULL-VIEWPORT IMMERSIVE HERO
+         ══════════════════════════════════════════════ */}
+      <TourSubpageHeroUltimate
         title={name}
         bgImage={tour.image}
-        height="75vh"
+        destination={destName}
+        duration={`${tour.duration} ${t.tours.days}`}
+        level={diffLabel}
+        price={tour.priceUSD}
+        highSeasonPrice={tour.highSeasonPrice}
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: locale === 'es' ? 'Tours' : 'Tours', href: '/tours' },
           { label: name },
         ]}
-      >
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-          <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>
-            {diffLabel}
-          </Badge>
-          <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            {tour.duration} {t.tours.days}
-          </div>
-          {destination && (
-            <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              {destName}
-            </div>
-          )}
-        </div>
-        <div className="flex items-baseline gap-1 sm:gap-2">
-          <span className="text-white/50 text-xs sm:text-sm">{t.tours.price}</span>
-          <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair" style={{ color: '#D6B37F' }}>
-            ${Math.round(tour.priceUSD)}
-          </span>
-          <span className="text-white/50 text-xs sm:text-sm">{t.tours.perPerson}</span>
-          {tour.highSeasonPrice && (
-            <span className="text-white/40 text-xs sm:text-sm ml-1 sm:ml-2">
-              ({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})
-            </span>
-          )}
-        </div>
-      </ImmersiveHero>
+      />
 
-      {/* Floating Favorite Button - desktop only */}
-      <div className="hidden md:flex fixed top-[88px] right-6 lg:right-[calc((100vw-80rem)/2+1.5rem)] z-30">
-        <button
-          onClick={() => toggleFavorite(tour.id)}
-          className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
-          style={{
-            backgroundColor: isFav ? 'rgba(239,68,68,0.9)' : 'rgba(255,255,255,0.92)',
-            border: isFav ? 'none' : '1px solid rgba(214,179,127,0.3)',
-          }}
-        >
-          <Heart
-            className={`w-5 h-5 transition-colors ${
-              isFav ? 'text-white fill-white' : 'text-[#8B8680]'
-            }`}
-          />
-        </button>
-      </div>
-
-      {/* ── Two-Column Content Section ── */}
-      <section className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
+      {/* ══════════════════════════════════════════════
+          MAIN CONTENT — DARK THEME
+         ══════════════════════════════════════════════ */}
+      <section className="py-10 sm:py-14 md:py-16 bg-[#0F0F0F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
 
             {/* ═══ LEFT COLUMN (70%) ═══ */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-10 sm:space-y-12">
 
               {/* 1. Description */}
-              <motion.div
-                variants={sectionVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                className="mb-8 sm:mb-10"
-              >
-                <h2 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#1C1C1C' }}>
+              <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
+                <h2 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold mb-3 text-white">
                   {locale === 'es' ? 'Descripción' : 'Description'}
                 </h2>
-                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
-                <p className="text-[#8B8680] text-sm sm:text-base leading-relaxed">{description}</p>
+                <div className="h-[2px] w-16 mb-4" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed">{description}</p>
               </motion.div>
 
-              {/* 2. Gallery */}
+              {/* 2. Image Gallery with Lightbox */}
               {tour.gallery && tour.gallery.length > 0 && (
-                <motion.div
-                  variants={sectionVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-50px' }}
-                  className="mb-8 sm:mb-10"
-                >
-                  <h2 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#1C1C1C' }}>
-                    {t.tourDetail.gallery}
-                  </h2>
-                  <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
-                    {tour.gallery.map((img, i) => (
-                      <div
-                        key={i}
-                        className="relative h-36 sm:h-44 md:h-48 rounded-lg sm:rounded-xl overflow-hidden group cursor-pointer"
-                      >
-                        {!galleryErrors.has(i) ? (
-                          <Image
-                            src={img}
-                            alt={`${name} ${i + 1}`}
-                            fill
-                            sizes="(max-width: 768px) 50vw, 33vw"
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            onError={() => handleGalleryImgError(i)}
-                          />
-                        ) : (
-                          <div
-                            className={`w-full h-full bg-gradient-to-br ${
-                              gradientFallbacks[tour.id] || 'from-gray-800 to-gray-600'
-                            } opacity-60`}
-                          />
-                        )}
-                        <div className="absolute inset-0 bg-[#0F0F0F]/0 group-hover:bg-[#0F0F0F]/10 transition-colors duration-300" />
-                      </div>
-                    ))}
-                  </div>
+                <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
+                  <TourImageGallery images={tour.gallery} title={name} />
                 </motion.div>
               )}
 
-              {/* 3. What's Included */}
-              <motion.div
-                variants={sectionVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                className="mb-8 sm:mb-10"
-              >
-                <h2 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#1C1C1C' }}>
-                  {t.tourDetail.includes}
-                </h2>
-                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                  {includes.map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-lg"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.5)', border: '1px solid rgba(214,179,127,0.1)' }}
-                    >
-                      <div
-                        className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                        style={{ background: 'linear-gradient(135deg, #D6B37F, #B8945E)' }}
-                      >
-                        <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0F0F0F]" />
-                      </div>
-                      <span className="text-xs sm:text-sm" style={{ color: '#1C1C1C' }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
+              {/* 3. Tour Info Tabs (Itinerary / Includes / Policies) */}
+              <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
+                <TourInfoTabs
+                  includes={includes}
+                  excludes={locale === 'es'
+                    ? ['Propinas voluntarias', 'Bebidas adicionales', 'Seguro de viaje personal', 'Souvenirs en mercados']
+                    : ['Voluntary tips', 'Additional drinks', 'Personal travel insurance', 'Souvenirs at markets']}
+                  policies={locale === 'es'
+                    ? ['Cancelación gratuita hasta 48 horas antes del inicio de la experiencia.', 'Modificaciones de fecha permitidas sujetas a disponibilidad.', 'No presentarse (No Show) se penaliza con el 100%.']
+                    : ['Free cancellation up to 48 hours before the experience.', 'Date changes allowed subject to availability.', 'No Show incurs a 100% penalty.']}
+                />
               </motion.div>
-
-              {/* 4. Itinerary */}
-              {itinerary && itinerary.length > 0 && (
-                <motion.div
-                  variants={sectionVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-50px' }}
-                  className="mb-8 sm:mb-10"
-                >
-                  <h2 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#1C1C1C' }}>
-                    {t.tourDetail.itinerary}
-                  </h2>
-                  <div className="w-16 h-0.5 mb-4 sm:mb-6" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
-                  <div className="space-y-4 sm:space-y-6">
-                    {itinerary.map((day, idx) => {
-                      const dayTitle = locale === 'es' ? day.titleEs : day.titleEn;
-                      const dayDesc = locale === 'es' ? day.descriptionEs : day.descriptionEn;
-                      const isLast = idx === itinerary.length - 1;
-                      return (
-                        <motion.div
-                          key={day.day}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: idx * 0.1 }}
-                          className="flex gap-3 sm:gap-4"
-                        >
-                          {/* Timeline Column */}
-                          <div className="flex flex-col items-center">
-                            <div
-                              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-[#0F0F0F] font-bold text-xs sm:text-sm flex-shrink-0"
-                              style={{ background: 'linear-gradient(135deg, #D6B37F, #B8945E)' }}
-                            >
-                              {day.day}
-                            </div>
-                            {!isLast && (
-                              <div className="w-0.5 flex-1 mt-1.5 sm:mt-2" style={{ backgroundColor: '#E8D5B5' }} />
-                            )}
-                          </div>
-                          {/* Day Content */}
-                          <div className={`pb-4 sm:pb-6 ${isLast ? '' : ''}`}>
-                            <h3 className="font-playfair text-base sm:text-lg font-bold mb-1.5 sm:mb-2" style={{ color: '#1C1C1C' }}>
-                              {t.tourDetail.day} {day.day}: {dayTitle}
-                            </h3>
-                            <p className="text-[#8B8680] text-xs sm:text-sm leading-relaxed">{dayDesc}</p>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
             </div>
 
-            {/* ═══ RIGHT COLUMN (30%) — Desktop Sticky Sidebar ═══ */}
+            {/* ═══ RIGHT COLUMN (30%) — Desktop Sticky ═══ */}
             <div className="hidden lg:block lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-                {/* Price Card */}
-                <div
-                  className="rounded-2xl p-6"
-                  style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(214,179,127,0.15)' }}
-                >
+                <div className="rounded-2xl p-6 border border-white/[0.08] bg-[#141414]">
                   <div className="text-center mb-6">
-                    <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
-                    <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>
-                      ${Math.round(tour.priceUSD)}
-                    </p>
-                    <p className="text-xs text-[#8B8680]">{t.tours.perPerson}</p>
+                    <p className="text-sm text-white/50 mb-1">{t.tours.price}</p>
+                    <p className="text-4xl font-bold font-playfair text-[#D6B37F]">${Math.round(tour.priceUSD)}</p>
+                    <p className="text-xs text-white/40">{t.tours.perPerson}</p>
                     {tour.highSeasonPrice && (
-                      <p className="text-xs text-[#8B8680] mt-1">
-                        ({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})
-                      </p>
+                      <p className="text-xs text-white/30 mt-1">({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})</p>
                     )}
                   </div>
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#8B8680] flex items-center gap-1.5">
-                        <Clock className="w-4 h-4" />
-                        {t.tours.duration}
-                      </span>
-                      <span className="font-medium" style={{ color: '#1C1C1C' }}>
-                        {tour.duration} {t.tours.days}
-                      </span>
+                      <span className="text-white/50 flex items-center gap-1.5"><Clock className="w-4 h-4" />{t.tours.duration}</span>
+                      <span className="font-medium text-white">{tour.duration} {t.tours.days}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#8B8680] flex items-center gap-1.5">
-                        <Mountain className="w-4 h-4" />
-                        {t.tours.difficulty}
-                      </span>
-                      <Badge variant="outline" className={`text-xs ${diff.color}`}>{diffLabel}</Badge>
+                      <span className="text-white/50 flex items-center gap-1.5"><Mountain className="w-4 h-4" />{t.tours.difficulty}</span>
+                      <span className="text-xs px-2 py-0.5 rounded-md text-[#D6B37F] bg-[#D6B37F]/10 font-medium">{diffLabel}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#8B8680] flex items-center gap-1.5">
-                        <MapPin className="w-4 h-4" />
-                        {locale === 'es' ? 'Destino' : 'Destination'}
-                      </span>
-                      <span className="font-medium" style={{ color: '#1C1C1C' }}>{destName}</span>
+                      <span className="text-white/50 flex items-center gap-1.5"><MapPin className="w-4 h-4" />{locale === 'es' ? 'Destino' : 'Destination'}</span>
+                      <span className="font-medium text-white">{destName}</span>
                     </div>
                   </div>
-
-                  {/* Book This Tour Button */}
-                  <Button
-                    onClick={handleOpenBooking}
-                    className="w-full py-3 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg transition-all duration-200 hover:shadow-xl"
-                    style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
-                  >
+                  <Button onClick={() => setBookingOpen(true)} className="w-full py-3 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-200" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>
                     {t.tourDetail.bookThisTour}
                   </Button>
-
-                  {/* WhatsApp Button */}
-                  <a
-                    href={getWhatsAppLink(whatsappMessage)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full text-sm font-semibold transition-colors shadow-lg hover:shadow-xl"
-                    style={{ backgroundColor: '#25D366', color: '#fff' }}
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    WhatsApp
+                  <a href={getWhatsAppLink(whatsappMessage)} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-colors" style={{ backgroundColor: '#25D366', color: '#fff' }}>
+                    <MessageCircle className="w-4 h-4" /> WhatsApp
                   </a>
                 </div>
-
-                {/* Navigation Links */}
-                <div
-                  className="rounded-2xl p-6"
-                  style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(214,179,127,0.15)' }}
-                >
-                  <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>
-                    {locale === 'es' ? 'Navegación' : 'Navigation'}
-                  </h3>
+                <div className="rounded-2xl p-6 border border-white/[0.08] bg-[#141414]">
+                  <h3 className="font-playfair text-lg font-bold mb-3 text-white">{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
                   <nav className="space-y-2">
-                    <Link
-                      href="/tours"
-                      className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                      {locale === 'es' ? 'Volver a Tours' : 'Back to Tours'}
-                    </Link>
-                    <Link
-                      href="/tour-packages"
-                      className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                      {t.tourDetail.ourDestinations}
-                    </Link>
+                    <Link href="/tours" className="flex items-center gap-2 text-sm text-white/50 hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{locale === 'es' ? 'Volver a Tours' : 'Back to Tours'}</Link>
+                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-white/50 hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.ourDestinations}</Link>
                   </nav>
                 </div>
               </div>
@@ -433,141 +191,46 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
         </div>
       </section>
 
-      {/* ── Mobile Info Panel (visible only below lg, before related tours) ── */}
-      <section
-        className="lg:hidden py-6 sm:py-8"
-        style={{ backgroundColor: '#F8F6F2', borderTop: '1px solid rgba(214,179,127,0.15)' }}
-      >
+      {/* ── Mobile Info Panel ── */}
+      <section className="lg:hidden py-6 sm:py-8 bg-[#0A0A0A]" style={{ borderTop: '1px solid rgba(214,179,127,0.1)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div
-            className="rounded-2xl p-4 sm:p-6"
-            style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(214,179,127,0.15)' }}
-          >
+          <div className="rounded-2xl p-4 sm:p-6 border border-white/[0.08] bg-[#141414]">
             <div className="flex items-center justify-between mb-4 sm:mb-6">
               <div>
-                <p className="text-xs sm:text-sm text-[#8B8680] mb-0.5">{t.tours.price}</p>
-                <p className="text-2xl sm:text-3xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>
-                  ${Math.round(tour.priceUSD)}
-                </p>
-                <p className="text-[10px] sm:text-xs text-[#8B8680]">{t.tours.perPerson}</p>
+                <p className="text-xs sm:text-sm text-white/50 mb-0.5">{t.tours.price}</p>
+                <p className="text-2xl sm:text-3xl font-bold font-playfair text-[#D6B37F]">${Math.round(tour.priceUSD)}</p>
+                <p className="text-[10px] sm:text-xs text-white/40">{t.tours.perPerson}</p>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>{diffLabel}</Badge>
-                <div
-                  className="flex items-center gap-1 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs"
-                  style={{ backgroundColor: 'rgba(214,179,127,0.12)', color: '#1C1C1C' }}
-                >
-                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  {tour.duration} {t.tours.days}
-                </div>
+                <span className="text-xs px-2 py-0.5 rounded-md text-[#D6B37F] bg-[#D6B37F]/10 font-medium">{diffLabel}</span>
+                <div className="flex items-center gap-1 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs text-[#D6B37F] bg-white/[0.04]"><Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{tour.duration} {t.tours.days}</div>
               </div>
             </div>
-
-            {/* Mobile: Quick Details */}
             <div className="grid grid-cols-2 gap-3 mb-4 sm:mb-6">
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680]">
-                <Mountain className="w-4 h-4" style={{ color: '#D6B37F' }} />
-                <span>{diffLabel}</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680]">
-                <MapPin className="w-4 h-4" style={{ color: '#D6B37F' }} />
-                <span>{destName}</span>
-              </div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-white/50"><Mountain className="w-4 h-4 text-[#D6B37F]" />{diffLabel}</div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-white/50"><MapPin className="w-4 h-4 text-[#D6B37F]" />{destName}</div>
             </div>
-
-            {/* Mobile: Action Buttons */}
             <div className="flex gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <a
-                href={getWhatsAppLink(whatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-1.5 h-11 rounded-full text-xs sm:text-sm font-semibold transition-colors shadow-lg"
-                style={{ backgroundColor: '#25D366', color: '#fff' }}
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp
-              </a>
-              <Button
-                onClick={handleOpenBooking}
-                className="flex-1 h-11 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-all duration-200"
-                style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
-              >
-                {t.tours.bookNow}
-              </Button>
+              <a href={getWhatsAppLink(whatsappMessage)} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 h-11 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-colors" style={{ backgroundColor: '#25D366', color: '#fff' }}><MessageCircle className="w-4 h-4" />WhatsApp</a>
+              <Button onClick={() => setBookingOpen(true)} className="flex-1 h-11 rounded-full text-xs sm:text-sm font-semibold shadow-lg transition-all duration-200" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>{t.tours.bookNow}</Button>
             </div>
-
             <nav className="space-y-1.5 sm:space-y-2">
-              <Link
-                href="/tours"
-                className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"
-              >
-                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                {locale === 'es' ? 'Volver a Tours' : 'Back to Tours'}
-              </Link>
-              <Link
-                href="/tour-packages"
-                className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"
-              >
-                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                {t.tourDetail.ourDestinations}
-              </Link>
+              <Link href="/tours" className="flex items-center gap-2 text-xs sm:text-sm text-white/50 hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{locale === 'es' ? 'Volver a Tours' : 'Back to Tours'}</Link>
+              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-white/50 hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.ourDestinations}</Link>
             </nav>
           </div>
         </div>
       </section>
 
-      {/* ── Sticky Mobile CTA Bar (hidden when any modal is open) ── */}
+      {/* ── Sticky Mobile CTA Bar ── */}
       <AnimatePresence>
         {!anyModalOpen && (
-          <motion.div
-            key="sticky-cta-tourslug"
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: '0%', opacity: 1 }}
-            exit={{ y: '100%', opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            className="lg:hidden fixed bottom-0 left-0 right-0 z-[9997] px-3 sm:px-4 py-2.5 sm:py-3"
-            style={{
-              backgroundColor: 'rgba(248,246,242,0.97)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              borderTop: '1px solid rgba(214,179,127,0.1)',
-              paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))',
-            }}
-          >
+          <motion.div key="sticky-cta" initial={{ y: '100%', opacity: 0 }} animate={{ y: '0%', opacity: 1 }} exit={{ y: '100%', opacity: 0 }} transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }} className="lg:hidden fixed bottom-0 left-0 right-0 z-[9997] px-3 sm:px-4 py-2.5 sm:py-3" style={{ backgroundColor: 'rgba(15,15,15,0.97)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(214,179,127,0.1)', paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))' }}>
             <div className="max-w-7xl mx-auto flex items-center gap-2 sm:gap-3">
-              {/* WhatsApp Button */}
-              <a
-                href={getWhatsAppLink(whatsappMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-colors shadow-lg"
-                style={{ backgroundColor: '#25D366', color: '#fff' }}
-              >
-                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">WhatsApp</span>
-              </a>
-              {/* Book Now Button */}
-              <Button
-                onClick={handleOpenBooking}
-                className="flex-1 sm:flex-none sm:px-5 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 shadow-lg"
-                style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
-              >
-                {t.tours.bookNow}
-              </Button>
-              {/* Favorite Button */}
-              <button
-                onClick={() => toggleFavorite(tour.id)}
-                className="w-10 h-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center border transition-colors shrink-0"
-                style={{
-                  borderColor: isFav ? '#ef4444' : 'rgba(214,179,127,0.2)',
-                  backgroundColor: isFav ? 'rgba(239,68,68,0.1)' : 'rgba(214,179,127,0.05)',
-                }}
-              >
-                <Heart
-                  className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${
-                    isFav ? 'text-red-500 fill-red-500' : 'text-[#D6B37F]'
-                  }`}
-                />
+              <a href={getWhatsAppLink(whatsappMessage)} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold shadow-lg transition-colors" style={{ backgroundColor: '#25D366', color: '#fff' }}><MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" /><span className="hidden sm:inline">WhatsApp</span></a>
+              <Button onClick={() => setBookingOpen(true)} className="flex-1 sm:flex-none sm:px-5 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 shadow-lg" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>{t.tours.bookNow}</Button>
+              <button onClick={() => toggleFavorite(tour.id)} className="w-10 h-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center border transition-colors shrink-0" style={{ borderColor: isFav ? '#ef4444' : 'rgba(214,179,127,0.2)', backgroundColor: isFav ? 'rgba(239,68,68,0.1)' : 'rgba(214,179,127,0.05)' }}>
+                <Heart className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#D6B37F]'}`} />
               </button>
             </div>
           </motion.div>
@@ -576,45 +239,23 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
 
       {/* ── Related Tours ── */}
       {related.length > 0 && (
-        <section
-          className="py-12 sm:py-16 md:py-20"
-          style={{ backgroundColor: '#F8F6F2', borderTop: '1px solid rgba(214,179,127,0.15)' }}
-        >
+        <section className="py-12 sm:py-16 md:py-20 bg-[#0F0F0F]" style={{ borderTop: '1px solid rgba(214,179,127,0.1)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8 sm:mb-12">
-              <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" style={{ color: '#1C1C1C' }}>
-                {t.tourDetail.relatedTours}
-              </h2>
+              <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 text-white">{t.tourDetail.relatedTours}</h2>
               <div className="w-16 sm:w-20 h-0.5 mx-auto" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {related.map((relTour) => (
-                <Link
-                  key={relTour.id}
-                  href={`/tours/${relTour.slug}`}
-                  className="group rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                  style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(214,179,127,0.1)' }}
-                >
+                <Link key={relTour.id} href={`/tours/${relTour.slug}`} className="group rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-white/[0.06]">
                   <div className="relative h-48 sm:h-56 overflow-hidden">
-                    <Image
-                      src={relTour.image}
-                      alt={locale === 'es' ? relTour.nameEs : relTour.nameEn}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/50 to-transparent" />
+                    <Image src={relTour.image} alt={locale === 'es' ? relTour.nameEs : relTour.nameEn} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3">
-                      <p className="text-white font-playfair font-bold text-sm sm:text-base line-clamp-1">
-                        {locale === 'es' ? relTour.nameEs : relTour.nameEn}
-                      </p>
+                      <p className="text-white font-playfair font-bold text-sm sm:text-base line-clamp-1">{locale === 'es' ? relTour.nameEs : relTour.nameEn}</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[#D6B37F] font-bold text-xs sm:text-sm">
-                          ${Math.round(relTour.priceUSD)}
-                        </span>
-                        <span className="text-white/70 text-[10px] sm:text-xs">
-                          {relTour.duration} {t.tours.days}
-                        </span>
+                        <span className="text-[#D6B37F] font-bold text-xs sm:text-sm">${Math.round(relTour.priceUSD)}</span>
+                        <span className="text-white/50 text-[10px] sm:text-xs">{relTour.duration} {t.tours.days}</span>
                       </div>
                     </div>
                   </div>
@@ -627,12 +268,7 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
 
       {/* ── Booking Modal ── */}
       {bookingOpen && (
-        <BookingModal
-          tour={tourToView(tour)}
-          locale={locale}
-          open={bookingOpen}
-          onOpenChange={setBookingOpen}
-        />
+        <BookingModal tour={tourToView(tour)} locale={locale} open={bookingOpen} onOpenChange={setBookingOpen} />
       )}
     </div>
   );

@@ -16,13 +16,13 @@ export default function BottomNavigation() {
   const pathname = usePathname();
   const { locale, t } = useLanguage();
   const { favoritesCount } = useFavorites();
-  const { anyModalOpen } = useModal();
+  const { anyModalOpen, openSearch, openFavorites } = useModal();
   const isHome = pathname === '/';
 
   const items = [
     { key: 'home' as const, icon: Home, label: locale === 'es' ? 'Inicio' : 'Home', href: '/', action: () => { if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' }); }, active: isHome },
-    { key: 'search' as const, icon: Search, label: locale === 'es' ? 'Buscar' : 'Search', action: undefined, active: false },
-    { key: 'favorites' as const, icon: Heart, label: locale === 'es' ? 'Favoritos' : 'Favorites', action: undefined, active: false, badge: favoritesCount },
+    { key: 'search' as const, icon: Search, label: locale === 'es' ? 'Buscar' : 'Search', action: openSearch, active: false },
+    { key: 'favorites' as const, icon: Heart, label: locale === 'es' ? 'Favoritos' : 'Favorites', action: openFavorites, active: false, badge: favoritesCount },
     { key: 'tours' as const, icon: Compass, label: locale === 'es' ? 'Tours' : 'Tours', href: '/tour-packages', active: pathname.startsWith('/tour-packages') },
     { key: 'whatsapp' as const, icon: MessageCircle, label: 'WhatsApp', href: WHATSAPP_URL, external: true, active: false },
   ];
@@ -56,9 +56,10 @@ export default function BottomNavigation() {
                   </a>
                 );
               }
-              if (!item.href) {
+              // Action-only buttons (search, favorites)
+              if (!item.href && item.action) {
                 return (
-                  <button key={item.key} className="flex flex-col items-center justify-center gap-0.5 sm:gap-1 w-full h-full relative" style={{ minHeight: 44 }} aria-label={item.label}>
+                  <button key={item.key} onClick={item.action} className="flex flex-col items-center justify-center gap-0.5 sm:gap-1 w-full h-full relative" style={{ minHeight: 44 }} aria-label={item.label}>
                     <div className="relative"><item.icon className="w-5 h-5 sm:w-[22px] sm:h-[22px] transition-colors" style={{ color: '#D6B37F' }} />
                       {item.badge && item.badge > 0 && <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute -top-1 sm:-top-1.5 -right-1.5 sm:-right-2 min-w-[14px] sm:min-w-[16px] h-3.5 sm:h-4 px-0.5 sm:px-1 rounded-full text-[8px] sm:text-[9px] font-bold flex items-center justify-center" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>{item.badge > 9 ? '9+' : item.badge}</motion.span>}
                     </div>
@@ -66,6 +67,7 @@ export default function BottomNavigation() {
                   </button>
                 );
               }
+              // Link items (home, tours)
               return (
                 <Link key={item.key} href={item.href!} onClick={item.action} className="flex flex-col items-center justify-center gap-0.5 sm:gap-1 w-full h-full relative" style={{ minHeight: 44 }}>
                   <div className="relative"><item.icon className="w-5 h-5 sm:w-[22px] sm:h-[22px] transition-colors" style={{ color: item.active ? '#D6B37F' : 'rgba(255,255,255,0.5)' }} /></div>

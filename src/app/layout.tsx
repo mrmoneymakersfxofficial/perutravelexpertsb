@@ -10,6 +10,7 @@ import Footer from "@/components/layout/Footer";
 import BottomNavigation from "@/components/BottomNavigation";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingPanel from "@/components/FloatingPanel";
+import BottomTabModals from "@/components/BottomTabModals";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -77,6 +78,7 @@ export default function RootLayout({
                 <Toaster />
                 <FloatingPanel />
                 <BottomNavigation />
+                <BottomTabModals />
               </ModalProvider>
             </RecentlyViewedProvider>
           </FavoritesProvider>
