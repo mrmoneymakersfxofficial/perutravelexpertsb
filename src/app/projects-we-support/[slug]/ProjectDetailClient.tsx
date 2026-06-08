@@ -5,8 +5,8 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart } from 'lucide-react';
-import PageHeader from '@/components/layout/PageHeader';
+import { Heart, MessageCircle } from 'lucide-react';
+import ImmersiveHero from '@/components/ImmersiveHero';
 import { Button } from '@/components/ui/button';
 import { getProjectBySlug } from '@/lib/tours-data';
 import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
@@ -20,7 +20,7 @@ export default function ProjectDetailClient({
   const { slug } = use(params);
   const { t, locale } = useLanguage();
 
-  const sectionIds = ['project-hero', 'project-content'];
+  const sectionIds = ['project-content'];
   useSectionObserver({ sectionIds });
   useHandleHashScroll();
 
@@ -46,38 +46,36 @@ export default function ProjectDetailClient({
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
-      <PageHeader
+      {/* Single Full-Bleed Immersive Hero — No More Duplicate Headers */}
+      <ImmersiveHero
         title={name}
+        bgImage={project.image}
+        height="70vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: t.projects.title, href: '/projects-we-support' },
           { label: name },
         ]}
-      />
-
-      <section id="project-hero" className="relative h-72 sm:h-96 overflow-hidden">
-        <Image src={project.image} alt={name} fill sizes="100vw" className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/80 via-[#0F0F0F]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-12">
-            <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white">{name}</h1>
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #D6B37F, #B8945E)' }}>
+            <Heart className="w-4 h-4 text-[#0F0F0F]" />
           </div>
+          <span className="text-xs text-white/80 font-medium uppercase tracking-wider">
+            {locale === 'es' ? 'Responsabilidad Social' : 'Social Responsibility'}
+          </span>
         </div>
-      </section>
+      </ImmersiveHero>
 
       <section id="project-content" className="py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center">
-                <Heart className="w-6 h-6 text-[#0F0F0F]" />
-              </div>
-              <span className="text-sm text-[#D6B37F] font-medium uppercase tracking-wider">
-                {locale === 'es' ? 'Responsabilidad Social' : 'Social Responsibility'}
-              </span>
-            </div>
-            <p className="text-[#1C1C1C]/80 text-lg leading-relaxed mb-8">{desc}</p>
-            <div className="bg-white/[0.02] rounded-2xl p-6 md:p-8 border border-[#E8D5B5]/[0.04]">
+            <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
+              {locale === 'es' ? 'Sobre este Proyecto' : 'About this Project'}
+            </h2>
+            <div className="w-16 h-0.5 mb-6" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
+            <p className="text-[#8B8680] text-lg leading-relaxed mb-8">{desc}</p>
+            <div className="rounded-2xl p-6 md:p-8" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(214,179,127,0.15)' }}>
               <h3 className="font-playfair text-xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
                 {locale === 'es' ? '¿Cómo puedes ayudar?' : 'How can you help?'}
               </h3>
@@ -90,7 +88,8 @@ export default function ProjectDetailClient({
                 <Link href="/tour-packages">
                   <Button className="btn-gold rounded-full px-6">{locale === 'es' ? 'Reservar un Tour' : 'Book a Tour'}</Button>
                 </Link>
-                <a href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
+                <a href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-white font-semibold transition-colors text-sm shadow-lg" style={{ backgroundColor: '#25D366' }}>
+                  <MessageCircle className="w-4 h-4" />
                   {locale === 'es' ? 'Saber Más' : 'Learn More'}
                 </a>
               </div>
