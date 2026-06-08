@@ -218,7 +218,7 @@ export default function TourDetailClient({
                     </div>
                   </div>
                   <Button onClick={() => setBookingOpen(true)} className="btn-gold rounded-full w-full py-3 text-base">{t.tourDetail.bookThisTour}</Button>
-                  <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">WhatsApp</a>
+                  <a href="https://wa.me/51984215157" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">WhatsApp</a>
                 </div>
                 <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#E8D5B5]/[0.04]">
                   <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
@@ -273,7 +273,7 @@ export default function TourDetailClient({
             style={{ backgroundColor: 'rgba(248,246,242,0.97)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(214,179,127,0.1)', paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))' }}
           >
             <div className="max-w-7xl mx-auto flex items-center gap-2 sm:gap-3">
-              <a href={`https://wa.me/51984000000?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors shadow-lg">
+              <a href={`https://wa.me/51984215157?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors shadow-lg">
                 <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">WhatsApp</span>
               </a>

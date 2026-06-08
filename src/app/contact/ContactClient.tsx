@@ -32,7 +32,7 @@ export default function ContactClient() {
       `👤 ${name}\n📧 ${email}\n📋 ${subject || 'N/A'}\n💬 ${message}\n\n` +
       `_${locale === 'es' ? 'Enviado desde PeruTravelExpertsB.com' : 'Sent from PeruTravelExpertsB.com'}_`;
 
-    const whatsappUrl = `https://wa.me/51984000000?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/51984215157?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
     form.reset();
   };
@@ -50,7 +50,7 @@ export default function ContactClient() {
                   <div className="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center flex-shrink-0"><MessageCircle className="w-6 h-6 text-[#0F0F0F]" /></div>
                   <div>
                     <h4 className="font-playfair font-bold text-lg mb-1" style={{ color: '#1C1C1C' }}>{t.contact.whatsapp}</h4>
-                    <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="text-[#8B8680] hover:text-[#D6B37F] transition-colors">+51 984 000 000</a>
+                    <a href="https://wa.me/51984215157" target="_blank" rel="noopener noreferrer" className="text-[#8B8680] hover:text-[#D6B37F] transition-colors">+51 984 215 157</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -75,7 +75,7 @@ export default function ContactClient() {
                   </div>
                 </div>
               </div>
-              <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
+              <a href="https://wa.me/51984215157" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
                 <MessageCircle className="w-5 h-5" />{t.contact.sendWhatsApp}
               </a>
               <div className="mt-8 rounded-2xl overflow-hidden border border-[#E8D5B5]/[0.06]">

@@ -27,7 +27,7 @@ export default function ContactSection() {
       `💬 ${message}\n\n` +
       `_${locale === 'es' ? 'Enviado desde PeruTravelExpertsB.com' : 'Sent from PeruTravelExpertsB.com'}_`;
 
-    const whatsappUrl = `https://wa.me/51984000000?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/51984215157?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
     form.reset();
   };
@@ -70,12 +70,12 @@ export default function ContactSection() {
                     {t.contact.whatsapp}
                   </h4>
                   <a
-                    href="https://wa.me/51984000000"
+                    href="https://wa.me/51984215157"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#8B8680] hover:text-[#D6B37F] transition-colors"
                   >
-                    +51 984 000 000
+                    +51 984 215 157
                   </a>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function ContactSection() {
 
             {/* WhatsApp Direct Button */}
             <a
-              href="https://wa.me/51984000000"
+              href="https://wa.me/51984215157"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm"

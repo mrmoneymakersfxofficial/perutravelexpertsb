@@ -89,7 +89,7 @@ export default function ProjectDetailClient({
                 <Link href="/tour-packages">
                   <Button className="btn-gold rounded-full px-6">{locale === 'es' ? 'Reservar un Tour' : 'Book a Tour'}</Button>
                 </Link>
-                <a href="https://wa.me/51984000000" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
+                <a href="https://wa.me/51984215157" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">
                   {locale === 'es' ? 'Saber Más' : 'Learn More'}
                 </a>
               </div>

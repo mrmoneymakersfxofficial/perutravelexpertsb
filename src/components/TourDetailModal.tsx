@@ -143,7 +143,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
       </div>
       <div className="flex items-center gap-2 shrink-0">
         <a
-          href={`https://wa.me/51984000000?text=${waMsg}`}
+          href={`https://wa.me/51984215157?text=${waMsg}`}
           target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 h-9 sm:h-10 px-3 sm:px-4 rounded-full text-[11px] sm:text-xs font-semibold text-white shadow-md active:scale-95 transition-transform"
           style={{ backgroundColor: '#25D366' }}

@@ -9,7 +9,7 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { useModal } from '@/components/ModalContext';
 
-const WHATSAPP_URL = 'https://wa.me/51984000000?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20los%20tours%20de%20PeruTravelExpertsB';
+const WHATSAPP_URL = 'https://wa.me/51984215157?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20los%20tours%20de%20PeruTravelExpertsB';
 
 export default function BottomNavigation() {
   const pathname = usePathname();

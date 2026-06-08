@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SearchModal from '@/components/SearchModal';
 import FavoritesModal from '@/components/FavoritesModal';
 import TourDetailModal from '@/components/TourDetailModal';
+import BookingModal from '@/components/BookingModal';
 
 interface NavItem {
   key: string;
@@ -50,6 +51,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -214,12 +216,10 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
-              {/* Book CTA */}
-              <Link href="/contact">
-                <Button className="h-10 px-6 rounded-full text-[13px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-lg shadow-[#D6B37F]/20 hover:shadow-[#D6B37F]/30">
+              {/* Book CTA - opens BookingModal */}
+              <Button onClick={() => setBookingModalOpen(true)} className="h-10 px-6 rounded-full text-[13px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-lg shadow-[#D6B37F]/20 hover:shadow-[#D6B37F]/30">
                   {t.nav.book}
                 </Button>
-              </Link>
             </nav>
 
             {/* Mobile — logo + spacer + lang + hamburger */}
@@ -288,11 +288,9 @@ export default function Header() {
                       </button>
                     </nav>
                     <div className="px-5 py-5 border-t border-white/[0.06]">
-                      <Link href="/contact" onClick={() => setMobileOpen(false)}>
-                        <Button className="h-11 rounded-full w-full text-[14px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200">
-                          {t.nav.book}
-                        </Button>
-                      </Link>
+                      <Button onClick={() => { setMobileOpen(false); setBookingModalOpen(true); }} className="h-11 rounded-full w-full text-[14px] font-semibold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200">
+                        {t.nav.book}
+                      </Button>
                     </div>
                   </div>
                 </SheetContent>
@@ -321,6 +319,13 @@ export default function Header() {
         tour={detailTour}
         open={detailOpen}
         onOpenChange={setDetailOpen}
+      />
+
+      {/* Booking Modal (standalone, no tour pre-selected) */}
+      <BookingModal
+        open={bookingModalOpen}
+        onOpenChange={setBookingModalOpen}
+        locale={locale}
       />
     </>
   );

@@ -197,7 +197,7 @@ export default function TestimonialsClient() {
                 : 'Join hundreds of travelers who have already experienced unforgettable moments with PeruTravelExpertsB.'}
             </p>
             <a
-              href="https://wa.me/51984000000"
+              href="https://wa.me/51984215157"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full gold-gradient text-[#0F0F0F] font-semibold hover:shadow-[0_0_30px_rgba(200,169,126,0.4)] transition-all text-sm"
