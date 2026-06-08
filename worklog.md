@@ -186,3 +186,28 @@ Stage Summary:
 - Bottom Nav now smoothly slides away when modals open (250ms ease-out)
 - No more clipped tours, favorites, or modals
 
+---
+Task ID: 4
+Agent: Main Agent
+Task: Professional booking modal, deluxe tour cards, WhatsApp number update
+
+Work Log:
+- Found and replaced ALL 20 WhatsApp links (51984000000 → 51984215157) across 15 files
+- Updated display numbers (+51 984 000 000 → +51 984 215 157) in 3 files
+- Created src/lib/whatsapp.ts utility with getWhatsAppLink() and openWhatsApp()
+- Rebuilt BookingModal from scratch: 2-step professional booking flow
+  - Step 0: Tour selector with all 24 tours, thumbnails, destinations, prices
+  - Step 1: Name, date picker, time slot, pax counter (+/- buttons), price estimate
+  - WhatsApp message with structured booking details
+- Updated Header: Book CTA now opens BookingModal instead of /contact
+- Updated mobile hamburger menu Book button to open BookingModal
+- TourCard deluxe immersive: full-bleed image, cinematic gradient, zoom effect,
+  glass badges, hover gold CTA transition, fixed 380px height
+- Build successful, committed as 4ec151c, pushed to GitHub
+
+Stage Summary:
+- 17 files changed, 426 insertions(+), 285 deletions(-)
+- Commit: 4ec151c → GitHub → Vercel auto-deploy
+- WhatsApp number: +51 984 215 157 across entire site
+- Professional booking with tour/date/time/pax → WhatsApp
+
