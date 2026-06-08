@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, Star, Check, ArrowRight, ChevronRight, Heart, MessageCircle } from 'lucide-react';
-import PageHeader from '@/components/layout/PageHeader';
+import ImmersiveHero from '@/components/ImmersiveHero';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import TourCard from '@/components/TourCard';
@@ -96,44 +96,33 @@ export default function TourDetailClient({
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
-      <PageHeader
+      {/* ── Full-Bleed Immersive Hero (70vh) ── */}
+      <ImmersiveHero
         title={name}
+        bgImage={tour.image}
+        height="70vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: t.pageHeaders.tourPackages, href: '/tour-packages' },
           { label: destName, href: `/tour-packages/${destination}` },
           { label: name },
         ]}
-      />
-
-      {/* Hero Image */}
-      <section id="tour-hero" className="relative h-56 sm:h-72 md:h-96 lg:h-[500px] overflow-hidden">
-        {!imgError ? (
-          <Image src={tour.image} alt={name} fill sizes="100vw" className="object-cover" priority onError={() => setImgError(true)} />
-        ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${gradientFallbacks[tour.id] || 'from-gray-800 to-gray-600'}`} />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/80 via-[#0F0F0F]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 md:pb-12">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-              <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>{diffLabel}</Badge>
-              <div className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full glass-card text-white text-[10px] sm:text-xs font-medium">
-                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{tour.duration} {t.tours.days}
-              </div>
-            </div>
-            <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-3">{name}</h1>
-            <div className="flex items-baseline gap-1 sm:gap-2">
-              <span className="text-[#8B8680] text-xs sm:text-sm">{t.tours.price}</span>
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair text-[#D6B37F]">${Math.round(tour.priceUSD)}</span>
-              <span className="text-[#8B8680] text-xs sm:text-sm">{t.tours.perPerson}</span>
-              {tour.highSeasonPrice && (
-                <span className="text-[#8B8680] text-xs sm:text-sm ml-1 sm:ml-2">({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})</span>
-              )}
-            </div>
+      >
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+          <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>{diffLabel}</Badge>
+          <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{tour.duration} {t.tours.days}
           </div>
         </div>
-      </section>
+        <div className="flex items-baseline gap-1 sm:gap-2">
+          <span className="text-white/50 text-xs sm:text-sm">{t.tours.price}</span>
+          <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair" style={{ color: '#D6B37F' }}>${Math.round(tour.priceUSD)}</span>
+          <span className="text-white/50 text-xs sm:text-sm">{t.tours.perPerson}</span>
+          {tour.highSeasonPrice && (
+            <span className="text-white/40 text-xs sm:text-sm ml-1 sm:ml-2">({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})</span>
+          )}
+        </div>
+      </ImmersiveHero>
 
       {/* Content */}
       <section id="tour-content" className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>

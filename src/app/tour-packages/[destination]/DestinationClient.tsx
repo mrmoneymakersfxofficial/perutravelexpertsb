@@ -5,10 +5,9 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-import PageHeader from '@/components/layout/PageHeader';
-import { Button } from '@/components/ui/button';
 import TourCard from '@/components/TourCard';
+import ImmersiveHero from '@/components/ImmersiveHero';
+import { Button } from '@/components/ui/button';
 import { getDestinationBySlug, getToursByDestination, tourToView } from '@/lib/tours-data';
 import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
@@ -21,7 +20,7 @@ export default function DestinationClient({
   const { t, locale } = useLanguage();
   const { favorites } = useFavorites();
 
-  const sectionIds = ['destination-hero', 'destination-tours'];
+  const sectionIds = ['destination-tours'];
   useSectionObserver({ sectionIds });
   useHandleHashScroll();
 
@@ -30,9 +29,9 @@ export default function DestinationClient({
 
   if (!dest) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F6F2' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0F0F0F' }}>
         <div className="text-center">
-          <h1 className="font-playfair text-3xl font-bold" style={{ color: '#1C1C1C' }}>
+          <h1 className="font-playfair text-3xl font-bold text-white mb-4">
             {locale === 'es' ? 'Destino no encontrado' : 'Destination not found'}
           </h1>
           <Link href="/tour-packages">
@@ -47,28 +46,38 @@ export default function DestinationClient({
   const destDesc = locale === 'es' ? dest.descriptionEs : dest.descriptionEn;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
-      <PageHeader
-        title={`${t.tourDetail.toursIn} ${destName}`}
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0F0F0F' }}>
+      {/* ── Full-Bleed Immersive Hero ── */}
+      <ImmersiveHero
+        title={destName}
         subtitle={destDesc}
+        bgImage={dest.image}
+        height="65vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: t.pageHeaders.tourPackages, href: '/tour-packages' },
           { label: destName },
         ]}
-      />
-
-      <section id="destination-hero" className="relative h-64 md:h-80 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image src={dest.image} alt={destName} fill sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/70 to-[#0F0F0F]" />
+      >
+        {/* Tour count badge */}
+        <div className="flex items-center gap-3 flex-wrap">
+          <div
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-wide"
+            style={{
+              background: 'rgba(214,179,127,0.15)',
+              border: '1px solid rgba(214,179,127,0.25)',
+              color: '#D6B37F',
+              backdropFilter: 'blur(8px)',
+            }}
+          >
+            <span className="font-bold">{destTours.length}</span>
+            <span>{destTours.length === 1 ? (locale === 'es' ? 'tour disponible' : 'tour available') : (locale === 'es' ? 'tours disponibles' : 'tours available')}</span>
+          </div>
         </div>
-        <div className="relative z-10 flex items-end justify-center h-full pb-12">
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white">{destName}</h2>
-        </div>
-      </section>
+      </ImmersiveHero>
 
-      <section id="destination-tours" className="py-16 md:py-20" style={{ backgroundColor: '#F8F6F2' }}>
+      {/* ── Tours Grid ── */}
+      <section id="destination-tours" className="py-16 md:py-20" style={{ backgroundColor: '#0F0F0F' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}
@@ -83,7 +92,7 @@ export default function DestinationClient({
           </motion.div>
           {destTours.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-[#8B8680] text-lg">
+              <p className="text-white/40 text-lg">
                 {locale === 'es' ? 'No hay tours disponibles en este destino.' : 'No tours available in this destination.'}
               </p>
             </div>

@@ -18,7 +18,7 @@ import {
   DollarSign,
   Mountain,
 } from 'lucide-react';
-import PageHeader from '@/components/layout/PageHeader';
+import ImmersiveHero from '@/components/ImmersiveHero';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import BookingModal from '@/components/BookingModal';
@@ -126,98 +126,63 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F8F6F2' }}>
-      {/* ── Page Header with Breadcrumbs ── */}
-      <PageHeader
+      {/* ── Full-Bleed Immersive Hero (75vh) ── */}
+      <ImmersiveHero
         title={name}
+        bgImage={tour.image}
+        height="75vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: locale === 'es' ? 'Tours' : 'Tours', href: '/tours' },
           { label: name },
         ]}
-      />
-
-      {/* ── Hero Section ── */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden"
       >
-        {!imgError ? (
-          <Image
-            src={tour.image}
-            alt={name}
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div
-            className={`w-full h-full bg-gradient-to-br ${
-              gradientFallbacks[tour.id] || 'from-gray-800 to-gray-600'
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+          <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>
+            {diffLabel}
+          </Badge>
+          <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            {tour.duration} {t.tours.days}
+          </div>
+          {destination && (
+            <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              {destName}
+            </div>
+          )}
+        </div>
+        <div className="flex items-baseline gap-1 sm:gap-2">
+          <span className="text-white/50 text-xs sm:text-sm">{t.tours.price}</span>
+          <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair" style={{ color: '#D6B37F' }}>
+            ${Math.round(tour.priceUSD)}
+          </span>
+          <span className="text-white/50 text-xs sm:text-sm">{t.tours.perPerson}</span>
+          {tour.highSeasonPrice && (
+            <span className="text-white/40 text-xs sm:text-sm ml-1 sm:ml-2">
+              ({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})
+            </span>
+          )}
+        </div>
+      </ImmersiveHero>
+
+      {/* Floating Favorite Button - desktop only */}
+      <div className="hidden md:flex fixed top-[88px] right-6 lg:right-[calc((100vw-80rem)/2+1.5rem)] z-30">
+        <button
+          onClick={() => toggleFavorite(tour.id)}
+          className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+          style={{
+            backgroundColor: isFav ? 'rgba(239,68,68,0.9)' : 'rgba(255,255,255,0.92)',
+            border: isFav ? 'none' : '1px solid rgba(214,179,127,0.3)',
+          }}
+        >
+          <Heart
+            className={`w-5 h-5 transition-colors ${
+              isFav ? 'text-white fill-white' : 'text-[#8B8680]'
             }`}
           />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/80 via-[#0F0F0F]/30 to-transparent" />
-
-        {/* Favorite Button */}
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10">
-          <button
-            onClick={() => toggleFavorite(tour.id)}
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg"
-            style={{
-              backgroundColor: isFav ? 'rgba(239,68,68,0.9)' : 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-              border: isFav ? 'none' : '1px solid rgba(255,255,255,0.25)',
-            }}
-          >
-            <Heart
-              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors ${
-                isFav ? 'text-white fill-white' : 'text-white'
-              }`}
-            />
-          </button>
-        </div>
-
-        {/* Hero Content */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 md:pb-12">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-              <Badge variant="outline" className={`text-[10px] sm:text-xs ${diff.color}`}>
-                {diffLabel}
-              </Badge>
-              <div className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)' }}>
-                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                {tour.duration} {t.tours.days}
-              </div>
-              {destination && (
-                <div className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs font-medium" style={{ backgroundColor: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(4px)' }}>
-                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  {destName}
-                </div>
-              )}
-            </div>
-            <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-3">
-              {name}
-            </h1>
-            <div className="flex items-baseline gap-1 sm:gap-2">
-              <span className="text-[#8B8680] text-xs sm:text-sm">{t.tours.price}</span>
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair" style={{ color: '#D6B37F' }}>
-                ${Math.round(tour.priceUSD)}
-              </span>
-              <span className="text-[#8B8680] text-xs sm:text-sm">{t.tours.perPerson}</span>
-              {tour.highSeasonPrice && (
-                <span className="text-[#8B8680] text-xs sm:text-sm ml-1 sm:ml-2">
-                  ({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.section>
+        </button>
+      </div>
 
       {/* ── Two-Column Content Section ── */}
       <section className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: '#F8F6F2' }}>
