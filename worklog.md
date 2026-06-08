@@ -240,3 +240,27 @@ Stage Summary:
 - All tour/destination sub-pages now have consistent 65-75vh full-bleed immersive heroes
 - Deployed to https://perutravelexpertsb.vercel.app
 
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Bottom tab modals, 100dvh heroes, gallery lightbox, info tabs
+
+Work Log:
+- Created BottomTabModals.tsx: search bottom sheet (filterable all tours) + favorites bottom sheet (delete, share via Web Share API/navigator.clipboard, click to navigate)
+- Created TourSubpageHeroUltimate.tsx: 100dvh full-viewport hero with cinematic gradients (top darkens for header, bottom blends to #0F0F0F, side vignettes), gold badges, price block, scroll indicator
+- Created TourInfoTabs.tsx: 3-tab system (Itinerary with ItineraryAccordion, Includes/Excludes with emerald/rose icons, Policies with warning icons)
+- Created TourImageGallery.tsx: asymmetric grid (first image 2x2) + full-screen lightbox with AnimatePresence transitions, keyboard nav (Escape/Arrows), image counter
+- Updated BottomNavigation: search button → openSearch(), favorites button → openFavorites() via ModalContext
+- Updated layout.tsx: added BottomTabModals globally
+- Rewrote TourSlugClient: 100dvh hero + full dark theme + TourInfoTabs + TourImageGallery + cleaned sidebar
+- Build verified: 61 pages all generated
+- Pushed commit 5be9e3b to GitHub → Vercel auto-deploy
+
+Stage Summary:
+- 4 new components created (BottomTabModals, TourSubpageHeroUltimate, TourInfoTabs, TourImageGallery)
+- 3 existing files updated (BottomNavigation, layout, TourSlugClient)
+- Tour detail pages now have 100dvh full-viewport immersive heroes
+- Bottom nav search opens pro mini-modal with all tours (searchable)
+- Bottom nav favorites opens mini-modal with share/delete/navigate actions
+- Deployed to https://perutravelexpertsb.vercel.app
