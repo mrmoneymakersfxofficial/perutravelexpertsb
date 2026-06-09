@@ -264,3 +264,24 @@ Stage Summary:
 - Bottom nav search opens pro mini-modal with all tours (searchable)
 - Bottom nav favorites opens mini-modal with share/delete/navigate actions
 - Deployed to https://perutravelexpertsb.vercel.app
+---
+Task ID: 1
+Agent: Main Agent
+Task: Update PeruTravelExpertsB - English default language, new Navbar, Tour Packages dropdown, updated BottomTabModals
+
+Work Log:
+- Changed default locale from 'es' to 'en' in LanguageProvider.tsx
+- Changed html lang attribute from 'es' to 'en' in layout.tsx
+- Replaced Header.tsx with new Navbar: clean desktop nav with Tours dropdown (Tour Packages, Cusco, Puno, Amazon, Arequipa, Lima & Ica), search/favorites icons, Book Now CTA, language indicator 'en'
+- New mobile overlay menu with destination links, search, favorites, Book Now button
+- Updated BottomTabModals.tsx: search mini-modal with real tour data filtering, favorites mini-modal with share (clipboard) and remove actions, connected to ModalContext
+- Changed 'All Destinations' / 'Todos los Destinos' to 'Tour Packages' in translations.ts (both ES and EN)
+- Build verified: all 61 routes generated successfully
+- Pushed to GitHub commit d76e67f → Vercel auto-deploy triggered
+
+Stage Summary:
+- Default language is now English across the entire website
+- Header replaced with clean Navbar featuring the Tours dropdown with "Tour Packages" as first item
+- BottomTabModals updated with search and favorites mini-modals
+- "All Destinations" text replaced with "Tour Packages" in both languages
+- Commit: d76e67f, pushed to main branch
