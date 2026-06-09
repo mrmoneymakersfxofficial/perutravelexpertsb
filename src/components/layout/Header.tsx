@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { useModal } from '@/components/ModalContext';
@@ -28,6 +29,7 @@ const dropdownDestinations = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -39,6 +41,10 @@ export default function Header() {
     detailTour, detailOpen, setDetailOpen, openDetail,
     bookingOpen, setBookingOpen,
   } = useModal();
+
+  // Pages with dark immersive heroes → keep white text
+  // All other subpages have lighter backgrounds → use dark text
+  const isLightPage = pathname !== '/' && !pathname?.includes('/tours/');
 
   // Scroll listener — transparent at top, glass on scroll
   useEffect(() => {
@@ -70,6 +76,50 @@ export default function Header() {
     setDropdownTimeout(timeout);
   };
 
+  // ═══════ DYNAMIC CONTRAST ENGINE ═══════
+
+  // Nav link text color
+  const getTextClass = () => {
+    if (isScrolled) return 'text-white/90 hover:text-[#D6B37F] active:text-[#B8945E]';
+    if (isLightPage) return 'text-[#0F0F0F] hover:text-[#D6B37F] active:text-[#B8945E]';
+    return 'text-white/90 hover:text-[#D6B37F] active:text-[#B8945E] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]';
+  };
+
+  // Icon/text muted color (language, separators)
+  const getMutedClass = () => {
+    if (isScrolled) return 'text-white/60';
+    if (isLightPage) return 'text-[#0F0F0F]/70';
+    return 'text-white/60 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]';
+  };
+
+  // Separator color
+  const getSeparatorClass = () => {
+    if (isScrolled) return 'bg-white/20';
+    if (isLightPage) return 'bg-black/20';
+    return 'bg-white/20';
+  };
+
+  // Book Now CTA
+  const getBookClass = () => {
+    if (isScrolled || !isLightPage) {
+      return 'bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] shadow-xl shadow-black/20 hover:shadow-[#D6B37F]/20';
+    }
+    return 'bg-[#0F0F0F] hover:bg-[#D6B37F] text-[#D6B37F] hover:text-[#0F0F0F] border border-transparent';
+  };
+
+  // Logo treatment
+  const getLogoClass = () => {
+    if (isScrolled) return 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]';
+    if (isLightPage) return 'brightness-0';
+    return 'drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]';
+  };
+
+  // Mobile hamburger color
+  const getHamburgerClass = () => {
+    if (isScrolled || !isLightPage) return 'text-white';
+    return 'text-[#0F0F0F]';
+  };
+
   return (
     <>
       <motion.header
@@ -78,25 +128,21 @@ export default function Header() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`fixed top-0 left-0 w-full z-[9999] flex items-center transition-all duration-300 ease-in-out ${
           isScrolled
-            ? 'glass-header translate-y-0'
+            ? 'bg-[#141414]/90 backdrop-blur-md border-b border-white/5 shadow-2xl'
             : 'bg-transparent border-b border-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between h-[60px] md:h-[65px] lg:h-[70px]">
 
-            {/* Logo */}
+            {/* Logo — brightness-0 on light pages for dark logo */}
             <Link href="/" className="flex items-center h-full shrink-0">
               <Image
                 src="/logo.png"
                 alt="PeruTravelExpertsB"
                 width={180}
                 height={60}
-                className={`h-[44px] md:h-[48px] lg:h-[52px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${
-                  isScrolled
-                    ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]'
-                    : 'drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'
-                }`}
+                className={`h-[44px] md:h-[48px] lg:h-[52px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${getLogoClass()}`}
                 priority
               />
             </Link>
@@ -105,11 +151,7 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-8">
               {/* Tours Dropdown */}
               <div className="relative" data-tours-dropdown onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <button className={`flex items-center gap-1 text-[13px] font-semibold tracking-wider uppercase transition-all duration-300 ${
-                  isScrolled
-                    ? 'text-white/80 hover:text-[#D6B37F]'
-                    : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
-                }`}>
+                <button className={`flex items-center gap-1 text-[13px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}>
                   Tours
                   <svg className={`w-3 h-3 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
@@ -142,38 +184,26 @@ export default function Header() {
                 <Link
                   key={idx}
                   href={link.href}
-                  className={`text-[13px] font-semibold tracking-wider uppercase transition-all duration-300 ${
-                    isScrolled
-                      ? 'text-white/80 hover:text-[#D6B37F]'
-                      : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
-                  }`}
+                  className={`text-[13px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
                 >
                   {link.label}
                 </Link>
               ))}
 
               {/* Separator */}
-              <div className={`w-px h-5 transition-colors duration-300 ${isScrolled ? 'bg-white/10' : 'bg-white/20'}`} />
+              <div className={`w-px h-5 transition-colors duration-300 ${getSeparatorClass()}`} />
 
               {/* Search & Favorites */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className={`transition-all duration-300 p-1 ${
-                  isScrolled
-                    ? 'text-white/70 hover:text-[#D6B37F]'
-                    : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
-                }`}
+                className={`transition-all duration-300 p-1 ${getTextClass()}`}
                 aria-label="Search"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               </button>
               <button
                 onClick={() => setFavoritesOpen(true)}
-                className={`transition-all duration-300 p-1 relative ${
-                  isScrolled
-                    ? 'text-white/70 hover:text-[#D6B37F]'
-                    : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
-                }`}
+                className={`transition-all duration-300 p-1 relative ${getTextClass()}`}
                 aria-label="Favorites"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
@@ -185,24 +215,18 @@ export default function Header() {
               </button>
 
               {/* Separator */}
-              <div className={`w-px h-5 transition-colors duration-300 ${isScrolled ? 'bg-white/10' : 'bg-white/20'}`} />
+              <div className={`w-px h-5 transition-colors duration-300 ${getSeparatorClass()}`} />
 
               {/* Language Indicator */}
-              <span className={`text-[13px] uppercase font-bold transition-all duration-300 ${
-                isScrolled
-                  ? 'text-white/60 hover:text-[#D6B37F]'
-                  : 'text-white/80 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
-              }`}>
-                <span className="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                  en
-                </span>
+              <span className={`text-[13px] uppercase font-bold transition-all duration-300 flex items-center gap-1 ${getTextClass()}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                en
               </span>
 
-              {/* Book Now CTA */}
+              {/* Book Now CTA — inverts on light pages */}
               <button
                 onClick={() => setBookingOpen(true)}
-                className="py-2 h-10 px-6 rounded-full text-[13px] font-bold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-xl shadow-black/20"
+                className={`py-2 h-10 px-6 rounded-full text-[13px] font-bold tracking-wide transition-all duration-200 ${getBookClass()}`}
               >
                 Book Now
               </button>
@@ -210,20 +234,12 @@ export default function Header() {
 
             {/* Mobile — hamburger + language */}
             <div className="flex items-center gap-2 lg:hidden">
-              <span className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 ${
-                isScrolled
-                  ? 'text-white/60'
-                  : 'text-white/80 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
-              }`}>
+              <span className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 ${getMutedClass()}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
                 en
               </span>
 
-              <button onClick={() => setIsMenuOpen(true)} className={`transition-all duration-300 p-1 ${
-                isScrolled
-                  ? 'text-white/70 hover:text-[#D6B37F]'
-                  : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]'
-              }`}>
+              <button onClick={() => setIsMenuOpen(true)} className={`transition-all duration-300 p-1 ${getHamburgerClass()}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
               </button>
             </div>
