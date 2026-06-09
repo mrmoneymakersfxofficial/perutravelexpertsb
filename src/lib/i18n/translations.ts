@@ -3,7 +3,7 @@ import type { Translations } from '@/lib/types';
 
 export const translations: Record<Locale, Translations> = {
   es: {
-    nav: { tours: 'Tours', about: 'Nosotros', testimonials: 'Testimonios', contact: 'Contacto', book: 'Reservar', customizedTours: 'Tours Personalizados', communityTours: 'Tours Comunitarios', projects: 'Proyectos', faq: 'FAQ', allDestinations: 'Todos los Destinos' },
+    nav: { tours: 'Tours', about: 'Nosotros', testimonials: 'Testimonios', contact: 'Contacto', book: 'Reservar', customizedTours: 'Tours Personalizados', communityTours: 'Tours Comunitarios', projects: 'Proyectos', faq: 'FAQ', allDestinations: 'Tour Packages' },
     hero: {
       title: 'Descubre Cusco',
       subtitle: 'como nunca antes',
@@ -158,7 +158,7 @@ export const translations: Record<Locale, Translations> = {
     },
   },
   en: {
-    nav: { tours: 'Tours', about: 'About Us', testimonials: 'Testimonials', contact: 'Contact', book: 'Book Now', customizedTours: 'Customized Tours', communityTours: 'Community Tours', projects: 'Projects', faq: 'FAQ', allDestinations: 'All Destinations' },
+    nav: { tours: 'Tours', about: 'About Us', testimonials: 'Testimonials', contact: 'Contact', book: 'Book Now', customizedTours: 'Customized Tours', communityTours: 'Community Tours', projects: 'Projects', faq: 'FAQ', allDestinations: 'Tour Packages' },
     hero: {
       title: 'Discover Cusco',
       subtitle: 'like never before',
