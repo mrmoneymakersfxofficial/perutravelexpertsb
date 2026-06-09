@@ -29,6 +29,7 @@ const dropdownDestinations = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
   const { favoritesCount } = useFavorites();
@@ -39,6 +40,16 @@ export default function Header() {
     bookingOpen, setBookingOpen,
   } = useModal();
 
+  // Scroll listener — transparent at top, glass on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownOpen && !(e.target as HTMLElement).closest('[data-tours-dropdown]')) {
@@ -65,9 +76,13 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed top-0 left-0 w-full z-[9999] glass-header"
+        className={`fixed top-0 left-0 w-full z-[9999] flex items-center transition-all duration-300 ease-in-out ${
+          isScrolled
+            ? 'glass-header translate-y-0'
+            : 'bg-transparent border-b border-transparent'
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between h-[60px] md:h-[65px] lg:h-[70px]">
 
             {/* Logo */}
@@ -77,7 +92,11 @@ export default function Header() {
                 alt="PeruTravelExpertsB"
                 width={180}
                 height={60}
-                className="h-[52px] w-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]"
+                className={`h-[44px] md:h-[48px] lg:h-[52px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${
+                  isScrolled
+                    ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]'
+                    : 'drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'
+                }`}
                 priority
               />
             </Link>
@@ -86,7 +105,11 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-8">
               {/* Tours Dropdown */}
               <div className="relative" data-tours-dropdown onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <button className="flex items-center gap-1 text-[13px] font-medium text-white/80 hover:text-[#D6B37F] tracking-wider uppercase transition-colors duration-200">
+                <button className={`flex items-center gap-1 text-[13px] font-semibold tracking-wider uppercase transition-all duration-300 ${
+                  isScrolled
+                    ? 'text-white/80 hover:text-[#D6B37F]'
+                    : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
+                }`}>
                   Tours
                   <svg className={`w-3 h-3 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
@@ -119,26 +142,38 @@ export default function Header() {
                 <Link
                   key={idx}
                   href={link.href}
-                  className="text-[13px] font-medium text-white/80 hover:text-[#D6B37F] tracking-wider uppercase transition-colors duration-200"
+                  className={`text-[13px] font-semibold tracking-wider uppercase transition-all duration-300 ${
+                    isScrolled
+                      ? 'text-white/80 hover:text-[#D6B37F]'
+                      : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
+                  }`}
                 >
                   {link.label}
                 </Link>
               ))}
 
               {/* Separator */}
-              <div className="w-px h-5 bg-white/10" />
+              <div className={`w-px h-5 transition-colors duration-300 ${isScrolled ? 'bg-white/10' : 'bg-white/20'}`} />
 
               {/* Search & Favorites */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="text-white/70 hover:text-[#D6B37F] transition-colors duration-200 p-1"
+                className={`transition-all duration-300 p-1 ${
+                  isScrolled
+                    ? 'text-white/70 hover:text-[#D6B37F]'
+                    : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
+                }`}
                 aria-label="Search"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               </button>
               <button
                 onClick={() => setFavoritesOpen(true)}
-                className="text-white/70 hover:text-[#D6B37F] transition-colors duration-200 p-1 relative"
+                className={`transition-all duration-300 p-1 relative ${
+                  isScrolled
+                    ? 'text-white/70 hover:text-[#D6B37F]'
+                    : 'text-white/90 hover:text-[#D6B37F] drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
+                }`}
                 aria-label="Favorites"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
@@ -150,15 +185,24 @@ export default function Header() {
               </button>
 
               {/* Separator */}
-              <div className="w-px h-5 bg-white/10" />
+              <div className={`w-px h-5 transition-colors duration-300 ${isScrolled ? 'bg-white/10' : 'bg-white/20'}`} />
 
               {/* Language Indicator */}
-              <span className="text-[13px] text-white/60 uppercase font-medium">en</span>
+              <span className={`text-[13px] uppercase font-bold transition-all duration-300 ${
+                isScrolled
+                  ? 'text-white/60 hover:text-[#D6B37F]'
+                  : 'text-white/80 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
+              }`}>
+                <span className="flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                  en
+                </span>
+              </span>
 
               {/* Book Now CTA */}
               <button
                 onClick={() => setBookingOpen(true)}
-                className="py-2 h-10 px-6 rounded-full text-[13px] font-semibold bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all"
+                className="py-2 h-10 px-6 rounded-full text-[13px] font-bold tracking-wide bg-[#D6B37F] hover:bg-[#B8945E] text-[#0F0F0F] transition-all duration-200 shadow-xl shadow-black/20"
               >
                 Book Now
               </button>
@@ -166,10 +210,21 @@ export default function Header() {
 
             {/* Mobile — hamburger + language */}
             <div className="flex items-center gap-2 lg:hidden">
-              <span className="text-[12px] text-white/60 uppercase font-medium">en</span>
+              <span className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 ${
+                isScrolled
+                  ? 'text-white/60'
+                  : 'text-white/80 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]'
+              }`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                en
+              </span>
 
-              <button onClick={() => setIsMenuOpen(true)} className="text-white/70 hover:text-[#D6B37F] transition-colors p-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+              <button onClick={() => setIsMenuOpen(true)} className={`transition-all duration-300 p-1 ${
+                isScrolled
+                  ? 'text-white/70 hover:text-[#D6B37F]'
+                  : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]'
+              }`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
               </button>
             </div>
           </div>
@@ -179,11 +234,11 @@ export default function Header() {
       {/* Mobile Full Overlay Menu */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-[10001] lg:hidden">
-          <div onClick={() => setIsMenuOpen(false)} className="absolute inset-0 bg-black/60 backdrop-blur-md" />
-          <div className="absolute top-0 right-0 h-full w-[280px] bg-[#141414] p-6 flex flex-col justify-between text-white">
+          <div onClick={() => setIsMenuOpen(false)} className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+          <div className="absolute top-0 right-0 h-full w-[280px] bg-[#141414] p-6 flex flex-col justify-between text-white border-l border-white/5">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs text-[#D6B37F] uppercase">// Menu</span>
-              <button onClick={() => setIsMenuOpen(false)} className="text-2xl text-white/60 hover:text-white">&times;</button>
+              <span className="text-xs font-bold text-[#D6B37F] uppercase tracking-widest">// Menu</span>
+              <button onClick={() => setIsMenuOpen(false)} className="text-2xl text-white/50 hover:text-white">&times;</button>
             </div>
             <nav className="flex flex-col gap-6">
               {navLinks.map((link, idx) => (
@@ -191,7 +246,7 @@ export default function Header() {
                   key={idx}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-lg uppercase text-white/80 hover:text-[#D6B37F] transition-colors"
+                  className="text-base font-semibold uppercase tracking-wide text-white/80 hover:text-[#D6B37F] transition-colors"
                 >
                   {link.label}
                 </Link>
