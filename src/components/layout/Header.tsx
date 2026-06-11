@@ -326,14 +326,13 @@ export default function Header() {
         />
       </div>
 
-      {/* Favorites Modal — desktop Dialog only (BottomTabModals handles mobile) */}
-      <div className="hidden lg:block">
-        <FavoritesModal
-          open={favoritesOpen}
-          onOpenChange={setFavoritesOpen}
-          onTourSelect={openDetail}
-        />
-      </div>
+      {/* Favorites Modal — desktop Dialog only, Sheet disabled (BottomTabModals handles mobile) */}
+      <FavoritesModal
+        open={favoritesOpen}
+        onOpenChange={setFavoritesOpen}
+        onTourSelect={openDetail}
+        hideSheet
+      />
 
       {/* Tour Detail Modal */}
       <TourDetailModal

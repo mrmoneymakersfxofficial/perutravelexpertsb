@@ -78,7 +78,7 @@ export default function RootLayout({
                 <Toaster />
                 <FloatingPanel />
                 <BottomNavigation />
-                <BottomTabModals />
+                <div className="lg:hidden"><BottomTabModals /></div>
               </ModalProvider>
             </RecentlyViewedProvider>
           </FavoritesProvider>

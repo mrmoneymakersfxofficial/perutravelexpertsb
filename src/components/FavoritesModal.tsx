@@ -16,9 +16,10 @@ interface FavoritesModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onTourSelect?: (tour: TourData) => void;
+  hideSheet?: boolean;
 }
 
-export default function FavoritesModal({ open, onOpenChange, onTourSelect }: FavoritesModalProps) {
+export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideSheet }: FavoritesModalProps) {
   const { locale, t } = useLanguage();
   const { favorites, toggleFavorite, favoritesCount } = useFavorites();
   const favoritedTours = tours.filter(tour => favorites.has(tour.id));
@@ -159,7 +160,8 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect }: Fav
         </DialogContent>
       </Dialog>
 
-      {/* ── Mobile Sheet ── */}
+      {/* ── Mobile Sheet (hidden when BottomTabModals handles mobile) ── */}
+      {!hideSheet && (
       <Sheet open={open} onOpenChange={onOpenChange}>
         <SheetContent
           side="bottom"
@@ -179,6 +181,7 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect }: Fav
           </div>
         </SheetContent>
       </Sheet>
+      )}
     </>
   );
 }
