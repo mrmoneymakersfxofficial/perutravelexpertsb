@@ -317,19 +317,23 @@ export default function Header() {
         </div>
       )}
 
-      {/* Search Modal */}
-      <SearchModal
-        open={searchOpen}
-        onOpenChange={setSearchOpen}
-        onTourSelect={openDetail}
-      />
+      {/* Search Modal — desktop only (BottomTabModals handles mobile) */}
+      <div className="hidden lg:block">
+        <SearchModal
+          open={searchOpen}
+          onOpenChange={setSearchOpen}
+          onTourSelect={openDetail}
+        />
+      </div>
 
-      {/* Favorites Modal */}
-      <FavoritesModal
-        open={favoritesOpen}
-        onOpenChange={setFavoritesOpen}
-        onTourSelect={openDetail}
-      />
+      {/* Favorites Modal — desktop Dialog only (BottomTabModals handles mobile) */}
+      <div className="hidden lg:block">
+        <FavoritesModal
+          open={favoritesOpen}
+          onOpenChange={setFavoritesOpen}
+          onTourSelect={openDetail}
+        />
+      </div>
 
       {/* Tour Detail Modal */}
       <TourDetailModal
