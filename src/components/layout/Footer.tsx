@@ -34,8 +34,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center mb-4">
-              <div className="relative w-48 h-[130px] shrink-0">
-                <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="192px" />
+              <div className="relative w-52 h-[100px] shrink-0">
+                <Image src="/logo.png" alt="PeruTravelExpertsB" fill className="object-contain" sizes="208px" />
               </div>
             </Link>
             <p className="text-warm-gray text-sm leading-relaxed">

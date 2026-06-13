@@ -140,9 +140,9 @@ export default function Header() {
               <Image
                 src="/logo.png"
                 alt="PeruTravelExpertsB"
-                width={180}
-                height={60}
-                className={`h-[44px] md:h-[48px] lg:h-[52px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${getLogoClass()}`}
+                width={280}
+                height={85}
+                className={`h-[40px] sm:h-[46px] md:h-[50px] lg:h-[56px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${getLogoClass()}`}
                 priority
               />
             </Link>
