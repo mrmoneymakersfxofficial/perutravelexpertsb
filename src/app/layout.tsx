@@ -78,7 +78,7 @@ export default function RootLayout({
               <ModalProvider>
                 <div className="min-h-screen flex flex-col">
                   <Header />
-                  <main className="flex-1 pt-[60px] md:pt-[65px] lg:pt-[70px] pb-[66px] sm:pb-[72px] lg:pb-0">
+                  <main className="flex-1 pt-16 md:pt-[68px] lg:pt-[72px] pb-[66px] sm:pb-[72px] lg:pb-0">
                     {children}
                   </main>
                   <Footer />

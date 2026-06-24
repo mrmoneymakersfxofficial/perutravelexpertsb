@@ -140,7 +140,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden -mt-[60px] md:-mt-[65px] lg:-mt-[70px] pt-[60px] md:pt-[65px] lg:pt-[70px]"
+      className="relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-[68px] lg:-mt-[72px] pt-16 md:pt-[68px] lg:pt-[72px]"
       style={{ backgroundColor: '#0F0F0F', height: '100vh', height: '100dvh' }}
     >
       {/* Background Image with overlay */}
