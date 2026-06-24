@@ -60,7 +60,7 @@ export default function CustomizedToursClient() {
                         <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-3">{desc}</p>
                         <div className="flex flex-wrap gap-2 mb-4">
                           {pkg.destinations.map((dest) => (
-                            <span key={dest} className="text-xs px-2.5 py-1 rounded-full text-[#D6B37F] border border-[#D6B37F]/20 flex items-center gap-1">
+                            <span key={dest} className="text-xs px-2.5 py-1 rounded-full text-[#C5A55A] border border-[#C5A55A]/20 flex items-center gap-1">
                               <MapPin className="w-3 h-3" />{(t.destinations as Record<string, string>)[dest] || dest}
                             </span>
                           ))}
@@ -75,10 +75,10 @@ export default function CustomizedToursClient() {
                         </div>
                         <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
                           <div>
-                            <span className="text-2xl font-bold font-playfair text-[#D6B37F]">${Math.round(pkg.priceUSD)}</span>
+                            <span className="text-2xl font-bold font-playfair text-[#C5A55A]">${Math.round(pkg.priceUSD)}</span>
                             <span className="text-xs text-white/50 ml-1">{t.tours.perPerson}</span>
                           </div>
-                          <span className="flex items-center gap-1 text-sm font-medium text-[#D6B37F] group-hover:gap-2 transition-all">{t.customized.viewPackage}<ArrowRight className="w-4 h-4" /></span>
+                          <span className="flex items-center gap-1 text-sm font-medium text-[#C5A55A] group-hover:gap-2 transition-all">{t.customized.viewPackage}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>
                     </div>

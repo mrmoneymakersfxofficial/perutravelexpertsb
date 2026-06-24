@@ -85,8 +85,8 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* Luxury travel colors */
-  --gold: #D6B37F;
-  --gold-light: #E8D5B5;
+  --gold: #C5A55A;
+  --gold-light: #DCC99A;
   --dark-bg: #0F0F0F;
   --cream: #F8F6F2;
   --rich-brown: #1C1C1C;
@@ -145,11 +145,11 @@
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, #D6B37F 0%, #E8D5B5 50%, #D6B37F 100%);
+  background: linear-gradient(135deg, #C5A55A 0%, #DCC99A 50%, #C5A55A 100%);
 }
 
 .gold-text {
-  background: linear-gradient(135deg, #D6B37F, #E8D5B5);
+  background: linear-gradient(135deg, #C5A55A, #DCC99A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -159,29 +159,29 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(200, 169, 126, 0.15);
+  border: 1px solid rgba(183,155,86, 0.15);
 }
 
 .glass-header {
   background: rgba(15, 15, 15, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(214, 179, 127, 0.08);
+  border-bottom: 1px solid rgba(197,165,90, 0.08);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
 }
 
 .gold-border {
-  border-color: rgba(200, 169, 126, 0.3);
+  border-color: rgba(183,155,86, 0.3);
 }
 
 .gold-glow {
-  box-shadow: 0 0 20px rgba(200, 169, 126, 0.15);
+  box-shadow: 0 0 20px rgba(183,155,86, 0.15);
 }
 
 /* Custom scrollbar - thin & professional */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(214,179,127,0.4) transparent;
+  scrollbar-color: rgba(197,165,90,0.4) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -194,12 +194,12 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(214,179,127,0.3);
+  background: rgba(197,165,90,0.3);
   border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(214,179,127,0.5);
+  background: rgba(197,165,90,0.5);
 }
 
 /* Hide scrollbar utility */
@@ -241,33 +241,33 @@
 /* Section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #D6B37F, transparent);
+  background: linear-gradient(90deg, transparent, #C5A55A, transparent);
 }
 
 /* Gold button styles */
 .btn-gold {
-  background: linear-gradient(135deg, #D6B37F 0%, #E8D5B5 50%, #D6B37F 100%);
+  background: linear-gradient(135deg, #C5A55A 0%, #DCC99A 50%, #C5A55A 100%);
   color: #0F0F0F;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .btn-gold:hover {
-  box-shadow: 0 0 30px rgba(200, 169, 126, 0.4);
+  box-shadow: 0 0 30px rgba(183,155,86, 0.4);
   transform: translateY(-1px);
 }
 
 .btn-gold-outline {
-  border: 2px solid #D6B37F;
-  color: #D6B37F;
+  border: 2px solid #C5A55A;
+  color: #C5A55A;
   background: transparent;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .btn-gold-outline:hover {
-  background: rgba(200, 169, 126, 0.1);
-  box-shadow: 0 0 20px rgba(200, 169, 126, 0.2);
+  background: rgba(183,155,86, 0.1);
+  box-shadow: 0 0 20px rgba(183,155,86, 0.2);
 }
 
 /* Stats counter */
@@ -301,6 +301,6 @@
 
 /* Star rating */
 .star-gold {
-  color: #D6B37F;
-  text-shadow: 0 0 10px rgba(200, 169, 126, 0.5);
+  color: #C5A55A;
+  text-shadow: 0 0 10px rgba(183,155,86, 0.5);
 }

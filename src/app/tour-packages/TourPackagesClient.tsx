@@ -45,13 +45,13 @@ export default function TourPackagesClient() {
       <section id="packages-destinations" className="py-16 md:py-20" style={{ backgroundColor: '#0F0F0F' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
-            <span className="text-xs sm:text-sm text-[#D6B37F] font-bold tracking-widest uppercase block mb-2">
+            <span className="text-xs sm:text-sm text-[#C5A55A] font-bold tracking-widest uppercase block mb-2">
               // {t.tourDetail.ourDestinations}
             </span>
             <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
               {locale === 'es' ? 'Nuestros Paquetes de Tours' : 'Our Tour Packages'}
             </h2>
-            <div className="w-16 sm:w-20 h-0.5 mx-auto" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
+            <div className="w-16 sm:w-20 h-0.5 mx-auto" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {destinationData.map((dest, index) => (
@@ -71,8 +71,8 @@ export default function TourPackagesClient() {
                     <div className="p-5 bg-[#141414]">
                       <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-2">{locale === 'es' ? dest.descriptionEs : dest.descriptionEn}</p>
                       <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
-                        <span className="text-xs text-[#D6B37F]">From ${Math.min(...getToursByDestination(dest.slug).map(t => t.priceUSD))}</span>
-                        <span className="flex items-center gap-1 text-sm font-medium text-[#D6B37F] group-hover:gap-2 transition-all">{t.tourDetail.viewTours}<ArrowRight className="w-4 h-4" /></span>
+                        <span className="text-xs text-[#C5A55A]">From ${Math.min(...getToursByDestination(dest.slug).map(t => t.priceUSD))}</span>
+                        <span className="flex items-center gap-1 text-sm font-medium text-[#C5A55A] group-hover:gap-2 transition-all">{t.tourDetail.viewTours}<ArrowRight className="w-4 h-4" /></span>
                       </div>
                     </div>
                   </div>
@@ -84,7 +84,7 @@ export default function TourPackagesClient() {
       </section>
 
       {/* CTA Section */}
-      <section id="packages-cta" className="py-12 md:py-16" style={{ backgroundColor: '#0F0F0F', borderTop: '1px solid rgba(214,179,127,0.1)' }}>
+      <section id="packages-cta" className="py-12 md:py-16" style={{ backgroundColor: '#0F0F0F', borderTop: '1px solid rgba(197,165,90,0.1)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-playfair text-2xl md:text-3xl font-bold text-white mb-4">{locale === 'es' ? '¿No encuentras lo que buscas?' : 'Can\'t find what you\'re looking for?'}</h3>
           <p className="text-white/60 mb-6">{locale === 'es' ? 'Creamos paquetes personalizados según tus intereses y presupuesto.' : 'We create custom packages based on your interests and budget.'}</p>

@@ -285,3 +285,25 @@ Stage Summary:
 - BottomTabModals updated with search and favorites mini-modals
 - "All Destinations" text replaced with "Tour Packages" in both languages
 - Commit: d76e67f, pushed to main branch
+---
+Task ID: locale-whatsapp
+Agent: Sub Agent
+Task: Update WhatsApp links to be locale-aware using getLocaleWhatsAppLink
+
+Work Log:
+- Read all 6 target files to assess current state
+- Found all files already had useLanguage imported and getWhatsAppLink imported
+- WhatsAppButton.tsx: added locale to useLanguage destructuring, added getLocaleWhatsAppLink import, replaced 1 hardcoded link
+- ContactSection.tsx: added getLocaleWhatsAppLink import, replaced 2 hardcoded links (phone number link + WhatsApp Direct Button)
+- TestimonialsClient.tsx: added getLocaleWhatsAppLink import, replaced 1 hardcoded link (CTA section)
+- FAQClient.tsx: added getLocaleWhatsAppLink import, replaced 1 hardcoded link (still have questions CTA)
+- ProjectDetailClient.tsx: added getLocaleWhatsAppLink import, replaced 1 hardcoded link (Learn More button)
+- ContactClient.tsx: added getLocaleWhatsAppLink import, replaced 2 hardcoded links (phone number link + WhatsApp Direct Button)
+- Verified zero remaining hardcoded Spanish WhatsApp links via grep
+- Total: 8 occurrences replaced across 6 files
+
+Stage Summary:
+- 6 files updated with locale-aware WhatsApp links
+- All `getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')` replaced with `getLocaleWhatsAppLink('general', locale)`
+- Existing `getWhatsAppLink` imports preserved (still used for dynamic messages like form submissions)
+- No other functionality changed

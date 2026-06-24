@@ -59,7 +59,7 @@ export default function WhyChooseUsSection() {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group rounded-2xl p-8 transition-shadow duration-300 bg-white/[0.02] border border-[#E8D5B5]/[0.04]"
+                className="group rounded-2xl p-8 transition-shadow duration-300 bg-white/[0.02] border border-[#DCC99A]/[0.04]"
               >
                 <div className="w-14 h-14 rounded-xl gold-gradient flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Icon className="w-7 h-7 text-[#0F0F0F]" />

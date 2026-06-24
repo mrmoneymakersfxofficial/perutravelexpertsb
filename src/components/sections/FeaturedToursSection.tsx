@@ -67,7 +67,7 @@ export default function FeaturedToursSection() {
                 <Link href={`/tours/${tour.slug}`} className="block group">
                   <div
                     className="relative overflow-hidden rounded-2xl cursor-pointer"
-                    style={{ height: '480px', border: '1px solid rgba(214,179,127,0.06)' }}
+                    style={{ height: '480px', border: '1px solid rgba(197,165,90,0.06)' }}
                   >
                     {/* Background Image - fills entire card */}
                     <Image
@@ -94,7 +94,7 @@ export default function FeaturedToursSection() {
                             color: 'rgba(255,255,255,0.85)',
                           }}
                         >
-                          <MapPin className="w-3 h-3" style={{ color: '#D6B37F' }} />
+                          <MapPin className="w-3 h-3" style={{ color: '#C5A55A' }} />
                           {destName}
                         </div>
                         {/* Duration */}
@@ -138,7 +138,7 @@ export default function FeaturedToursSection() {
                       </span>
 
                       {/* Tour name */}
-                      <h3 className="font-playfair text-xl sm:text-2xl font-bold text-white leading-tight mb-2 group-hover:text-[#D6B37F] transition-colors duration-300">
+                      <h3 className="font-playfair text-xl sm:text-2xl font-bold text-white leading-tight mb-2 group-hover:text-[#C5A55A] transition-colors duration-300">
                         {name}
                       </h3>
 
@@ -148,14 +148,14 @@ export default function FeaturedToursSection() {
                       </p>
 
                       {/* Divider */}
-                      <div className="w-full h-px mb-4 transition-colors duration-300" style={{ backgroundColor: 'rgba(214,179,127,0.1)', borderColor: 'rgba(214,179,127,0.1)' }} />
+                      <div className="w-full h-px mb-4 transition-colors duration-300" style={{ backgroundColor: 'rgba(197,165,90,0.1)', borderColor: 'rgba(197,165,90,0.1)' }} />
 
                       {/* Price + CTA */}
                       <div className="flex items-end justify-between">
                         <div>
                           <span className="block text-[9px] uppercase tracking-[0.2em] text-white/30">{t.tours.price}</span>
                           <div className="flex items-baseline gap-1">
-                            <span className="text-2xl sm:text-3xl font-black font-playfair" style={{ color: '#D6B37F' }}>
+                            <span className="text-2xl sm:text-3xl font-black font-playfair" style={{ color: '#C5A55A' }}>
                               ${Math.round(tour.priceUSD)}
                             </span>
                             <span className="text-[10px] text-white/30">{t.tours.perPerson}</span>
@@ -181,7 +181,7 @@ export default function FeaturedToursSection() {
                           {/* View Details CTA */}
                           <span
                             className="h-10 px-5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-300 active:scale-95 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
-                            style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
+                            style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}
                           >
                             {locale === 'es' ? 'Ver Detalles' : 'View Details'}
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">

@@ -77,16 +77,16 @@ export default function ToursCitiesDetailClient({
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
                   {locale === 'es' ? 'Descripción' : 'Description'}
                 </h2>
-                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
+                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
                 <p className="text-[#8B8680] text-base leading-relaxed">{desc}</p>
               </div>
               <div className="mb-10">
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h2>
-                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
+                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.5)', border: '1px solid rgba(214,179,127,0.1)' }}>
-                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'linear-gradient(135deg, #D6B37F, #B8945E)' }}>
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.5)', border: '1px solid rgba(197,165,90,0.1)' }}>
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'linear-gradient(135deg, #C5A55A, #A8883D)' }}>
                         <Check className="w-3.5 h-3.5 text-[#0F0F0F]" />
                       </div>
                       <span className="text-sm" style={{ color: '#1C1C1C' }}>{item}</span>
@@ -97,7 +97,7 @@ export default function ToursCitiesDetailClient({
             </div>
             <div className="lg:col-span-1">
               <div className="sticky top-24">
-                <div className="rounded-2xl p-6" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(214,179,127,0.15)' }}>
+                <div className="rounded-2xl p-6" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(197,165,90,0.15)' }}>
                   <div className="text-center mb-6">
                     <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
                     <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</p>

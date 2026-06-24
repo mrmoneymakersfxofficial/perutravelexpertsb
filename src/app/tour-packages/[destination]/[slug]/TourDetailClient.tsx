@@ -116,7 +116,7 @@ export default function TourDetailClient({
         </div>
         <div className="flex items-baseline gap-1 sm:gap-2">
           <span className="text-white/50 text-xs sm:text-sm">{t.tours.price}</span>
-          <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair" style={{ color: '#D6B37F' }}>${Math.round(tour.priceUSD)}</span>
+          <span className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair" style={{ color: '#C5A55A' }}>${Math.round(tour.priceUSD)}</span>
           <span className="text-white/50 text-xs sm:text-sm">{t.tours.perPerson}</span>
           {tour.highSeasonPrice && (
             <span className="text-white/40 text-xs sm:text-sm ml-1 sm:ml-2">({locale === 'es' ? 'Temporada alta' : 'High season'}: ${Math.round(tour.highSeasonPrice)})</span>
@@ -149,7 +149,7 @@ export default function TourDetailClient({
                 <h2 className="font-playfair text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   {includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-white/[0.02] border border-[#E8D5B5]/[0.04]">
+                    <div key={i} className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg bg-white/[0.02] border border-[#DCC99A]/[0.04]">
                       <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0F0F0F]" />
                       </div>
@@ -169,7 +169,7 @@ export default function TourDetailClient({
                         <motion.div key={day.day} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }} className="flex gap-3 sm:gap-4">
                           <div className="flex flex-col items-center">
                             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full gold-gradient flex items-center justify-center text-[#0F0F0F] font-bold text-xs sm:text-sm flex-shrink-0">{day.day}</div>
-                            <div className="w-0.5 flex-1 bg-[#E8D5B5] mt-1.5 sm:mt-2" />
+                            <div className="w-0.5 flex-1 bg-[#DCC99A] mt-1.5 sm:mt-2" />
                           </div>
                           <div className="pb-4 sm:pb-6">
                             <h3 className="font-playfair text-base sm:text-lg font-bold mb-1.5 sm:mb-2" style={{ color: '#1C1C1C' }}>{t.tourDetail.day} {day.day}: {dayTitle}</h3>
@@ -186,7 +186,7 @@ export default function TourDetailClient({
             {/* Desktop Sidebar */}
             <div className="hidden lg:block lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#E8D5B5]/[0.04]">
+                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#DCC99A]/[0.04]">
                   <div className="text-center mb-6">
                     <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
                     <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(tour.priceUSD)}</p>
@@ -209,12 +209,12 @@ export default function TourDetailClient({
                   <Button onClick={() => setBookingOpen(true)} className="btn-gold rounded-full w-full py-3 text-base">{t.tourDetail.bookThisTour}</Button>
                   <a href={getWhatsAppLink(whatsappMessage)} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm">WhatsApp</a>
                 </div>
-                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#E8D5B5]/[0.04]">
+                <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#DCC99A]/[0.04]">
                   <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
                   <nav className="space-y-2">
-                    <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
-                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
-                    <Link href="/customized-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
+                    <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
+                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
+                    <Link href="/customized-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
                   </nav>
                 </div>
               </div>
@@ -224,9 +224,9 @@ export default function TourDetailClient({
       </section>
 
       {/* Mobile Info Panel (shown only on mobile/tablet, before related tours) */}
-      <section className="lg:hidden py-6 sm:py-8 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#F8F6F2' }}>
+      <section className="lg:hidden py-6 sm:py-8 border-t border-[#DCC99A]/20" style={{ backgroundColor: '#F8F6F2' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="bg-white/[0.02] rounded-2xl p-4 sm:p-6 border border-[#E8D5B5]/[0.04]">
+          <div className="bg-white/[0.02] rounded-2xl p-4 sm:p-6 border border-[#DCC99A]/[0.04]">
             <div className="flex items-center justify-between mb-4 sm:mb-6">
               <div>
                 <p className="text-xs sm:text-sm text-[#8B8680] mb-0.5">{t.tours.price}</p>
@@ -241,9 +241,9 @@ export default function TourDetailClient({
               </div>
             </div>
             <nav className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
-              <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.toursIn} {destName}</Link>
-              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.viewAllTours}</Link>
-              <Link href="/customized-tours" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#D6B37F] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.customized.title}</Link>
+              <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.toursIn} {destName}</Link>
+              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.viewAllTours}</Link>
+              <Link href="/customized-tours" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.customized.title}</Link>
             </nav>
           </div>
         </div>
@@ -259,18 +259,18 @@ export default function TourDetailClient({
             exit={{ y: '100%', opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             className="lg:hidden fixed bottom-0 left-0 right-0 z-[9997] px-3 sm:px-4 py-2.5 sm:py-3"
-            style={{ backgroundColor: 'rgba(248,246,242,0.97)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(214,179,127,0.1)', paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))' }}
+            style={{ backgroundColor: 'rgba(248,246,242,0.97)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderTop: '1px solid rgba(197,165,90,0.1)', paddingBottom: 'calc(0.625rem + env(safe-area-inset-bottom))' }}
           >
             <div className="max-w-7xl mx-auto flex items-center gap-2 sm:gap-3">
               <a href={getWhatsAppLink(whatsappMessage)} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none sm:px-5 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold bg-[#25D366] hover:bg-[#1ebe57] text-white transition-colors shadow-lg">
                 <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">WhatsApp</span>
               </a>
-              <Button onClick={() => setBookingOpen(true)} className="flex-1 sm:flex-none sm:px-5 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 shadow-lg" style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}>
+              <Button onClick={() => setBookingOpen(true)} className="flex-1 sm:flex-none sm:px-5 h-10 sm:h-11 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 shadow-lg" style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}>
                 {t.tours.bookNow}
               </Button>
-              <button onClick={() => toggleFavorite(tour.id)} className="w-10 h-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center border transition-colors shrink-0" style={{ borderColor: isFav ? '#ef4444' : 'rgba(214,179,127,0.2)', backgroundColor: isFav ? 'rgba(239,68,68,0.1)' : 'rgba(214,179,127,0.05)' }}>
-                <Heart className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#D6B37F]'}`} />
+              <button onClick={() => toggleFavorite(tour.id)} className="w-10 h-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center border transition-colors shrink-0" style={{ borderColor: isFav ? '#ef4444' : 'rgba(197,165,90,0.2)', backgroundColor: isFav ? 'rgba(239,68,68,0.1)' : 'rgba(197,165,90,0.05)' }}>
+                <Heart className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isFav ? 'text-red-500 fill-red-500' : 'text-[#C5A55A]'}`} />
               </button>
             </div>
           </motion.div>
@@ -278,7 +278,7 @@ export default function TourDetailClient({
       </AnimatePresence>
 
       {related.length > 0 && (
-        <section id="tour-related" className="py-12 sm:py-16 md:py-20 border-t border-[#E8D5B5]/20" style={{ backgroundColor: '#F8F6F2' }}>
+        <section id="tour-related" className="py-12 sm:py-16 md:py-20 border-t border-[#DCC99A]/20" style={{ backgroundColor: '#F8F6F2' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" style={{ color: '#1C1C1C' }}>{t.tourDetail.relatedTours}</h2>

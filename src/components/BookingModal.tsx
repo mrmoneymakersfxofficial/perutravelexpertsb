@@ -90,8 +90,8 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
               onClick={() => { setSelectedTour(trName); setStep(1); }}
               className="w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all duration-200 active:scale-[0.98]"
               style={{
-                backgroundColor: isSelected ? 'rgba(214,179,127,0.12)' : 'rgba(255,255,255,0.4)',
-                border: isSelected ? '1px solid rgba(214,179,127,0.3)' : '1px solid rgba(232,213,181,0.08)',
+                backgroundColor: isSelected ? 'rgba(197,165,90,0.12)' : 'rgba(255,255,255,0.4)',
+                border: isSelected ? '1px solid rgba(197,165,90,0.3)' : '1px solid rgba(232,213,181,0.08)',
               }}
             >
               <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
@@ -109,7 +109,7 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
                 </div>
               </div>
               <div className="text-right shrink-0">
-                <p className="text-sm font-bold" style={{ color: '#D6B37F' }}>${Math.round(tourItem.priceUSD)}</p>
+                <p className="text-sm font-bold" style={{ color: '#C5A55A' }}>${Math.round(tourItem.priceUSD)}</p>
                 <p className="text-[9px]" style={{ color: '#8B8680' }}>/ {t.tours.perPerson}</p>
               </div>
             </button>
@@ -124,13 +124,13 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
     <div className="space-y-5">
       {/* Selected tour summary */}
       {selectedTourData && (
-        <div className="flex items-center gap-3 p-3 rounded-xl" style={{ backgroundColor: 'rgba(214,179,127,0.08)', border: '1px solid rgba(214,179,127,0.15)' }}>
+        <div className="flex items-center gap-3 p-3 rounded-xl" style={{ backgroundColor: 'rgba(197,165,90,0.08)', border: '1px solid rgba(197,165,90,0.15)' }}>
           <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
             <img src={selectedTourData.image} alt={selectedTour} className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[13px] font-semibold truncate" style={{ color: '#1C1C1C' }}>{selectedTour}</p>
-            <p className="text-[11px]" style={{ color: '#D6B37F' }}>${Math.round(selectedTourData.priceUSD)} / {t.tours.perPerson}</p>
+            <p className="text-[11px]" style={{ color: '#C5A55A' }}>${Math.round(selectedTourData.priceUSD)} / {t.tours.perPerson}</p>
           </div>
         </div>
       )}
@@ -221,11 +221,11 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
 
       {/* Price estimate */}
       {pricePerPerson && (
-        <div className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: 'rgba(214,179,127,0.06)', border: '1px solid rgba(214,179,127,0.12)' }}>
+        <div className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: 'rgba(197,165,90,0.06)', border: '1px solid rgba(197,165,90,0.12)' }}>
           <span className="text-xs" style={{ color: '#8B8680' }}>
             {locale === 'es' ? 'Total estimado' : 'Estimated total'}
           </span>
-          <span className="text-xl font-bold font-playfair" style={{ color: '#D6B37F' }}>${pricePerPerson * pax}</span>
+          <span className="text-xl font-bold font-playfair" style={{ color: '#C5A55A' }}>${pricePerPerson * pax}</span>
         </div>
       )}
     </div>
@@ -245,7 +245,7 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
       {/* Step dots */}
       <div className="flex items-center gap-1.5">
         {[0, 1].map(s => (
-          <div key={s} className="w-6 h-1.5 rounded-full transition-colors duration-300" style={{ backgroundColor: s <= step ? '#D6B37F' : 'rgba(214,179,127,0.2)' }} />
+          <div key={s} className="w-6 h-1.5 rounded-full transition-colors duration-300" style={{ backgroundColor: s <= step ? '#C5A55A' : 'rgba(197,165,90,0.2)' }} />
         ))}
       </div>
     </div>
@@ -259,7 +259,7 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
           disabled={!selectedTour}
           onClick={() => selectedTour && setStep(1)}
           className="w-full h-12 rounded-xl text-sm font-bold uppercase tracking-wide flex items-center justify-center gap-2 disabled:opacity-40 transition-all"
-          style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
+          style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}
         >
           {locale === 'es' ? 'Continuar' : 'Continue'}
           <ArrowRight className="w-4 h-4" />
@@ -271,7 +271,7 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
             onClick={() => setStep(0)}
             variant="outline"
             className="h-12 rounded-xl text-sm font-semibold px-4 shrink-0"
-            style={{ borderColor: 'rgba(214,179,127,0.3)', color: '#8B8680' }}
+            style={{ borderColor: 'rgba(197,165,90,0.3)', color: '#8B8680' }}
           >
             {locale === 'es' ? 'Atrás' : 'Back'}
           </Button>

@@ -40,12 +40,12 @@ export default function FloatingPanel() {
               </motion.button>
             )}
           </AnimatePresence>
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={openSearch} className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#F8F6F2', border: '1px solid rgba(214,179,127,0.3)' }} aria-label="Search">
+          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={openSearch} className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#F8F6F2', border: '1px solid rgba(197,165,90,0.3)' }} aria-label="Search">
             <Search className="w-5 h-5" style={{ color: '#1C1C1C' }} />
           </motion.button>
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={openFavorites} className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow relative" style={{ backgroundColor: '#F8F6F2', border: '1px solid rgba(214,179,127,0.3)' }} aria-label={t.tours.favorites}>
+          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={openFavorites} className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow relative" style={{ backgroundColor: '#F8F6F2', border: '1px solid rgba(197,165,90,0.3)' }} aria-label={t.tours.favorites}>
             <Heart className="w-5 h-5" style={{ color: '#1C1C1C' }} />
-            {favoritesCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[10px] font-bold text-white flex items-center justify-center" style={{ backgroundColor: '#D6B37F' }}>{favoritesCount > 9 ? '9+' : favoritesCount}</span>}
+            {favoritesCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[10px] font-bold text-white flex items-center justify-center" style={{ backgroundColor: '#C5A55A' }}>{favoritesCount > 9 ? '9+' : favoritesCount}</span>}
           </motion.button>
           <motion.a href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#25D366' }} aria-label={t.whatsapp.tooltip} title={t.whatsapp.tooltip}>
             <MessageCircle className="w-7 h-7 text-white" />

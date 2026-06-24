@@ -93,7 +93,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
         {includes.map((item, i) => (
           <li key={i} className="flex items-start gap-2 text-[11px] sm:text-xs" style={{ color: '#8B8680' }}>
-            <Check className="w-3.5 h-3.5 shrink-0 mt-px" style={{ color: '#D6B37F' }} />
+            <Check className="w-3.5 h-3.5 shrink-0 mt-px" style={{ color: '#C5A55A' }} />
             <span>{item}</span>
           </li>
         ))}
@@ -113,7 +113,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
             <AccordionItem key={i} value={`d-${i}`} className="rounded-lg px-3" style={{ border: '1px solid rgba(232,213,181,0.15)' }}>
               <AccordionTrigger className="py-2.5 text-[11px] sm:text-xs font-medium" style={{ color: '#1C1C1C' }}>
                 <span className="flex items-center gap-2">
-                  <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-white shrink-0" style={{ backgroundColor: '#D6B37F' }}>{day.day}</span>
+                  <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-white shrink-0" style={{ backgroundColor: '#C5A55A' }}>{day.day}</span>
                   {title}
                 </span>
               </AccordionTrigger>
@@ -155,7 +155,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
         <Button
           onClick={() => setBookingOpen(true)}
           className="h-9 sm:h-10 px-4 sm:px-5 rounded-full text-[11px] sm:text-xs font-semibold shadow-md active:scale-95 transition-transform"
-          style={{ backgroundColor: '#D6B37F', color: '#0F0F0F' }}
+          style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}
         >
           {t.tours.bookNow}
         </Button>

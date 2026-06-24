@@ -49,7 +49,7 @@ export default function AboutUsClient() {
             {highlights.map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div key={index} variants={cardVariants} whileHover={{ y: -8, transition: { duration: 0.3 } }} className="group rounded-2xl p-8 transition-shadow duration-300 bg-white/[0.02] border border-[#E8D5B5]/[0.04]">
+                <motion.div key={index} variants={cardVariants} whileHover={{ y: -8, transition: { duration: 0.3 } }} className="group rounded-2xl p-8 transition-shadow duration-300 bg-white/[0.02] border border-[#DCC99A]/[0.04]">
                   <div className="w-14 h-14 rounded-xl gold-gradient flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"><Icon className="w-7 h-7 text-[#0F0F0F]" /></div>
                   <h3 className="font-playfair text-xl font-bold mb-3" style={{ color: '#1C1C1C' }}>{t.about[item.titleKey]}</h3>
                   <p className="text-[#8B8680] leading-relaxed text-sm">{t.about[item.descKey]}</p>
@@ -64,11 +64,11 @@ export default function AboutUsClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="rounded-2xl p-8 border border-white/[0.04]">
-              <div className="flex items-center gap-3 mb-4"><Heart className="w-6 h-6 text-[#D6B37F]" /><h3 className="font-playfair text-2xl font-bold text-white">{locale === 'es' ? 'Nuestra Misión' : 'Our Mission'}</h3></div>
+              <div className="flex items-center gap-3 mb-4"><Heart className="w-6 h-6 text-[#C5A55A]" /><h3 className="font-playfair text-2xl font-bold text-white">{locale === 'es' ? 'Nuestra Misión' : 'Our Mission'}</h3></div>
               <p className="text-white/70 leading-relaxed">{t.about.mission}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="rounded-2xl p-8 border border-white/[0.04]">
-              <div className="flex items-center gap-3 mb-4"><Globe className="w-6 h-6 text-[#D6B37F]" /><h3 className="font-playfair text-2xl font-bold text-white">{locale === 'es' ? 'Nuestra Visión' : 'Our Vision'}</h3></div>
+              <div className="flex items-center gap-3 mb-4"><Globe className="w-6 h-6 text-[#C5A55A]" /><h3 className="font-playfair text-2xl font-bold text-white">{locale === 'es' ? 'Nuestra Visión' : 'Our Vision'}</h3></div>
               <p className="text-white/70 leading-relaxed">{t.about.vision}</p>
             </motion.div>
           </div>
@@ -83,7 +83,7 @@ export default function AboutUsClient() {
           </div>
           <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {teamMembers.map((member, index) => (
-              <motion.div key={index} variants={cardVariants} className="rounded-2xl p-8 bg-white/[0.02] border border-[#E8D5B5]/[0.04]">
+              <motion.div key={index} variants={cardVariants} className="rounded-2xl p-8 bg-white/[0.02] border border-[#DCC99A]/[0.04]">
                 <div className="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-4 mx-auto"><Users className="w-8 h-8 text-[#0F0F0F]" /></div>
                 <h3 className="font-playfair text-lg font-bold text-center mb-2" style={{ color: '#1C1C1C' }}>{locale === 'es' ? member.nameEs : member.nameEn}</h3>
                 <p className="text-[#8B8680] text-sm leading-relaxed text-center">{locale === 'es' ? member.descEs : member.descEn}</p>

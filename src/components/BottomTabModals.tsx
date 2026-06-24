@@ -57,9 +57,9 @@ function SearchMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
             {/* Header */}
             <div className="flex items-center justify-between px-5 pb-3 shrink-0">
               <div className="flex items-center gap-2.5">
-                <Search className="w-4 h-4 text-[#D6B37F]" />
-                <h3 className="text-sm font-bold text-[#D6B37F] uppercase tracking-wider">Explore All Tours</h3>
-                <span className="bg-[#D6B37F]/15 text-[#D6B37F] text-[10px] font-bold px-2 py-0.5 rounded-md">
+                <Search className="w-4 h-4 text-[#C5A55A]" />
+                <h3 className="text-sm font-bold text-[#C5A55A] uppercase tracking-wider">Explore All Tours</h3>
+                <span className="bg-[#C5A55A]/15 text-[#C5A55A] text-[10px] font-bold px-2 py-0.5 rounded-md">
                   {filteredTours.length}
                 </span>
               </div>
@@ -76,7 +76,7 @@ function SearchMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                   placeholder="Search your destination..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-11 bg-[#1A1A1A] border border-white/10 rounded-xl pl-10 pr-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#D6B37F]/50 transition-colors"
+                  className="w-full h-11 bg-[#1A1A1A] border border-white/10 rounded-xl pl-10 pr-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#C5A55A]/50 transition-colors"
                   autoFocus
                 />
                 <Search className="w-4 h-4 text-white/30 absolute left-3.5 top-3.5" />
@@ -92,7 +92,7 @@ function SearchMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                       href={`/tours/${tour.slug}`}
                       key={tour.id}
                       onClick={onClose}
-                      className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#D6B37F]/20 transition-all group"
+                      className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#C5A55A]/20 transition-all group"
                     >
                       <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-[#1A1A1A]">
                         <Image
@@ -104,16 +104,16 @@ function SearchMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-xs sm:text-sm font-semibold text-white truncate group-hover:text-[#D6B37F] transition-colors">
+                        <h4 className="text-xs sm:text-sm font-semibold text-white truncate group-hover:text-[#C5A55A] transition-colors">
                           {tour.nameEn}
                         </h4>
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-[11px] text-[#D6B37F] font-mono">
+                          <span className="text-[11px] text-[#C5A55A] font-mono">
                             ${Math.round(tour.priceUSD)} USD
                           </span>
                         </div>
                       </div>
-                      <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-[#D6B37F] transition-colors shrink-0" />
+                      <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-[#C5A55A] transition-colors shrink-0" />
                     </Link>
                   ))}
                 </div>
@@ -218,11 +218,11 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             {/* Header */}
             <div className="flex items-center justify-between px-5 pb-3 shrink-0">
               <div className="flex items-center gap-2.5">
-                <Heart className="w-4 h-4 text-[#D6B37F] fill-[#D6B37F]" />
-                <h3 className="text-sm font-bold text-[#D6B37F] uppercase tracking-wider">
+                <Heart className="w-4 h-4 text-[#C5A55A] fill-[#C5A55A]" />
+                <h3 className="text-sm font-bold text-[#C5A55A] uppercase tracking-wider">
                   My Favorites
                 </h3>
-                <span className="bg-[#D6B37F] text-[#0F0F0F] text-[10px] font-black px-1.5 py-0.5 rounded-md">
+                <span className="bg-[#C5A55A] text-[#0F0F0F] text-[10px] font-black px-1.5 py-0.5 rounded-md">
                   {favoriteTours.length}
                 </span>
               </div>
@@ -240,7 +240,7 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                       key={tour.id}
                       href={`/tours/${tour.slug}`}
                       onClick={onClose}
-                      className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#D6B37F]/20 transition-all group"
+                      className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#C5A55A]/20 transition-all group"
                     >
                       {/* Thumbnail */}
                       <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-[#1A1A1A]">
@@ -255,10 +255,10 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 
                       {/* Tour info */}
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-xs sm:text-sm font-semibold text-white truncate group-hover:text-[#D6B37F] transition-colors">
+                        <h4 className="text-xs sm:text-sm font-semibold text-white truncate group-hover:text-[#C5A55A] transition-colors">
                           {tour.nameEn}
                         </h4>
-                        <span className="text-[11px] text-[#D6B37F] font-mono">
+                        <span className="text-[11px] text-[#C5A55A] font-mono">
                           ${Math.round(tour.priceUSD)} USD
                         </span>
                       </div>
@@ -268,7 +268,7 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                         <button
                           onClick={(e) => handleShare(tour.slug, tour.nameEn, e)}
                           onTouchEnd={(e) => { e.preventDefault(); handleShare(tour.slug, tour.nameEn, e); }}
-                          className="p-2 bg-white/5 hover:bg-[#D6B37F]/20 text-white/60 hover:text-[#D6B37F] rounded-lg transition-colors active:scale-95"
+                          className="p-2 bg-white/5 hover:bg-[#C5A55A]/20 text-white/60 hover:text-[#C5A55A] rounded-lg transition-colors active:scale-95"
                           aria-label="Share tour link"
                         >
                           <Share2 className="w-3.5 h-3.5" />
@@ -281,7 +281,7 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
-                        <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-[#D6B37F] transition-colors" />
+                        <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-[#C5A55A] transition-colors" />
                       </div>
                     </Link>
                   ))}

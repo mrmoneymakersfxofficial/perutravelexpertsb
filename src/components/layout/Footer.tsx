@@ -122,7 +122,7 @@ export default function Footer() {
           </p>
           <p className="text-xs text-warm-gray">
             {t.footer.credit}{' '}
-            <a href="https://www.fastpagepro.com" target="_blank" rel="noopener noreferrer" className="text-[#D6B37F] hover:underline font-medium">
+            <a href="https://www.fastpagepro.com" target="_blank" rel="noopener noreferrer" className="text-[#C5A55A] hover:underline font-medium">
               fastpagepro.com
             </a>
           </p>

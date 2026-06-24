@@ -45,11 +45,11 @@ export function ShareTour({ tourName, tourSlug }: ShareTourProps) {
           <button onClick={() => { window.open(`https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`, '_blank', 'width=600,height=400'); showShared(); setOpen(false); }} className="flex items-center gap-3 w-full px-3 py-2.5 text-sm rounded-lg hover:bg-[#F8F6F2] transition-colors">
             <Share2 className="w-4 h-4 text-[#1C1C1C]" /><span>X (Twitter)</span>
           </button>
-          <div className="h-px bg-[#E8D5B5]/30 my-1" />
+          <div className="h-px bg-[#DCC99A]/30 my-1" />
           <button onClick={handleCopyLink} className="flex items-center gap-3 w-full px-3 py-2.5 text-sm rounded-lg hover:bg-[#F8F6F2] transition-colors">
             <Copy className="w-4 h-4 text-[#8B8680]" /><span>Copy Link</span>
           </button>
-          <div className="h-px bg-[#E8D5B5]/30 my-1" />
+          <div className="h-px bg-[#DCC99A]/30 my-1" />
           <button onClick={handleNativeShare} className="flex items-center gap-3 w-full px-3 py-2.5 text-sm rounded-lg hover:bg-[#F8F6F2] transition-colors">
             <Share2 className="w-4 h-4 text-[#8B8680]" /><span>More...</span>
           </button>

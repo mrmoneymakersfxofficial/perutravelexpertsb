@@ -27,7 +27,7 @@ function Particles() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="particle absolute w-1 h-1 rounded-full bg-[#D6B37F]/40"
+          className="particle absolute w-1 h-1 rounded-full bg-[#C5A55A]/40"
           style={{
             left: `${p.left}%`,
             top: `${p.top}%`,
@@ -177,8 +177,8 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
         >
-          <Sparkles className="w-4 h-4 text-[#D6B37F]" />
-          <span className="text-sm text-[#D6B37F] font-medium tracking-wider uppercase">
+          <Sparkles className="w-4 h-4 text-[#C5A55A]" />
+          <span className="text-sm text-[#C5A55A] font-medium tracking-wider uppercase">
             {locale === 'es' ? 'Viajeros VIP' : 'VIP Travelers'}
           </span>
         </motion.div>
@@ -196,7 +196,7 @@ export default function HeroSection() {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="font-playfair text-xl sm:text-2xl md:text-3xl text-[#E8D5B5] mb-6 opacity-0"
+          className="font-playfair text-xl sm:text-2xl md:text-3xl text-[#DCC99A] mb-6 opacity-0"
         >
           {t.hero.subtitle}
         </p>
@@ -232,7 +232,7 @@ export default function HeroSection() {
       {/* Scroll Indicator */}
       <button
         onClick={handleScrollDown}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-[#D6B37F]/60 hover:text-[#D6B37F] transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-[#C5A55A]/60 hover:text-[#C5A55A] transition-colors"
         aria-label="Scroll down"
       >
         <ChevronDown className="w-8 h-8" />

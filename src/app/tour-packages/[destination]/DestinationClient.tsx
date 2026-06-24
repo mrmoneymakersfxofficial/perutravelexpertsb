@@ -64,9 +64,9 @@ export default function DestinationClient({
           <div
             className="flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-wide"
             style={{
-              background: 'rgba(214,179,127,0.15)',
-              border: '1px solid rgba(214,179,127,0.25)',
-              color: '#D6B37F',
+              background: 'rgba(197,165,90,0.15)',
+              border: '1px solid rgba(197,165,90,0.25)',
+              color: '#C5A55A',
               backdropFilter: 'blur(8px)',
             }}
           >

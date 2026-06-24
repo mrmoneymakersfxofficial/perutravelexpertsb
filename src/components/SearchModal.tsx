@@ -91,7 +91,7 @@ export default function SearchModal({ open, onOpenChange, onTourSelect }: Search
             exit={{ opacity: 0, y: -16, scale: 0.98, transition: { duration: 0.12 } }}
             className="fixed inset-x-0 top-0 z-[10003] mx-auto max-w-2xl px-3 pt-2 sm:px-6 sm:pt-3"
           >
-            <div className="rounded-2xl overflow-hidden shadow-2xl" style={{ background: 'rgba(255,255,255,0.98)', border: '1px solid rgba(214,179,127,0.2)' }}>
+            <div className="rounded-2xl overflow-hidden shadow-2xl" style={{ background: 'rgba(255,255,255,0.98)', border: '1px solid rgba(197,165,90,0.2)' }}>
               <div className="flex items-center gap-2.5 px-3.5 h-11">
                 <Search className="w-[18px] h-[18px] text-[#8B8680] shrink-0" />
                 <input
@@ -107,7 +107,7 @@ export default function SearchModal({ open, onOpenChange, onTourSelect }: Search
                   </button>
                 )}
               </div>
-              <div className="h-px bg-[#E8D5B5]/20" />
+              <div className="h-px bg-[#DCC99A]/20" />
               <div className="max-h-[70vh] overflow-y-auto">
                 {debouncedQuery.trim() && results.length === 0 && (
                   <div className="px-4 py-6 text-center">
@@ -117,14 +117,14 @@ export default function SearchModal({ open, onOpenChange, onTourSelect }: Search
                 {!query.trim() && (
                   <div className="px-4 py-3">
                     <div className="flex items-center gap-2 mb-2.5">
-                      <TrendingUp className="w-3.5 h-3.5 text-[#D6B37F]" />
+                      <TrendingUp className="w-3.5 h-3.5 text-[#C5A55A]" />
                       <span className="text-[11px] font-semibold uppercase tracking-wider text-[#8B8680]">
                         {locale === 'es' ? 'Búsquedas populares' : 'Popular searches'}
                       </span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {(locale === 'es' ? popularSearchesEs : popularSearchesEn).map((term) => (
-                        <button key={term} onClick={() => handlePopularClick(term)} className="text-[13px] px-3 py-1.5 rounded-full transition-colors" style={{ backgroundColor: '#F8F6F2', color: '#1C1C1C', border: '1px solid rgba(214,179,127,0.15)' }}>
+                        <button key={term} onClick={() => handlePopularClick(term)} className="text-[13px] px-3 py-1.5 rounded-full transition-colors" style={{ backgroundColor: '#F8F6F2', color: '#1C1C1C', border: '1px solid rgba(197,165,90,0.15)' }}>
                           {term}
                         </button>
                       ))}
@@ -144,7 +144,7 @@ export default function SearchModal({ open, onOpenChange, onTourSelect }: Search
                       </div>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="font-bold text-[13px] leading-tight" style={{ color: '#D6B37F' }}>${tour.priceUSD}</p>
+                      <p className="font-bold text-[13px] leading-tight" style={{ color: '#C5A55A' }}>${tour.priceUSD}</p>
                       <p className="text-[10px] text-[#8B8680]">{t.tours.perPerson}</p>
                     </div>
                   </motion.button>

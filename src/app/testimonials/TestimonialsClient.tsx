@@ -142,15 +142,15 @@ export default function TestimonialsClient() {
                 key={index}
                 variants={cardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="rounded-2xl p-6 md:p-8 transition-all duration-300 relative bg-white/[0.02] border border-[#E8D5B5]/[0.04]"
+                className="rounded-2xl p-6 md:p-8 transition-all duration-300 relative bg-white/[0.02] border border-[#DCC99A]/[0.04]"
               >
                 {/* Quote icon */}
-                <Quote className="w-8 h-8 text-[#D6B37F]/30 mb-4" />
+                <Quote className="w-8 h-8 text-[#C5A55A]/30 mb-4" />
 
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#D6B37F] text-[#D6B37F] star-gold" />
+                    <Star key={i} className="w-4 h-4 fill-[#C5A55A] text-[#C5A55A] star-gold" />
                   ))}
                 </div>
 
@@ -161,13 +161,13 @@ export default function TestimonialsClient() {
 
                 {/* Tour tag */}
                 <div className="mb-4">
-                  <span className="text-xs px-3 py-1 rounded-full bg-[#F8F6F2] text-[#D6B37F] border border-[#E8D5B5]/30 font-medium">
+                  <span className="text-xs px-3 py-1 rounded-full bg-[#F8F6F2] text-[#C5A55A] border border-[#DCC99A]/30 font-medium">
                     {testimonial.tour}
                   </span>
                 </div>
 
                 {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-[#E8D5B5]/[0.06]">
+                <div className="flex items-center gap-3 pt-4 border-t border-[#DCC99A]/[0.06]">
                   <div className="text-2xl">{testimonial.flag}</div>
                   <div>
                     <p className="font-medium text-sm" style={{ color: '#1C1C1C' }}>{testimonial.author}</p>
@@ -201,7 +201,7 @@ export default function TestimonialsClient() {
               href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full gold-gradient text-[#0F0F0F] font-semibold hover:shadow-[0_0_30px_rgba(200,169,126,0.4)] transition-all text-sm"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full gold-gradient text-[#0F0F0F] font-semibold hover:shadow-[0_0_30px_rgba(183,155,86,0.4)] transition-all text-sm"
             >
               {t.nav.book}
             </a>

@@ -77,7 +77,7 @@ export default function TourSubpageHeroUltimate({
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
-                    className="hover:text-[#D6B37F] transition-colors duration-200"
+                    className="hover:text-[#C5A55A] transition-colors duration-200"
                   >
                     {crumb.label}
                   </Link>
@@ -99,7 +99,7 @@ export default function TourSubpageHeroUltimate({
           {/* Gold Accent Bar */}
           <div
             className="h-[3px] w-16 sm:w-20 md:w-24 mb-4 sm:mb-5 md:mb-6"
-            style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }}
+            style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }}
           />
 
           {/* Info Badges */}
@@ -107,7 +107,7 @@ export default function TourSubpageHeroUltimate({
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
               {level && (
                 <span className="text-[10px] sm:text-xs font-extrabold tracking-widest uppercase px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-[#0F0F0F]"
-                  style={{ background: 'linear-gradient(135deg, #D6B37F, #B8945E)' }}
+                  style={{ background: 'linear-gradient(135deg, #C5A55A, #A8883D)' }}
                 >
                   // {level}
                 </span>
@@ -116,7 +116,7 @@ export default function TourSubpageHeroUltimate({
                 <span className="flex items-center gap-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-white"
                   style={{ backgroundColor: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}
                 >
-                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D6B37F]" />
+                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#C5A55A]" />
                   {duration}
                 </span>
               )}
@@ -124,7 +124,7 @@ export default function TourSubpageHeroUltimate({
                 <span className="flex items-center gap-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-white"
                   style={{ backgroundColor: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.08)' }}
                 >
-                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D6B37F]" />
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#C5A55A]" />
                   {destination}
                 </span>
               )}
@@ -137,7 +137,7 @@ export default function TourSubpageHeroUltimate({
               <span className="text-[10px] sm:text-xs text-white/40 uppercase tracking-wider font-medium">
                 From
               </span>
-              <span className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-[#D6B37F] leading-none">
+              <span className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-[#C5A55A] leading-none">
                 ${Math.round(price)}
               </span>
               <span className="text-[10px] sm:text-xs text-white/40">USD / PAX</span>
@@ -164,7 +164,7 @@ export default function TourSubpageHeroUltimate({
           Scroll
         </span>
         <svg
-          className="w-4 h-4 text-[#D6B37F]/60"
+          className="w-4 h-4 text-[#C5A55A]/60"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"

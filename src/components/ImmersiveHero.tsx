@@ -75,7 +75,7 @@ export default function ImmersiveHero({
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
-                    className="hover:text-[#D6B37F] transition-colors duration-200"
+                    className="hover:text-[#C5A55A] transition-colors duration-200"
                   >
                     {crumb.label}
                   </Link>
@@ -95,7 +95,7 @@ export default function ImmersiveHero({
           </h1>
 
           {/* Gold Underline */}
-          <div className="h-[3px] w-16 sm:w-20 md:w-24 mb-3 sm:mb-4 md:mb-5" style={{ background: 'linear-gradient(90deg, #D6B37F, #B8945E)' }} />
+          <div className="h-[3px] w-16 sm:w-20 md:w-24 mb-3 sm:mb-4 md:mb-5" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
 
           {/* Subtitle */}
           {subtitle && (

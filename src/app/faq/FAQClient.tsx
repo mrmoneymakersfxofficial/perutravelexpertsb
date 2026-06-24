@@ -67,11 +67,11 @@ export default function FAQClient() {
                 <motion.div key={index} variants={itemVariants}>
                   <AccordionItem
                     value={`item-${index}`}
-                    className="bg-white/[0.02] rounded-xl border border-[#E8D5B5]/[0.04] px-6 data-[state=open]:border-[#D6B37F]/30 transition-all"
+                    className="bg-white/[0.02] rounded-xl border border-[#DCC99A]/[0.04] px-6 data-[state=open]:border-[#C5A55A]/30 transition-all"
                   >
                     <AccordionTrigger className="text-left font-playfair text-base font-semibold py-5 hover:no-underline" style={{ color: '#1C1C1C' }}>
                       <div className="flex items-start gap-3 pr-4">
-                        <HelpCircle className="w-5 h-5 text-[#D6B37F] flex-shrink-0 mt-0.5" />
+                        <HelpCircle className="w-5 h-5 text-[#C5A55A] flex-shrink-0 mt-0.5" />
                         <span>{faq.q}</span>
                       </div>
                     </AccordionTrigger>
@@ -92,7 +92,7 @@ export default function FAQClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-16 bg-white/[0.02] rounded-2xl p-8 md:p-10 border border-[#E8D5B5]/[0.04] text-center"
+            className="mt-16 bg-white/[0.02] rounded-2xl p-8 md:p-10 border border-[#DCC99A]/[0.04] text-center"
           >
             <h3 className="font-playfair text-xl md:text-2xl font-bold mb-3" style={{ color: '#1C1C1C' }}>
               {locale === 'es' ? '¿Aún tienes preguntas?' : 'Still have questions?'}
