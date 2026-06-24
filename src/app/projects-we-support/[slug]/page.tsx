@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ProjectDetailClient from './ProjectDetailClient';
 import { projects, getProjectBySlug } from '@/lib/tours-data';
 
-const BASE_URL = 'https://perutravelexpertsb.com';
+const BASE_URL = 'https://perutravelexpertsb.vercel.app';
 
 export function generateStaticParams() {
   return projects.map((project) => ({

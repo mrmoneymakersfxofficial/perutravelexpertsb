@@ -307,3 +307,33 @@ Stage Summary:
 - All `getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')` replaced with `getLocaleWhatsAppLink('general', locale)`
 - Existing `getWhatsAppLink` imports preserved (still used for dynamic messages like form submissions)
 - No other functionality changed
+---
+Task ID: playwright-qa-setup
+Agent: Sub Agent
+Task: Set up Playwright for automated visual QA testing
+
+Work Log:
+- Installed @playwright/test as dev dependency (npm install -D @playwright/test)
+- Installed Chromium browser for Playwright (npx playwright install chromium) — Chrome for Testing 149.0.7827.55
+- Created playwright.config.ts with:
+  - 3 projects: Desktop Chrome (1440×900), Tablet (iPad Pro 1024×1366), Mobile (iPhone 14 390×844)
+  - baseURL: https://perutravelexpertsb.vercel.app
+  - trace: on-first-retry, screenshot: on, HTML reporter
+  - CI-aware: retries on CI, single worker on CI, forbidOnly on CI
+- Created tests/visual-qa.spec.ts with 25+ tests organized in 6 describe blocks:
+  - Desktop Chrome Visual QA: 8 tests (homepage, header functionality, /tour-packages, /about-us, /contact, /tours, /testimonials, /faq)
+  - Tablet Visual QA: 6 tests (homepage responsive, tour card grid adaptation, navigation, 3 page tests)
+  - Mobile Visual QA: 8 tests (no horizontal scroll, bottom nav visible, cards stack vertically, no elements cut off, 4 page tests)
+  - Cross-Breakpoint Consistency: 12 tests (footer visible+complete, no broken images, no overflow — all across all viewports for 4 key pages)
+  - Layout Integrity: 3 tests (header stays at top after scroll, all pages have non-empty title, no horizontal scroll on all breakpoints)
+  - Each test checks: console errors, horizontal overflow (5px tolerance), key elements visible, footer present, no broken images (naturalWidth > 0), no large empty gaps (>300px between sections)
+  - Full-page screenshots saved to test-results/{desktop,tablet,mobile}/
+- Added npm scripts: "test:qa": "playwright test", "test:qa:ui": "playwright test --ui"
+- Added .gitignore entries: test-results/, playwright-report/, blob-report/
+
+Stage Summary:
+- Playwright fully configured with 3 device viewports targeting live Vercel deployment
+- 25+ comprehensive visual QA tests covering overflow, broken images, console errors, layout shifts, footer completeness, responsive grid behavior, mobile bottom nav, and element clipping
+- Tests NOT executed (require live site access) — run with `npm run test:qa` or `npm run test:qa:ui` for interactive mode
+- Files created: playwright.config.ts, tests/visual-qa.spec.ts
+- Files modified: package.json (2 scripts added), .gitignore (3 entries added)

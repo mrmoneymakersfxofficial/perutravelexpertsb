@@ -11,6 +11,7 @@ import BottomNavigation from "@/components/BottomNavigation";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingPanel from "@/components/FloatingPanel";
 import BottomTabModals from "@/components/BottomTabModals";
+import SchemaOrg from "@/components/SchemaOrg";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -51,6 +52,12 @@ export const metadata: Metadata = {
     siteName: "PeruTravelExpertsB",
     type: "website",
   },
+  twitter: {
+    card: 'summary_large_image' as const,
+    title: 'PeruTravelExpertsB | Luxury Tours in Peru',
+    description: 'Exclusive luxury travel experiences in Peru. Machu Picchu, Cusco, Sacred Valley, Amazon & more.',
+    images: ['https://perutravelexpertsb.vercel.app/og-image.jpg'],
+  },
 };
 
 export default function RootLayout({
@@ -64,6 +71,7 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: '#F8F6F2' }}
       >
+        <SchemaOrg />
         <LanguageProvider>
           <FavoritesProvider>
             <RecentlyViewedProvider>

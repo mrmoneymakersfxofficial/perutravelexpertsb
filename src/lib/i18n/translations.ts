@@ -130,7 +130,7 @@ export const translations: Record<Locale, Translations> = {
     home: {
       featuredTours: 'Tours Destacados',
       whyChooseUs: '¿Por Qué Elegirnos?',
-      viewAllPackages: 'Ver Todos los Paquetes',
+      viewAllPackages: 'Ver Paquetes de Tours',
     },
     faq: {
       title: 'Preguntas Frecuentes',
@@ -285,7 +285,7 @@ export const translations: Record<Locale, Translations> = {
     home: {
       featuredTours: 'Featured Tours',
       whyChooseUs: 'Why Choose Us',
-      viewAllPackages: 'View All Packages',
+      viewAllPackages: 'View Tour Packages',
     },
     faq: {
       title: 'Frequently Asked Questions',

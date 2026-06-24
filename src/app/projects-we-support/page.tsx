@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import ProjectsWeSupportClient from './ProjectsWeSupportClient';
 
-const BASE_URL = 'https://perutravelexpertsb.com';
+const BASE_URL = 'https://perutravelexpertsb.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Projects We Support | PeruTravelExpertsB - Social Responsibility',

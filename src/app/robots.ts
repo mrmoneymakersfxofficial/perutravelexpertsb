@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://perutravelexpertsb.com/sitemap.xml',
+    sitemap: 'https://perutravelexpertsb.vercel.app/sitemap.xml',
   };
 }

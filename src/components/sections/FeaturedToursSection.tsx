@@ -198,21 +198,11 @@ export default function FeaturedToursSection() {
           })}
         </div>
 
-        {/* View All CTA */}
-        <div className="text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/tours">
+        {/* View Tour Packages CTA */}
+        <div className="text-center">
+          <Link href="/tour-packages">
             <Button className="btn-gold rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2">
               {t.home.viewAllPackages}
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </Link>
-          <Link href="/tour-packages">
-            <Button
-              variant="outline"
-              className="rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2 text-white/70 hover:text-white hover:border-white/30"
-              style={{ borderColor: 'rgba(255,255,255,0.15)' }}
-            >
-              {locale === 'es' ? 'Ver por Destino' : 'Browse by Destination'}
               <ArrowRight className="w-5 h-5" />
             </Button>
           </Link>

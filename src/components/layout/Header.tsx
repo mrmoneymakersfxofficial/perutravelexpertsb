@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -13,6 +13,19 @@ import SearchModal from '@/components/SearchModal';
 import FavoritesModal from '@/components/FavoritesModal';
 import TourDetailModal from '@/components/TourDetailModal';
 import BookingModal from '@/components/BookingModal';
+
+/* Hook: media query for desktop detection (fixes Radix portal double-modal bug) */
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(min-width: 1024px)');
+    setIsDesktop(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+  return isDesktop;
+}
 
 const navLinks = [
   { label: 'Tours', href: '/tour-packages' },
@@ -44,10 +57,11 @@ export default function Header() {
     detailTour, detailOpen, setDetailOpen, openDetail,
     bookingOpen, setBookingOpen,
   } = useModal();
+  const isDesktop = useIsDesktop();
 
   // Pages with dark immersive heroes → keep white text
   // All other subpages have lighter backgrounds → use dark text
-  const isLightPage = pathname !== '/' && !pathname?.includes('/tours/');
+  const isLightPage = pathname !== '/' && !pathname?.includes('/tours/') && !pathname?.includes('/tour-packages/');
 
   // Scroll listener — transparent at top, glass on scroll
   useEffect(() => {
@@ -129,11 +143,17 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 w-full z-[9999] flex items-center transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 w-full z-[9999] flex items-center transition-all ${
           isScrolled
-            ? 'bg-[#141414]/90 backdrop-blur-md border-b border-white/5 shadow-2xl'
+            ? 'bg-[#121212]/92 border-b border-white/[0.04]'
             : 'bg-transparent border-b border-transparent'
         }`}
+        style={{
+          backdropFilter: isScrolled ? 'blur(18px)' : 'none',
+          WebkitBackdropFilter: isScrolled ? 'blur(18px)' : 'none',
+          boxShadow: isScrolled ? '0 10px 40px rgba(0,0,0,0.15)' : 'none',
+          transition: 'all 0.35s ease',
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between h-[60px] md:h-[65px] lg:h-[70px]">
@@ -241,10 +261,14 @@ export default function Header() {
 
             {/* Mobile — hamburger + language */}
             <div className="flex items-center gap-2 lg:hidden">
-              <span className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 ${getMutedClass()}`}>
+              <button
+                onClick={() => setLocale(locale === 'en' ? 'es' : 'en')}
+                className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 cursor-pointer active:scale-95 ${getMutedClass()}`}
+                aria-label="Toggle language"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                en
-              </span>
+                {locale === 'en' ? 'ES' : 'EN'}
+              </button>
 
               <button onClick={() => setIsMenuOpen(true)} className={`transition-all duration-300 p-1 ${getHamburgerClass()}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
@@ -325,21 +349,23 @@ export default function Header() {
       )}
 
       {/* Search Modal — desktop only (BottomTabModals handles mobile) */}
-      <div className="hidden lg:block">
+      {isDesktop && (
         <SearchModal
           open={searchOpen}
           onOpenChange={setSearchOpen}
           onTourSelect={openDetail}
         />
-      </div>
+      )}
 
-      {/* Favorites Modal — desktop Dialog only, Sheet disabled (BottomTabModals handles mobile) */}
-      <FavoritesModal
-        open={favoritesOpen}
-        onOpenChange={setFavoritesOpen}
-        onTourSelect={openDetail}
-        hideSheet
-      />
+      {/* Favorites Modal — desktop Dialog only (BottomTabModals handles mobile) */}
+      {isDesktop && (
+        <FavoritesModal
+          open={favoritesOpen}
+          onOpenChange={setFavoritesOpen}
+          onTourSelect={openDetail}
+          hideSheet
+        />
+      )}
 
       {/* Tour Detail Modal */}
       <TourDetailModal
@@ -352,7 +378,7 @@ export default function Header() {
       <BookingModal
         open={bookingOpen}
         onOpenChange={setBookingOpen}
-        locale="en"
+        locale={locale}
       />
     </>
   );

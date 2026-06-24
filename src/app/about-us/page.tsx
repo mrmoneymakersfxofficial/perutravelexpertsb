@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import AboutUsClient from './AboutUsClient';
 
-const BASE_URL = 'https://perutravelexpertsb.com';
+const BASE_URL = 'https://perutravelexpertsb.vercel.app';
 
 export const metadata: Metadata = {
   title: 'About Us | PeruTravelExpertsB - Your Boutique Travel Agency in Cusco',
