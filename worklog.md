@@ -307,3 +307,33 @@ Stage Summary:
 - All `getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')` replaced with `getLocaleWhatsAppLink('general', locale)`
 - Existing `getWhatsAppLink` imports preserved (still used for dynamic messages like form submissions)
 - No other functionality changed
+
+---
+Task ID: seo-schema-metadata
+Agent: Sub Agent
+Task: Comprehensive SEO - Schema.org JSON-LD, Twitter Cards, BASE_URL fix
+
+Work Log:
+- Fixed BASE_URL across 15 files: replaced all `https://perutravelexpertsb.com` with `https://perutravelexpertsb.vercel.app`
+  - Files: sitemap.ts, robots.ts, tour-packages/[destination]/[slug]/page.tsx, about-us/page.tsx, tours-cities/[slug]/page.tsx, tours-cities/page.tsx, testimonials/page.tsx, tour-packages/page.tsx, tour-packages/[destination]/page.tsx, contact/page.tsx, projects-we-support/[slug]/page.tsx, projects-we-support/page.tsx, customized-tours/[slug]/page.tsx, customized-tours/page.tsx, faq/page.tsx
+  - Email addresses (info@perutravelexpertsb.com) and display text left unchanged
+- Added Twitter Cards (summary_large_image) to root layout.tsx metadata
+- Added Twitter Cards to tour detail page generateMetadata
+- Created src/components/SchemaOrg.tsx server component with 5 schema exports:
+  - SchemaOrg (default): TravelAgency + LocalBusiness + WebSite with SearchAction
+  - TourSchema: TouristTrip with offers, itinerary as ItemList
+  - BreadcrumbsSchema: BreadcrumbList from [{name, href}] items
+  - FAQSchema: FAQPage from [{q, a}] items
+- Added <SchemaOrg /> to layout.tsx body (before providers)
+- Added BreadcrumbsSchema + TourSchema to tour-packages/[destination]/[slug]/page.tsx
+  - Page component made async to resolve params for server-side schema generation
+- Added FAQSchema to faq/page.tsx (reads English FAQ questions from translations)
+- Build verified: all 61+ pages generated successfully, zero errors
+
+Stage Summary:
+- 17 files changed (15 BASE_URL fixes, 1 new component, 3 files with schema imports)
+- New file: src/components/SchemaOrg.tsx (server component, no 'use client')
+- All URLs now correctly point to perutravelexpertsb.vercel.app
+- JSON-LD schemas: Organization/LocalBusiness, WebSite+SearchAction, TouristTrip, BreadcrumbList, FAQPage
+- Twitter Cards added to root and tour detail pages
+- No visual/CSS/design elements changed
