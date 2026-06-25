@@ -55,60 +55,86 @@ export default function ImmersiveHero({
       )}
 
       {/* Cinematic Gradient Layers */}
-      {/* Bottom gradient to blend into page background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/40 to-transparent z-[1]" />
+      {/* Mobile: top-heavy gradient for text readability from top */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/30 to-black/60 md:bg-gradient-to-b md:from-transparent md:via-black/10 md:to-transparent" />
+      {/* Desktop: bottom gradient to blend into page background */}
+      <div className="absolute inset-0 z-[1] hidden md:block bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/40 to-transparent" />
       {/* Side vignettes for cinematic feel */}
       <div className="absolute inset-0 z-[1]" style={{
-        background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.3) 100%)',
+        background: 'linear-gradient(90deg, rgba(0,0,0,0.25) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.25) 100%)',
       }} />
-      {/* Top darkening for below-header blending */}
-      <div className="absolute top-0 left-0 right-0 h-24 z-[1]" style={{ background: 'linear-gradient(to bottom, rgba(15,15,15,0.6), transparent)' }} />
 
-      {/* Content Layer */}
-      <div className="relative z-[2] flex flex-col justify-end h-full">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-10 sm:pb-14 md:pb-16 lg:pb-20">
+      {/* Content Layer — Mobile: top-aligned / Desktop: bottom-aligned */}
+      <div className="relative z-[2] flex flex-col justify-start md:justify-end h-full">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-0 pb-8 sm:pb-10 md:pb-16 lg:pb-20">
 
           {/* Floating Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 mb-4 sm:mb-5 md:mb-6">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 mb-5 sm:mb-6 md:mb-6"
+          >
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
-                    className="hover:text-[#C5A55A] transition-colors duration-200"
+                    className="hover:text-[#C5A55A] transition-colors duration-200 whitespace-nowrap"
                   >
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className="text-white/70">{crumb.label}</span>
+                  <span className="text-white/70 line-clamp-1">{crumb.label}</span>
                 )}
                 {idx < breadcrumbs.length - 1 && (
-                  <span className="text-white/25 mx-0.5">/</span>
+                  <span className="text-white/25 mx-0.5 shrink-0">/</span>
                 )}
               </React.Fragment>
             ))}
-          </nav>
+          </motion.nav>
 
           {/* Giant Title */}
-          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-3 sm:mb-4 md:mb-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-playfair text-[28px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-[1.1] sm:leading-[1.05] mb-4 sm:mb-5 md:mb-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
+          >
             {title}
-          </h1>
+          </motion.h1>
 
           {/* Gold Underline */}
-          <div className="h-[3px] w-16 sm:w-20 md:w-24 mb-3 sm:mb-4 md:mb-5" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="h-[3px] w-14 sm:w-20 md:w-24 mb-4 sm:mb-5 md:mb-5 origin-left"
+            style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }}
+          />
 
           {/* Subtitle */}
           {subtitle && (
-            <p className="text-white/70 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_8px_rgba(0,0,0,0.3)]">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-white/70 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_8px_rgba(0,0,0,0.3)]"
+            >
               {subtitle}
-            </p>
+            </motion.p>
           )}
 
           {/* Extra Content (badges, price, etc.) */}
           {children && (
-            <div className="mt-4 sm:mt-5 md:mt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-4 sm:mt-5 md:mt-6"
+            >
               {children}
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
