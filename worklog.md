@@ -337,3 +337,32 @@ Stage Summary:
 - Tests NOT executed (require live site access) — run with `npm run test:qa` or `npm run test:qa:ui` for interactive mode
 - Files created: playwright.config.ts, tests/visual-qa.spec.ts
 - Files modified: package.json (2 scripts added), .gitignore (3 entries added)
+---
+Task ID: 1
+Agent: Main Agent
+Task: Premium Immersive Header System — Global fix
+
+Work Log:
+- Analyzed screenshot via VLM: identified white header on /tours/full-day-titicaka-lake tour page
+- Root cause: body bg always #F8F6F2 (cream), transparent header showed cream through it
+- Audited all 16 routes: 10 have dark heroes, 4 have light PageHeader
+- Rewrote Header.tsx with hasDarkHero() classifier covering all routes
+- Added body backgroundColor adaptation effect (dark on hero pages, cream on light)
+- Implemented transparent → glass (80px scroll) → solid (light pages) system
+- Added active page gold underline with layoutId spring animation
+- Added useIsDesktop() hook for Radix portal fix
+- Added functional EN/ES language toggle with Globe icon
+- Set responsive heights: 64px mobile, 68px tablet, 72px desktop
+- Nav: 14px, font-semibold, tracking-[0.02em]
+- Logo: drop-shadow for contrast on all states
+- Updated layout.tsx and HeroSection.tsx to match new heights
+- Build: 0 errors, all 60+ pages generated
+- Resolved git rebase conflict, pushed successfully
+
+Stage Summary:
+- Header now transparent over ALL dark hero pages (Home, Tours, Tour Packages, Destinations, Tour Detail, Customized, Projects)
+- Body background adapts dynamically: #0F0F0F on dark hero pages, #F8F6F2 on light pages
+- Light pages (About, Testimonials, Contact, FAQ): always solid dark header
+- Active page highlighted with gold color + animated underline
+- Zero CLS: no framer-motion on header bar itself, consistent dimensions
+- Deployed to Vercel via git push
