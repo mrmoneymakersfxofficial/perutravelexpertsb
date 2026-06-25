@@ -5,7 +5,6 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 // Separate component to avoid hydration mismatch from Math.random()
@@ -146,17 +145,21 @@ export default function HeroSection() {
       {/* Background Image with overlay */}
       <div className="absolute inset-0">
         <div className="hero-bg absolute inset-0">
-          <Image
-            src="/hero-bg.jpg"
-            alt="Cusco Panorama"
-            fill
+          {/* Responsive WebP hero image with multiple sizes for optimal loading */}
+          <img
+            src="/hero-bg-1920.webp"
+            srcSet="
+              /hero-bg-750.webp 750w,
+              /hero-bg-1200.webp 1200w,
+              /hero-bg-1920.webp 1920w,
+              /hero-bg-2560.webp 2560w,
+              /hero-bg-3840.webp 3840w
+            "
             sizes="100vw"
-            className="object-cover"
-            priority
-            onError={(e) => {
-              // Hide the image if it fails to load - gradient fallback will show
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
+            alt="Peru Travel Experts - Machu Picchu Luxury Travel Experience, panoramic Andes mountain landscape with ancient Inca citadel at golden hour"
+            className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
+            loading="eager"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/40 to-[#0F0F0F]" />
