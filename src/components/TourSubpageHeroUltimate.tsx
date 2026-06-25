@@ -39,14 +39,16 @@ export default function TourSubpageHeroUltimate({
 
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden -mt-16 md:-mt-[68px] lg:-mt-[72px] pt-16 md:pt-[68px] lg:pt-[72px]"
       style={{
+        /* Negative margin pulls hero behind fixed transparent header.
+           Padding pushes content below header.
+           Height is the visual hero area. */
         height: '80vh',
         minHeight: '520px',
-        /* Section bg must match page content bg — gradient overlays handle the blend */
         backgroundColor: '#0F0F0F',
       }}
-    >
+      >
       {/* Full-Bleed Background Image — extends full section, clipped by overflow-hidden */}
       {!imgError ? (
         <Image

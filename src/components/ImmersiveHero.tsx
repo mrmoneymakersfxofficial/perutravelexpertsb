@@ -37,10 +37,12 @@ export default function ImmersiveHero({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden -mt-16 md:-mt-[68px] lg:-mt-[72px] pt-16 md:pt-[68px] lg:pt-[72px]"
       style={{
+        /* Negative margin pulls hero behind fixed transparent header.
+           Padding pushes content below header.
+           Height stays as the visual height of the hero. */
         height,
-        /* Section bg = page content bg. Gradient overlay creates seamless blend. */
         backgroundColor: '#0F0F0F',
       }}
     >
