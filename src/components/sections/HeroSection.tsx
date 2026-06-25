@@ -162,8 +162,26 @@ export default function HeroSection() {
             loading="eager"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/40 to-[#0F0F0F]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/50 to-transparent" />
+        {/*
+          CONTINUOUS GRADIENT — Zero visible boundary
+          Top: dark for header readability | Bottom: solid #0F0F0F = seamless page bg blend
+        */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              linear-gradient(
+                to bottom,
+                rgba(15,15,15,0.55) 0%,
+                rgba(15,15,15,0.2) 30%,
+                rgba(15,15,15,0.15) 50%,
+                rgba(15,15,15,0.5) 75%,
+                #0F0F0F 100%
+              )
+            `,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/40 to-transparent" />
       </div>
 
       {/* Floating particles */}

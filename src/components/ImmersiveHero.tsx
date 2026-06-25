@@ -37,7 +37,11 @@ export default function ImmersiveHero({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="relative w-full overflow-hidden"
-      style={{ height }}
+      style={{
+        height,
+        /* Section bg = page content bg. Gradient overlay creates seamless blend. */
+        backgroundColor: '#0F0F0F',
+      }}
     >
       {/* Full-Bleed Background Image */}
       {!imgError ? (
@@ -54,15 +58,41 @@ export default function ImmersiveHero({
         <div className="w-full h-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900" />
       )}
 
-      {/* Cinematic Gradient Layers */}
-      {/* Mobile: top-heavy gradient for text readability from top */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/30 to-black/60 md:bg-gradient-to-b md:from-transparent md:via-black/10 md:to-transparent" />
-      {/* Desktop: bottom gradient to blend into page background */}
-      <div className="absolute inset-0 z-[1] hidden md:block bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/40 to-transparent" />
+      {/*
+        ════════════════════════════════════════════════════════════
+        CONTINUOUS GRADIENT SYSTEM — Zero visible boundary
+        ════════════════════════════════════════════════════════════
+        Single unified gradient:
+        • Top: dark for header transparency + text readability
+        • Middle: transparent to showcase the image
+        • Bottom: smooth fade to exact #0F0F0F (page bg)
+        Result: image → dark → page bg = invisible seam
+      */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: `
+            linear-gradient(
+              to bottom,
+              rgba(0,0,0,0.6) 0%,
+              rgba(0,0,0,0.12) 25%,
+              transparent 40%,
+              rgba(15,15,15,0.25) 65%,
+              rgba(15,15,15,0.65) 82%,
+              #0F0F0F 100%
+            )
+          `,
+        }}
+      />
+
       {/* Side vignettes for cinematic feel */}
-      <div className="absolute inset-0 z-[1]" style={{
-        background: 'linear-gradient(90deg, rgba(0,0,0,0.25) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.25) 100%)',
-      }} />
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(0,0,0,0.2) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.2) 100%)',
+        }}
+      />
 
       {/* Content Layer — Mobile: top-aligned / Desktop: bottom-aligned */}
       <div className="relative z-[2] flex flex-col justify-start md:justify-end h-full">

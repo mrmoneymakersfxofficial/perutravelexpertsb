@@ -38,14 +38,15 @@ export default function TourSubpageHeroUltimate({
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-black"
+      className="relative w-full overflow-hidden"
       style={{
-        /* Mobile: ~80vh so content + bottom nav fits; Desktop: full viewport */
         height: '80vh',
         minHeight: '520px',
+        /* Section bg must match page content bg — gradient overlays handle the blend */
+        backgroundColor: '#0F0F0F',
       }}
     >
-      {/* Full-Bleed Background Image */}
+      {/* Full-Bleed Background Image — extends full section, clipped by overflow-hidden */}
       {!imgError ? (
         <Image
           src={bgImage}
@@ -60,21 +61,42 @@ export default function TourSubpageHeroUltimate({
         <div className="w-full h-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900" />
       )}
 
-      {/* Cinematic Gradient Layers */}
-      {/* Mobile: top-heavy gradient for text readability from top */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/30 to-black/60 md:bg-gradient-to-b md:from-black/80 md:via-black/10 md:to-transparent" />
-      {/* Desktop: bottom fade for content below */}
-      <div className="absolute inset-0 z-[1] hidden md:block bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/30 to-transparent" />
-      {/* Side vignettes */}
+      {/*
+        ════════════════════════════════════════════════════════════
+        CONTINUOUS GRADIENT SYSTEM — Zero visible boundary
+        ════════════════════════════════════════════════════════════
+        One unified gradient handles both:
+        1. Top: dark overlay for header + text readability
+        2. Bottom: seamless fade into #0F0F0F (exact page bg color)
+        No hard cut. Image → dark → page bg = visual continuity.
+      */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: `
+            linear-gradient(
+              to bottom,
+              rgba(0,0,0,0.65) 0%,
+              rgba(0,0,0,0.15) 25%,
+              transparent 45%,
+              rgba(15,15,15,0.3) 70%,
+              rgba(15,15,15,0.7) 85%,
+              #0F0F0F 100%
+            )
+          `,
+        }}
+      />
+
+      {/* Side vignettes for cinematic depth */}
       <div
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            'linear-gradient(90deg, rgba(0,0,0,0.25) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.25) 100%)',
+            'linear-gradient(90deg, rgba(0,0,0,0.2) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.2) 100%)',
         }}
       />
 
-      {/* Content Layer — Mobile: top-aligned / Desktop: bottom-aligned */}
+      {/* Content Layer — Mobile: top / Desktop: bottom */}
       <div className="relative z-[2] flex flex-col justify-start md:justify-end h-full">
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-0 pb-10 sm:pb-14 md:pb-20 lg:pb-24">
 
