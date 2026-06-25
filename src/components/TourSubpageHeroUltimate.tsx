@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Clock, MapPin } from 'lucide-react';
+import PremiumScrollIndicator from '@/components/PremiumScrollIndicator';
 
 interface BreadcrumbItem {
   label: string;
@@ -223,25 +224,8 @@ export default function TourSubpageHeroUltimate({
         </div>
       </div>
 
-      {/* Scroll Down Indicator — Desktop only */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-[2] hidden md:flex flex-col items-center gap-1.5 scroll-indicator">
-        <span className="text-[9px] uppercase tracking-[0.2em] text-white/30 font-bold">
-          Scroll
-        </span>
-        <svg
-          className="w-4 h-4 text-[#C5A55A]/60"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 14l-7 7-7-7m0-6l7 7 7-7"
-          />
-        </svg>
-      </div>
+      {/* Premium Scroll Indicator — appears after 2s, all viewports */}
+      <PremiumScrollIndicator />
     </section>
   );
 }

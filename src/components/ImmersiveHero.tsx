@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import PremiumScrollIndicator from '@/components/PremiumScrollIndicator';
 
 interface BreadcrumbItem {
   label: string;
@@ -168,6 +169,9 @@ export default function ImmersiveHero({
           )}
         </div>
       </div>
+
+      {/* Premium Scroll Indicator — appears after 2s, all viewports */}
+      <PremiumScrollIndicator />
     </motion.section>
   );
 }
