@@ -5,6 +5,7 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // Separate component to avoid hydration mismatch from Math.random()
@@ -26,7 +27,7 @@ function Particles() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="particle absolute w-1 h-1 rounded-full bg-[#C5A55A]/40"
+          className="particle absolute w-1 h-1 rounded-full bg-[#D4A843]/40"
           style={{
             left: `${p.left}%`,
             top: `${p.top}%`,
@@ -139,49 +140,27 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-[68px] lg:-mt-[72px] pt-16 md:pt-[68px] lg:pt-[72px]"
+      className="relative flex items-center justify-center overflow-hidden -mt-[60px] md:-mt-[65px] lg:-mt-[70px] pt-[60px] md:pt-[65px] lg:pt-[70px]"
       style={{ backgroundColor: '#0F0F0F', height: '100vh', height: '100dvh' }}
     >
       {/* Background Image with overlay */}
       <div className="absolute inset-0">
         <div className="hero-bg absolute inset-0">
-          {/* Responsive WebP hero image with multiple sizes for optimal loading */}
-          <img
-            src="/hero-bg-1920.webp"
-            srcSet="
-              /hero-bg-750.webp 750w,
-              /hero-bg-1200.webp 1200w,
-              /hero-bg-1920.webp 1920w,
-              /hero-bg-2560.webp 2560w,
-              /hero-bg-3840.webp 3840w
-            "
+          <Image
+            src="/hero-bg.jpg"
+            alt="Cusco Panorama"
+            fill
             sizes="100vw"
-            alt="Peru Travel Experts - Machu Picchu Luxury Travel Experience, panoramic Andes mountain landscape with ancient Inca citadel at golden hour"
-            className="absolute inset-0 w-full h-full object-cover"
-            fetchPriority="high"
-            loading="eager"
+            className="object-cover"
+            priority
+            onError={(e) => {
+              // Hide the image if it fails to load - gradient fallback will show
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         </div>
-        {/*
-          CONTINUOUS GRADIENT — Zero visible boundary
-          Top: dark for header readability | Bottom: solid #0F0F0F = seamless page bg blend
-        */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `
-              linear-gradient(
-                to bottom,
-                rgba(15,15,15,0.55) 0%,
-                rgba(15,15,15,0.2) 30%,
-                rgba(15,15,15,0.15) 50%,
-                rgba(15,15,15,0.5) 75%,
-                #0F0F0F 100%
-              )
-            `,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/40 to-[#0F0F0F]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/50 to-transparent" />
       </div>
 
       {/* Floating particles */}
@@ -198,8 +177,8 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
         >
-          <Sparkles className="w-4 h-4 text-[#C5A55A]" />
-          <span className="text-sm text-[#C5A55A] font-medium tracking-wider uppercase">
+          <Sparkles className="w-4 h-4 text-[#D4A843]" />
+          <span className="text-sm text-[#D4A843] font-medium tracking-wider uppercase">
             {locale === 'es' ? 'Viajeros VIP' : 'VIP Travelers'}
           </span>
         </motion.div>
@@ -209,7 +188,7 @@ export default function HeroSection() {
           ref={titleRef}
           className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 opacity-0"
         >
-          <span className="gold-text">{t.hero.title.split(' ').slice(0, -1).join(' ')}</span>
+          <span className="gold-text-shimmer">{t.hero.title.split(' ').slice(0, -1).join(' ')}</span>
           <br />
           <span className="text-white">{t.hero.title.split(' ').slice(-1)[0]}</span>
         </h1>
@@ -217,7 +196,7 @@ export default function HeroSection() {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="font-playfair text-xl sm:text-2xl md:text-3xl text-[#DCC99A] mb-6 opacity-0"
+          className="font-playfair text-xl sm:text-2xl md:text-3xl text-[#E8CC6A] mb-6 opacity-0"
         >
           {t.hero.subtitle}
         </p>
@@ -253,7 +232,7 @@ export default function HeroSection() {
       {/* Scroll Indicator */}
       <button
         onClick={handleScrollDown}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-[#C5A55A]/60 hover:text-[#C5A55A] transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator text-[#D4A843]/60 hover:text-[#D4A843] transition-colors"
         aria-label="Scroll down"
       >
         <ChevronDown className="w-8 h-8" />

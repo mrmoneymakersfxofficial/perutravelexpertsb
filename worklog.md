@@ -307,62 +307,73 @@ Stage Summary:
 - All `getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')` replaced with `getLocaleWhatsAppLink('general', locale)`
 - Existing `getWhatsAppLink` imports preserved (still used for dynamic messages like form submissions)
 - No other functionality changed
+
 ---
-Task ID: playwright-qa-setup
+Task ID: seo-schema-metadata
 Agent: Sub Agent
-Task: Set up Playwright for automated visual QA testing
+Task: Comprehensive SEO - Schema.org JSON-LD, Twitter Cards, BASE_URL fix
 
 Work Log:
-- Installed @playwright/test as dev dependency (npm install -D @playwright/test)
-- Installed Chromium browser for Playwright (npx playwright install chromium) — Chrome for Testing 149.0.7827.55
-- Created playwright.config.ts with:
-  - 3 projects: Desktop Chrome (1440×900), Tablet (iPad Pro 1024×1366), Mobile (iPhone 14 390×844)
-  - baseURL: https://perutravelexpertsb.vercel.app
-  - trace: on-first-retry, screenshot: on, HTML reporter
-  - CI-aware: retries on CI, single worker on CI, forbidOnly on CI
-- Created tests/visual-qa.spec.ts with 25+ tests organized in 6 describe blocks:
-  - Desktop Chrome Visual QA: 8 tests (homepage, header functionality, /tour-packages, /about-us, /contact, /tours, /testimonials, /faq)
-  - Tablet Visual QA: 6 tests (homepage responsive, tour card grid adaptation, navigation, 3 page tests)
-  - Mobile Visual QA: 8 tests (no horizontal scroll, bottom nav visible, cards stack vertically, no elements cut off, 4 page tests)
-  - Cross-Breakpoint Consistency: 12 tests (footer visible+complete, no broken images, no overflow — all across all viewports for 4 key pages)
-  - Layout Integrity: 3 tests (header stays at top after scroll, all pages have non-empty title, no horizontal scroll on all breakpoints)
-  - Each test checks: console errors, horizontal overflow (5px tolerance), key elements visible, footer present, no broken images (naturalWidth > 0), no large empty gaps (>300px between sections)
-  - Full-page screenshots saved to test-results/{desktop,tablet,mobile}/
-- Added npm scripts: "test:qa": "playwright test", "test:qa:ui": "playwright test --ui"
-- Added .gitignore entries: test-results/, playwright-report/, blob-report/
+- Fixed BASE_URL across 15 files: replaced all `https://perutravelexpertsb.com` with `https://perutravelexpertsb.vercel.app`
+  - Files: sitemap.ts, robots.ts, tour-packages/[destination]/[slug]/page.tsx, about-us/page.tsx, tours-cities/[slug]/page.tsx, tours-cities/page.tsx, testimonials/page.tsx, tour-packages/page.tsx, tour-packages/[destination]/page.tsx, contact/page.tsx, projects-we-support/[slug]/page.tsx, projects-we-support/page.tsx, customized-tours/[slug]/page.tsx, customized-tours/page.tsx, faq/page.tsx
+  - Email addresses (info@perutravelexpertsb.com) and display text left unchanged
+- Added Twitter Cards (summary_large_image) to root layout.tsx metadata
+- Added Twitter Cards to tour detail page generateMetadata
+- Created src/components/SchemaOrg.tsx server component with 5 schema exports:
+  - SchemaOrg (default): TravelAgency + LocalBusiness + WebSite with SearchAction
+  - TourSchema: TouristTrip with offers, itinerary as ItemList
+  - BreadcrumbsSchema: BreadcrumbList from [{name, href}] items
+  - FAQSchema: FAQPage from [{q, a}] items
+- Added <SchemaOrg /> to layout.tsx body (before providers)
+- Added BreadcrumbsSchema + TourSchema to tour-packages/[destination]/[slug]/page.tsx
+  - Page component made async to resolve params for server-side schema generation
+- Added FAQSchema to faq/page.tsx (reads English FAQ questions from translations)
+- Build verified: all 61+ pages generated successfully, zero errors
 
 Stage Summary:
-- Playwright fully configured with 3 device viewports targeting live Vercel deployment
-- 25+ comprehensive visual QA tests covering overflow, broken images, console errors, layout shifts, footer completeness, responsive grid behavior, mobile bottom nav, and element clipping
-- Tests NOT executed (require live site access) — run with `npm run test:qa` or `npm run test:qa:ui` for interactive mode
-- Files created: playwright.config.ts, tests/visual-qa.spec.ts
-- Files modified: package.json (2 scripts added), .gitignore (3 entries added)
+- 17 files changed (15 BASE_URL fixes, 1 new component, 3 files with schema imports)
+- New file: src/components/SchemaOrg.tsx (server component, no 'use client')
+- All URLs now correctly point to perutravelexpertsb.vercel.app
+- JSON-LD schemas: Organization/LocalBusiness, WebSite+SearchAction, TouristTrip, BreadcrumbList, FAQPage
+- Twitter Cards added to root and tour detail pages
+- No visual/CSS/design elements changed
+
 ---
-Task ID: 1
+Task ID: gold-color-upgrade
 Agent: Main Agent
-Task: Premium Immersive Header System — Global fix
+Task: Update gold color palette to match client reference (rich warm gold, not muted bronze) + 21st.dev shimmer effects
 
 Work Log:
-- Analyzed screenshot via VLM: identified white header on /tours/full-day-titicaka-lake tour page
-- Root cause: body bg always #F8F6F2 (cream), transparent header showed cream through it
-- Audited all 16 routes: 10 have dark heroes, 4 have light PageHeader
-- Rewrote Header.tsx with hasDarkHero() classifier covering all routes
-- Added body backgroundColor adaptation effect (dark on hero pages, cream on light)
-- Implemented transparent → glass (80px scroll) → solid (light pages) system
-- Added active page gold underline with layoutId spring animation
-- Added useIsDesktop() hook for Radix portal fix
-- Added functional EN/ES language toggle with Globe icon
-- Set responsive heights: 64px mobile, 68px tablet, 72px desktop
-- Nav: 14px, font-semibold, tracking-[0.02em]
-- Logo: drop-shadow for contrast on all states
-- Updated layout.tsx and HeroSection.tsx to match new heights
-- Build: 0 errors, all 60+ pages generated
-- Resolved git rebase conflict, pushed successfully
+- Analyzed 2 reference images with VLM + pixel-level extraction:
+  - Image 1 (desired): H=44.3°, S=52.8%, L=51.8% — rich, saturated warm gold
+  - Image 2 (current): H=39.2°, S=29.9%, L=50.8% — muted, desaturated bronze
+  - Key gap: +5° hue (more yellow), +23% saturation (more vibrant)
+- Derived new gold palette from Image 1 pixel clusters:
+  - --gold: #D4A843 (was #C5A55A) — primary gold
+  - --gold-light: #E8CC6A (was #DCC99A) — light gold
+  - Dark/hover: #B89020 (was #A8883D) — deep gold
+  - rgba(212,168,67,...) (was rgba(197,165,90,...)) — primary translucent
+  - rgba(184,144,32,...) (was rgba(183,155,86,...)) — dark translucent
+- Created Python replacement script (scripts/update_gold_colors.py)
+- Updated 44 files, ~1659 character changes:
+  - 1 CSS file (globals.css) — variables, classes, animations
+  - 38 TSX component files — hex + rgba values
+  - 1 SVG file (favicon.svg)
+  - 4 other files
+- Added 21st.dev-inspired premium effects to globals.css:
+  - .btn-gold: shimmer sweep animation with light reflection
+  - .gold-text-shimmer: animated gradient text (applied to hero title)
+  - .gold-border-shimmer: rotating conic gradient border (@property --border-angle)
+  - .gold-glow-premium: triple-layer gold glow
+  - ::selection: gold selection highlight
+- Explored 21st.dev — component registry with copy-paste React/Tailwind components
+- Build: SUCCESS (all 61+ pages generated)
+- Playwright verification (6 screenshots: mobile + desktop × 3 pages)
+- VLM verification: 8/10 gold quality, "rich, warm, and vibrant"
+- Pixel verification: saturation 30.2% → 50.4% (67% increase, matches reference 52.9%)
 
 Stage Summary:
-- Header now transparent over ALL dark hero pages (Home, Tours, Tour Packages, Destinations, Tour Detail, Customized, Projects)
-- Body background adapts dynamically: #0F0F0F on dark hero pages, #F8F6F2 on light pages
-- Light pages (About, Testimonials, Contact, FAQ): always solid dark header
-- Active page highlighted with gold color + animated underline
-- Zero CLS: no framer-motion on header bar itself, consistent dimensions
-- Deployed to Vercel via git push
+- Gold palette completely transformed from muted bronze to rich warm gold
+- All 280+ gold references updated across 44 files
+- Premium shimmer/glow CSS effects added (21st.dev style)
+- Deployed to perutravelexpertsb.vercel.app

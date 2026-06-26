@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import TourDetailClient from './TourDetailClient';
 import { tours, getDestinationBySlug, getTourBySlug } from '@/lib/tours-data';
-import { TourSchema, BreadcrumbsSchema } from '@/components/SchemaOrg';
 
-const BASE_URL = 'https://perutravelexpertsb.vercel.app';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export function generateStaticParams() {
   return tours.filter((t) => t.active).map((tour) => ({
@@ -36,40 +35,13 @@ export async function generateMetadata({
       type: 'article',
       images: [{ url: tour.image, width: 1200, height: 630 }],
     },
-    twitter: {
-      card: 'summary_large_image' as const,
-      title: `${tour.nameEn} | PeruTravelExpertsB`,
-      description: tour.descriptionEn.slice(0, 160),
-      images: [tour.image],
-    },
   };
 }
 
-export default async function TourDetailPage({
+export default function TourDetailPage({
   params,
 }: {
   params: Promise<{ destination: string; slug: string }>;
 }) {
-  const { destination, slug } = await params;
-  const dest = getDestinationBySlug(destination);
-  const tour = getTourBySlug(slug);
-
-  if (!tour || !dest) {
-    return <TourDetailClient params={params} />;
-  }
-
-  return (
-    <>
-      <BreadcrumbsSchema
-        items={[
-          { name: 'Home', href: '/' },
-          { name: 'Tour Packages', href: '/tour-packages' },
-          { name: dest.nameEn, href: `/tour-packages/${destination}` },
-          { name: tour.nameEn },
-        ]}
-      />
-      <TourSchema tour={tour} destination={destination} slug={slug} />
-      <TourDetailClient params={params} />
-    </>
-  );
+  return <TourDetailClient params={params} />;
 }

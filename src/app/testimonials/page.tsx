@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import TestimonialsClient from './TestimonialsClient';
 
-const BASE_URL = 'https://perutravelexpertsb.vercel.app';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export const metadata: Metadata = {
   title: 'Testimonials | PeruTravelExpertsB - Tours VIP en Cusco',

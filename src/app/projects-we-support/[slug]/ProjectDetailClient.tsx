@@ -58,7 +58,7 @@ export default function ProjectDetailClient({
         ]}
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #C5A55A, #A8883D)' }}>
+          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #D4A843, #B89020)' }}>
             <Heart className="w-4 h-4 text-[#0F0F0F]" />
           </div>
           <span className="text-xs text-white/80 font-medium uppercase tracking-wider">
@@ -73,9 +73,9 @@ export default function ProjectDetailClient({
             <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
               {locale === 'es' ? 'Sobre este Proyecto' : 'About this Project'}
             </h2>
-            <div className="w-16 h-0.5 mb-6" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
+            <div className="w-16 h-0.5 mb-6" style={{ background: 'linear-gradient(90deg, #D4A843, #B89020)' }} />
             <p className="text-[#8B8680] text-lg leading-relaxed mb-8">{desc}</p>
-            <div className="rounded-2xl p-6 md:p-8" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(197,165,90,0.15)' }}>
+            <div className="rounded-2xl p-6 md:p-8" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(212,168,67,0.15)' }}>
               <h3 className="font-playfair text-xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
                 {locale === 'es' ? '¿Cómo puedes ayudar?' : 'How can you help?'}
               </h3>

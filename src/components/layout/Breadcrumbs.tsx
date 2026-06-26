@@ -22,14 +22,14 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           return (
             <li key={index} className="flex items-center gap-1">
               {index > 0 && (
-                <ChevronRight className="w-3.5 h-3.5 text-[#C5A55A]/50 flex-shrink-0" />
+                <ChevronRight className="w-3.5 h-3.5 text-[#D4A843]/50 flex-shrink-0" />
               )}
               {isLast ? (
-                <span className="text-[#C5A55A] font-medium">{item.label}</span>
+                <span className="text-[#D4A843] font-medium">{item.label}</span>
               ) : item.href ? (
                 <Link
                   href={item.href}
-                  className="text-[#8B8680] hover:text-[#C5A55A] transition-colors"
+                  className="text-[#8B8680] hover:text-[#D4A843] transition-colors"
                 >
                   {index === 0 ? (
                     <span className="flex items-center gap-1">

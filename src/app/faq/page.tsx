@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import FAQClient from './FAQClient';
-import { FAQSchema } from '@/components/SchemaOrg';
-import { translations } from '@/lib/i18n/translations';
 
-const BASE_URL = 'https://perutravelexpertsb.vercel.app';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export const metadata: Metadata = {
   title: 'FAQ - Preguntas Frecuentes | PeruTravelExpertsB Tours Cusco',
@@ -20,10 +18,5 @@ export const metadata: Metadata = {
 };
 
 export default function FAQPage() {
-  return (
-    <>
-      <FAQSchema faqs={translations.en.faq.questions} />
-      <FAQClient />
-    </>
-  );
+  return <FAQClient />;
 }

@@ -44,7 +44,7 @@ export default function TourInfoTabs({
             onClick={() => setActiveTab(tab.key)}
             className={`flex-1 text-center py-3.5 sm:py-4 px-2 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-all border-b-2 whitespace-nowrap ${
               activeTab === tab.key
-                ? 'border-[#C5A55A] text-[#C5A55A]'
+                ? 'border-[#D4A843] text-[#D4A843]'
                 : 'border-transparent text-white/40 hover:text-white/70'
             }`}
           >
@@ -123,7 +123,7 @@ export default function TourInfoTabs({
         <div className="bg-[#141414] border border-white/10 rounded-2xl p-5 sm:p-6 space-y-6">
           {policies.length > 0 && (
             <div>
-              <h4 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#C5A55A] mb-3">
+              <h4 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#D4A843] mb-3">
                 {locale === 'es' ? 'Términos de Cancelación' : 'Cancellation Terms'}
               </h4>
               <ul className="space-y-3">
@@ -132,7 +132,7 @@ export default function TourInfoTabs({
                     key={idx}
                     className="text-xs sm:text-sm text-white/70 font-light leading-relaxed flex items-start gap-2.5"
                   >
-                    <AlertTriangle className="w-4 h-4 text-[#C5A55A] shrink-0 mt-0.5" />
+                    <AlertTriangle className="w-4 h-4 text-[#D4A843] shrink-0 mt-0.5" />
                     {policy}
                   </li>
                 ))}

@@ -80,16 +80,16 @@ export default function CustomizedTourDetailClient({
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>
                   {locale === 'es' ? 'Descripción' : 'Description'}
                 </h2>
-                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
+                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D4A843, #B89020)' }} />
                 <p className="text-[#8B8680] text-base leading-relaxed">{desc}</p>
               </div>
               <div className="mb-10">
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: '#1C1C1C' }}>{t.tourDetail.includes}</h2>
-                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
+                <div className="w-16 h-0.5 mb-4" style={{ background: 'linear-gradient(90deg, #D4A843, #B89020)' }} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.5)', border: '1px solid rgba(197,165,90,0.1)' }}>
-                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'linear-gradient(135deg, #C5A55A, #A8883D)' }}>
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.5)', border: '1px solid rgba(212,168,67,0.1)' }}>
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'linear-gradient(135deg, #D4A843, #B89020)' }}>
                         <Check className="w-3.5 h-3.5 text-[#0F0F0F]" />
                       </div>
                       <span className="text-sm" style={{ color: '#1C1C1C' }}>{item}</span>
@@ -107,8 +107,8 @@ export default function CustomizedTourDetailClient({
                       return (
                         <motion.div key={day.day} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }} className="flex gap-4">
                           <div className="flex flex-col items-center">
-                            <div className="w-10 h-10 rounded-full flex items-center justify-center text-[#0F0F0F] font-bold text-sm flex-shrink-0" style={{ background: 'linear-gradient(135deg, #C5A55A, #A8883D)' }}>{day.day}</div>
-                            {day.day < itinerary.length && <div className="w-0.5 flex-1 mt-2" style={{ backgroundColor: '#DCC99A' }} />}
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center text-[#0F0F0F] font-bold text-sm flex-shrink-0" style={{ background: 'linear-gradient(135deg, #D4A843, #B89020)' }}>{day.day}</div>
+                            {day.day < itinerary.length && <div className="w-0.5 flex-1 mt-2" style={{ backgroundColor: '#E8CC6A' }} />}
                           </div>
                           <div className="pb-6">
                             <h3 className="font-playfair text-lg font-bold mb-2" style={{ color: '#1C1C1C' }}>{t.tourDetail.day} {day.day}: {dayTitle}</h3>
@@ -123,7 +123,7 @@ export default function CustomizedTourDetailClient({
             </div>
             <div className="lg:col-span-1">
               <div className="sticky top-24">
-                <div className="rounded-2xl p-6" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(197,165,90,0.15)' }}>
+                <div className="rounded-2xl p-6" style={{ backgroundColor: 'rgba(255,255,255,0.6)', border: '1px solid rgba(212,168,67,0.15)' }}>
                   <div className="text-center mb-6">
                     <p className="text-sm text-[#8B8680] mb-1">{t.tours.price}</p>
                     <p className="text-4xl font-bold font-playfair" style={{ color: '#1C1C1C' }}>${Math.round(pkg.priceUSD)}</p>

@@ -14,8 +14,8 @@ export default function NotFound() {
     <div className="min-h-[80vh] flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#F8F6F2' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#C5A55A]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C5A55A]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#D4A843]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#D4A843]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-lg mx-auto">

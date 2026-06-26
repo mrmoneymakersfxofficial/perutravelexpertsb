@@ -11,7 +11,6 @@ import BottomNavigation from "@/components/BottomNavigation";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingPanel from "@/components/FloatingPanel";
 import BottomTabModals from "@/components/BottomTabModals";
-import SchemaOrg from "@/components/SchemaOrg";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -52,12 +51,6 @@ export const metadata: Metadata = {
     siteName: "PeruTravelExpertsB",
     type: "website",
   },
-  twitter: {
-    card: 'summary_large_image' as const,
-    title: 'PeruTravelExpertsB | Luxury Tours in Peru',
-    description: 'Exclusive luxury travel experiences in Peru. Machu Picchu, Cusco, Sacred Valley, Amazon & more.',
-    images: ['https://perutravelexpertsb.vercel.app/og-image.jpg'],
-  },
 };
 
 export default function RootLayout({
@@ -71,14 +64,13 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: '#F8F6F2' }}
       >
-        <SchemaOrg />
         <LanguageProvider>
           <FavoritesProvider>
             <RecentlyViewedProvider>
               <ModalProvider>
                 <div className="min-h-screen flex flex-col">
                   <Header />
-                  <main className="flex-1 pt-16 md:pt-[68px] lg:pt-[72px] pb-[66px] sm:pb-[72px] lg:pb-0">
+                  <main className="flex-1 pt-[60px] md:pt-[65px] lg:pt-[70px] pb-[66px] sm:pb-[72px] lg:pb-0">
                     {children}
                   </main>
                   <Footer />

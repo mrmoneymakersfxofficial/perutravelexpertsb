@@ -172,7 +172,7 @@ export default function ToursSection() {
             className={`rounded-full px-6 flex items-center gap-2 transition-all ${
               !showFavorites
                 ? 'btn-gold'
-                : 'border-[#C5A55A]/30 text-[#8B8680] hover:text-[#C5A55A] hover:border-[#C5A55A]'
+                : 'border-[#D4A843]/30 text-[#8B8680] hover:text-[#D4A843] hover:border-[#D4A843]'
             }`}
           >
             <LayoutGrid className="w-4 h-4" />
@@ -184,7 +184,7 @@ export default function ToursSection() {
             className={`rounded-full px-6 flex items-center gap-2 transition-all ${
               showFavorites
                 ? 'btn-gold'
-                : 'border-[#C5A55A]/30 text-[#8B8680] hover:text-[#C5A55A] hover:border-[#C5A55A]'
+                : 'border-[#D4A843]/30 text-[#8B8680] hover:text-[#D4A843] hover:border-[#D4A843]'
             }`}
           >
             <Heart className="w-4 h-4" />
@@ -200,7 +200,7 @@ export default function ToursSection() {
         {/* Tours Grid */}
         {displayedTours.length === 0 ? (
           <div className="text-center py-20">
-            <Heart className="w-12 h-12 text-[#DCC99A] mx-auto mb-4" />
+            <Heart className="w-12 h-12 text-[#E8CC6A] mx-auto mb-4" />
             <p className="text-[#8B8680] text-lg">
               {locale === 'es'
                 ? 'Aún no tienes tours favoritos. Haz clic en el corazón para guardar tus tours preferidos.'

@@ -58,8 +58,8 @@ export default function ToursCitiesClient() {
                       <div className="p-6 bg-[#141414]">
                         <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-3">{desc}</p>
                         <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
-                          <span className="text-2xl font-bold font-playfair text-[#C5A55A]">${Math.round(tour.priceUSD)}</span>
-                          <span className="flex items-center gap-1 text-sm font-medium text-[#C5A55A] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
+                          <span className="text-2xl font-bold font-playfair text-[#D4A843]">${Math.round(tour.priceUSD)}</span>
+                          <span className="flex items-center gap-1 text-sm font-medium text-[#D4A843] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>
                     </div>

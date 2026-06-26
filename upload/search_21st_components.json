@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://21st.dev/community/components/s/animated-background",
+    "name": "Animated-background Components - 21st.dev",
+    "snippet": "Bring pages to life with 10 animated background React components, crafted with Tailwind CSS for dynamic visual impact.",
+    "host_name": "21st.dev",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://21st.dev/community/components/s/shader-bg",
+    "name": "shader-bg Components - 21st Dev",
+    "snippet": "shader-bg Components for React & Next.js. High-quality shader-bg React components from the community. Open-source, copy-paste ready, built with Tailwind CSS ...",
+    "host_name": "21st.dev",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://21st.dev/community/components/s/loading-animation",
+    "name": "Loading animation Components - 21st.dev",
+    "snippet": "Keep users informed during waits with 24 React loading animation components, built for smooth performance with Tailwind CSS.",
+    "host_name": "21st.dev",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://21st.dev/community/components/s/animated-text",
+    "name": "Animated Text Components - 21st.dev",
+    "snippet": "Animate your typography with 58 React animated text components, all styled using Tailwind CSS for eye-catching visual effects.",
+    "host_name": "21st.dev",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://21st.dev/community/components/s/shader",
+    "name": "Shader Components - 21st.dev",
+    "snippet": "Transform your interfaces with 87 shader components for React, featuring visually stunning effects powered by Tailwind CSS and Next.js.",
+    "host_name": "21st.dev",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://21st.dev/community/components/s/nextjs",
+    "name": "Nextjs Components - 21st Dev",
+    "snippet": "Explore 6 Next.js-ready UI components crafted with React and Tailwind CSS, tailored for seamless integration into your modern web projects.",
+    "host_name": "21st.dev",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://21st.dev/community/components/s/mockup",
+    "name": "Mockup Components - 21st.dev",
+    "snippet": "Showcase your UI designs with 12 responsive mockup components for React and Next.js, styled beautifully with Tailwind CSS.",
+    "host_name": "21st.dev",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=-VOUK-xFAyk",
+    "name": "Create an animated, glowing, gradient border with CSS - YouTube",
+    "snippet": "Inspired by a codepen by Gayane Gasparyan - https://codepen.io/gayane-gasparyan/pen/jOmaBQK - I took my own attempt to create a rotating ...",
+    "host_name": "www.youtube.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://freefrontend.com/css-border-animations",
+    "name": "20+ CSS Border Animations: Free Examples & Code Snippets",
+    "snippet": "Gold Border Shimmer. demo & code. A creative CSS border shimmer animation built with linear gradients and keyframe transitions. This snippet ...",
+    "host_name": "freefrontend.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=we0mM9cnWBI",
+    "name": "Animated Gradient Border with CSS - YouTube",
+    "snippet": "Learn to create an animated gradient border on a button with CSS. Tutorial by Winterwind.com www.winterwind.com Source Code: ...",
+    "host_name": "www.youtube.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

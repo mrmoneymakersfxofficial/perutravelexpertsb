@@ -33,7 +33,7 @@ export default function ProjectsWeSupportClient() {
         ]}
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #C5A55A, #A8883D)' }}>
+          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #D4A843, #B89020)' }}>
             <Heart className="w-4 h-4 text-[#0F0F0F]" />
           </div>
           <span className="text-xs text-white/80 font-medium uppercase tracking-wider">
@@ -64,7 +64,7 @@ export default function ProjectsWeSupportClient() {
                       <div className="p-6 bg-[#141414]">
                         <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-4">{desc}</p>
                         <div className="flex items-center justify-end pt-4 border-t border-white/[0.06]">
-                          <span className="flex items-center gap-1 text-sm font-medium text-[#C5A55A] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
+                          <span className="flex items-center gap-1 text-sm font-medium text-[#D4A843] group-hover:gap-2 transition-all">{t.tours.viewDetails}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>
                     </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import TourPackagesClient from './TourPackagesClient';
 
-const BASE_URL = 'https://perutravelexpertsb.vercel.app';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export const metadata: Metadata = {
   title: 'Tour Packages | PeruTravelExpertsB - Explore Peru',

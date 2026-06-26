@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ToursCitiesDetailClient from './ToursCitiesDetailClient';
 import { communityTours, getCommunityTourBySlug } from '@/lib/tours-data';
 
-const BASE_URL = 'https://perutravelexpertsb.vercel.app';
+const BASE_URL = 'https://perutravelexpertsb.com';
 
 export function generateStaticParams() {
   return communityTours.map((tour) => ({

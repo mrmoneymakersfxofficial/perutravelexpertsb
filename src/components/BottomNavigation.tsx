@@ -41,7 +41,7 @@ export default function BottomNavigation() {
             backgroundColor: 'rgba(10,10,10,0.92)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            borderTop: '1px solid rgba(197,165,90,0.12)',
+            borderTop: '1px solid rgba(212,168,67,0.12)',
             paddingBottom: 'env(safe-area-inset-bottom)',
           }}
           aria-label="Bottom navigation"
@@ -49,8 +49,8 @@ export default function BottomNavigation() {
           <div className="flex items-center justify-around h-[60px] sm:h-[64px] px-2 max-w-lg mx-auto">
             {items.map((item) => {
               const isActive = item.active;
-              const iconColor = isActive ? '#C5A55A' : 'rgba(255,255,255,0.45)';
-              const labelColor = isActive ? '#C5A55A' : 'rgba(255,255,255,0.45)';
+              const iconColor = isActive ? '#D4A843' : 'rgba(255,255,255,0.45)';
+              const labelColor = isActive ? '#D4A843' : 'rgba(255,255,255,0.45)';
 
               // External links (WhatsApp)
               if (item.external) {
@@ -88,7 +88,7 @@ export default function BottomNavigation() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           className="absolute -top-1.5 -right-2.5 min-w-[16px] h-4 px-1 rounded-full text-[9px] font-bold flex items-center justify-center shadow-lg"
-                          style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}
+                          style={{ backgroundColor: '#D4A843', color: '#0F0F0F' }}
                         >
                           {item.badge > 9 ? '9+' : item.badge}
                         </motion.span>
@@ -114,7 +114,7 @@ export default function BottomNavigation() {
                       <motion.div
                         layoutId="bottomNavDot"
                         className="absolute -bottom-[10px] left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                        style={{ backgroundColor: '#C5A55A' }}
+                        style={{ backgroundColor: '#D4A843' }}
                         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                       />
                     )}
