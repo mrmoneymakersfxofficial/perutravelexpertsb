@@ -377,3 +377,31 @@ Stage Summary:
 - All 280+ gold references updated across 44 files
 - Premium shimmer/glow CSS effects added (21st.dev style)
 - Deployed to perutravelexpertsb.vercel.app
+
+---
+Task ID: fix-hero-header-button
+Agent: Main Agent
+Task: Fix hero image reversion, white button readability, restore premium immersive header system
+
+Work Log:
+- Diagnosed git reset --soft had reverted 3 critical files:
+  - HeroSection.tsx: native img WebP srcset → next/image with .jpg
+  - Header.tsx: premium hasDarkHero classifier → simple isLightPage
+  - layout.tsx: pt-16/md:pt-[68px]/lg:pt-[72px] → pt-[60px]/md:pt-[65px]/lg:pt-[70px]
+- Restored HeroSection native img with 5 WebP sizes (750w-3840w)
+- Fixed white button in FeaturedToursSection: text-white/70 → text-white, border-white/30
+- Restored full premium Header from commit 6c73dfc with new gold palette:
+  - hasDarkHero classifier: 6 exact routes + 5 prefix patterns
+  - 3-state header: transparent (dark hero, top) → glass (80px scroll) → solid (light pages)
+  - Body bg adaptation: #0F0F0F on dark-hero pages, #F8F6F2 on light
+  - Active page gold underline detection
+  - Desktop detection hook for Radix portal fix
+- Restored layout.tsx padding + SchemaOrg import
+- Restored SchemaOrg.tsx component
+- Build verified, Playwright screenshots confirmed all 3 fixes
+
+Stage Summary:
+- Hero image: WebP srcset restored (was showing .jpg via next/image)
+- White button: now fully white text with visible border (was 70% opacity)
+- Premium header: transparent over all tour/tour-packages/cities/customized/projects heroes
+- Commit pushed to GitHub → Vercel auto-deploy
