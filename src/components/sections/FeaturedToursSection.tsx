@@ -209,8 +209,7 @@ export default function FeaturedToursSection() {
           <Link href="/tour-packages">
             <Button
               variant="outline"
-              className="rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2 text-white/70 hover:text-white hover:border-white/30"
-              style={{ borderColor: 'rgba(255,255,255,0.15)' }}
+              className="rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2 text-white border-white/30 hover:bg-white/10 hover:text-white hover:border-white/50 transition-all"
             >
               {locale === 'es' ? 'Ver por Destino' : 'Browse by Destination'}
               <ArrowRight className="w-5 h-5" />

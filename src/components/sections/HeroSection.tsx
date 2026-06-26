@@ -5,7 +5,6 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 // Separate component to avoid hydration mismatch from Math.random()
@@ -140,23 +139,27 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden -mt-[60px] md:-mt-[65px] lg:-mt-[70px] pt-[60px] md:pt-[65px] lg:pt-[70px]"
+      className="relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-[68px] lg:-mt-[72px] pt-16 md:pt-[68px] lg:pt-[72px]"
       style={{ backgroundColor: '#0F0F0F', height: '100vh', height: '100dvh' }}
     >
       {/* Background Image with overlay */}
       <div className="absolute inset-0">
         <div className="hero-bg absolute inset-0">
-          <Image
-            src="/hero-bg.jpg"
-            alt="Cusco Panorama"
-            fill
+          {/* Responsive WebP hero image with multiple sizes for optimal LCP */}
+          <img
+            src="/hero-bg-1920.webp"
+            srcSet="
+              /hero-bg-750.webp 750w,
+              /hero-bg-1200.webp 1200w,
+              /hero-bg-1920.webp 1920w,
+              /hero-bg-2560.webp 2560w,
+              /hero-bg-3840.webp 3840w
+            "
             sizes="100vw"
-            className="object-cover"
-            priority
-            onError={(e) => {
-              // Hide the image if it fails to load - gradient fallback will show
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
+            alt="Peru Travel Experts - Machu Picchu Luxury Travel Experience"
+            className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
+            loading="eager"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F]/60 via-[#0F0F0F]/40 to-[#0F0F0F]" />
