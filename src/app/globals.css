@@ -431,6 +431,77 @@
     0 0 60px rgba(212,168,67, 0.05);
 }
 
+/* Premium white glassmorphism button — pro effect for dark backgrounds */
+.btn-white-premium {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.06),
+    0 0 40px rgba(212, 168, 67, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-white-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: gold-shimmer 3s ease-in-out infinite;
+}
+
+.btn-white-premium:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.1),
+    0 0 60px rgba(212, 168, 67, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Immersive section transitions */
+.section-transition-dark-light {
+  height: 120px;
+  background: linear-gradient(to bottom, #0F0F0F 0%, #1a1a18 30%, #3d3b35 60%, #F8F6F2 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.section-transition-light-dark {
+  height: 120px;
+  background: linear-gradient(to bottom, #F8F6F2 0%, #d4d1ca 20%, #4a4843 55%, #0F0F0F 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.section-transition-dark-gold {
+  height: 80px;
+  background: linear-gradient(to bottom, #0F0F0F 0%, #1a1810 50%, #2a2518 100%);
+}
+
+.section-transition-gold-dark {
+  height: 80px;
+  background: linear-gradient(to bottom, #2a2518 0%, #1a1810 50%, #0F0F0F 100%);
+}
+
 /* Premium selection color */
 ::selection {
   background: rgba(212,168,67, 0.3);

@@ -53,6 +53,7 @@ export default function CustomizedTourDetailClient({
         title={name}
         bgImage={pkg.image}
         height="70vh"
+        bottomColor="#F8F6F2"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: t.customized.title, href: '/customized-tours' },

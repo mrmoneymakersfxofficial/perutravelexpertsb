@@ -52,6 +52,7 @@ export default function ToursCitiesDetailClient({
         title={name}
         bgImage={tour.image}
         height="70vh"
+        bottomColor="#F8F6F2"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: t.communityTours.title, href: '/tours-cities' },

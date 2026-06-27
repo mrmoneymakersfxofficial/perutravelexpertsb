@@ -101,6 +101,7 @@ export default function TourDetailClient({
         title={name}
         bgImage={tour.image}
         height="70vh"
+        bottomColor="#F8F6F2"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
           { label: t.pageHeaders.tourPackages, href: '/tour-packages' },

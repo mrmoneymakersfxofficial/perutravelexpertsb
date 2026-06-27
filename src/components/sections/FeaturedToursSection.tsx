@@ -198,7 +198,7 @@ export default function FeaturedToursSection() {
           })}
         </div>
 
-        {/* View All CTA */}
+        {/* View All CTA — Centered */}
         <div className="text-center flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/tours">
             <Button className="btn-gold rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2">
@@ -208,10 +208,10 @@ export default function FeaturedToursSection() {
           </Link>
           <Link href="/tour-packages">
             <Button
-              variant="outline"
-              className="rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2 text-white border-white/30 hover:bg-white/10 hover:text-white hover:border-white/50 transition-all"
+              variant="ghost"
+              className="btn-white-premium rounded-full px-8 py-3 text-base tracking-wide flex items-center gap-2"
             >
-              {locale === 'es' ? 'Ver por Destino' : 'Browse by Destination'}
+              {locale === 'es' ? 'Paquetes de Tours' : 'Tour Packages'}
               <ArrowRight className="w-5 h-5" />
             </Button>
           </Link>

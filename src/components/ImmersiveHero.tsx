@@ -17,6 +17,7 @@ interface ImmersiveHeroProps {
   breadcrumbs: BreadcrumbItem[];
   height?: string; // e.g. '60vh', '75vh', '500px'
   overlay?: 'dark' | 'light'; // dark for tour detail, light for destination
+  bottomColor?: string; // color to blend into at bottom (default #0F0F0F)
   children?: React.ReactNode; // extra content below title (badges, price, etc.)
 }
 
@@ -27,6 +28,7 @@ export default function ImmersiveHero({
   breadcrumbs,
   height = '70vh',
   overlay = 'dark',
+  bottomColor = '#0F0F0F',
   children,
 }: ImmersiveHeroProps) {
   const [imgError, setImgError] = React.useState(false);
@@ -56,7 +58,9 @@ export default function ImmersiveHero({
 
       {/* Cinematic Gradient Layers */}
       {/* Bottom gradient to blend into page background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/40 to-transparent z-[1]" />
+      <div className="absolute inset-0 z-[1]" style={{
+        background: `linear-gradient(to top, ${bottomColor} 0%, ${bottomColor}40 40%, transparent 100%)`,
+      }} />
       {/* Side vignettes for cinematic feel */}
       <div className="absolute inset-0 z-[1]" style={{
         background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.3) 100%)',
