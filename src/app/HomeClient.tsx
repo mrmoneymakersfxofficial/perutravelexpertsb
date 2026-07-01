@@ -21,11 +21,18 @@ export default function HomeClient() {
   return (
     <>
       <HeroSection />
+      {/* Dark → Light immersive transition */}
+      <div className="section-transition-dark-light" />
       <WhyChooseUsSection />
-      <div className="section-divider" />
+      {/* Light → Dark immersive transition (replaces 1px divider) */}
+      <div className="section-transition-light-dark" />
       <FeaturedToursSection />
       <TestimonialsSection />
+      {/* Dark → Gold immersive transition */}
+      <div className="section-transition-dark-gold" />
       <StatsSection />
+      {/* Gold → Dark immersive transition */}
+      <div className="section-transition-gold-dark" />
       <RecentlyViewedCarousel onTourClick={openDetail} />
       <CTASection />
     </>

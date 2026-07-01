@@ -113,7 +113,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
         </div>
 
         {/* Decorative gold shimmer line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #C5A55A, transparent)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, #D4A843, transparent)' }} />
 
         {/* Content */}
         <div className="relative z-10 flex items-center justify-center px-4 sm:px-6 py-24 sm:py-32 md:py-40">
@@ -129,10 +129,10 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
-              style={{ background: 'rgba(197,165,90,0.15)', border: '1px solid rgba(197,165,90,0.25)' }}
+              style={{ background: 'rgba(212,168,67,0.15)', border: '1px solid rgba(212,168,67,0.25)' }}
             >
-              <MapPin className="w-3.5 h-3.5" style={{ color: '#C5A55A' }} />
-              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#C5A55A' }}>
+              <MapPin className="w-3.5 h-3.5" style={{ color: '#D4A843' }} />
+              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#D4A843' }}>
                 {destinations.length} {isEs ? 'destinos' : 'destinations'} &middot; {tours.filter((t) => t.active).length} {labels.toursCount}
               </span>
             </motion.div>
@@ -148,7 +148,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
               initial="hidden"
               animate="visible"
               className="w-24 h-0.5 mx-auto mb-6"
-              style={{ backgroundColor: '#C5A55A' }}
+              style={{ backgroundColor: '#D4A843' }}
             />
 
             {/* Subtitle */}
@@ -180,13 +180,13 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                 className="mb-8 sm:mb-10 md:mb-12"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: '#C5A55A' }} />
+                  <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: '#D4A843' }} />
                   <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                     {isEs ? group.nameEs : group.nameEn}
                   </h2>
                   <span
                     className="text-xs font-semibold tracking-wider uppercase px-3 py-1 rounded-full"
-                    style={{ color: '#C5A55A', background: 'rgba(197,165,90,0.12)', border: '1px solid rgba(197,165,90,0.2)' }}
+                    style={{ color: '#D4A843', background: 'rgba(212,168,67,0.12)', border: '1px solid rgba(212,168,67,0.2)' }}
                   >
                     {group.tours.length} {labels.toursCount}
                   </span>
@@ -198,7 +198,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                 </p>
 
                 {/* Gold underline */}
-                <div className="ml-8 w-16 h-0.5" style={{ backgroundColor: '#C5A55A' }} />
+                <div className="ml-8 w-16 h-0.5" style={{ backgroundColor: '#D4A843' }} />
               </motion.div>
 
               {/* ── Tours grid ──────────────────────────────────────── */}
@@ -243,8 +243,8 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                             <div
                               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
                               style={{
-                                backgroundColor: 'rgba(197,165,90,0.9)',
-                                boxShadow: '0 2px 12px rgba(197,165,90,0.3)',
+                                backgroundColor: 'rgba(212,168,67,0.9)',
+                                boxShadow: '0 2px 12px rgba(212,168,67,0.3)',
                               }}
                             >
                               <Clock className="w-3.5 h-3.5" style={{ color: '#0F0F0F' }} />
@@ -264,13 +264,13 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                           {/* ── Bottom content ──────────────────────── */}
                           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 sm:p-5 pt-12 sm:pt-16">
                             {/* Tour name */}
-                            <h3 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-2 group-hover:text-[#C5A55A] transition-colors duration-300">
+                            <h3 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight mb-2 group-hover:text-[#D4A843] transition-colors duration-300">
                               {name}
                             </h3>
 
                             {/* Divider */}
                             <div
-                              className="w-full h-px mb-3 group-hover:bg-[#C5A55A]/30 transition-colors duration-300"
+                              className="w-full h-px mb-3 group-hover:bg-[#D4A843]/30 transition-colors duration-300"
                               style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
                             />
 
@@ -280,7 +280,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                                 <span className="block text-[9px] uppercase tracking-[0.2em]" style={{ color: 'rgba(255,255,255,0.4)' }}>
                                   {labels.from}
                                 </span>
-                                <span className="text-xl sm:text-2xl font-black font-playfair" style={{ color: '#C5A55A' }}>
+                                <span className="text-xl sm:text-2xl font-black font-playfair" style={{ color: '#D4A843' }}>
                                   {price}
                                 </span>
                                 <span className="text-[10px] ml-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
@@ -290,7 +290,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
 
                               <span
                                 className="flex items-center gap-1.5 text-xs font-semibold tracking-wide group-hover:gap-2.5 transition-all duration-300"
-                                style={{ color: '#C5A55A' }}
+                                style={{ color: '#D4A843' }}
                               >
                                 {labels.viewDetails}
                                 <svg
@@ -309,7 +309,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                           {/* Hover glow overlay */}
                           <div
                             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                            style={{ boxShadow: 'inset 0 0 60px rgba(197,165,90,0.06)' }}
+                            style={{ boxShadow: 'inset 0 0 60px rgba(212,168,67,0.06)' }}
                           />
                         </div>
                       </Link>
@@ -352,9 +352,9 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
                 href="/our-tours"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105"
                 style={{
-                  backgroundColor: '#C5A55A',
+                  backgroundColor: '#D4A843',
                   color: '#0F0F0F',
-                  boxShadow: '0 4px 24px rgba(197,165,90,0.25)',
+                  boxShadow: '0 4px 24px rgba(212,168,67,0.25)',
                 }}
               >
                 {isEs ? 'Tours Personalizados' : 'Customized Tours'}

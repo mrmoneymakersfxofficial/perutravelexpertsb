@@ -31,8 +31,8 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideS
 
   const EmptyState = (
     <div className="flex flex-col items-center justify-center py-16 sm:py-20 px-6">
-      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(197,165,90,0.08)' }}>
-        <Heart className="w-7 h-7" style={{ color: 'rgba(197,165,90,0.4)' }} />
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: 'rgba(212,168,67,0.08)' }}>
+        <Heart className="w-7 h-7" style={{ color: 'rgba(212,168,67,0.4)' }} />
       </div>
       <p className="font-playfair text-base font-semibold mb-1.5" style={{ color: '#1C1C1C' }}>
         {locale === 'es' ? 'Sin favoritos aún' : 'No favorites yet'}
@@ -78,7 +78,7 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideS
               <Clock className="w-3 h-3" />{tour.duration} {t.tours.days}
             </span>
           </div>
-          <p className="font-bold text-[13px] sm:text-sm mt-1" style={{ color: '#C5A55A' }}>
+          <p className="font-bold text-[13px] sm:text-sm mt-1" style={{ color: '#D4A843' }}>
             ${Math.round(tour.priceUSD)}
             <span className="font-normal text-[10px] ml-0.5" style={{ color: '#8B8680' }}>/ {t.tours.perPerson}</span>
           </p>
@@ -89,7 +89,7 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideS
           <Button
             size="sm"
             className="h-7 sm:h-8 px-3 sm:px-4 rounded-full text-[10px] sm:text-[11px] font-bold shadow-sm"
-            style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}
+            style={{ backgroundColor: '#D4A843', color: '#0F0F0F' }}
             onClick={(e) => { e.stopPropagation(); handleTourClick(tour); }}
           >
             {t.tours.bookNow}
@@ -120,8 +120,8 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideS
   const Header = (
     <div className="flex items-center justify-between px-5 pt-5 pb-4">
       <div className="flex items-center gap-2.5">
-        <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(197,165,90,0.12)' }}>
-          <Heart className="w-4 h-4" style={{ color: '#C5A55A' }} />
+        <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(212,168,67,0.12)' }}>
+          <Heart className="w-4 h-4" style={{ color: '#D4A843' }} />
         </div>
         <div>
           <h2 className="font-playfair text-lg font-bold leading-tight" style={{ color: '#1C1C1C' }}>{t.tours.favorites}</h2>
@@ -135,7 +135,7 @@ export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideS
         </div>
       </div>
       {favoritesCount > 0 && (
-        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: '#C5A55A', color: '#0F0F0F' }}>
+        <span className="text-[11px] font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: '#D4A843', color: '#0F0F0F' }}>
           {favoritesCount}
         </span>
       )}

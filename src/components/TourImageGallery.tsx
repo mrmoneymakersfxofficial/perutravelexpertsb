@@ -55,7 +55,7 @@ export default function TourImageGallery({ images = [], title = '' }: TourImageG
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <h3 className="text-lg sm:text-xl font-bold text-[#C5A55A] tracking-wide uppercase mb-5 sm:mb-6 flex items-center gap-2">
+      <h3 className="text-lg sm:text-xl font-bold text-[#D4A843] tracking-wide uppercase mb-5 sm:mb-6 flex items-center gap-2">
         <svg
           className="w-5 h-5"
           fill="none"
@@ -74,7 +74,7 @@ export default function TourImageGallery({ images = [], title = '' }: TourImageG
           <div
             key={idx}
             onClick={() => openLightbox(idx)}
-            className={`group relative bg-black rounded-xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-300 hover:border-[#C5A55A]/20 hover:shadow-lg ${
+            className={`group relative bg-black rounded-xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-300 hover:border-[#D4A843]/20 hover:shadow-lg ${
               idx === 0 ? 'sm:col-span-2 sm:row-span-2 h-40 sm:h-auto' : 'h-36 sm:h-40'
             }`}
           >
@@ -115,7 +115,7 @@ export default function TourImageGallery({ images = [], title = '' }: TourImageG
               {/* Prev arrow */}
               <button
                 onClick={handlePrev}
-                className="absolute left-2 sm:left-4 z-10 p-2.5 sm:p-3 rounded-full bg-white/5 hover:bg-[#C5A55A] text-white hover:text-[#0F0F0F] border border-white/10 hover:border-transparent transition-all"
+                className="absolute left-2 sm:left-4 z-10 p-2.5 sm:p-3 rounded-full bg-white/5 hover:bg-[#D4A843] text-white hover:text-[#0F0F0F] border border-white/10 hover:border-transparent transition-all"
                 aria-label="Previous"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -147,7 +147,7 @@ export default function TourImageGallery({ images = [], title = '' }: TourImageG
               {/* Next arrow */}
               <button
                 onClick={handleNext}
-                className="absolute right-2 sm:right-4 z-10 p-2.5 sm:p-3 rounded-full bg-white/5 hover:bg-[#C5A55A] text-white hover:text-[#0F0F0F] border border-white/10 hover:border-transparent transition-all"
+                className="absolute right-2 sm:right-4 z-10 p-2.5 sm:p-3 rounded-full bg-white/5 hover:bg-[#D4A843] text-white hover:text-[#0F0F0F] border border-white/10 hover:border-transparent transition-all"
                 aria-label="Next"
               >
                 <ChevronRight className="w-5 h-5" />

@@ -14,11 +14,11 @@ export default function CTASection() {
     <section id="cta" className="py-20 md:py-28 relative overflow-hidden" style={{ backgroundColor: '#0F0F0F' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C5A55A]/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4A843]/10 rounded-full blur-3xl" />
         {/* Pattern */}
         <div className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #C5A55A 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, #D4A843 1px, transparent 0)`,
             backgroundSize: '40px 40px',
           }}
         />
@@ -33,7 +33,7 @@ export default function CTASection() {
         >
           {/* Sparkle icon */}
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full glass-card mb-8">
-            <Sparkles className="w-8 h-8 text-[#C5A55A]" />
+            <Sparkles className="w-8 h-8 text-[#D4A843]" />
           </div>
 
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">

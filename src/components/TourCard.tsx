@@ -93,7 +93,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
               </span>
 
               {/* Tour name */}
-              <h3 className="font-playfair text-lg sm:text-xl font-bold text-white leading-tight mb-2 group-hover:text-[#C5A55A] transition-colors duration-300">
+              <h3 className="font-playfair text-lg sm:text-xl font-bold text-white leading-tight mb-2 group-hover:text-[#D4A843] transition-colors duration-300">
                 {name}
               </h3>
 
@@ -105,7 +105,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
                   </span>
                 ))}
                 {includes.length > 3 && (
-                  <span className="text-[10px] px-2 py-0.5 rounded-md font-medium" style={{ background: 'rgba(197,165,90,0.15)', color: '#C5A55A' }}>
+                  <span className="text-[10px] px-2 py-0.5 rounded-md font-medium" style={{ background: 'rgba(212,168,67,0.15)', color: '#D4A843' }}>
                     +{includes.length - 3}
                   </span>
                 )}
@@ -119,7 +119,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
                 <div>
                   <span className="block text-[9px] uppercase tracking-[0.2em] text-white/40">{t.tours.price}</span>
                   <div className="flex items-baseline gap-0.5">
-                    <span className="text-xl sm:text-2xl font-black font-playfair" style={{ color: '#C5A55A' }}>
+                    <span className="text-xl sm:text-2xl font-black font-playfair" style={{ color: '#D4A843' }}>
                       ${Math.round(tour.priceUSD)}
                     </span>
                     <span className="text-[10px] text-white/40">{t.tours.perPerson}</span>

@@ -8,6 +8,7 @@ import { ModalProvider } from "@/components/ModalContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BottomNavigation from "@/components/BottomNavigation";
+import SchemaOrg from "@/components/SchemaOrg";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingPanel from "@/components/FloatingPanel";
 import BottomTabModals from "@/components/BottomTabModals";
@@ -64,13 +65,14 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: '#F8F6F2' }}
       >
+        <SchemaOrg />
         <LanguageProvider>
           <FavoritesProvider>
             <RecentlyViewedProvider>
               <ModalProvider>
                 <div className="min-h-screen flex flex-col">
                   <Header />
-                  <main className="flex-1 pt-[60px] md:pt-[65px] lg:pt-[70px] pb-[66px] sm:pb-[72px] lg:pb-0">
+                  <main className="flex-1 pt-16 md:pt-[68px] lg:pt-[72px] pb-[66px] sm:pb-[72px] lg:pb-0">
                     {children}
                   </main>
                   <Footer />

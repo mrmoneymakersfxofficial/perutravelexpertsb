@@ -74,7 +74,7 @@ export default function ContactSection() {
                     href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#8B8680] hover:text-[#C5A55A] transition-colors"
+                    className="text-[#8B8680] hover:text-[#D4A843] transition-colors"
                   >
                     +51 984 215 157
                   </a>
@@ -91,7 +91,7 @@ export default function ContactSection() {
                   </h4>
                   <a
                     href="mailto:info@perutravelexpertsb.com"
-                    className="text-[#8B8680] hover:text-[#C5A55A] transition-colors"
+                    className="text-[#8B8680] hover:text-[#D4A843] transition-colors"
                   >
                     info@perutravelexpertsb.com
                   </a>
@@ -144,7 +144,7 @@ export default function ContactSection() {
           >
             <form
               onSubmit={handleWhatsAppSubmit}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#DCC99A]/20 space-y-5"
+              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#E8CC6A]/20 space-y-5"
             >
               <div>
                 <Label htmlFor="contact-name" className="text-sm font-medium" style={{ color: '#1C1C1C' }}>
@@ -154,7 +154,7 @@ export default function ContactSection() {
                   id="contact-name"
                   name="contact-name"
                   required
-                  className="mt-1.5 border-[#DCC99A]/40 focus:border-[#C5A55A]"
+                  className="mt-1.5 border-[#E8CC6A]/40 focus:border-[#D4A843]"
                   placeholder={t.booking.name}
                 />
               </div>
@@ -167,7 +167,7 @@ export default function ContactSection() {
                   name="contact-email"
                   type="email"
                   required
-                  className="mt-1.5 border-[#DCC99A]/40 focus:border-[#C5A55A]"
+                  className="mt-1.5 border-[#E8CC6A]/40 focus:border-[#D4A843]"
                   placeholder={t.booking.email}
                 />
               </div>
@@ -180,7 +180,7 @@ export default function ContactSection() {
                   name="contact-message"
                   required
                   rows={4}
-                  className="mt-1.5 border-[#DCC99A]/40 focus:border-[#C5A55A] resize-none"
+                  className="mt-1.5 border-[#E8CC6A]/40 focus:border-[#D4A843] resize-none"
                   placeholder={
                     locale === 'es'
                       ? '¿En qué podemos ayudarte?'
