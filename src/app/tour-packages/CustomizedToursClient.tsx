@@ -21,15 +21,15 @@ export default function CustomizedToursClient() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0F0F0F' }}>
       {/* Full-Bleed Immersive Hero */}
       <ImmersiveHero
-        title={t.customized.title}
+        title={locale === 'es' ? 'Paquetes de Tours' : 'Tour Packages'}
         subtitle={locale === 'es'
-          ? 'Nuestros paquetes multi-destino están diseñados para que no tengas que elegir. Combina lo mejor de Cusco, Puno, Arequipa, Lima y la Amazonía en una sola experiencia inolvidable.'
-          : 'Our multi-destination packages are designed so you don\'t have to choose. Combine the best of Cusco, Puno, Arequipa, Lima and the Amazon in one unforgettable experience.'}
+          ? 'Descubre Machu Picchu en un Día Inolvidable'
+          : 'Discover Machu Picchu in One Unforgettable Day'}
         bgImage="/tours/cusco-lima-package.jpg"
         height="65vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
-          { label: t.customized.title },
+          { label: locale === 'es' ? 'Paquetes de Tours' : 'Tour Packages' },
         ]}
       />
 
@@ -44,7 +44,7 @@ export default function CustomizedToursClient() {
 
               return (
                 <motion.div key={pkg.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: index * 0.1 }} whileHover={{ y: -6, transition: { duration: 0.3 } }}>
-                  <Link href={`/customized-tours/${pkg.slug}`} className="group block">
+                  <Link href={`/tour-packages/${pkg.slug}`} className="group block">
                     <div className="rounded-2xl overflow-hidden transition-all duration-300 border border-white/[0.06]">
                       <div className="relative h-56 overflow-hidden">
                         <Image src={pkg.image} alt={name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />

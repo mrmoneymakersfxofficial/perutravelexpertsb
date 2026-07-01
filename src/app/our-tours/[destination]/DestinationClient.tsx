@@ -34,7 +34,7 @@ export default function DestinationClient({
           <h1 className="font-playfair text-3xl font-bold text-white mb-4">
             {locale === 'es' ? 'Destino no encontrado' : 'Destination not found'}
           </h1>
-          <Link href="/tour-packages">
+          <Link href="/our-tours">
             <Button className="btn-gold rounded-full px-6 mt-4">{t.tourDetail.viewAllTours}</Button>
           </Link>
         </div>
@@ -55,7 +55,7 @@ export default function DestinationClient({
         height="65vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
-          { label: t.pageHeaders.tourPackages, href: '/tour-packages' },
+          { label: t.pageHeaders.tourPackages, href: '/our-tours' },
           { label: destName },
         ]}
       >

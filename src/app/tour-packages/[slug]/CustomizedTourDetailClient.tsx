@@ -33,7 +33,7 @@ export default function CustomizedTourDetailClient({
           <h1 className="font-playfair text-3xl font-bold" style={{ color: '#1C1C1C' }}>
             {locale === 'es' ? 'Paquete no encontrado' : 'Package not found'}
           </h1>
-          <Link href="/customized-tours">
+          <Link href="/tour-packages">
             <Button className="btn-gold rounded-full px-6 mt-4">{t.customized.title}</Button>
           </Link>
         </div>
@@ -55,7 +55,7 @@ export default function CustomizedTourDetailClient({
         height="70vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
-          { label: t.customized.title, href: '/customized-tours' },
+          { label: t.customized.title, href: '/tour-packages' },
           { label: name },
         ]}
       >

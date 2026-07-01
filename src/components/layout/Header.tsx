@@ -15,19 +15,19 @@ import TourDetailModal from '@/components/TourDetailModal';
 import BookingModal from '@/components/BookingModal';
 
 const navLinks = [
-  { label: 'Tours', href: '/tour-packages' },
+  { label: 'Tours', href: '/our-tours' },
   { label: 'About Us', href: '/about-us' },
   { label: 'Testimonials', href: '/testimonials' },
   { label: 'Contact', href: '/contact' },
 ];
 
 const dropdownDestinations = [
-  { label: 'Tour Packages', href: '/tour-packages' },
-  { label: 'Cusco', href: '/tour-packages/cusco' },
-  { label: 'Puno', href: '/tour-packages/puno' },
-  { label: 'Amazon', href: '/tour-packages/amazon' },
-  { label: 'Arequipa', href: '/tour-packages/arequipa' },
-  { label: 'Lima & Ica', href: '/tour-packages/lima-ica' },
+  { label: 'Tour Packages', href: '/our-tours' },
+  { label: 'Cusco', href: '/our-tours/cusco' },
+  { label: 'Puno', href: '/our-tours/puno' },
+  { label: 'Amazon', href: '/our-tours/amazon' },
+  { label: 'Arequipa', href: '/our-tours/arequipa' },
+  { label: 'Lima & Ica', href: '/our-tours/lima-ica' },
 ];
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
 
   // Pages with dark immersive heroes → keep white text
   // All other subpages have lighter backgrounds → use dark text
-  const isLightPage = pathname !== '/' && !pathname?.includes('/tours/');
+  const isLightPage = pathname !== '/' && !pathname?.includes('/tours/') && !pathname?.includes('/our-tours/') && !pathname?.includes('/tour-packages/') && !pathname?.includes('/tours-cities/') && !pathname?.includes('/customized-tours/') && !pathname?.includes('/projects-we-support/');
 
   // Scroll listener — transparent at top, glass on scroll
   useEffect(() => {

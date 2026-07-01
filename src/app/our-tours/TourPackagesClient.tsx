@@ -56,7 +56,7 @@ export default function TourPackagesClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {destinationData.map((dest, index) => (
               <motion.div key={dest.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.5, delay: index * 0.1 }} whileHover={{ y: -6, transition: { duration: 0.3 } }}>
-                <Link href={`/tour-packages/${dest.slug}`} className="group block">
+                <Link href={`/our-tours/${dest.slug}`} className="group block">
                   <div className="rounded-2xl overflow-hidden transition-all duration-300 border border-white/[0.06]">
                     <div className="relative h-48 overflow-hidden">
                       <Image src={dest.image} alt={locale === 'es' ? dest.nameEs : dest.nameEn} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -88,7 +88,7 @@ export default function TourPackagesClient() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-playfair text-2xl md:text-3xl font-bold text-white mb-4">{locale === 'es' ? '¿No encuentras lo que buscas?' : 'Can\'t find what you\'re looking for?'}</h3>
           <p className="text-white/60 mb-6">{locale === 'es' ? 'Creamos paquetes personalizados según tus intereses y presupuesto.' : 'We create custom packages based on your interests and budget.'}</p>
-          <Link href="/customized-tours"><Button className="btn-gold rounded-full px-8 py-3 text-base">{t.customized.title}</Button></Link>
+          <Link href="/tour-packages"><Button className="btn-gold rounded-full px-8 py-3 text-base">{t.customized.title}</Button></Link>
         </div>
       </section>
     </div>

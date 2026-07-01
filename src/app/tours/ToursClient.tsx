@@ -349,7 +349,7 @@ export default function ToursClient({ tours, destinations }: ToursClientProps) {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/customized-tours"
+                href="/our-tours"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105"
                 style={{
                   backgroundColor: '#C5A55A',

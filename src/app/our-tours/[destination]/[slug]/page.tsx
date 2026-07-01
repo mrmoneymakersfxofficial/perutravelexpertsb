@@ -30,7 +30,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${tour.nameEn} | PeruTravelExpertsB`,
       description: tour.descriptionEn.slice(0, 160),
-      url: `${BASE_URL}/tour-packages/${destination}/${slug}`,
+      url: `${BASE_URL}/our-tours/${destination}/${slug}`,
       siteName: 'PeruTravelExpertsB',
       type: 'article',
       images: [{ url: tour.image, width: 1200, height: 630 }],

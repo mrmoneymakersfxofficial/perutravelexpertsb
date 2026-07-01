@@ -85,7 +85,7 @@ export default function ProjectDetailClient({
                   : 'Every tour you book with PeruTravelExpertsB contributes a percentage directly to these projects. You can also make voluntary donations during your visit.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/tour-packages">
+                <Link href="/our-tours">
                   <Button className="btn-gold rounded-full px-6">{locale === 'es' ? 'Reservar un Tour' : 'Book a Tour'}</Button>
                 </Link>
                 <a href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-white font-semibold transition-colors text-sm shadow-lg" style={{ backgroundColor: '#25D366' }}>

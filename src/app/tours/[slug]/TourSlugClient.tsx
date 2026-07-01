@@ -182,7 +182,7 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
                   <h3 className="font-playfair text-lg font-bold mb-3 text-white">{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
                   <nav className="space-y-2">
                     <Link href="/tours" className="flex items-center gap-2 text-sm text-white/50 hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{locale === 'es' ? 'Volver a Tours' : 'Back to Tours'}</Link>
-                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-white/50 hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.ourDestinations}</Link>
+                    <Link href="/our-tours" className="flex items-center gap-2 text-sm text-white/50 hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.ourDestinations}</Link>
                   </nav>
                 </div>
               </div>
@@ -216,7 +216,7 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
             </div>
             <nav className="space-y-1.5 sm:space-y-2">
               <Link href="/tours" className="flex items-center gap-2 text-xs sm:text-sm text-white/50 hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{locale === 'es' ? 'Volver a Tours' : 'Back to Tours'}</Link>
-              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-white/50 hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.ourDestinations}</Link>
+              <Link href="/our-tours" className="flex items-center gap-2 text-xs sm:text-sm text-white/50 hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.ourDestinations}</Link>
             </nav>
           </div>
         </div>

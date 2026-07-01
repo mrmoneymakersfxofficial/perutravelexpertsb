@@ -43,7 +43,7 @@ export default function CTASection() {
             {t.cta.subtitle}
           </p>
 
-          <Link href="/tour-packages">
+          <Link href="/our-tours">
             <Button
               className="btn-gold rounded-full px-10 py-4 text-lg tracking-wide flex items-center gap-2"
             >

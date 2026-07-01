@@ -62,7 +62,7 @@ export default function NotFound() {
                 {t.notFound.backHome}
               </Button>
             </Link>
-            <Link href="/tour-packages">
+            <Link href="/our-tours">
               <Button className="btn-gold-outline rounded-full px-8 py-3 text-base">
                 {t.pageHeaders.tourPackages}
               </Button>

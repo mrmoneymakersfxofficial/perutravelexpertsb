@@ -12,7 +12,7 @@ export function ShareTour({ tourName, tourSlug }: ShareTourProps) {
   const [open, setOpen] = React.useState(false);
   const { showLinkCopied, showShared } = useToastNotification();
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const shareUrl = `${baseUrl}/tour-packages/${tourSlug}`;
+  const shareUrl = `${baseUrl}/our-tours/${tourSlug}`;
   const encodedText = encodeURIComponent(`Check out this tour: ${tourName} - PeruTravelExpertsB`);
   const encodedUrl = encodeURIComponent(shareUrl);
 

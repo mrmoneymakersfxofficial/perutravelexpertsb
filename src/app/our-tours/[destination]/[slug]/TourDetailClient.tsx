@@ -49,7 +49,7 @@ export default function TourDetailClient({
           <h1 className="font-playfair text-3xl font-bold" style={{ color: '#1C1C1C' }}>
             {locale === 'es' ? 'Tour no encontrado' : 'Tour not found'}
           </h1>
-          <Link href="/tour-packages">
+          <Link href="/our-tours">
             <Button className="btn-gold rounded-full px-6 mt-4">{t.tourDetail.viewAllTours}</Button>
           </Link>
         </div>
@@ -103,8 +103,8 @@ export default function TourDetailClient({
         height="70vh"
         breadcrumbs={[
           { label: locale === 'es' ? 'Inicio' : 'Home', href: '/' },
-          { label: t.pageHeaders.tourPackages, href: '/tour-packages' },
-          { label: destName, href: `/tour-packages/${destination}` },
+          { label: t.pageHeaders.tourPackages, href: '/our-tours' },
+          { label: destName, href: `/our-tours/${destination}` },
           { label: name },
         ]}
       >
@@ -212,9 +212,9 @@ export default function TourDetailClient({
                 <div className="bg-white/[0.02] rounded-2xl p-6 border border-[#DCC99A]/[0.04]">
                   <h3 className="font-playfair text-lg font-bold mb-3" style={{ color: '#1C1C1C' }}>{locale === 'es' ? 'Navegación' : 'Navigation'}</h3>
                   <nav className="space-y-2">
-                    <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
-                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
-                    <Link href="/customized-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
+                    <Link href={`/our-tours/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
+                    <Link href="/our-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
+                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
                   </nav>
                 </div>
               </div>
@@ -241,9 +241,9 @@ export default function TourDetailClient({
               </div>
             </div>
             <nav className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
-              <Link href={`/tour-packages/${destination}`} className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.toursIn} {destName}</Link>
-              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.viewAllTours}</Link>
-              <Link href="/customized-tours" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.customized.title}</Link>
+              <Link href={`/our-tours/${destination}`} className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.toursIn} {destName}</Link>
+              <Link href="/our-tours" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.viewAllTours}</Link>
+              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.customized.title}</Link>
             </nav>
           </div>
         </div>

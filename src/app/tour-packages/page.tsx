@@ -1,21 +1,21 @@
 import type { Metadata } from 'next';
-import TourPackagesClient from './TourPackagesClient';
+import CustomizedToursClient from './CustomizedToursClient';
 
 const BASE_URL = 'https://perutravelexpertsb.com';
 
 export const metadata: Metadata = {
-  title: 'Tour Packages | PeruTravelExpertsB - Explore Peru',
+  title: 'Tour Packages | PeruTravelExpertsB - Multi-Destination Packages',
   description:
-    'Explore our curated tour packages across Peru: Cusco, Machu Picchu, Sacred Valley, Rainbow Mountain, Lake Titicaca, Amazon, Arequipa and more.',
+    'Discover Machu Picchu in one unforgettable day. Browse our curated multi-destination tour packages across Peru.',
   openGraph: {
     title: 'Tour Packages | PeruTravelExpertsB',
-    description: 'Discover our curated tour packages across Peru\'s most incredible destinations.',
+    description: 'Discover Machu Picchu in one unforgettable day. Multi-destination packages across Peru.',
     url: `${BASE_URL}/tour-packages`,
     siteName: 'PeruTravelExpertsB',
     type: 'website',
   },
 };
 
-export default function TourPackagesPage() {
-  return <TourPackagesClient />;
+export default function CustomizedToursPage() {
+  return <CustomizedToursClient />;
 }

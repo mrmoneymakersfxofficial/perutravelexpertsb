@@ -24,13 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/tour-packages`,
+      url: `${BASE_URL}/our-tours`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/customized-tours`,
+      url: `${BASE_URL}/tour-packages`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Destination pages
   const destinationPages: MetadataRoute.Sitemap = destinations.map((dest) => ({
-    url: `${BASE_URL}/tour-packages/${dest.slug}`,
+    url: `${BASE_URL}/our-tours/${dest.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.85,
@@ -73,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const tourPages: MetadataRoute.Sitemap = tours
     .filter((t) => t.active)
     .map((tour) => ({
-      url: `${BASE_URL}/tour-packages/${tour.destination}/${tour.slug}`,
+      url: `${BASE_URL}/our-tours/${tour.destination}/${tour.slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
@@ -81,7 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Customized tour pages
   const customizedPages: MetadataRoute.Sitemap = customizedTours.map((pkg) => ({
-    url: `${BASE_URL}/customized-tours/${pkg.slug}`,
+    url: `${BASE_URL}/tour-packages/${pkg.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,

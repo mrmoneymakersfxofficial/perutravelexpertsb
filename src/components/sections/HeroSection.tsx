@@ -218,7 +218,7 @@ export default function HeroSection() {
               {t.hero.cta}
             </Button>
           </Link>
-          <Link href="/customized-tours">
+          <Link href="/our-tours">
             <Button
               variant="outline"
               className="btn-gold-outline rounded-full px-8 py-3 text-base tracking-wide"
