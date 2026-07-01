@@ -23,7 +23,7 @@ export default function BottomNavigation() {
     { key: 'home' as const, icon: Home, label: locale === 'es' ? 'Inicio' : 'Home', href: '/', action: () => { if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' }); }, active: isHome },
     { key: 'search' as const, icon: Search, label: locale === 'es' ? 'Buscar' : 'Search', action: openSearch, active: false },
     { key: 'favorites' as const, icon: Heart, label: locale === 'es' ? 'Favoritos' : 'Favorites', action: openFavorites, active: false, badge: favoritesCount },
-    { key: 'tours' as const, icon: Compass, label: locale === 'es' ? 'Tours' : 'Tours', href: '/our-tours', active: pathname.startsWith('/our-tours') || pathname.startsWith('/tour-packages') || pathname.startsWith('/tours') },
+    { key: 'tours' as const, icon: Compass, label: locale === 'es' ? 'Tours' : 'Tours', href: '/tour-packages', active: pathname.startsWith('/tour-packages') || pathname.startsWith('/our-tours') || pathname.startsWith('/tours') },
     { key: 'whatsapp' as const, icon: MessageCircle, label: 'WhatsApp', href: WHATSAPP_URL, external: true, active: false },
   ];
 

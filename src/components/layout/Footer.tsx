@@ -11,7 +11,7 @@ export default function Footer() {
   const { t, locale } = useLanguage();
 
   const quickLinks = [
-    { label: t.nav.tours, href: '/our-tours' },
+    { label: t.nav.tours, href: '/tour-packages' },
     { label: t.nav.customizedTours, href: '/tour-packages' },
     { label: t.nav.communityTours, href: '/tours-cities' },
     { label: t.nav.about, href: '/about-us' },

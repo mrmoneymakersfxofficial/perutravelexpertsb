@@ -15,14 +15,14 @@ import TourDetailModal from '@/components/TourDetailModal';
 import BookingModal from '@/components/BookingModal';
 
 const navLinks = [
-  { label: 'Tours', href: '/our-tours' },
+  { label: 'Tours', href: '/tour-packages' },
   { label: 'About Us', href: '/about-us' },
   { label: 'Testimonials', href: '/testimonials' },
   { label: 'Contact', href: '/contact' },
 ];
 
 const dropdownDestinations = [
-  { label: 'Tour Packages', href: '/our-tours' },
+  { label: 'Tour Packages', href: '/tour-packages' },
   { label: 'Cusco', href: '/our-tours/cusco' },
   { label: 'Puno', href: '/our-tours/puno' },
   { label: 'Amazon', href: '/our-tours/amazon' },
