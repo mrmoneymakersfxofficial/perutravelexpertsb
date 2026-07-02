@@ -45,9 +45,11 @@ export default function Header() {
     bookingOpen, setBookingOpen,
   } = useModal();
 
-  // Pages with dark immersive heroes → keep white text
+  // Pages with dark immersive heroes → gold text on subpages for readability
   // All other subpages have lighter backgrounds → use dark text
-  const isLightPage = pathname !== '/' && !pathname?.includes('/tours/') && !pathname?.includes('/our-tours/') && !pathname?.includes('/tour-packages/') && !pathname?.includes('/tours-cities/') && !pathname?.includes('/customized-tours/') && !pathname?.includes('/projects-we-support/');
+  const isHomePage = pathname === '/';
+  const isDarkHeroSubpage = !isHomePage && !pathname?.includes('/about-us') && !pathname?.includes('/testimonials') && !pathname?.includes('/contact') && !pathname?.includes('/faq');
+  const isLightPage = !isHomePage && !isDarkHeroSubpage;
 
   // Scroll listener — transparent at top, glass on scroll
   useEffect(() => {
@@ -81,10 +83,11 @@ export default function Header() {
 
   // ═══════ DYNAMIC CONTRAST ENGINE ═══════
 
-  // Nav link text color
+  // Nav link text color — Gold Ultra Pro on dark-hero subpages, white on home
   const getTextClass = () => {
     if (isScrolled) return 'text-white/90 hover:text-[#C5A55A] active:text-[#A8883D]';
     if (isLightPage) return 'text-[#0F0F0F] hover:text-[#C5A55A] active:text-[#A8883D]';
+    if (isDarkHeroSubpage) return 'text-[#E8C97A] hover:text-[#F5D6A8] active:text-[#C9A96E] drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]';
     return 'text-white/90 hover:text-[#C5A55A] active:text-[#A8883D] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]';
   };
 
@@ -92,6 +95,7 @@ export default function Header() {
   const getMutedClass = () => {
     if (isScrolled) return 'text-white/60';
     if (isLightPage) return 'text-[#0F0F0F]/70';
+    if (isDarkHeroSubpage) return 'text-[#C9A96E]/70 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]';
     return 'text-white/60 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]';
   };
 
@@ -99,6 +103,7 @@ export default function Header() {
   const getSeparatorClass = () => {
     if (isScrolled) return 'bg-white/20';
     if (isLightPage) return 'bg-black/20';
+    if (isDarkHeroSubpage) return 'bg-[#C9A96E]/25';
     return 'bg-white/20';
   };
 
@@ -119,8 +124,10 @@ export default function Header() {
 
   // Mobile hamburger color
   const getHamburgerClass = () => {
-    if (isScrolled || !isLightPage) return 'text-white';
-    return 'text-[#0F0F0F]';
+    if (isScrolled) return 'text-white';
+    if (isDarkHeroSubpage) return 'text-[#E8C97A]';
+    if (isLightPage) return 'text-[#0F0F0F]';
+    return 'text-white';
   };
 
   return (

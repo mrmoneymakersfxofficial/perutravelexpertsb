@@ -214,7 +214,7 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
-          <Link href="/tour-packages#customized-packages">
+          <Link href="/tour-packages">
             <Button
               className="btn-gold rounded-full px-8 py-3 text-base tracking-wide"
             >

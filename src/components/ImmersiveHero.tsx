@@ -72,38 +72,55 @@ export default function ImmersiveHero({
       <div className="relative z-[2] flex flex-col justify-end h-full">
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-10 sm:pb-14 md:pb-16 lg:pb-20">
 
-          {/* Floating Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 mb-4 sm:mb-5 md:mb-6">
+          {/* Floating Breadcrumbs — Gold Ultra Pro */}
+          <nav className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] mb-4 sm:mb-5 md:mb-6" style={{ color: 'rgba(201,169,110,0.7)' }}>
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
-                    className="hover:text-[#D4A843] transition-colors duration-200"
+                    className="transition-colors duration-200 hover:brightness-125"
+                    style={{ color: 'rgba(232,201,122,0.85)' }}
                   >
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className="text-white/70">{crumb.label}</span>
+                  <span style={{ color: 'rgba(245,214,168,0.85)' }}>{crumb.label}</span>
                 )}
                 {idx < breadcrumbs.length - 1 && (
-                  <span className="text-white/25 mx-0.5">/</span>
+                  <span style={{ color: 'rgba(201,169,110,0.35)' }} className="mx-0.5">/</span>
                 )}
               </React.Fragment>
             ))}
           </nav>
 
-          {/* Giant Title */}
-          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-3 sm:mb-4 md:mb-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
+          {/* Giant Title — Gold Ultra Pro gradient */}
+          <h1
+            className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-3 sm:mb-4 md:mb-5 drop-shadow-[0_2px_16px_rgba(212,168,67,0.3)]"
+            style={{
+              background: 'linear-gradient(135deg, #C9A96E 0%, #E8C97A 35%, #F5D6A8 50%, #E8C97A 65%, #C9A96E 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             {title}
           </h1>
 
           {/* Gold Underline */}
-          <div className="h-[3px] w-16 sm:w-20 md:w-24 mb-3 sm:mb-4 md:mb-5" style={{ background: 'linear-gradient(90deg, #D4A843, #B89020)' }} />
+          <div className="h-[3px] w-16 sm:w-20 md:w-24 mb-3 sm:mb-4 md:mb-5" style={{ background: 'linear-gradient(90deg, #C9A96E, #F5D6A8, #C9A96E)' }} />
 
-          {/* Subtitle */}
+          {/* Subtitle — Gold Ultra Pro */}
           {subtitle && (
-            <p className="text-white/70 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_8px_rgba(0,0,0,0.3)]">
+            <p
+              className="text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_8px_rgba(212,168,67,0.2)]"
+              style={{
+                background: 'linear-gradient(135deg, #C9A96E 0%, #E8C97A 40%, #F5D6A8 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
               {subtitle}
             </p>
           )}
