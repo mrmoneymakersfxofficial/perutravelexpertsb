@@ -140,84 +140,190 @@ function AccordionItem({
   onToggle,
   completed,
   children,
+  stepIndex,
+  isFirst,
+  isLast,
+  onNext,
+  onPrev,
 }: {
   step: AccordionStep;
   isOpen: boolean;
   onToggle: () => void;
   completed: boolean;
   children: React.ReactNode;
+  stepIndex: number;
+  isFirst: boolean;
+  isLast: boolean;
+  onNext: (stepId: string) => void;
+  onPrev: (stepId: string) => void;
 }) {
   const { locale } = useLanguage();
-  const title = locale === 'es' ? step.titleEs : step.titleEn;
-  const desc = locale === 'es' ? step.descEs : step.descEn;
+  const isEs = locale === 'es';
+  const title = isEs ? step.titleEs : step.titleEn;
+  const desc = isEs ? step.descEs : step.descEn;
 
   return (
-    <div
-      className="rounded-2xl overflow-hidden transition-all duration-500"
-      style={{
+    <motion.div
+      layout
+      className="rounded-2xl overflow-hidden"
+      animate={{
         background: isOpen ? 'rgba(212,168,67,0.04)' : 'rgba(255,255,255,0.02)',
-        border: `1px solid ${isOpen ? 'rgba(212,168,67,0.2)' : 'rgba(255,255,255,0.06)'}`,
-        boxShadow: isOpen ? '0 0 40px rgba(212,168,67,0.06)' : 'none',
+        boxShadow: isOpen
+          ? '0 0 40px rgba(212,168,67,0.08), 0 0 80px rgba(212,168,67,0.03)'
+          : '0 0 0px rgba(212,168,67,0)',
+      }}
+      transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      style={{
+        border: `1px solid ${isOpen ? 'rgba(212,168,67,0.25)' : 'rgba(255,255,255,0.06)'}`,
+        transition: 'border-color 0.5s ease',
       }}
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center gap-4 px-5 sm:px-7 py-5 sm:py-6 text-left transition-colors duration-300 group"
+        className="w-full flex items-center gap-4 px-5 sm:px-7 py-5 sm:py-6 text-left transition-colors duration-300 group cursor-pointer"
       >
         {/* Step number + icon */}
-        <div
-          className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300"
-          style={{
+        <motion.div
+          layout
+          className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0"
+          animate={{
             background: completed
               ? 'linear-gradient(135deg, #C9A96E, #E8C97A)'
-              : 'rgba(255,255,255,0.06)',
-            border: `1px solid ${completed ? 'rgba(201,169,110,0.4)' : 'rgba(255,255,255,0.08)'}`,
+              : isOpen
+                ? 'linear-gradient(135deg, rgba(201,169,110,0.15), rgba(232,201,122,0.1))'
+                : 'rgba(255,255,255,0.06)',
+            borderColor: completed
+              ? 'rgba(201,169,110,0.4)'
+              : isOpen
+                ? 'rgba(201,169,110,0.25)'
+                : 'rgba(255,255,255,0.08)',
+          }}
+          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            border: '1px solid',
             color: completed ? '#0F0F0F' : '#D4A843',
           }}
         >
-          {completed ? (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-          ) : (
-            step.icon
-          )}
-        </div>
+          <AnimatePresence mode="wait">
+            {completed ? (
+              <motion.svg
+                key="check"
+                initial={{ scale: 0, rotate: -90, opacity: 0 }}
+                animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                exit={{ scale: 0, rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </motion.svg>
+            ) : (
+              <motion.div
+                key="icon"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                {step.icon}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Title + desc */}
         <div className="flex-1 min-w-0">
-          <h3
-            className="font-playfair text-base sm:text-lg font-bold transition-colors duration-300"
-            style={{ color: completed ? '#E8C97A' : '#fff' }}
+          <motion.h3
+            layout
+            className="font-playfair text-base sm:text-lg font-bold"
+            animate={{ color: completed ? '#E8C97A' : isOpen ? '#F5D6A8' : '#fff' }}
+            transition={{ duration: 0.3 }}
           >
             {title}
-          </h3>
+          </motion.h3>
           <p className="text-xs sm:text-sm mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
             {desc}
           </p>
         </div>
 
         {/* Chevron */}
-        <ChevronDown
-          className={`w-5 h-5 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-          style={{ color: '#D4A843' }}
-        />
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <ChevronDown className="w-5 h-5 shrink-0" style={{ color: '#D4A843' }} />
+        </motion.div>
       </button>
 
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} mode="wait">
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            transition={{
+              height: { duration: 0.45, ease: [0.4, 0, 0.2, 1] },
+              opacity: { duration: 0.3, ease: 'easeInOut' },
+            }}
             className="overflow-hidden"
           >
-            <div className="px-5 sm:px-7 pb-6 sm:pb-8 pt-2">
+            <motion.div
+              initial={{ y: -12, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 8, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.05 }}
+              className="px-5 sm:px-7 pb-6 sm:pb-8 pt-2"
+            >
+              {/* Step indicator badges */}
+              <div className="flex items-center gap-2 mb-5">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest"
+                  style={{ background: 'rgba(212,168,67,0.1)', color: '#E8C97A', border: '1px solid rgba(212,168,67,0.15)' }}
+                >
+                  {isEs ? 'Paso' : 'Step'} {stepIndex + 1} {isEs ? 'de' : 'of'} {5}
+                </motion.span>
+              </div>
               {children}
-            </div>
+              {/* Navigation buttons */}
+              {!isLast && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="flex items-center justify-between mt-6 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
+                >
+                  {!isFirst && (
+                    <button
+                      type="button"
+                      onClick={() => onPrev(step.id)}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 active:scale-95"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)' }}
+                    >
+                      <ChevronDown className="w-4 h-4" style={{ transform: 'rotate(90deg)' }} />
+                      {isEs ? 'Anterior' : 'Previous'}
+                    </button>
+                  )}
+                  {!isFirst && <div />}
+                  <motion.button
+                    type="button"
+                    onClick={() => onNext(step.id)}
+                    whileHover={{ scale: 1.03, boxShadow: '0 4px 24px rgba(212,168,67,0.3)' }}
+                    whileTap={{ scale: 0.97 }}
+                    className="ml-auto flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300"
+                    style={{ background: 'linear-gradient(135deg, #C9A96E, #D4A843)', color: '#0F0F0F' }}
+                  >
+                    {isEs ? 'Siguiente' : 'Next'}
+                    <ChevronDown className="w-4 h-4" style={{ transform: 'rotate(-90deg)' }} />
+                  </motion.button>
+                </motion.div>
+              )}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
 
@@ -285,7 +391,54 @@ export default function CustomizedToursClient() {
   };
 
   const handleStepToggle = (stepId: string) => {
-    setOpenStep(prev => (prev === stepId ? '' : stepId));
+    // Accordion: close current, open clicked (if different). Don't allow closing the active step by clicking its header.
+    if (openStep === stepId) return; // keep it open when re-clicking header
+    setOpenStep(stepId);
+    // Auto-scroll to the newly opened step after a short delay for animation to start
+    setTimeout(() => {
+      const el = document.getElementById(`step-${stepId}`);
+      if (el) {
+        const offset = 80; // progress bar height
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }, 150);
+  };
+
+  const handleNext = (currentStepId: string) => {
+    markComplete(currentStepId);
+    const currentIdx = STEPS.findIndex(s => s.id === currentStepId);
+    const nextIdx = currentIdx + 1;
+    if (nextIdx < STEPS.length) {
+      const nextStepId = STEPS[nextIdx].id;
+      setOpenStep(nextStepId);
+      // Auto-scroll to the next step
+      setTimeout(() => {
+        const el = document.getElementById(`step-${nextStepId}`);
+        if (el) {
+          const offset = 80;
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 200);
+    }
+  };
+
+  const handlePrev = (currentStepId: string) => {
+    const currentIdx = STEPS.findIndex(s => s.id === currentStepId);
+    const prevIdx = currentIdx - 1;
+    if (prevIdx >= 0) {
+      const prevStepId = STEPS[prevIdx].id;
+      setOpenStep(prevStepId);
+      setTimeout(() => {
+        const el = document.getElementById(`step-${prevStepId}`);
+        if (el) {
+          const offset = 80;
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 200);
+    }
   };
 
   const buildWhatsAppMessage = () => {
@@ -383,15 +536,22 @@ export default function CustomizedToursClient() {
           {STEPS.map((step, idx) => (
             <motion.div
               key={step.id}
+              id={`step-${step.id}`}
+              layout
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              transition={{ duration: 0.4, delay: idx * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <AccordionItem
                 step={step}
                 isOpen={openStep === step.id}
                 onToggle={() => handleStepToggle(step.id)}
                 completed={completedSteps.has(step.id)}
+                stepIndex={idx}
+                isFirst={idx === 0}
+                isLast={idx === STEPS.length - 1}
+                onNext={handleNext}
+                onPrev={handlePrev}
               >
                 {/* ── Step 1: Destinations ── */}
                 {step.id === 'destinations' && (
@@ -400,14 +560,20 @@ export default function CustomizedToursClient() {
                       {label('Selecciona uno o más destinos que te interesen:', 'Select one or more destinations you are interested in:')}
                     </p>
                     <div className="flex flex-wrap gap-2.5">
-                      {DESTINATIONS.map(dest => (
-                        <Chip
+                      {DESTINATIONS.map((dest, i) => (
+                        <motion.div
                           key={dest.id}
-                          label={isEs ? dest.nameEs : dest.nameEn}
-                          selected={selectedDestinations.has(dest.id)}
-                          onClick={() => toggleSet(selectedDestinations, setSelectedDestinations, dest.id)}
-                          icon={dest.icon}
-                        />
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.25, delay: 0.08 * i }}
+                        >
+                          <Chip
+                            label={isEs ? dest.nameEs : dest.nameEn}
+                            selected={selectedDestinations.has(dest.id)}
+                            onClick={() => toggleSet(selectedDestinations, setSelectedDestinations, dest.id)}
+                            icon={dest.icon}
+                          />
+                        </motion.div>
                       ))}
                     </div>
                     <div>
@@ -423,15 +589,6 @@ export default function CustomizedToursClient() {
                         style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
                       />
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => markComplete('destinations')}
-                      className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95"
-                      style={{ background: 'linear-gradient(135deg, #C9A96E, #D4A843)', color: '#0F0F0F' }}
-                    >
-                      {label('Siguiente', 'Next')}
-                      <ChevronDown className="w-4 h-4" style={{ transform: 'rotate(-90deg)' }} />
-                    </button>
                   </div>
                 )}
 
@@ -442,24 +599,21 @@ export default function CustomizedToursClient() {
                       {label('Puedes elegir más de un estilo:', 'You can choose more than one style:')}
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                      {TRAVEL_STYLES.map(style => (
-                        <Chip
+                      {TRAVEL_STYLES.map((style, i) => (
+                        <motion.div
                           key={style.id}
-                          label={isEs ? style.es : style.en}
-                          selected={travelStyles.has(style.id)}
-                          onClick={() => toggleSet(travelStyles, setTravelStyles, style.id)}
-                        />
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.25, delay: 0.08 * i }}
+                        >
+                          <Chip
+                            label={isEs ? style.es : style.en}
+                            selected={travelStyles.has(style.id)}
+                            onClick={() => toggleSet(travelStyles, setTravelStyles, style.id)}
+                          />
+                        </motion.div>
                       ))}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => markComplete('travel-style')}
-                      className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95"
-                      style={{ background: 'linear-gradient(135deg, #C9A96E, #D4A843)', color: '#0F0F0F' }}
-                    >
-                      {label('Siguiente', 'Next')}
-                      <ChevronDown className="w-4 h-4" style={{ transform: 'rotate(-90deg)' }} />
-                    </button>
                   </div>
                 )}
 
@@ -470,25 +624,22 @@ export default function CustomizedToursClient() {
                       {label('Selecciona las experiencias que te interesen:', 'Select the experiences you are interested in:')}
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                      {PREFERENCES.map(pref => (
-                        <Chip
+                      {PREFERENCES.map((pref, i) => (
+                        <motion.div
                           key={pref.id}
-                          label={isEs ? pref.es : pref.en}
-                          selected={preferences.has(pref.id)}
-                          onClick={() => toggleSet(preferences, setPreferences, pref.id)}
-                          icon={pref.icon}
-                        />
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.25, delay: 0.06 * i }}
+                        >
+                          <Chip
+                            label={isEs ? pref.es : pref.en}
+                            selected={preferences.has(pref.id)}
+                            onClick={() => toggleSet(preferences, setPreferences, pref.id)}
+                            icon={pref.icon}
+                          />
+                        </motion.div>
                       ))}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => markComplete('preferences')}
-                      className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95"
-                      style={{ background: 'linear-gradient(135deg, #C9A96E, #D4A843)', color: '#0F0F0F' }}
-                    >
-                      {label('Siguiente', 'Next')}
-                      <ChevronDown className="w-4 h-4" style={{ transform: 'rotate(-90deg)' }} />
-                    </button>
                   </div>
                 )}
 
@@ -502,13 +653,19 @@ export default function CustomizedToursClient() {
                         {label('Tamaño del Grupo', 'Group Size')}
                       </label>
                       <div className="flex flex-wrap gap-2.5">
-                        {GROUP_SIZES.map(g => (
-                          <Chip
+                        {GROUP_SIZES.map((g, i) => (
+                          <motion.div
                             key={g.id}
-                            label={isEs ? g.es : g.en}
-                            selected={groupSize === g.id}
-                            onClick={() => setGroupSize(groupSize === g.id ? '' : g.id)}
-                          />
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.25, delay: 0.08 * i }}
+                          >
+                            <Chip
+                              label={isEs ? g.es : g.en}
+                              selected={groupSize === g.id}
+                              onClick={() => setGroupSize(groupSize === g.id ? '' : g.id)}
+                            />
+                          </motion.div>
                         ))}
                       </div>
                     </div>
@@ -520,13 +677,19 @@ export default function CustomizedToursClient() {
                         {label('Presupuesto Estimado (por persona)', 'Estimated Budget (per person)')}
                       </label>
                       <div className="flex flex-wrap gap-2.5">
-                        {BUDGET_RANGES.map(b => (
-                          <Chip
+                        {BUDGET_RANGES.map((b, i) => (
+                          <motion.div
                             key={b.id}
-                            label={isEs ? b.es : b.en}
-                            selected={budget === b.id}
-                            onClick={() => setBudget(budget === b.id ? '' : b.id)}
-                          />
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.25, delay: 0.08 * i }}
+                          >
+                            <Chip
+                              label={isEs ? b.es : b.en}
+                              selected={budget === b.id}
+                              onClick={() => setBudget(budget === b.id ? '' : b.id)}
+                            />
+                          </motion.div>
                         ))}
                       </div>
                     </div>
@@ -580,16 +743,6 @@ export default function CustomizedToursClient() {
                         style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff' }}
                       />
                     </div>
-
-                    <button
-                      type="button"
-                      onClick={() => markComplete('logistics')}
-                      className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95"
-                      style={{ background: 'linear-gradient(135deg, #C9A96E, #D4A843)', color: '#0F0F0F' }}
-                    >
-                      {label('Siguiente', 'Next')}
-                      <ChevronDown className="w-4 h-4" style={{ transform: 'rotate(-90deg)' }} />
-                    </button>
                   </div>
                 )}
 
