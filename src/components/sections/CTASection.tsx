@@ -43,14 +43,16 @@ export default function CTASection() {
             {t.cta.subtitle}
           </p>
 
-          <Link href="/our-tours">
-            <Button
-              className="btn-gold rounded-full px-10 py-4 text-lg tracking-wide flex items-center gap-2"
-            >
-              {t.cta.bookNow}
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </Link>
+          <div className="flex justify-center">
+            <Link href="/our-tours">
+              <Button
+                className="btn-gold rounded-full px-10 py-4 text-lg tracking-wide flex items-center gap-2"
+              >
+                {t.cta.bookNow}
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
