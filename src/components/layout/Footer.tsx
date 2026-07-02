@@ -12,7 +12,7 @@ export default function Footer() {
 
   const quickLinks = [
     { label: t.nav.tours, href: '/tour-packages' },
-    { label: t.nav.customizedTours, href: '/tour-packages' },
+    { label: t.nav.customizedTours, href: '/customized-tours' },
     { label: t.nav.communityTours, href: '/tours-cities' },
     { label: t.nav.about, href: '/about-us' },
     { label: t.nav.testimonials, href: '/testimonials' },
