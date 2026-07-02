@@ -214,14 +214,14 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
-          <Link href="/tour-packages">
+          <Link href="/our-tours#packages-destinations">
             <Button
               className="btn-gold rounded-full px-8 py-3 text-base tracking-wide"
             >
               {t.hero.cta}
             </Button>
           </Link>
-          <Link href="/our-tours#packages-destinations">
+          <Link href="/tour-packages">
             <Button
               variant="outline"
               className="btn-gold-outline rounded-full px-8 py-3 text-base tracking-wide"
