@@ -63,7 +63,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
-        style={{ backgroundColor: '#F8F6F2' }}
+        style={{ backgroundColor: '#0F0F0F' }}
       >
         <SchemaOrg />
         <LanguageProvider>
