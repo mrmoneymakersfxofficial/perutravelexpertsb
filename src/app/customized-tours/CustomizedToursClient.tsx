@@ -16,7 +16,7 @@ import {
   Sun,
   Utensils,
   Camera,
-  Trekking,
+  Footprints,
   Sparkles,
   Send,
   Plus,
@@ -110,7 +110,7 @@ const TRAVEL_STYLES = [
 const PREFERENCES = [
   { id: 'gastronomy', es: 'Gastronomía Peruana', en: 'Peruvian Gastronomy', icon: <Utensils className="w-4 h-4" /> },
   { id: 'photography-tours', es: 'Tours Fotográficos', en: 'Photography Tours', icon: <Camera className="w-4 h-4" /> },
-  { id: 'trekking', es: 'Trekking', en: 'Trekking', icon: <Trekking className="w-4 h-4" /> },
+  { id: 'trekking', es: 'Trekking', en: 'Trekking', icon: <Footprints className="w-4 h-4" /> },
   { id: 'wellness', es: 'Bienestar / Spa', en: 'Wellness / Spa', icon: <Sparkles className="w-4 h-4" /> },
   { id: 'nightlife', es: 'Vida Nocturna', en: 'Nightlife', icon: <Star className="w-4 h-4" /> },
   { id: 'markets', es: 'Mercados Artesanales', en: 'Artisan Markets', icon: <MapPin className="w-4 h-4" /> },

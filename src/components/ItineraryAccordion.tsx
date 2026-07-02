@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface ItineraryStep {
   dayOrHour: string;
@@ -14,6 +15,7 @@ interface ItineraryAccordionProps {
 
 export default function ItineraryAccordion({ data }: ItineraryAccordionProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const { locale } = useLanguage();
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -27,7 +29,7 @@ export default function ItineraryAccordion({ data }: ItineraryAccordionProps) {
         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
           <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
         </svg>
-        Itinerario de la Experiencia
+        {locale === 'es' ? 'Itinerario de la Experiencia' : 'Experience Itinerary'}
       </h3>
 
       <div className="space-y-3 sm:space-y-4">
@@ -54,7 +56,7 @@ export default function ItineraryAccordion({ data }: ItineraryAccordionProps) {
                   >
                     {item.dayOrHour}
                   </span>
-                  <h4 className="text-xs sm:text-sm md:text-base font-semibold text-white tracking-wide line-clamp-1">
+                  <h4 className="text-xs sm:text-sm md:text-base font-semibold text-white tracking-wide line-clamp-2">
                     {item.title}
                   </h4>
                 </div>
@@ -76,7 +78,7 @@ export default function ItineraryAccordion({ data }: ItineraryAccordionProps) {
               {/* Expandable Content */}
               <div
                 className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+                  isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
                 }`}
               >
                 <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-1 text-xs sm:text-sm text-white/70 font-light leading-relaxed pl-4 sm:pl-[76px]">

@@ -62,8 +62,20 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
   const name = locale === 'es' ? tour.nameEs : tour.nameEn;
   const description = locale === 'es' ? tour.descriptionEs : tour.descriptionEn;
   const includes = locale === 'es' ? tour.includesEs : tour.includesEn;
+  const excludes = (locale === 'es' ? tour.excludesEs : tour.excludesEn) || [];
+  const highlights = (locale === 'es' ? tour.highlightsEs : tour.highlightsEn) || [];
+  const whatToBring = locale === 'es' ? tour.whatToBringEs : tour.whatToBringEn;
+  const pricingNote = locale === 'es' ? tour.pricingNoteEs : tour.pricingNoteEn;
   const isFav = isFavorite(tour.id);
   const related = getRelatedTours(tour.id, tour.destination, 3);
+
+  // Build itinerary steps from tour data
+  const itineraryDays = locale === 'es' ? tour.itineraryEs : tour.itineraryEn;
+  const itinerarySteps = itineraryDays?.map(d => ({
+    dayOrHour: locale === 'es' ? `Día ${d.day}` : `Day ${d.day}`,
+    title: locale === 'es' ? d.titleEs : d.titleEn,
+    description: locale === 'es' ? d.descriptionEs : d.descriptionEn,
+  })) || undefined;
 
   const destination = destinations.find((d) => d.slug === tour.destination);
   const destName = destination
@@ -135,9 +147,11 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
               <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
                 <TourInfoTabs
                   includes={includes}
-                  excludes={locale === 'es'
-                    ? ['Propinas voluntarias', 'Bebidas adicionales', 'Seguro de viaje personal', 'Souvenirs en mercados']
-                    : ['Voluntary tips', 'Additional drinks', 'Personal travel insurance', 'Souvenirs at markets']}
+                  excludes={excludes}
+                  highlights={highlights}
+                  whatToBring={whatToBring}
+                  pricingNote={pricingNote}
+                  itinerarySteps={itinerarySteps}
                   policies={locale === 'es'
                     ? ['Cancelación gratuita hasta 48 horas antes del inicio de la experiencia.', 'Modificaciones de fecha permitidas sujetas a disponibilidad.', 'No presentarse (No Show) se penaliza con el 100%.']
                     : ['Free cancellation up to 48 hours before the experience.', 'Date changes allowed subject to availability.', 'No Show incurs a 100% penalty.']}
