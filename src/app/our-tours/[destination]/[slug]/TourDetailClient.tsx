@@ -214,7 +214,7 @@ export default function TourDetailClient({
                   <nav className="space-y-2">
                     <Link href={`/our-tours/${destination}`} className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.toursIn} {destName}</Link>
                     <Link href="/our-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.tourDetail.viewAllTours}</Link>
-                    <Link href="/tour-packages" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
+                    <Link href="/customized-tours" className="flex items-center gap-2 text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-4 h-4" />{t.customized.title}</Link>
                   </nav>
                 </div>
               </div>
@@ -243,7 +243,7 @@ export default function TourDetailClient({
             <nav className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
               <Link href={`/our-tours/${destination}`} className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.toursIn} {destName}</Link>
               <Link href="/our-tours" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.tourDetail.viewAllTours}</Link>
-              <Link href="/tour-packages" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.customized.title}</Link>
+              <Link href="/customized-tours" className="flex items-center gap-2 text-xs sm:text-sm text-[#8B8680] hover:text-[#C5A55A] transition-colors"><ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />{t.customized.title}</Link>
             </nav>
           </div>
         </div>

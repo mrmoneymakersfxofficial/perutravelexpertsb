@@ -11,17 +11,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Old /customized-tours → new /tour-packages
-      {
-        source: '/customized-tours',
-        destination: '/tour-packages',
-        permanent: true,
-      },
-      {
-        source: '/customized-tours/:slug',
-        destination: '/tour-packages/:slug',
-        permanent: true,
-      },
       // Old /tour-packages/{destination} → new /our-tours/{destination}
       { source: '/tour-packages/cusco', destination: '/our-tours/cusco', permanent: true },
       { source: '/tour-packages/puno', destination: '/our-tours/puno', permanent: true },

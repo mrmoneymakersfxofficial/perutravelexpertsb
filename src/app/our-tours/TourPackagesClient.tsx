@@ -29,7 +29,7 @@ export default function TourPackagesClient() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0F0F0F' }}>
       {/* Full-Bleed Immersive Hero — No More Duplicate Headers */}
       <ImmersiveHero
-        title={locale === 'es' ? 'Paquetes de Tours' : 'Tour Packages'}
+        title={locale === 'es' ? 'Nuestros Tours' : 'Our Tours'}
         subtitle={locale === 'es'
           ? 'Explora nuestra selección de tours en los destinos más increíbles del Perú. Desde lo alto de los Andes hasta las profundidades de la selva amazónica.'
           : 'Explore our selection of tours in Peru\'s most incredible destinations. From the heights of the Andes to the depths of the Amazon rainforest.'}
@@ -88,7 +88,7 @@ export default function TourPackagesClient() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-playfair text-2xl md:text-3xl font-bold text-white mb-4">{locale === 'es' ? '¿No encuentras lo que buscas?' : 'Can\'t find what you\'re looking for?'}</h3>
           <p className="text-white/60 mb-6">{locale === 'es' ? 'Creamos paquetes personalizados según tus intereses y presupuesto.' : 'We create custom packages based on your interests and budget.'}</p>
-          <Link href="/tour-packages"><Button className="btn-gold rounded-full px-8 py-3 text-base">{t.customized.title}</Button></Link>
+          <Link href="/customized-tours"><Button className="btn-gold rounded-full px-8 py-3 text-base">{t.customized.title}</Button></Link>
         </div>
       </section>
     </div>
