@@ -12,6 +12,8 @@ import SchemaOrg from "@/components/SchemaOrg";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingPanel from "@/components/FloatingPanel";
 import BottomTabModals from "@/components/BottomTabModals";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import ParticleTrail from "@/components/ParticleTrail";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -71,6 +73,8 @@ export default function RootLayout({
             <RecentlyViewedProvider>
               <ModalProvider>
                 <div className="min-h-screen flex flex-col">
+                  <ReadingProgressBar />
+                  <ParticleTrail />
                   <Header />
                   <main className="flex-1 pb-[66px] sm:pb-[72px] lg:pb-0">
                     {children}
