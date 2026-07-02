@@ -68,10 +68,10 @@ export default function TourSubpageHeroUltimate({
       />
 
       {/* Content Layer */}
-      <div className="relative z-[2] flex flex-col justify-end h-full">
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 md:pb-24">
+      <div className="relative z-[2] flex flex-col justify-center h-full pt-8 sm:pt-12 md:pt-16 lg:pt-20">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 mb-4 sm:mb-5 md:mb-6">
+          <nav className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 mb-6 sm:mb-8 md:mb-10">
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
                 {crumb.href ? (
@@ -92,19 +92,19 @@ export default function TourSubpageHeroUltimate({
           </nav>
 
           {/* Giant Title */}
-          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.05] mb-3 sm:mb-4 md:mb-5 drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)] uppercase max-w-4xl">
+          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight leading-[1.08] mb-5 sm:mb-6 md:mb-8 drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)] uppercase max-w-4xl">
             {title}
           </h1>
 
           {/* Gold Accent Bar */}
           <div
-            className="h-[3px] w-16 sm:w-20 md:w-24 mb-4 sm:mb-5 md:mb-6"
+            className="h-[3px] w-16 sm:w-20 md:w-24 mb-6 sm:mb-8 md:mb-10"
             style={{ background: 'linear-gradient(90deg, #D4A843, #B89020)' }}
           />
 
           {/* Info Badges */}
           {(level || duration || destination) && (
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
               {level && (
                 <span className="text-[10px] sm:text-xs font-extrabold tracking-widest uppercase px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-[#0F0F0F]"
                   style={{ background: 'linear-gradient(135deg, #D4A843, #B89020)' }}
@@ -133,7 +133,7 @@ export default function TourSubpageHeroUltimate({
 
           {/* Price Block */}
           {price !== undefined && (
-            <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 mb-3">
+            <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
               <span className="text-[10px] sm:text-xs text-white/40 uppercase tracking-wider font-medium">
                 From
               </span>
