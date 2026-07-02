@@ -139,7 +139,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-[68px] lg:-mt-[72px] pt-16 md:pt-[68px] lg:pt-[72px]"
+      className="relative flex items-center justify-center overflow-hidden"
       style={{ backgroundColor: '#0F0F0F', height: '100vh', height: '100dvh' }}
     >
       {/* Background Image with overlay */}
@@ -214,14 +214,14 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
-          <Link href="/tour-packages">
+          <Link href="/tour-packages#customized-packages">
             <Button
               className="btn-gold rounded-full px-8 py-3 text-base tracking-wide"
             >
               {t.hero.cta}
             </Button>
           </Link>
-          <Link href="/tour-packages#customized-packages">
+          <Link href="/our-tours#packages-destinations">
             <Button
               variant="outline"
               className="btn-gold-outline rounded-full px-8 py-3 text-base tracking-wide"

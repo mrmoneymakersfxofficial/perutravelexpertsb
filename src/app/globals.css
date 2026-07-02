@@ -51,6 +51,10 @@
   --color-warm-gray: var(--warm-gray);
 }
 
+:root { --header-height: 60px; }
+@media (min-width: 768px) { :root { --header-height: 65px; } }
+@media (min-width: 1024px) { :root { --header-height: 70px; } }
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
