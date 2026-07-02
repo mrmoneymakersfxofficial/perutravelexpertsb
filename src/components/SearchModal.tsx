@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, MapPin, Clock, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { tours } from '@/lib/tours-data';
 import { useLanguage } from '@/components/LanguageProvider';
 import type { TourData } from '@/lib/tours-data';
@@ -11,13 +12,13 @@ import type { TourData } from '@/lib/tours-data';
 interface SearchModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onTourSelect?: (tour: TourData) => void;
 }
 
 const popularSearchesEs = ['Machu Picchu', 'Cusco', 'Valle Sagrado', 'Humantay', 'Vinicunca', 'Salkantay', 'Camino Inca', 'Lago Titicaca'];
 const popularSearchesEn = ['Machu Picchu', 'Cusco', 'Sacred Valley', 'Humantay', 'Vinicunca', 'Salkantay', 'Inca Trail', 'Titicaca Lake'];
 
-export default function SearchModal({ open, onOpenChange, onTourSelect }: SearchModalProps) {
+export default function SearchModal({ open, onOpenChange }: SearchModalProps) {
+  const router = useRouter();
   const { locale, t } = useLanguage();
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -65,8 +66,8 @@ export default function SearchModal({ open, onOpenChange, onTourSelect }: Search
   const getDestinationName = (d: string) => (t.nav as Record<string, string>)[d] || d;
 
   const handleSelect = (tour: TourData) => {
-    onTourSelect?.(tour);
     onOpenChange(false);
+    router.push(`/tours/${tour.slug}`);
   };
 
   const handlePopularClick = (term: string) => {

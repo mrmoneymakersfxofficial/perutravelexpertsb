@@ -336,7 +336,6 @@ export default function Header() {
         <SearchModal
           open={searchOpen}
           onOpenChange={setSearchOpen}
-          onTourSelect={openDetail}
         />
       </div>
 
