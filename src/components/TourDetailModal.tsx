@@ -30,8 +30,15 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
   const { isFavorite, toggleFavorite } = useFavorites();
   const { addViewed } = useRecentlyViewed();
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
   useEffect(() => { if (tour && open) addViewed(tour.id); }, [tour, open, addViewed]);
   if (!tour) return null;
 
@@ -181,7 +188,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
   return (
     <>
       {/* ── Desktop ── */}
-      <Dialog open={open} onOpenChange={onOpenChange}>
+      <Dialog open={open && isDesktop} onOpenChange={onOpenChange}>
         <DialogContent
           className="hidden md:block max-w-[680px] p-0 rounded-2xl overflow-hidden"
           style={{ backgroundColor: '#F8F6F2' }}

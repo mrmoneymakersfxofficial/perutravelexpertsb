@@ -37,6 +37,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
   const { favoritesCount } = useFavorites();
   const {
     searchOpen, setSearchOpen,
@@ -44,6 +45,14 @@ export default function Header() {
     detailTour, detailOpen, setDetailOpen, openDetail,
     bookingOpen, setBookingOpen,
   } = useModal();
+
+  // Track desktop (lg+) to prevent Radix Dialog portals from blocking BottomTabModals on mobile
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   // Pages with dark immersive heroes → gold text on subpages for readability
   // All other subpages have lighter backgrounds → use dark text
@@ -332,16 +341,14 @@ export default function Header() {
       )}
 
       {/* Search Modal — desktop only (BottomTabModals handles mobile) */}
-      <div className="hidden lg:block">
-        <SearchModal
-          open={searchOpen}
-          onOpenChange={setSearchOpen}
-        />
-      </div>
+      <SearchModal
+        open={searchOpen && isDesktop}
+        onOpenChange={setSearchOpen}
+      />
 
       {/* Favorites Modal — desktop Dialog only, Sheet disabled (BottomTabModals handles mobile) */}
       <FavoritesModal
-        open={favoritesOpen}
+        open={favoritesOpen && isDesktop}
         onOpenChange={setFavoritesOpen}
         onTourSelect={openDetail}
         hideSheet

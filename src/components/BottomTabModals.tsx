@@ -273,7 +273,6 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
                           onClick={(e) => handleShare(tour.slug, tour.nameEn, e)}
-                          onTouchEnd={(e) => { e.preventDefault(); handleShare(tour.slug, tour.nameEn, e); }}
                           className="p-2 bg-white/5 hover:bg-[#D4A843]/20 text-white/60 hover:text-[#D4A843] rounded-lg transition-colors active:scale-95"
                           aria-label="Share tour link"
                         >
@@ -281,7 +280,6 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                         </button>
                         <button
                           onClick={(e) => handleRemove(tour.id, tour.nameEn, e)}
-                          onTouchEnd={(e) => { e.preventDefault(); handleRemove(tour.id, tour.nameEn, e); }}
                           className="p-2 bg-white/5 hover:bg-rose-500/20 text-white/60 hover:text-rose-400 rounded-lg transition-colors active:scale-95"
                           aria-label="Remove from favorites"
                         >

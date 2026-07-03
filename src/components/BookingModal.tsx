@@ -27,6 +27,13 @@ const TIME_SLOTS = [
 
 export default function BookingModal({ tour, locale, open, onOpenChange }: BookingModalProps) {
   const { t } = useLanguage();
+  const [isDesktop, setIsDesktop] = React.useState(false);
+  React.useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const preselectedTour = tour ? (locale === 'es' ? tour.nameEs : tour.nameEn) : '';
 
@@ -292,7 +299,7 @@ export default function BookingModal({ tour, locale, open, onOpenChange }: Booki
   return (
     <>
       {/* ── Desktop Dialog ── */}
-      <Dialog open={open} onOpenChange={(v) => { onOpenChange(v); if (!v) { setStep(tour ? 1 : 0); } }}>
+      <Dialog open={open && isDesktop} onOpenChange={(v) => { onOpenChange(v); if (!v) { setStep(tour ? 1 : 0); } }}>
         <DialogContent className="hidden md:block max-w-[480px] p-0 rounded-2xl overflow-hidden" style={{ backgroundColor: '#F8F6F2' }}>
           <DialogHeader className="sr-only"><DialogTitle>{locale === 'es' ? 'Reservar' : 'Book'}</DialogTitle></DialogHeader>
           {ModalHeader}
