@@ -3,8 +3,9 @@
 import React, { use, useState } from 'react';
 import { useLanguage } from '@/components/LanguageProvider';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, MapPin, ArrowRight, MessageCircle, ChevronDown, Check, X, Image as ImageIcon } from 'lucide-react';
+import { Clock, MapPin, ArrowRight, MessageCircle, ChevronDown, Check } from 'lucide-react';
 import ImmersiveHero from '@/components/ImmersiveHero';
+import TourImageGallery from '@/components/TourImageGallery';
 import { getCustomizedTourBySlug } from '@/lib/tours-data';
 import { getWhatsAppLink } from '@/lib/whatsapp';
 
@@ -105,34 +106,12 @@ export default function CustomizedTourDetailClient({
         </div>
       </section>
 
-      {/* Image Gallery */}
+      {/* Image Gallery with Lightbox */}
       {gallery.length > 0 && (
         <section className="pb-12 sm:pb-16 bg-[#0F0F0F]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
-              <h2 className="font-playfair text-lg sm:text-xl md:text-2xl font-bold mb-3 text-white">
-                {isEs ? 'Galería' : 'Gallery'}
-              </h2>
-              <div className="h-[2px] w-16 mb-6" style={{ background: 'linear-gradient(90deg, #C5A55A, #A8883D)' }} />
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                {gallery.map((img, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.08 }}
-                    className={`relative rounded-xl overflow-hidden ${i === 0 ? 'md:col-span-2 md:row-span-2 h-48 md:h-full min-h-[200px]' : 'h-40 sm:h-48'}`}
-                  >
-                    <img
-                      src={img}
-                      alt={`${name} - ${i + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                  </motion.div>
-                ))}
-              </div>
+              <TourImageGallery images={gallery} title={name} />
             </motion.div>
           </div>
         </section>
@@ -265,23 +244,6 @@ export default function CustomizedTourDetailClient({
                         }}
                       >
                         <div className="p-5 sm:p-6 space-y-6">
-
-                          {/* Detail Images */}
-                          {gallery.length > 0 && (
-                            <div>
-                              <div className="flex items-center gap-2 mb-3">
-                                <ImageIcon className="w-4 h-4" style={{ color: '#D4A843' }} />
-                                <h4 className="text-sm font-bold text-white">{isEs ? 'Imágenes del Paquete' : 'Package Images'}</h4>
-                              </div>
-                              <div className="grid grid-cols-3 gap-2">
-                                {gallery.slice(0, 3).map((img, i) => (
-                                  <div key={i} className="relative rounded-lg overflow-hidden h-24 sm:h-28">
-                                    <img src={img} alt={`${name} image ${i + 1}`} className="w-full h-full object-cover" />
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
 
                           {/* Full Itinerary */}
                           {itinerary && itinerary.length > 0 && (
