@@ -793,6 +793,34 @@ export const customizedTours: CustomizedTourData[] = [
       { day: 6, titleEn: 'Return', titleEs: 'Regreso', descriptionEn: 'Final hike and return flight.', descriptionEs: 'Última caminata y vuelo de regreso.' },
     ],
   },
+  {
+    id: 'solo-cusco',
+    slug: 'solo-cusco',
+    image: '/tours/cusco-city.jpg',
+    nameEs: 'Solo Cusco',
+    nameEn: 'Solo Cusco',
+    descriptionEs: 'Sumérgete en la magia del Cusco y sus alrededores. Desde tours por la ciudad imperial hasta el Valle Sagrado y Machu Picchu, todo en un solo destino con la mayor profundidad cultural.',
+    descriptionEn: 'Immerse yourself in the magic of Cusco and its surroundings. From imperial city tours to the Sacred Valley and Machu Picchu, all in one destination with the deepest cultural experience.',
+    duration: 5,
+    priceUSD: 450,
+    destinations: ['cusco'],
+    includesEs: ['Transporte privado', '4 noches de hospedaje', 'Guías bilingües', 'Entradas a atracciones', 'Almuerzos turísticos'],
+    includesEn: ['Private transport', '4 nights accommodation', 'Bilingual guides', 'Attraction entrances', 'Tourist lunches'],
+    itineraryEs: [
+      { day: 1, titleEs: 'Llegada a Cusco', titleEn: 'Arrival in Cusco', descriptionEs: 'Recepción en aeropuerto, city tour por la tarde.', descriptionEn: 'Airport reception, afternoon city tour.' },
+      { day: 2, titleEs: 'Valle Sagrado', titleEn: 'Sacred Valley', descriptionEs: 'Full day tour por el Valle Sagrado de los Incas.', descriptionEn: 'Full day Sacred Valley of the Incas tour.' },
+      { day: 3, titleEs: 'Machu Picchu', titleEn: 'Machu Picchu', descriptionEs: 'Viaje en tren a Machu Picchu, tour guiado, regreso a Cusco.', descriptionEn: 'Train journey to Machu Picchu, guided tour, return to Cusco.' },
+      { day: 4, titleEs: 'Montaña de Colores', titleEn: 'Rainbow Mountain', descriptionEs: 'Excursión a la Montaña de Colores.', descriptionEn: 'Rainbow Mountain excursion.' },
+      { day: 5, titleEs: 'Regreso', titleEn: 'Return', descriptionEs: 'Día libre y traslado al aeropuerto.', descriptionEn: 'Free day and airport transfer.' },
+    ],
+    itineraryEn: [
+      { day: 1, titleEn: 'Arrival in Cusco', titleEs: 'Llegada a Cusco', descriptionEn: 'Airport reception, afternoon city tour.', descriptionEs: 'Recepción en aeropuerto, city tour por la tarde.' },
+      { day: 2, titleEn: 'Sacred Valley', titleEs: 'Valle Sagrado', descriptionEn: 'Full day Sacred Valley of the Incas tour.', descriptionEs: 'Full day tour por el Valle Sagrado de los Incas.' },
+      { day: 3, titleEn: 'Machu Picchu', titleEs: 'Machu Picchu', descriptionEn: 'Train journey to Machu Picchu, guided tour, return to Cusco.', descriptionEs: 'Viaje en tren a Machu Picchu, tour guiado, regreso a Cusco.' },
+      { day: 4, titleEn: 'Rainbow Mountain', titleEs: 'Montaña de Colores', descriptionEn: 'Rainbow Mountain excursion.', descriptionEs: 'Excursión a la Montaña de Colores.' },
+      { day: 5, titleEn: 'Return', titleEs: 'Regreso', descriptionEn: 'Free day and airport transfer.', descriptionEs: 'Día libre y traslado al aeropuerto.' },
+    ],
+  },
 ];
 
 // ─── COMMUNITY TOURS ──────────────────────────────────────────────

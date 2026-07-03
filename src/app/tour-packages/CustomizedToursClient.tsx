@@ -74,11 +74,7 @@ export default function CustomizedToursClient() {
                           </div>
                         </div>
                         <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
-                          <div>
-                            <span className="text-2xl font-bold font-playfair text-[#D4A843]">${Math.round(pkg.priceUSD)}</span>
-                            <span className="text-xs text-white/50 ml-1">{t.tours.perPerson}</span>
-                          </div>
-                          <span className="flex items-center gap-1 text-sm font-medium text-[#D4A843] group-hover:gap-2 transition-all">{t.customized.viewPackage}<ArrowRight className="w-4 h-4" /></span>
+                          <span className="flex items-center gap-1 text-sm font-medium text-[#D4A843] group-hover:gap-2 transition-all">{locale === 'es' ? 'Ver más información' : 'See more information'}<ArrowRight className="w-4 h-4" /></span>
                         </div>
                       </div>
                     </div>

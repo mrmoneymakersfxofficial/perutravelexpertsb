@@ -15,7 +15,7 @@ import TourDetailModal from '@/components/TourDetailModal';
 import BookingModal from '@/components/BookingModal';
 
 const navLinks = [
-  { label: 'Tours', href: '/tour-packages' },
+  { label: 'Tour Packages', href: '/tour-packages' },
   { label: 'About Us', href: '/about-us' },
   { label: 'Testimonials', href: '/testimonials' },
   { label: 'Contact', href: '/contact' },

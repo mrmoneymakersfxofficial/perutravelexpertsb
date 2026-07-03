@@ -122,7 +122,6 @@ const BUDGET_RANGES = [
   { id: 'budget', es: 'Económico ($500 - $1,000)', en: 'Budget ($500 - $1,000)' },
   { id: 'mid', es: 'Moderado ($1,000 - $2,500)', en: 'Moderate ($1,000 - $2,500)' },
   { id: 'premium', es: 'Premium ($2,500 - $4,000)', en: 'Premium ($2,500 - $4,000)' },
-  { id: 'ultra', es: 'Ultra Lujo ($4,000+)', en: 'Ultra Luxury ($4,000+)' },
 ];
 
 const GROUP_SIZES = [

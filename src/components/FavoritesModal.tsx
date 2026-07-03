@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -21,12 +22,13 @@ interface FavoritesModalProps {
 
 export default function FavoritesModal({ open, onOpenChange, onTourSelect, hideSheet }: FavoritesModalProps) {
   const { locale, t } = useLanguage();
+  const router = useRouter();
   const { favorites, toggleFavorite, favoritesCount } = useFavorites();
   const favoritedTours = tours.filter(tour => favorites.has(tour.id));
 
   const handleTourClick = (tour: TourData) => {
-    onTourSelect?.(tour);
     onOpenChange(false);
+    router.push(`/tours/${tour.slug}`);
   };
 
   const EmptyState = (
