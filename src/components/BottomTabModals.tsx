@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Heart, Share2, Trash2, ChevronRight, X } from 'lucide-react';
@@ -135,7 +136,13 @@ function SearchMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
    BOTTOM SHEET: FAVORITES MINI-MODAL (PRO)
    ═══════════════════════════════════════════════════════ */
 function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const router = useRouter();
   const { favorites, toggleFavorite } = useFavorites();
+
+  const handleTourClick = (slug: string) => {
+    onClose();
+    router.push(`/tours/${slug}`);
+  };
 
   const favoriteTours = useMemo(
     () => tours.filter((tour) => favorites.has(tour.id)),
@@ -236,11 +243,10 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
               {favoriteTours.length > 0 ? (
                 <div className="space-y-2">
                   {favoriteTours.map((tour) => (
-                    <Link
+                    <div
                       key={tour.id}
-                      href={`/tours/${tour.slug}`}
-                      onClick={onClose}
-                      className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#D4A843]/20 transition-all group"
+                      onClick={() => handleTourClick(tour.slug)}
+                      className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#D4A843]/20 transition-all group cursor-pointer active:scale-[0.98]"
                     >
                       {/* Thumbnail */}
                       <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-[#1A1A1A]">
@@ -283,7 +289,7 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                         </button>
                         <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-[#D4A843] transition-colors" />
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               ) : (
