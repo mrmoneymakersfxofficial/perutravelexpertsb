@@ -15,12 +15,9 @@ import {
   Waves,
   Sun,
   Utensils,
-  Camera,
   Footprints,
   Sparkles,
   Send,
-  Plus,
-  Minus,
 } from 'lucide-react';
 
 /* ── Types ──────────────────────────────────────────────────── */
@@ -99,19 +96,14 @@ const DESTINATIONS: DestinationOption[] = [
 ];
 
 const TRAVEL_STYLES = [
-  { id: 'luxury', es: 'Lujo Premium', en: 'Premium Luxury' },
   { id: 'adventure', es: 'Aventura', en: 'Adventure' },
   { id: 'cultural', es: 'Cultural e Histórico', en: 'Cultural & Historical' },
-  { id: 'romantic', es: 'Romántico / Honeymoon', en: 'Romantic / Honeymoon' },
   { id: 'family', es: 'Familiar', en: 'Family Friendly' },
-  { id: 'photography', es: 'Fotografía', en: 'Photography' },
 ];
 
 const PREFERENCES = [
   { id: 'gastronomy', es: 'Gastronomía Peruana', en: 'Peruvian Gastronomy', icon: <Utensils className="w-4 h-4" /> },
-  { id: 'photography-tours', es: 'Tours Fotográficos', en: 'Photography Tours', icon: <Camera className="w-4 h-4" /> },
   { id: 'trekking', es: 'Trekking', en: 'Trekking', icon: <Footprints className="w-4 h-4" /> },
-  { id: 'wellness', es: 'Bienestar / Spa', en: 'Wellness / Spa', icon: <Sparkles className="w-4 h-4" /> },
   { id: 'nightlife', es: 'Vida Nocturna', en: 'Nightlife', icon: <Star className="w-4 h-4" /> },
   { id: 'markets', es: 'Mercados Artesanales', en: 'Artisan Markets', icon: <MapPin className="w-4 h-4" /> },
   { id: 'festivals', es: 'Fiestas y Festivales', en: 'Festivals & Celebrations', icon: <Sparkles className="w-4 h-4" /> },

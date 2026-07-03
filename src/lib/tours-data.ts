@@ -55,6 +55,7 @@ export interface CustomizedTourData {
   id: string;
   slug: string;
   image: string;
+  gallery?: string[];
   nameEs: string;
   nameEn: string;
   descriptionEs: string;
@@ -677,6 +678,7 @@ export const customizedTours: CustomizedTourData[] = [
     id: 'cusco-lima',
     slug: 'cusco-lima',
     image: '/tours/cusco-lima-package.jpg',
+    gallery: ['/tours/cusco-city.jpg', '/tours/machu-picchu.jpg', '/tours/sacred-valley.jpg', '/tours/rainbow-mountain.jpg', '/tours/lima-city.jpg'],
     nameEs: 'Paquete Cusco a Lima',
     nameEn: 'Cusco to Lima Package',
     descriptionEs: 'La combinación perfecta: desde las alturas andinas del Cusco y Machu Picchu hasta las costas vibrantes de Lima. Incluye los principales atractivos de ambas ciudades con transporte y hospedaje incluidos.',
@@ -709,6 +711,7 @@ export const customizedTours: CustomizedTourData[] = [
     id: 'cusco-puno',
     slug: 'cusco-puno',
     image: '/tours/titikaka-lake.jpg',
+    gallery: ['/tours/cusco-city.jpg', '/tours/sacred-valley.jpg', '/tours/titikaka-lake.jpg', '/tours/cusco-city-2.jpg', '/tours/cusco-city-3.jpg'],
     nameEs: 'Paquete Cusco a Puno',
     nameEn: 'Cusco to Puno Package',
     descriptionEs: 'Conecta las dos joyas del altiplano: Cusco y Puno. Viaje por la ruta del Sol con paradas en Andahuaylillas, Raqchi y Pukara, culminando en las aguas místicas del Lago Titicaca.',
@@ -737,6 +740,7 @@ export const customizedTours: CustomizedTourData[] = [
     id: 'cusco-arequipa',
     slug: 'cusco-arequipa',
     image: '/tours/arequipa-city.jpg',
+    gallery: ['/tours/cusco-city.jpg', '/tours/machu-picchu.jpg', '/tours/sacred-valley.jpg', '/tours/arequipa-city.jpg', '/tours/cusco-city-2.jpg'],
     nameEs: 'Paquete Cusco a Arequipa',
     nameEn: 'Cusco to Arequipa Package',
     descriptionEs: 'Desde el corazón inca hasta la Ciudad Blanca. Incluye los mejores tours de Cusco, el impresionante viaje por los Andes, y la magia del Cañón del Colca en Arequipa.',
@@ -767,6 +771,7 @@ export const customizedTours: CustomizedTourData[] = [
     id: 'cusco-amazon',
     slug: 'cusco-amazon',
     image: '/tours/amazon-jungle.jpg',
+    gallery: ['/tours/cusco-city.jpg', '/tours/machu-picchu.jpg', '/tours/sacred-valley.jpg', '/tours/amazon-jungle.jpg', '/tours/humantay-lagoon.jpg'],
     nameEs: 'Paquete Cusco a Amazonía',
     nameEn: 'Cusco to Amazon Package',
     descriptionEs: 'Lo mejor de dos mundos: los Andes y la selva. Comienza con los tours imperiales del Cusco y culmina con una inmersión profunda en la selva amazónica peruana. Aventura y biodiversidad en un solo paquete.',
@@ -797,6 +802,7 @@ export const customizedTours: CustomizedTourData[] = [
     id: 'solo-cusco',
     slug: 'solo-cusco',
     image: '/tours/cusco-city.jpg',
+    gallery: ['/tours/cusco-city.jpg', '/tours/sacred-valley.jpg', '/tours/machu-picchu.jpg', '/tours/rainbow-mountain.jpg', '/tours/humantay-lagoon.jpg'],
     nameEs: 'Solo Cusco',
     nameEn: 'Solo Cusco',
     descriptionEs: 'Sumérgete en la magia del Cusco y sus alrededores. Desde tours por la ciudad imperial hasta el Valle Sagrado y Machu Picchu, todo en un solo destino con la mayor profundidad cultural.',
