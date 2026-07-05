@@ -16,7 +16,6 @@ import BookingModal from '@/components/BookingModal';
 
 const navLinks = [
   { label: 'Tour Packages', href: '/tour-packages' },
-  { label: 'Customized Tours', href: '/customized-tours' },
   { label: 'About Us', href: '/about-us' },
   { label: 'Contact', href: '/contact' },
   { label: 'Testimonials', href: '/testimonials' },
@@ -199,6 +198,14 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
+              {/* Customized Tours — right of Tour Packages */}
+              <Link
+                href="/tour-packages#customized-packages"
+                className={`text-[13px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
+              >
+                Customized Tours
+              </Link>
+
               {/* Other Nav Links */}
               {navLinks.filter(l => l.label !== 'Tours').map((link, idx) => (
                 <Link
@@ -281,7 +288,7 @@ export default function Header() {
               <button onClick={() => setIsMenuOpen(false)} className="text-2xl text-white/50 hover:text-white">&times;</button>
             </div>
             <nav className="flex flex-col gap-6">
-              {navLinks.map((link, idx) => (
+              {navLinks.filter(l => l.label !== 'Testimonials').map((link, idx) => (
                 <Link
                   key={idx}
                   href={link.href}
@@ -291,6 +298,15 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Customized Tours — replaces Testimonials position */}
+              <Link
+                href="/customized-tours"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-base font-semibold uppercase tracking-wide text-white/80 hover:text-[#C5A55A] transition-colors"
+              >
+                Customized Tours
+              </Link>
 
               {/* Destination links */}
               <div className="border-t border-white/10 pt-4 mt-2">
@@ -330,6 +346,16 @@ export default function Header() {
                   </span>
                 )}
               </button>
+
+              {/* Testimonials — moved to bottom */}
+              <Link
+                href="/testimonials"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-2 text-sm text-white/70 hover:text-[#C5A55A] transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C5A55A]/60 shrink-0"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M11 10H6"/><path d="M8 13H6"/></svg>
+                Testimonials
+              </Link>
             </nav>
             <button
               onClick={() => { setIsMenuOpen(false); setBookingOpen(true); }}

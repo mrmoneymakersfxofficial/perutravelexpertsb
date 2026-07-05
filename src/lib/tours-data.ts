@@ -804,7 +804,7 @@ export const customizedTours: CustomizedTourData[] = [
     image: '/tours/cusco-city.jpg',
     gallery: ['/tours/cusco-city.jpg', '/tours/sacred-valley.jpg', '/tours/machu-picchu.jpg', '/tours/rainbow-mountain.jpg', '/tours/humantay-lagoon.jpg'],
     nameEs: 'Solo Cusco',
-    nameEn: 'Solo Cusco',
+    nameEn: 'ONLY CUSCO',
     descriptionEs: 'Sumérgete en la magia del Cusco y sus alrededores. Desde tours por la ciudad imperial hasta el Valle Sagrado y Machu Picchu, todo en un solo destino con la mayor profundidad cultural.',
     descriptionEn: 'Immerse yourself in the magic of Cusco and its surroundings. From imperial city tours to the Sacred Valley and Machu Picchu, all in one destination with the deepest cultural experience.',
     duration: 5,
