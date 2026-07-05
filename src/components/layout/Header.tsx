@@ -16,9 +16,10 @@ import BookingModal from '@/components/BookingModal';
 
 const navLinks = [
   { label: 'Tour Packages', href: '/tour-packages' },
+  { label: 'Customized Tours', href: '/customized-tours' },
   { label: 'About Us', href: '/about-us' },
-  { label: 'Testimonials', href: '/testimonials' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Testimonials', href: '/testimonials' },
 ];
 
 const dropdownDestinations = [

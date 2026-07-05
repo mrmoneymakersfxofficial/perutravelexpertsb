@@ -53,7 +53,7 @@ export default function CustomizedToursClient() {
                           <Clock className="w-3.5 h-3.5" />{pkg.duration} {t.tours.days}
                         </div>
                         <div className="absolute bottom-4 left-4">
-                          <h3 className="font-playfair text-2xl font-bold text-white drop-shadow-lg">{name}</h3>
+                          <h3 className="font-playfair text-2xl font-bold text-white drop-shadow-lg uppercase">{name}</h3>
                         </div>
                       </div>
                       <div className="p-6 bg-[#141414]">
