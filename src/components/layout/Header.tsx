@@ -200,7 +200,7 @@ export default function Header() {
 
               {/* Customized Tours — right of Tour Packages */}
               <Link
-                href="/tour-packages#customized-packages"
+                href="/customized-tours"
                 className={`text-[12px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
               >
                 Customized Tours
