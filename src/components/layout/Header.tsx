@@ -116,12 +116,12 @@ export default function Header() {
     return 'bg-white/20';
   };
 
-  // Book Now CTA
+  // Book Now CTA — always high contrast
   const getBookClass = () => {
     if (isScrolled || !isLightPage) {
-      return 'bg-[#C5A55A] hover:bg-[#A8883D] text-[#0F0F0F] shadow-xl shadow-black/20 hover:shadow-[#C5A55A]/20';
+      return 'bg-white text-[#0F0F0F] hover:bg-[#F5D6A8] shadow-lg shadow-black/10 hover:shadow-[#C5A55A]/15';
     }
-    return 'bg-[#0F0F0F] hover:bg-[#C5A55A] text-[#C5A55A] hover:text-[#0F0F0F] border border-transparent';
+    return 'bg-[#0F0F0F] hover:bg-[#C5A55A] text-[#C5A55A] hover:text-[#0F0F0F] shadow-lg shadow-black/10';
   };
 
   // Logo treatment
@@ -151,26 +151,26 @@ export default function Header() {
             : 'bg-transparent border-b border-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex items-center justify-between h-[60px] md:h-[65px] lg:h-[70px]">
+        <div className="max-w-7xl mx-auto px-5 lg:px-6 w-full">
+          <div className="flex items-center justify-between h-[56px] md:h-[60px] lg:h-[64px]">
 
             {/* Logo — brightness-0 on light pages for dark logo */}
-            <Link href="/" className="flex items-center h-full shrink-0">
+            <Link href="/" className="flex items-center h-full shrink-0 mr-2">
               <Image
                 src="/logo.png"
                 alt="PeruTravelExpertsB"
                 width={280}
                 height={85}
-                className={`h-[40px] sm:h-[46px] md:h-[50px] lg:h-[56px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${getLogoClass()}`}
+                className={`h-[38px] sm:h-[42px] md:h-[46px] lg:h-[50px] w-auto object-contain transition-all duration-300 hover:scale-[1.02] ${getLogoClass()}`}
                 priority
               />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-6">
               {/* Tours Dropdown */}
               <div className="relative" data-tours-dropdown onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <button className={`flex items-center gap-1 text-[13px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}>
+                <button className={`flex items-center gap-1 text-[12px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}>
                   Tours
                   <svg className={`w-3 h-3 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
@@ -201,7 +201,7 @@ export default function Header() {
               {/* Customized Tours — right of Tour Packages */}
               <Link
                 href="/tour-packages#customized-packages"
-                className={`text-[13px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
+                className={`text-[12px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
               >
                 Customized Tours
               </Link>
@@ -211,29 +211,29 @@ export default function Header() {
                 <Link
                   key={idx}
                   href={link.href}
-                  className={`text-[13px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
+                  className={`text-[12px] font-bold tracking-wider uppercase transition-all duration-300 ${getTextClass()}`}
                 >
                   {link.label}
                 </Link>
               ))}
 
               {/* Separator */}
-              <div className={`w-px h-5 transition-colors duration-300 ${getSeparatorClass()}`} />
+              <div className={`w-px h-4 transition-colors duration-300 ${getSeparatorClass()}`} />
 
               {/* Search & Favorites */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className={`transition-all duration-300 p-1 ${getTextClass()}`}
+                className={`transition-all duration-300 p-1.5 ${getTextClass()}`}
                 aria-label="Search"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               </button>
               <button
                 onClick={() => setFavoritesOpen(true)}
-                className={`transition-all duration-300 p-1 relative ${getTextClass()}`}
+                className={`transition-all duration-300 p-1.5 relative ${getTextClass()}`}
                 aria-label="Favorites"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                 {favoritesCount > 0 && (
                   <span className="absolute -top-1 -right-1.5 w-4 h-4 rounded-full text-[9px] font-bold text-[#0F0F0F] flex items-center justify-center" style={{ backgroundColor: '#C5A55A' }}>
                     {favoritesCount > 9 ? '9+' : favoritesCount}
@@ -242,22 +242,22 @@ export default function Header() {
               </button>
 
               {/* Separator */}
-              <div className={`w-px h-5 transition-colors duration-300 ${getSeparatorClass()}`} />
+              <div className={`w-px h-4 transition-colors duration-300 ${getSeparatorClass()}`} />
 
               {/* Language Toggle */}
               <button
                 onClick={() => setLocale(locale === 'en' ? 'es' : 'en')}
-                className={`text-[13px] uppercase font-bold transition-all duration-300 flex items-center gap-1.5 cursor-pointer hover:opacity-80 active:scale-95 ${getTextClass()}`}
+                className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 cursor-pointer hover:opacity-80 active:scale-95 ${getTextClass()}`}
                 aria-label="Toggle language"
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-3.5 h-3.5" />
                 {locale === 'en' ? 'ES' : 'EN'}
               </button>
 
-              {/* Book Now CTA — inverts on light pages */}
+              {/* Book Now CTA — high contrast, prominent */}
               <button
                 onClick={() => setBookingOpen(true)}
-                className={`py-2 h-10 px-6 rounded-full text-[13px] font-bold tracking-wide transition-all duration-200 ${getBookClass()}`}
+                className={`px-5 h-9 rounded-full text-[11px] font-extrabold tracking-widest uppercase transition-all duration-200 whitespace-nowrap ${getBookClass()}`}
               >
                 Book Now
               </button>
@@ -287,8 +287,9 @@ export default function Header() {
               <span className="text-xs font-bold text-[#C5A55A] uppercase tracking-widest">// Menu</span>
               <button onClick={() => setIsMenuOpen(false)} className="text-2xl text-white/50 hover:text-white">&times;</button>
             </div>
-            <nav className="flex flex-col gap-6">
-              {navLinks.filter(l => l.label !== 'Testimonials').map((link, idx) => (
+            <nav className="flex flex-col gap-5">
+              {/* Main nav links in order: Tour Packages, Customized Tours, About Us, Contact, Testimonials */}
+              {navLinks.slice(0, 1).map((link, idx) => (
                 <Link
                   key={idx}
                   href={link.href}
@@ -299,7 +300,7 @@ export default function Header() {
                 </Link>
               ))}
 
-              {/* Customized Tours — replaces Testimonials position */}
+              {/* Customized Tours — directly below Tour Packages */}
               <Link
                 href="/customized-tours"
                 onClick={() => setIsMenuOpen(false)}
@@ -307,6 +308,17 @@ export default function Header() {
               >
                 Customized Tours
               </Link>
+
+              {navLinks.slice(1).map((link, idx) => (
+                <Link
+                  key={`nav-${idx}`}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-semibold uppercase tracking-wide text-white/80 hover:text-[#C5A55A] transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
 
               {/* Destination links */}
               <div className="border-t border-white/10 pt-4 mt-2">
@@ -346,16 +358,6 @@ export default function Header() {
                   </span>
                 )}
               </button>
-
-              {/* Testimonials — moved to bottom */}
-              <Link
-                href="/testimonials"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-2 text-sm text-white/70 hover:text-[#C5A55A] transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#C5A55A]/60 shrink-0"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M11 10H6"/><path d="M8 13H6"/></svg>
-                Testimonials
-              </Link>
             </nav>
             <button
               onClick={() => { setIsMenuOpen(false); setBookingOpen(true); }}
