@@ -72,7 +72,39 @@ export function plainText(blocks: PortableTextBlock[] | undefined | null): strin
   return blocks.map((b) => b._type === "block" && b.children ? b.children.map((c) => c.text).join("") : "").join("\n").trim();
 }
 
+/**
+ * Obtiene URL de imagen con formato WebP automático.
+ * Sanity Image Pipeline convierte automáticamente a WebP cuando se especifica ?fm=webp
+ */
 export function getImageUrl(image: SanityImage | null | undefined, width = 800, height = 600): string | null {
   if (!image || !image.asset) return null;
-  try { return urlFor(image).width(width).height(height).fit("crop").url(); } catch { return null; }
+  try {
+    return urlFor(image)
+      .width(width)
+      .height(height)
+      .fit("crop")
+      .auto("format") // Sanity auto-formats to WebP when browser supports it
+      .quality(85)
+      .url();
+  } catch { return null; }
+}
+
+/**
+ * URL de imagen con tamaño personalizado y WebP
+ */
+export function getImageUrlCustom(
+  image: SanityImage | null | undefined,
+  options?: { width?: number; height?: number; quality?: number; fit?: "crop" | "clip" | "max" | "min"; blur?: number }
+): string | null {
+  if (!image || !image.asset) return null;
+  try {
+    let builder = urlFor(image)
+      .auto("format")
+      .quality(options?.quality ?? 80);
+    if (options?.width) builder = builder.width(options.width);
+    if (options?.height) builder = builder.height(options.height);
+    if (options?.fit) builder = builder.fit(options.fit);
+    if (options?.blur) builder = builder.blur(options.blur);
+    return builder.url();
+  } catch { return null; }
 }

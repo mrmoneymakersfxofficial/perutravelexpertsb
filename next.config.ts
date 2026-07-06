@@ -1,13 +1,35 @@
 import type { NextConfig } from "next";
 
+const SANITY_PROJECT_ID =
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
+  process.env.NEXT_PUBLIC_SANITY_PROJECT ||
+  "";
+
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      // Sanity CDN
+      ...(SANITY_PROJECT_ID
+        ? [
+            {
+              protocol: "https" as const,
+              hostname: "cdn.sanity.io",
+              pathname: `/images/${SANITY_PROJECT_ID}/**`,
+            },
+          ]
+        : []),
+      // Permitir cualquier subdominio de cdn.sanity.io
+      {
+        protocol: "https" as const,
+        hostname: "cdn.sanity.io",
+      },
+    ],
     unoptimized: false,
+    formats: ["image/webp", "image/avif", "image/png", "image/jpeg"],
   },
   async redirects() {
     return [

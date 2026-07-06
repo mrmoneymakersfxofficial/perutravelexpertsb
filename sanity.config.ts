@@ -80,7 +80,10 @@ export default defineConfig({
       document: { actions: [] },
       previewUrl: {
         initial: process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL,
-        previewMode: { enable: "/api/draft-mode/enable" },
+        previewMode: {
+          enable: "/api/draft-mode/enable",
+          disable: "/api/draft-mode/disable",
+        },
       },
       resolve: {
         locations: {
@@ -110,7 +113,17 @@ export default defineConfig({
     }),
   ],
   schema: { types: schemaTypes },
-  document: { unsavedChanges: { warning: "Tienes cambios sin guardar. ¿Seguro que quieres salir?" } },
-  form: { image: { directUploads: true } },
+  document: {
+    // Auto-guardado: Sanity guarda automáticamente los cambios como borrador
+    newDocumentOptions: (prev) => prev,
+    actions: (prev) => prev,
+    unsavedChanges: { warning: "Tienes cambios sin guardar. ¿Seguro que quieres salir?" },
+  },
+  form: {
+    image: {
+      directUploads: true,
+      // Las imágenes se sirven como WebP automáticamente via urlFor().auto('format')
+    },
+  },
   theme: { "--brand-primary": BRAND_COLORS.primary, "--brand-accent": BRAND_COLORS.accent, "--brand-dark": BRAND_COLORS.dark } as React.CSSProperties,
 });
