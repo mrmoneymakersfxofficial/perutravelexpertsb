@@ -6,10 +6,10 @@ import { Search, Heart, ArrowUp, MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { useModal } from '@/components/ModalContext';
-import { getWhatsAppLink } from '@/lib/whatsapp';
+import { getWhatsAppLink, getDefaultWhatsAppMessage } from '@/lib/whatsapp';
 
 export default function FloatingPanel() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const { favoritesCount } = useFavorites();
   const { openSearch, openFavorites, anyModalOpen } = useModal();
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -47,7 +47,7 @@ export default function FloatingPanel() {
             <Heart className="w-5 h-5" style={{ color: '#1C1C1C' }} />
             {favoritesCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[10px] font-bold text-white flex items-center justify-center" style={{ backgroundColor: '#D4A843' }}>{favoritesCount > 9 ? '9+' : favoritesCount}</span>}
           </motion.button>
-          <motion.a href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#25D366' }} aria-label={t.whatsapp.tooltip} title={t.whatsapp.tooltip}>
+          <motion.a href={getWhatsAppLink(getDefaultWhatsAppMessage(locale))} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: '#25D366' }} aria-label={t.whatsapp.tooltip} title={t.whatsapp.tooltip}>
             <MessageCircle className="w-7 h-7 text-white" />
           </motion.a>
         </motion.div>

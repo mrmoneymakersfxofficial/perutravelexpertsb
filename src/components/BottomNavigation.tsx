@@ -8,9 +8,7 @@ import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useFavorites } from '@/components/FavoritesProvider';
 import { useModal } from '@/components/ModalContext';
-import { getWhatsAppLink } from '@/lib/whatsapp';
-
-const WHATSAPP_URL = getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB');
+import { getWhatsAppLink, getDefaultWhatsAppMessage } from '@/lib/whatsapp';
 
 export default function BottomNavigation() {
   const pathname = usePathname();
@@ -19,12 +17,14 @@ export default function BottomNavigation() {
   const { anyModalOpen, openSearch, openFavorites } = useModal();
   const isHome = pathname === '/';
 
+  const whatsappUrl = getWhatsAppLink(getDefaultWhatsAppMessage(locale));
+
   const items = [
     { key: 'home' as const, icon: Home, label: locale === 'es' ? 'Inicio' : 'Home', href: '/', action: () => { if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' }); }, active: isHome },
     { key: 'search' as const, icon: Search, label: locale === 'es' ? 'Buscar' : 'Search', action: openSearch, active: false },
     { key: 'favorites' as const, icon: Heart, label: locale === 'es' ? 'Favoritos' : 'Favorites', action: openFavorites, active: false, badge: favoritesCount },
     { key: 'tours' as const, icon: Compass, label: locale === 'es' ? 'Tours' : 'Tours', href: '/tour-packages', active: pathname.startsWith('/tour-packages') || pathname.startsWith('/our-tours') || pathname.startsWith('/tours') },
-    { key: 'whatsapp' as const, icon: MessageCircle, label: 'WhatsApp', href: WHATSAPP_URL, external: true, active: false },
+    { key: 'whatsapp' as const, icon: MessageCircle, label: 'WhatsApp', href: whatsappUrl, external: true, active: false },
   ];
 
   return (

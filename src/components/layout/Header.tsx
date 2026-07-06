@@ -263,12 +263,16 @@ export default function Header() {
               </button>
             </nav>
 
-            {/* Mobile — hamburger + language */}
+            {/* Mobile — hamburger + language toggle */}
             <div className="flex items-center gap-2 lg:hidden">
-              <span className={`text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 ${getMutedClass()}`}>
+              <button
+                onClick={() => setLocale(locale === 'en' ? 'es' : 'en')}
+                className="text-[12px] uppercase font-bold transition-all duration-300 flex items-center gap-1 cursor-pointer hover:opacity-80 active:scale-95 text-[#E8C97A] hover:text-[#F5D6A8] active:text-[#C9A96E] drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
+                aria-label="Toggle language"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                en
-              </span>
+                {locale === 'en' ? 'ES' : 'EN'}
+              </button>
 
               <button onClick={() => setIsMenuOpen(true)} className={`transition-all duration-300 p-1 ${getHamburgerClass()}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>

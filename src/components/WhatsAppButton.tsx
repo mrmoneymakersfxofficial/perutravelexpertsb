@@ -4,14 +4,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageProvider';
-import { getWhatsAppLink } from '@/lib/whatsapp';
+import { getWhatsAppLink, getDefaultWhatsAppMessage } from '@/lib/whatsapp';
 
 export default function WhatsAppButton() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <motion.a
-      href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
+      href={getWhatsAppLink(getDefaultWhatsAppMessage(locale))}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, scale: 0.8 }}

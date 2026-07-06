@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { MessageCircle, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { getWhatsAppLink } from '@/lib/whatsapp';
+import { getWhatsAppLink, getDefaultWhatsAppMessage } from '@/lib/whatsapp';
 
 export default function ContactSection() {
   const { t, locale } = useLanguage();
@@ -71,7 +71,7 @@ export default function ContactSection() {
                     {t.contact.whatsapp}
                   </h4>
                   <a
-                    href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
+                    href={getWhatsAppLink(getDefaultWhatsAppMessage(locale))}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#8B8680] hover:text-[#D4A843] transition-colors"
@@ -125,7 +125,7 @@ export default function ContactSection() {
 
             {/* WhatsApp Direct Button */}
             <a
-              href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
+              href={getWhatsAppLink(getDefaultWhatsAppMessage(locale))}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors text-sm"

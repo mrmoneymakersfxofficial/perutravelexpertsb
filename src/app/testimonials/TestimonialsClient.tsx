@@ -5,7 +5,7 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Star, Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 import PageHeader from '@/components/layout/PageHeader';
-import { getWhatsAppLink } from '@/lib/whatsapp';
+import { getWhatsAppLink, getDefaultWhatsAppMessage } from '@/lib/whatsapp';
 import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 
 const testimonials = [
@@ -198,7 +198,7 @@ export default function TestimonialsClient() {
                 : 'Join hundreds of travelers who have already experienced unforgettable moments with PeruTravelExpertsB.'}
             </p>
             <a
-              href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
+              href={getWhatsAppLink(getDefaultWhatsAppMessage(locale))}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full gold-gradient text-[#0F0F0F] font-semibold hover:shadow-[0_0_30px_rgba(184,144,32,0.4)] transition-all text-sm"

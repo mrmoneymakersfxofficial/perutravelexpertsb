@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { MessageCircle, HelpCircle } from 'lucide-react';
 import PageHeader from '@/components/layout/PageHeader';
-import { getWhatsAppLink } from '@/lib/whatsapp';
+import { getWhatsAppLink, getDefaultWhatsAppMessage } from '@/lib/whatsapp';
 import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 import { Button } from '@/components/ui/button';
 import {
@@ -104,7 +104,7 @@ export default function FAQClient() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href={getWhatsAppLink('Hola, me interesa información sobre los tours de PeruTravelExpertsB')}
+                href={getWhatsAppLink(getDefaultWhatsAppMessage(locale))}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#25D366] text-white font-semibold hover:bg-[#20BA5C] transition-colors text-sm"
