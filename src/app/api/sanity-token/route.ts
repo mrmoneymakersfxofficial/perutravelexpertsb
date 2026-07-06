@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   const token = process.env.SANITY_API_READ_TOKEN || "";
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT || "";
 
   if (!token || !projectId) {
     return NextResponse.json({ token: "", projectId: "" });

@@ -11,7 +11,7 @@ const Studio = dynamic(() => import("next-sanity/studio").then((mod) => mod.Next
 });
 
 function StudioGuard({ children }: { children: React.ReactNode }) {
-  const hasProjectId = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
+  const hasProjectId = Boolean(process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT);
   if (!hasProjectId) {
     return (
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "#0F0F0F", padding: 32, textAlign: "center", fontFamily: "system-ui, sans-serif" }}>

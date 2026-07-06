@@ -4,7 +4,7 @@ import { sanityFetch } from "@/sanity/live";
 
 export async function fetchCMS<T>(query: string): Promise<T | null> {
   try {
-    if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return null;
+    if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && !process.env.NEXT_PUBLIC_SANITY_PROJECT) return null;
     let isDraft = false;
     try { const dm = await draftMode(); isDraft = dm.isEnabled; } catch {}
 

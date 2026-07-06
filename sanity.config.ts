@@ -18,7 +18,7 @@ import HeartIcon from "@sanity/icons/Heart";
 import { schemaTypes } from "./sanity/schema";
 import { STUDIO_TITLE, SITE_URL, BRAND_COLORS } from "./sanity/lib/constants";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT || "";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
 export default defineConfig({
