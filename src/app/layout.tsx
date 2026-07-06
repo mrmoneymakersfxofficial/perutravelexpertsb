@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 import { Playfair_Display, Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
@@ -14,6 +15,8 @@ import FloatingPanel from "@/components/FloatingPanel";
 import BottomTabModals from "@/components/BottomTabModals";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import ParticleTrail from "@/components/ParticleTrail";
+import { VisualEditing } from "@/components/VisualEditing";
+import { SanityLiveWithToken } from "@/components/SanityLiveWithToken";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -56,17 +59,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled: isDraftMode } = await draftMode();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: '#0F0F0F' }}
       >
+        {isDraftMode && <SanityLiveWithToken includeDrafts />}
         <SchemaOrg />
         <LanguageProvider>
           <FavoritesProvider>
@@ -89,6 +95,7 @@ export default function RootLayout({
             </RecentlyViewedProvider>
           </FavoritesProvider>
         </LanguageProvider>
+        {isDraftMode && <VisualEditing />}
       </body>
     </html>
   );
