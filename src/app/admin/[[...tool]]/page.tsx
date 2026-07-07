@@ -32,11 +32,17 @@ function StudioGuard({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-function StudioWithConfig() {
-  const config = require("../../../../sanity.config");
-  return <Studio config={config.default || config} />;
-}
+// Dynamically import the sanity config to prevent Turbopack from
+// statically analyzing the schema imports on the public site
+const SanityStudioWithConfig = dynamic(
+  () => import("./StudioLoader").then((mod) => mod.default),
+  { ssr: false }
+);
 
 export default function AdminPage() {
-  return <StudioGuard><StudioWithConfig /></StudioGuard>;
+  return (
+    <StudioGuard>
+      <SanityStudioWithConfig />
+    </StudioGuard>
+  );
 }
