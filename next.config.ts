@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
       },
     ],
     unoptimized: false,
-    formats: ["image/webp", "image/avif", "image/png", "image/jpeg"],
+    formats: ["image/webp", "image/avif"],
   },
   async redirects() {
     return [
