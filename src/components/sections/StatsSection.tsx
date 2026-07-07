@@ -5,37 +5,43 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { Users, Map, Clock, ThumbsUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const stats = [
-  {
-    key: 'travelers',
-    value: 1000,
-    suffix: '+',
-    icon: Users,
-  },
-  {
-    key: 'tours',
-    value: 500,
-    suffix: '+',
-    icon: Map,
-  },
-  {
-    key: 'years',
-    value: 8,
-    suffix: '+',
-    icon: Clock,
-  },
-  {
-    key: 'satisfaction',
-    value: 99,
-    suffix: '%',
-    icon: ThumbsUp,
-  },
+const defaultStats = [
+  { key: 'travelers', value: 1000, suffix: '+', icon: Users },
+  { key: 'tours', value: 500, suffix: '+', icon: Map },
+  { key: 'years', value: 8, suffix: '+', icon: Clock },
+  { key: 'satisfaction', value: 99, suffix: '%', icon: ThumbsUp },
 ];
 
-export default function StatsSection() {
-  const { t } = useLanguage();
+const iconMap = { Users, Map, Clock, ThumbsUp };
+
+interface StatsSectionProps {
+  /** Datos de estadísticas desde Sanity (opcional) */
+  sanityStats?: Array<{
+    label?: string;
+    labelEn?: string;
+    value?: number;
+    suffix?: string;
+    prefix?: string;
+  }> | null;
+}
+
+export default function StatsSection({ sanityStats }: StatsSectionProps) {
+  const { t, locale } = useLanguage();
   const countersRef = useRef<HTMLDivElement>(null);
   const counted = useRef(false);
+
+  // Usar datos de Sanity si están disponibles, si no usar defaults
+  const statsData = (sanityStats && sanityStats.length > 0)
+    ? sanityStats.map((s, i) => ({
+        key: s.label || `stat-${i}`,
+        value: s.value || 0,
+        suffix: s.suffix || '',
+        prefix: s.prefix || '',
+        // Los labels vienen de Sanity con stega encoding cuando hay draft mode
+        label: locale === 'es' ? s.label : (s.labelEn || s.label),
+        icon: [Users, Map, Clock, ThumbsUp][i % 4],
+      }))
+    : defaultStats;
 
   useEffect(() => {
     const initGSAP = async () => {
@@ -78,18 +84,17 @@ export default function StatsSection() {
 
   return (
     <section id="stats" className="py-16 md:py-20 relative overflow-hidden">
-      {/* Gold gradient background */}
       <div className="absolute inset-0 gold-gradient opacity-95" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#0F0F0F]/20 via-transparent to-[#0F0F0F]/20" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          ref={countersRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
-        >
-          {stats.map((stat, index) => {
+        <div ref={countersRef} className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {statsData.map((stat, index) => {
             const Icon = stat.icon;
-            const label = (t.stats as Record<string, string>)[stat.key] || stat.key;
+            // Usar label de Sanity con stega, o fallback a traducciones
+            const label = sanityStats
+              ? (stat.label || stat.key)
+              : ((t.stats as Record<string, string>)[stat.key] || stat.key);
             return (
               <motion.div
                 key={index}

@@ -10,8 +10,16 @@ import CTASection from '@/components/sections/CTASection';
 import RecentlyViewedCarousel from '@/components/RecentlyViewedCarousel';
 import { useSectionObserver, useHandleHashScroll } from '@/hooks/use-scroll-spy';
 import { useModal } from '@/components/ModalContext';
+import type { TourData } from '@/lib/tours-data';
 
-export default function HomeClient() {
+interface HomeClientProps {
+  settings?: Record<string, any> | null;
+  featuredTours?: TourData[] | null;
+  testimonials?: any[] | null;
+  stats?: any[] | null;
+}
+
+export default function HomeClient({ featuredTours, testimonials, stats, settings }: HomeClientProps) {
   const { openDetail } = useModal();
   const sectionIds = ['about', 'tours', 'testimonials', 'stats', 'cta'];
 
@@ -21,17 +29,13 @@ export default function HomeClient() {
   return (
     <>
       <HeroSection />
-      {/* Dark → Light immersive transition */}
       <div className="section-transition-dark-light" />
       <WhyChooseUsSection />
-      {/* Light → Dark immersive transition (replaces 1px divider) */}
       <div className="section-transition-light-dark" />
-      <FeaturedToursSection />
-      <TestimonialsSection />
-      {/* Dark → Gold immersive transition */}
+      <FeaturedToursSection sanityTours={featuredTours} />
+      <TestimonialsSection sanityTestimonials={testimonials} />
       <div className="section-transition-dark-gold" />
-      <StatsSection />
-      {/* Gold → Dark immersive transition */}
+      <StatsSection sanityStats={stats} />
       <div className="section-transition-gold-dark" />
       <RecentlyViewedCarousel onTourClick={openDetail} />
       <CTASection />

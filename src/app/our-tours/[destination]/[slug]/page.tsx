@@ -1,47 +1,27 @@
 import type { Metadata } from 'next';
 import TourDetailClient from './TourDetailClient';
-import { tours, getDestinationBySlug, getTourBySlug } from '@/lib/tours-data';
+import { tours as localTours, getTourBySlug } from '@/lib/tours-data';
+import { getTourBySlugFn } from '@/lib/sanity-adapter';
 
 const BASE_URL = 'https://perutravelexpertsb.com';
 
-export function generateStaticParams() {
-  return tours.filter((t) => t.active).map((tour) => ({
-    destination: tour.destination,
-    slug: tour.slug,
-  }));
+export async function generateStaticParams() {
+  return localTours.filter((t) => t.active).map((tour) => ({ destination: tour.destination, slug: tour.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ destination: string; slug: string }>;
-}): Promise<Metadata> {
-  const { destination, slug } = await params;
-  const dest = getDestinationBySlug(destination);
-  const tour = getTourBySlug(slug);
-
-  if (!tour || !dest) {
-    return { title: 'Tour Not Found | PeruTravelExpertsB' };
-  }
-
+export async function generateMetadata({ params }: { params: Promise<{ destination: string; slug: string }> }) {
+  const { slug } = await params;
+  const tour = await getTourBySlugFn(slug);
+  if (!tour) return { title: 'Tour not found' };
   return {
-    title: `${tour.nameEn} | PeruTravelExpertsB - ${dest.nameEn}`,
-    description: tour.descriptionEn.slice(0, 160),
-    openGraph: {
-      title: `${tour.nameEn} | PeruTravelExpertsB`,
-      description: tour.descriptionEn.slice(0, 160),
-      url: `${BASE_URL}/our-tours/${destination}/${slug}`,
-      siteName: 'PeruTravelExpertsB',
-      type: 'article',
-      images: [{ url: tour.image, width: 1200, height: 630 }],
-    },
+    title: `${tour.nameEn || tour.nameEs} | PeruTravelExpertsB`,
+    description: (tour.descriptionEn || tour.descriptionEs || '').substring(0, 160),
+    openGraph: { title: `${tour.nameEn || tour.nameEs} | PeruTravelExpertsB`, url: `${BASE_URL}/our-tours/${tour.destination}/${slug}`, siteName: 'PeruTravelExpertsB', type: 'website' },
   };
 }
 
-export default function TourDetailPage({
-  params,
-}: {
-  params: Promise<{ destination: string; slug: string }>;
-}) {
-  return <TourDetailClient params={params} />;
+export default async function TourDetailPage({ params }: { params: Promise<{ destination: string; slug: string }> }) {
+  const { slug } = await params;
+  const tour = await getTourBySlugFn(slug);
+  return <TourDetailClient tour={tour} />;
 }

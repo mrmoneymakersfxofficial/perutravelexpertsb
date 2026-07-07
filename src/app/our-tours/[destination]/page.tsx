@@ -1,45 +1,36 @@
 import type { Metadata } from 'next';
 import DestinationClient from './DestinationClient';
-import { destinations, getDestinationBySlug } from '@/lib/tours-data';
+import { destinations as localDestinations, getDestinationBySlug } from '@/lib/tours-data';
+import { getDestinations, getToursByDestinationFn } from '@/lib/sanity-adapter';
 
 const BASE_URL = 'https://perutravelexpertsb.com';
 
-export function generateStaticParams() {
-  return destinations.map((dest) => ({
-    destination: dest.slug,
-  }));
+export async function generateStaticParams() {
+  const sanityDests = await getDestinations();
+  const dests = (sanityDests && sanityDests.length > 0) ? sanityDests : localDestinations;
+  return dests.map((dest: any) => ({ destination: dest.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ destination: string }>;
-}): Promise<Metadata> {
-  const { destination } = await params;
-  const dest = getDestinationBySlug(destination);
-
-  if (!dest) {
-    return { title: 'Destination Not Found | PeruTravelExpertsB' };
-  }
-
+export async function generateMetadata({ params }: { params: Promise<{ destination: string }> }) {
+  const { destination: destSlug } = await params;
+  const sanityDests = await getDestinations();
+  const dests = (sanityDests && sanityDests.length > 0) ? sanityDests : localDestinations;
+  const dest = dests.find((d: any) => d.slug === destSlug) || getDestinationBySlug(destSlug);
+  if (!dest) return { title: 'Destination not found' };
   return {
-    title: `Tours in ${dest.nameEn} | PeruTravelExpertsB`,
-    description: dest.descriptionEn.slice(0, 160),
-    openGraph: {
-      title: `Tours in ${dest.nameEn} | PeruTravelExpertsB`,
-      description: dest.descriptionEn.slice(0, 160),
-      url: `${BASE_URL}/our-tours/${destination}`,
-      siteName: 'PeruTravelExpertsB',
-      type: 'website',
-      images: [{ url: dest.image, width: 1200, height: 630 }],
-    },
+    title: `${dest.nameEn || dest.nameEs} Tours | PeruTravelExpertsB`,
+    description: (dest.descriptionEn || dest.descriptionEs || '').substring(0, 160),
+    openGraph: { title: `${dest.nameEn || dest.nameEs} Tours | PeruTravelExpertsB`, url: `${BASE_URL}/our-tours/${destSlug}`, siteName: 'PeruTravelExpertsB', type: 'website' },
   };
 }
 
-export default function DestinationPage({
-  params,
-}: {
-  params: Promise<{ destination: string }>;
-}) {
-  return <DestinationClient params={params} />;
+export default async function DestinationPage({ params }: { params: Promise<{ destination: string }> }) {
+  const { destination: destSlug } = await params;
+  const [sanityDests, sanityTours] = await Promise.all([
+    getDestinations(),
+    getToursByDestinationFn(destSlug),
+  ]);
+  const dests = (sanityDests && sanityDests.length > 0) ? sanityDests : localDestinations;
+  const dest = dests.find((d: any) => d.slug === destSlug) || getDestinationBySlug(destSlug);
+  return <DestinationClient destination={dest} tours={sanityTours} />;
 }

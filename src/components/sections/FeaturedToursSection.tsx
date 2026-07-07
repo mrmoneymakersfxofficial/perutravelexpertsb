@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, Heart, MapPin, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getFeaturedTours } from '@/lib/tours-data';
+import { getFeaturedTours, type TourData } from '@/lib/tours-data';
 import { getWhatsAppLink } from '@/lib/whatsapp';
 import Image from 'next/image';
 
@@ -17,10 +17,17 @@ const difficultyConfig = {
   advanced:  { es: 'Avanzado',    en: 'Advanced',  color: 'rgba(239,68,68,0.9)', border: 'rgba(239,68,68,0.3)' },
 } as const;
 
-export default function FeaturedToursSection() {
+interface FeaturedToursSectionProps {
+  /** Tours desde Sanity (opcional). Si no hay, usa datos locales. */
+  sanityTours?: TourData[] | null;
+}
+
+export default function FeaturedToursSection({ sanityTours }: FeaturedToursSectionProps) {
   const { t, locale } = useLanguage();
   const { isFavorite, toggleFavorite } = useFavorites();
-  const featuredTours = getFeaturedTours().slice(0, 6);
+  const featuredTours = (sanityTours && sanityTours.length > 0)
+    ? sanityTours.slice(0, 6)
+    : getFeaturedTours().slice(0, 6);
 
   return (
     <section id="tours" className="py-20 md:py-28" style={{ backgroundColor: '#0F0F0F' }}>
