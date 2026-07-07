@@ -16,7 +16,7 @@ import GlobeIcon from "@sanity/icons/EarthGlobe";
 import StarIcon from "@sanity/icons/Star";
 import HeartIcon from "@sanity/icons/Heart";
 import { schemaTypes } from "./sanity/schema";
-import { STUDIO_TITLE, SITE_URL, BRAND_COLORS } from "./sanity/lib/constants";
+import { STUDIO_TITLE, BRAND_COLORS } from "./sanity/lib/constants";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT || "";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -79,7 +79,9 @@ export default defineConfig({
     presentationTool({
       document: { actions: [] },
       previewUrl: {
-        initial: process.env.NODE_ENV === "development" ? "http://localhost:3000" : SITE_URL,
+        // Sin initial — Sanity usa automáticamente el mismo origen del Studio.
+        // En dev: localhost:3000/admin → preview en localhost:3000/
+        // En produccion: perutravelexpertsb.com/admin → preview en perutravelexpertsb.com/
         previewMode: {
           enable: "/api/draft-mode/enable",
           disable: "/api/draft-mode/disable",
