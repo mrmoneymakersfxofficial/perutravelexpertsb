@@ -16,7 +16,8 @@ function createSanityClient(options?: { perspective?: "published" | "previewDraf
     useCdn: !isDraft,
     perspective: isDraft ? "previewDrafts" : "published",
     token: isDraft ? process.env.SANITY_API_READ_TOKEN : undefined,
-    stega: { enabled: true, studioUrl: "/admin" },
+    // Stega encoding SOLO en draft mode — evita React error #418 en producción
+    stega: isDraft ? { enabled: true, studioUrl: "/admin" } : { enabled: false },
   });
 }
 

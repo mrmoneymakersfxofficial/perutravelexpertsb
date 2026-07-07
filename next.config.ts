@@ -31,6 +31,29 @@ const nextConfig: NextConfig = {
     unoptimized: false,
     formats: ["image/webp", "image/avif"],
   },
+  async headers() {
+    return [
+      {
+        // Aplicar CSP a todas las rutas del sitio público
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: [
+              `frame-ancestors 'self' https://*.sanity.dev https://*.sanity.build https://*.api.sanity.io wss://*.api.sanity.io;`,
+              `connect-src 'self' https://*.sanity.io wss://*.sanity.io https://*.sanity.build https://*.api.sanity.io wss://*.api.sanity.io;`,
+              `img-src 'self' data: blob: https://cdn.sanity.io;`,
+            ].join(" "),
+          },
+        ],
+      },
+      {
+        // No aplicar CSP al panel admin (Sanity Studio maneja su propio CSP)
+        source: "/admin/:path*",
+        headers: [],
+      },
+    ];
+  },
   async redirects() {
     return [
       // Old /tour-packages/{destination} → new /our-tours/{destination}
