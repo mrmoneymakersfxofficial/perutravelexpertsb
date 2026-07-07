@@ -25,12 +25,6 @@ export async function generateMetadata({ params }: { params: Promise<{ destinati
 }
 
 export default async function DestinationPage({ params }: { params: Promise<{ destination: string }> }) {
-  const { destination: destSlug } = await params;
-  const [sanityDests, sanityTours] = await Promise.all([
-    getDestinations(),
-    getToursByDestinationFn(destSlug),
-  ]);
-  const dests = (sanityDests && sanityDests.length > 0) ? sanityDests : localDestinations;
-  const dest = dests.find((d: any) => d.slug === destSlug) || getDestinationBySlug(destSlug);
-  return <DestinationClient destination={dest} tours={sanityTours} />;
+  // Pasar params al client component — él maneja data lookup internamente
+  return <DestinationClient params={params} />;
 }

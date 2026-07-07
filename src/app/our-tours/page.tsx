@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default async function OurToursPage() {
-  const sanityDests = await getDestinations();
-  const dests = (sanityDests && sanityDests.length > 0) ? sanityDests : localDestinations;
-  return <TourPackagesClient destinations={dests} />;
+  // Pre-fetch data para metadata (TourPackagesClient usa datos locales internamente)
+  return <TourPackagesClient />;
 }

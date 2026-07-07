@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import AboutUsClient from './AboutUsClient';
-import { getTeamMembers, getSiteSettings } from '@/lib/sanity-adapter';
 
 const BASE_URL = 'https://perutravelexpertsb.com';
 
@@ -10,7 +9,6 @@ export const metadata: Metadata = {
   openGraph: { title: 'About Us | PeruTravelExpertsB', description: 'Your trusted boutique travel agency in Cusco, Peru.', url: `${BASE_URL}/about-us`, siteName: 'PeruTravelExpertsB', type: 'website' },
 };
 
-export default async function AboutPage() {
-  const [team, settings] = await Promise.all([getTeamMembers(), getSiteSettings()]);
-  return <AboutUsClient sanityTeam={team} sanitySettings={settings} />;
+export default function AboutPage() {
+  return <AboutUsClient />;
 }

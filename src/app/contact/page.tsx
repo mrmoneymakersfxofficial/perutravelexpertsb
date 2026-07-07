@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import ContactClient from './ContactClient';
-import { getSiteSettings } from '@/lib/sanity-adapter';
 
 const BASE_URL = 'https://perutravelexpertsb.com';
 
@@ -10,7 +9,6 @@ export const metadata: Metadata = {
   openGraph: { title: 'Contact Us | PeruTravelExpertsB', description: 'Get in touch to plan your perfect trip to Cusco and Machu Picchu.', url: `${BASE_URL}/contact`, siteName: 'PeruTravelExpertsB', type: 'website' },
 };
 
-export default async function ContactPage() {
-  const settings = await getSiteSettings();
-  return <ContactClient sanitySettings={settings} />;
+export default function ContactPage() {
+  return <ContactClient />;
 }

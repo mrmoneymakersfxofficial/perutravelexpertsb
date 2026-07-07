@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import FAQClient from './FAQClient';
-import { getFAQItems } from '@/lib/sanity-adapter';
 
 const BASE_URL = 'https://perutravelexpertsb.com';
 
@@ -10,7 +9,6 @@ export const metadata: Metadata = {
   openGraph: { title: 'FAQ - Preguntas Frecuentes | PeruTravelExpertsB', description: 'Everything you need to know before your trip to Cusco and Machu Picchu.', url: `${BASE_URL}/faq`, siteName: 'PeruTravelExpertsB', type: 'website' },
 };
 
-export default async function FAQPage() {
-  const faqItems = await getFAQItems();
-  return <FAQClient sanityFaq={faqItems} />;
+export default function FAQPage() {
+  return <FAQClient />;
 }

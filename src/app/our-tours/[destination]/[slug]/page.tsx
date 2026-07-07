@@ -6,7 +6,10 @@ import { getTourBySlugFn } from '@/lib/sanity-adapter';
 const BASE_URL = 'https://perutravelexpertsb.com';
 
 export async function generateStaticParams() {
-  return localTours.filter((t) => t.active).map((tour) => ({ destination: tour.destination, slug: tour.slug }));
+  return localTours.filter((t) => t.active).map((tour) => ({
+    destination: tour.destination,
+    slug: tour.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ destination: string; slug: string }> }) {
@@ -21,7 +24,6 @@ export async function generateMetadata({ params }: { params: Promise<{ destinati
 }
 
 export default async function TourDetailPage({ params }: { params: Promise<{ destination: string; slug: string }> }) {
-  const { slug } = await params;
-  const tour = await getTourBySlugFn(slug);
-  return <TourDetailClient tour={tour} />;
+  // Pass params to client component — it handles data lookup internally
+  return <TourDetailClient params={params} />;
 }
