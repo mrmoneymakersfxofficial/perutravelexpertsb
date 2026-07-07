@@ -15,6 +15,8 @@ import DashboardIcon from "@sanity/icons/Dashboard";
 import GlobeIcon from "@sanity/icons/EarthGlobe";
 import StarIcon from "@sanity/icons/Star";
 import HeartIcon from "@sanity/icons/Heart";
+import QuestionMarkIcon from "@sanity/icons/HelpCircle";
+import ProjectIcon from "@sanity/icons/Clipboard";
 import { schemaTypes } from "./sanity/schema";
 import { STUDIO_TITLE, BRAND_COLORS } from "./sanity/lib/constants";
 
@@ -32,6 +34,7 @@ export default defineConfig({
     structureTool({
       structure: (S) => {
         return S.list().title("Panel de Control").items([
+          // ── Inicio ──
           S.listItem().title("Inicio").icon(DashboardIcon).id("home-group").child(
             S.list().title("Inicio").items([
               S.listItem().title("Hero (Slides)").icon(StackIcon).id("hero-slides").child(
@@ -48,9 +51,11 @@ export default defineConfig({
               ),
             ]),
           ),
+          // ── Destinos ──
           S.listItem().title("Destinos").icon(GlobeIcon).id("destinations-group").child(
             S.documentTypeList("destination").title("Destinos").defaultOrdering([{ field: "order", direction: "asc" }]),
           ),
+          // ── Tours ──
           S.listItem().title("Tours").icon(PackageIcon).id("tours-group").child(
             S.list().title("Tours").items([
               S.listItem().title("Todos los Tours").icon(StackIcon).id("all-tours").child(
@@ -59,10 +64,22 @@ export default defineConfig({
               S.listItem().title("Paquetes Personalizados").icon(StarIcon).id("customized-tours").child(
                 S.documentTypeList("customizedTour").title("Paquetes Personalizados").defaultOrdering([{ field: "order", direction: "asc" }]),
               ),
+              S.listItem().title("Tours Comunitarios").icon(HeartIcon).id("community-tours").child(
+                S.documentTypeList("communityTour").title("Tours Comunitarios").defaultOrdering([{ field: "order", direction: "asc" }]),
+              ),
             ]),
           ),
-          ...S.documentTypeListItems().filter((item) => item.getId() === "teamMember"),
+          // ── Testimonios y Equipo ──
           ...S.documentTypeListItems().filter((item) => item.getId() === "testimonial"),
+          ...S.documentTypeListItems().filter((item) => item.getId() === "teamMember"),
+          // ── Proyectos y FAQ ──
+          S.listItem().title("Proyectos").icon(ProjectIcon).id("projects-group").child(
+            S.documentTypeList("project").title("Proyectos de Apoyo").defaultOrdering([{ field: "order", direction: "asc" }]),
+          ),
+          S.listItem().title("FAQ").icon(QuestionMarkIcon).id("faq-group").child(
+            S.documentTypeList("faq").title("Preguntas Frecuentes").defaultOrdering([{ field: "order", direction: "asc" }]),
+          ),
+          // ── ConfiguraciOn ──
           S.listItem().title("Configuración del Sitio").icon(CogIcon).id("settings-group").child(
             S.list().title("Configuración").items([
               S.listItem().title("Datos del Sitio").icon(HomeIcon).id("site-settings-editor").child(
@@ -79,9 +96,6 @@ export default defineConfig({
     presentationTool({
       document: { actions: [] },
       previewUrl: {
-        // Sin initial — Sanity usa automáticamente el mismo origen del Studio.
-        // En dev: localhost:3000/admin → preview en localhost:3000/
-        // En produccion: perutravelexpertsb.com/admin → preview en perutravelexpertsb.com/
         previewMode: {
           enable: "/api/draft-mode/enable",
           disable: "/api/draft-mode/disable",
@@ -89,42 +103,140 @@ export default defineConfig({
       },
       resolve: {
         locations: {
-          heroSlide: defineLocations({ type: "heroSlide", resolve: () => ({ locations: [{ title: "Hero / Inicio", href: "/" }] }) }),
-          stat: defineLocations({ type: "stat", resolve: () => ({ locations: [{ title: "Inicio", href: "/" }] }) }),
-          partner: defineLocations({ type: "partner", resolve: () => ({ locations: [{ title: "Inicio", href: "/" }] }) }),
-          pageSection: defineLocations({ type: "pageSection", resolve: (doc) => {
-            const pageMap: Record<string, string> = { home: "/", "tour-packages": "/tour-packages", "customized-tours": "/customized-tours", "about-us": "/about-us", testimonials: "/testimonials", contact: "/contact", faq: "/faq" };
-            const href = pageMap[doc.page] || "/";
-            return { locations: [{ title: `Sección: ${doc.title || ""}`, href }] };
-          }}),
-          destination: defineLocations({ type: "destination", resolve: (doc) => ({ locations: [{ title: `Destino: ${doc.name || ""}`, href: `/our-tours/${doc.slug?.current || ""}` }] }) }),
-          tour: defineLocations({ type: "tour", resolve: (doc) => ({ locations: [{ title: "Tours", href: "/tour-packages" }, { title: `Tour: ${doc.title || ""}`, href: `/tours/${doc.slug?.current || ""}` }] }) }),
-          customizedTour: defineLocations({ type: "customizedTour", resolve: (doc) => ({ locations: [{ title: "Customized Tours", href: "/customized-tours" }, { title: `Paquete: ${doc.nameEs || ""}`, href: `/tour-packages/${doc.slug?.current || ""}` }] }) }),
-          teamMember: defineLocations({ type: "teamMember", resolve: () => ({ locations: [{ title: "About Us", href: "/about-us" }] }) }),
-          testimonial: defineLocations({ type: "testimonial", resolve: () => ({ locations: [{ title: "Testimonios", href: "/testimonials" }, { title: "Inicio", href: "/" }] }) }),
-          siteSettings: defineLocations({ type: "siteSettings", resolve: () => ({ locations: [
-            { title: "Inicio", href: "/" },
-            { title: "About Us", href: "/about-us" },
-            { title: "Contact", href: "/contact" },
-            { title: "Tours", href: "/tour-packages" },
-            { title: "Customized Tours", href: "/customized-tours" },
-            { title: "Testimonios", href: "/testimonials" },
-          ] }) }),
+          // ── Hero Slides → Home ──
+          heroSlide: defineLocations({
+            type: "heroSlide",
+            resolve: () => ({ locations: [{ title: "Hero | Inicio", href: "/" }] }),
+          }),
+          // ── Stats → Home ──
+          stat: defineLocations({
+            type: "stat",
+            resolve: () => ({ locations: [{ title: "Estadísticas | Inicio", href: "/" }] }),
+          }),
+          // ── Partners → Home ──
+          partner: defineLocations({
+            type: "partner",
+            resolve: () => ({ locations: [{ title: "Socios | Inicio", href: "/" }] }),
+          }),
+          // ── Page Sections → Múltiples páginas ──
+          pageSection: defineLocations({
+            type: "pageSection",
+            resolve: (doc) => {
+              const pageMap = {
+                home: "/",
+                "tour-packages": "/tour-packages",
+                "customized-tours": "/customized-tours",
+                "about-us": "/about-us",
+                testimonials: "/testimonials",
+                contact: "/contact",
+                faq: "/faq",
+              };
+              const href = pageMap[doc?.page] || "/";
+              return { locations: [{ title: `Sección: ${doc?.title || ""}`, href }] };
+            },
+          }),
+          // ── Destinations → Páginas de destino ──
+          destination: defineLocations({
+            type: "destination",
+            resolve: (doc) => ({
+              locations: [
+                { title: "Todos los Destinos", href: "/our-tours" },
+                { title: `Destino: ${doc?.name || ""}`, href: `/our-tours/${doc?.slug?.current || ""}` },
+              ],
+            }),
+          }),
+          // ── Tours → Listing + Detail páginas ──
+          tour: defineLocations({
+            type: "tour",
+            resolve: (doc) => ({
+              locations: [
+                { title: "Lista de Tours", href: "/tours" },
+                { title: "Tours por Destino", href: "/our-tours" },
+                { title: `Tour: ${doc?.title || doc?.titleEn || ""}`, href: `/tours/${doc?.slug?.current || ""}` },
+              ],
+            }),
+          }),
+          // ── Customized Tours → Listing + Detail ──
+          customizedTour: defineLocations({
+            type: "customizedTour",
+            resolve: (doc) => ({
+              locations: [
+                { title: "Paquetes Personalizados", href: "/tour-packages" },
+                { title: `Paquete: ${doc?.nameEs || doc?.nameEn || ""}`, href: `/tour-packages/${doc?.slug?.current || ""}` },
+              ],
+            }),
+          }),
+          // ── Community Tours → Listing + Detail ──
+          communityTour: defineLocations({
+            type: "communityTour",
+            resolve: (doc) => ({
+              locations: [
+                { title: "Tours Comunitarios", href: "/tours-cities" },
+                { title: `Tour: ${doc?.nameEs || doc?.nameEn || ""}`, href: `/tours-cities/${doc?.slug?.current || ""}` },
+              ],
+            }),
+          }),
+          // ── Testimonials → Home + Testimonials page ──
+          testimonial: defineLocations({
+            type: "testimonial",
+            resolve: () => ({
+              locations: [
+                { title: "Testimonios Destacados | Inicio", href: "/" },
+                { title: "Todos los Testimonios", href: "/testimonials" },
+              ],
+            }),
+          }),
+          // ── Team Members → About Us ──
+          teamMember: defineLocations({
+            type: "teamMember",
+            resolve: () => ({ locations: [{ title: "Equipo | Sobre Nosotros", href: "/about-us" }] }),
+          }),
+          // ── Projects → Listing + Detail ──
+          project: defineLocations({
+            type: "project",
+            resolve: (doc) => ({
+              locations: [
+                { title: "Proyectos de Apoyo", href: "/projects-we-support" },
+                { title: `Proyecto: ${doc?.nameEs || doc?.nameEn || ""}`, href: `/projects-we-support/${doc?.slug?.current || ""}` },
+              ],
+            }),
+          }),
+          // ── FAQ → FAQ page ──
+          faq: defineLocations({
+            type: "faq",
+            resolve: () => ({ locations: [{ title: "Preguntas Frecuentes", href: "/faq" }] }),
+          }),
+          // ── Site Settings → Múltiples páginas ──
+          siteSettings: defineLocations({
+            type: "siteSettings",
+            resolve: () => ({
+              locations: [
+                { title: "Inicio", href: "/" },
+                { title: "Sobre Nosotros", href: "/about-us" },
+                { title: "Contacto", href: "/contact" },
+                { title: "Tours", href: "/tour-packages" },
+                { title: "Paquetes Personalizados", href: "/customized-tours" },
+                { title: "Testimonios", href: "/testimonials" },
+                { title: "FAQ", href: "/faq" },
+                { title: "Proyectos", href: "/projects-we-support" },
+              ],
+            }),
+          }),
         },
       },
     }),
   ],
   schema: { types: schemaTypes },
   document: {
-    // Auto-guardado: Sanity guarda automáticamente los cambios como borrador
     newDocumentOptions: (prev) => prev,
     actions: (prev) => prev,
+    // Auto-save: los cambios se guardan automáticamente como borrador
+    // después de 3 segundos de inactividad (comportamiento nativo de Sanity Studio)
     unsavedChanges: { warning: "Tienes cambios sin guardar. ¿Seguro que quieres salir?" },
   },
   form: {
     image: {
       directUploads: true,
-      // Las imágenes se sirven como WebP automáticamente via urlFor().auto('format')
     },
   },
   theme: { "--brand-primary": BRAND_COLORS.primary, "--brand-accent": BRAND_COLORS.accent, "--brand-dark": BRAND_COLORS.dark } as React.CSSProperties,
