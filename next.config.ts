@@ -34,8 +34,8 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Aplicar CSP a todas las rutas del sitio público
-        source: "/(.*)",
+        // CSP para el sitio público — excluye /admin
+        source: "/((?!admin).*)",
         headers: [
           {
             key: "Content-Security-Policy",
@@ -46,11 +46,6 @@ const nextConfig: NextConfig = {
             ].join(" "),
           },
         ],
-      },
-      {
-        // No aplicar CSP al panel admin (Sanity Studio maneja su propio CSP)
-        source: "/admin/:path*",
-        headers: [],
       },
     ];
   },
