@@ -28,25 +28,25 @@ export default defineConfig({
           heroSlide: defineLocations({ type: "heroSlide", resolve: () => ({ locations: [{ title: "Hero / Inicio", href: "/" }] }) }),
           stat: defineLocations({ type: "stat", resolve: () => ({ locations: [{ title: "Estadísticas | Inicio", href: "/" }] }) }),
           partner: defineLocations({ type: "partner", resolve: () => ({ locations: [{ title: "Socios | Inicio", href: "/" }] }) }),
-          pageSection: defineLocations({ type: "pageSection", resolve: (doc: any) => {
-            const pageMap: Record<string, string> = { home: "/", "tour-packages": "/tour-packages", "customized-tours": "/customized-tours", "about-us": "/about-us", testimonials: "/testimonials", contact: "/contact", faq: "/faq" };
+          pageSection: defineLocations({ type: "pageSection", resolve: (doc) => {
+            const pageMap = { home: "/", "tour-packages": "/tour-packages", "customized-tours": "/customized-tours", "about-us": "/about-us", testimonials: "/testimonials", contact: "/contact", faq: "/faq" };
             return { locations: [{ title: `Sección: ${doc?.title || ""}`, href: pageMap[doc?.page] || "/" }] };
           }}),
-          destination: defineLocations({ type: "destination", resolve: (doc: any) => ({
+          destination: defineLocations({ type: "destination", resolve: (doc) => ({
             locations: [{ title: "Todos los Destinos", href: "/our-tours" }, { title: `Destino: ${doc?.name || ""}`, href: `/our-tours/${doc?.slug?.current || ""}` }],
           })}),
-          tour: defineLocations({ type: "tour", resolve: (doc: any) => ({
+          tour: defineLocations({ type: "tour", resolve: (doc) => ({
             locations: [{ title: "Lista de Tours", href: "/tours" }, { title: `Tour: ${doc?.title || ""}`, href: `/tours/${doc?.slug?.current || ""}` }],
           })}),
-          customizedTour: defineLocations({ type: "customizedTour", resolve: (doc: any) => ({
+          customizedTour: defineLocations({ type: "customizedTour", resolve: (doc) => ({
             locations: [{ title: "Paquetes Personalizados", href: "/tour-packages" }, { title: `Paquete: ${doc?.nameEs || ""}`, href: `/tour-packages/${doc?.slug?.current || ""}` }],
           })}),
-          communityTour: defineLocations({ type: "communityTour", resolve: (doc: any) => ({
+          communityTour: defineLocations({ type: "communityTour", resolve: (doc) => ({
             locations: [{ title: "Tours Comunitarios", href: "/tours-cities" }, { title: `Tour: ${doc?.nameEs || ""}`, href: `/tours-cities/${doc?.slug?.current || ""}` }],
           })}),
           testimonial: defineLocations({ type: "testimonial", resolve: () => ({ locations: [{ title: "Testimonios Destacados | Inicio", href: "/" }, { title: "Todos los Testimonios", href: "/testimonials" }] })}),
           teamMember: defineLocations({ type: "teamMember", resolve: () => ({ locations: [{ title: "Equipo | Sobre Nosotros", href: "/about-us" }] })}),
-          project: defineLocations({ type: "project", resolve: (doc: any) => ({
+          project: defineLocations({ type: "project", resolve: (doc) => ({
             locations: [{ title: "Proyectos de Apoyo", href: "/projects-we-support" }, { title: `Proyecto: ${doc?.nameEs || ""}`, href: `/projects-we-support/${doc?.slug?.current || ""}` }],
           })}),
           faq: defineLocations({ type: "faq", resolve: () => ({ locations: [{ title: "Preguntas Frecuentes", href: "/faq" }] })}),
