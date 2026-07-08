@@ -24,7 +24,7 @@ export default defineType({
     defineField({ name: "priceUSD", title: "Precio USD (desde)", type: "number" }),
     defineField({ name: "highSeasonPrice", title: "Precio Temporada Alta (USD)", type: "number", description: "Precio opcional para temporada alta" }),
     defineField({ name: "difficulty", title: "Dificultad", type: "string", options: { list: [
-      { title: "Fácil", value: "easy" }, { title: "Moderado", value: "moderate" }, { title: "Difícil", value: "difficult" },
+      { title: "Fácil", value: "beginner" }, { title: "Moderado", value: "moderate" }, { title: "Difícil", value: "advanced" },
     ], layout: "radio" } }),
     defineField({ name: "groupSize", title: "Tamaño de Grupo (máx)", type: "number" }),
     defineField({ name: "includes", title: "Qué Incluye (Español)", type: "array", of: [{ type: "string" }] }),

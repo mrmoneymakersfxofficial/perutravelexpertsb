@@ -95,7 +95,7 @@ const tourData: Record<string, any> = {
   "city-tour-cusco": {
     title: "City Tour Cusco Imperial", titleEn: "Cusco Imperial City Tour",
     excerpt: "Descubre la ciudad imperial de Cusco en un recorrido por sus principales sitios arqueológicos.", excerptEn: "Discover the imperial city of Cusco on a tour of its main archaeological sites.",
-    duration: 1, difficulty: "easy", priceUSD: 69,
+    duration: 1, difficulty: "beginner", priceUSD: 69,
     includes: ["Guía profesional bilingüe", "Transporte turístico", "Entrada a sitios arqueológicos", "Asistencia permanente"],
     includesEn: ["Professional bilingual guide", "Tourist transport", "Entry to archaeological sites", "Permanent assistance"],
     notIncludes: ["Alimentación", "Gastos personales"],
@@ -110,7 +110,7 @@ const tourData: Record<string, any> = {
   "valle-sagrado": {
     title: "Valle Sagrado de los Incas", titleEn: "Sacred Valley of the Incas",
     excerpt: "Explora el corazón del imperio inca en un día lleno de historia y paisajes impresionantes.", excerptEn: "Explore the heart of the Inca empire in a day full of history and stunning landscapes.",
-    duration: 1, difficulty: "easy", priceUSD: 209,
+    duration: 1, difficulty: "beginner", priceUSD: 209,
     includes: ["Guía bilingüe", "Transporte", "Desayuno buffet", "Almuerzo buffet", "Entradas a sitios"],
     includesEn: ["Bilingual guide", "Transport", "Buffet breakfast", "Buffet lunch", "Site tickets"],
     notIncludes: ["Gastos personales", "Propinas"],
@@ -223,7 +223,7 @@ const tourData: Record<string, any> = {
   "full-day-titikaka-lake": {
     title: "Full Day Lago Titicaca", titleEn: "Full Day Lake Titicaca",
     excerpt: "Navega el lago navegable más alto del mundo y visita las islas flotantes de los Uros.", excerptEn: "Sail the highest navigable lake in the world and visit the floating Uros islands.",
-    duration: 1, difficulty: "easy", priceUSD: 55,
+    duration: 1, difficulty: "beginner", priceUSD: 55,
     includes: ["Guía bilingüe", "Transporte", "Boleto de lancha", "Entrada a los Uros"],
     includesEn: ["Bilingual guide", "Transport", "Boat ticket", "Uros entry"],
     itinerary: [{ dayNumber: 1, title: "Lago Titicaca", titleEn: "Lake Titicaca", description: "Islas Uros → Taquile → Retorno a Puno", descriptionEn: "Uros Islands → Taquile → Return to Puno" }],
@@ -232,7 +232,7 @@ const tourData: Record<string, any> = {
   "home-stay-2d-1n": {
     title: "Home Stay 2 Días / 1 Noche", titleEn: "Home Stay 2 Days / 1 Night",
     excerpt: "Vive la experiencia única de alojarte con una familia local en el Lago Titicaca.", excerptEn: "Live the unique experience of staying with a local family on Lake Titicaca.",
-    duration: 2, difficulty: "easy", priceUSD: 85,
+    duration: 2, difficulty: "beginner", priceUSD: 85,
     includes: ["Guía", "Transporte", "Lancha", "Hospedaje", "Alimentación"],
     includesEn: ["Guide", "Transport", "Boat", "Accommodation", "Meals"],
     itinerary: [
@@ -271,7 +271,7 @@ const tourData: Record<string, any> = {
   "city-tour-arequipa": {
     title: "City Tour Arequipa", titleEn: "Arequipa City Tour",
     excerpt: "Conoce la Ciudad Blanca y su increíble arquitectura colonial.", excerptEn: "Get to know the White City and its incredible colonial architecture.",
-    duration: 1, difficulty: "easy", priceUSD: 35,
+    duration: 1, difficulty: "beginner", priceUSD: 35,
     includes: ["Guía", "Transporte", "Entradas"],
     includesEn: ["Guide", "Transport", "Entry tickets"],
     itinerary: [{ dayNumber: 1, title: "City Tour Arequipa", titleEn: "Arequipa City Tour", description: "Plaza de Armas → Catedral → Monasterio de Santa Catalina → Mirador Carmen Alto", descriptionEn: "Main Square → Cathedral → Santa Catalina Monastery → Carmen Alto viewpoint" }],
@@ -292,7 +292,7 @@ const tourData: Record<string, any> = {
   "ica-2d-1n": {
     title: "Ica y Huacachina 2 Días", titleEn: "Ica and Huacachina 2 Days",
     excerpt: "Aventura en el desierto: oasis de Huacachina, bodegas y dunas.", excerptEn: "Desert adventure: Huacachina oasis, wineries and dunes.",
-    duration: 2, difficulty: "easy", priceUSD: 120,
+    duration: 2, difficulty: "beginner", priceUSD: 120,
     includes: ["Guía", "Transporte", "Hospedaje", "Tour de bodegas", "Buggies y sandboarding"],
     includesEn: ["Guide", "Transport", "Accommodation", "Winery tour", "Buggies and sandboarding"],
     itinerary: [
@@ -304,7 +304,7 @@ const tourData: Record<string, any> = {
   "ica-3d-2n": {
     title: "Ica y Huacachina 3 Días", titleEn: "Ica and Huacachina 3 Days",
     excerpt: "La experiencia completa del desierto con más tiempo para explorar.", excerptEn: "The complete desert experience with more time to explore.",
-    duration: 3, difficulty: "easy", priceUSD: 180,
+    duration: 3, difficulty: "beginner", priceUSD: 180,
     includes: ["Guía", "Transporte", "Hospedaje", "Tour de bodegas", "Buggies", "Reserva Nacional"],
     includesEn: ["Guide", "Transport", "Accommodation", "Winery tour", "Buggies", "National Reserve"],
     itinerary: [

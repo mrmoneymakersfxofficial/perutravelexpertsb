@@ -55,7 +55,7 @@ function mapSanityTour(item: any): TourData {
     image: item.coverImageUrl || "",
     gallery: item.galleryUrls || [],
     duration: item.duration || 1,
-    difficulty: item.difficulty === "easy" ? "beginner" : item.difficulty === "difficult" ? "advanced" : item.difficulty || "moderate",
+    difficulty: item.difficulty || "moderate",
     priceUSD: item.priceUSD || 0,
     highSeasonPrice: item.highSeasonPrice,
     groupSize: item.groupSize,
