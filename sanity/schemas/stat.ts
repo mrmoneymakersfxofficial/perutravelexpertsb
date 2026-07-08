@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { defineType, defineField } from "sanity";
-import { orderField } from "../lib/schema-master";
+const orderField = () => defineField({ name: "order", title: "Orden", type: "number", description: "Orden de aparicion (menor = primero).", initialValue: 100, validation: (Rule) => Rule.integer().min(0) });
 
 export default defineType({
   name: "stat", title: "Estadística", type: "document", icon: () => "📊",
