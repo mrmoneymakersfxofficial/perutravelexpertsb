@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value: [
-              `frame-ancestors 'self' https://*.sanity.dev https://*.sanity.build https://*.sanity.studio https://*.api.sanity.io wss://*.api.sanity.io;`,
+              `frame-ancestors 'self' https://*.sanity.dev https://*.sanity.build https://*.sanity.studio https://www.sanity.io https://*.api.sanity.io wss://*.api.sanity.io;`,
               `connect-src 'self' https://*.sanity.io wss://*.sanity.io https://*.sanity.build https://*.api.sanity.io wss://*.api.sanity.io;`,
               `img-src 'self' data: blob: https://cdn.sanity.io;`,
             ].join(" "),
