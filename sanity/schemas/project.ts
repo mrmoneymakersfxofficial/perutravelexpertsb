@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { defineType, defineField } from "sanity";
+const featuredField = (label, desc) => defineField({ name: "featured", title: label, type: "boolean", description: desc, initialValue: false });
 const orderField = () => defineField({ name: "order", title: "Orden", type: "number", description: "Orden de aparicion (menor = primero).", initialValue: 100, validation: (Rule) => Rule.integer().min(0) });
 
 export default defineType({
