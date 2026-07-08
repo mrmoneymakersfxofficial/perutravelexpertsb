@@ -10,6 +10,7 @@
  */
 
 import { fetchCMSDraft } from "./fetchCMS";
+import { plainText } from "./sanity.client";
 import * as queries from "@/sanity/queries";
 import {
   destinations as localDestinations,
@@ -49,8 +50,8 @@ function mapSanityTour(item: any): TourData {
     nameEn: item.titleEn || "",
     subtitleEs: item.subtitleEs || "",
     subtitleEn: item.subtitleEn || "",
-    descriptionEs: item.description ? "" : (item.excerpt || ""),
-    descriptionEn: item.descriptionEn ? "" : (item.excerptEn || ""),
+    descriptionEs: item.excerpt || plainText(item.description || item.descriptionEs) || "",
+    descriptionEn: item.excerptEn || plainText(item.descriptionEn) || "",
     image: item.coverImageUrl || "",
     gallery: item.galleryUrls || [],
     duration: item.duration || 1,
@@ -71,8 +72,8 @@ function mapSanityTour(item: any): TourData {
       day: d.dayNumber || 0,
       titleEs: d.title || "",
       titleEn: d.titleEn || "",
-      descriptionEs: d.description || [],
-      descriptionEn: d.descriptionEn || [],
+      descriptionEs: plainText(d.description) || "",
+      descriptionEn: plainText(d.descriptionEn) || "",
       meals: d.meals || "",
       accommodation: d.accommodation || "",
     })),
@@ -80,8 +81,8 @@ function mapSanityTour(item: any): TourData {
       day: d.dayNumber || 0,
       titleEs: d.title || "",
       titleEn: d.titleEn || "",
-      descriptionEs: d.description || [],
-      descriptionEn: d.descriptionEn || [],
+      descriptionEs: plainText(d.description) || "",
+      descriptionEn: plainText(d.descriptionEn) || "",
       meals: d.meals || "",
       accommodation: d.accommodation || "",
     })),
@@ -124,15 +125,15 @@ function mapSanityCustomizedTour(item: any): CustomizedTourData {
       day: d.dayNumber || 0,
       titleEs: d.titleEs || "",
       titleEn: d.titleEn || "",
-      descriptionEs: d.descriptionEs || [],
-      descriptionEn: d.descriptionEn || [],
+      descriptionEs: plainText(d.descriptionEs) || "",
+      descriptionEn: plainText(d.descriptionEn) || "",
     })),
     itineraryEn: (item.itineraryEn || []).map(d => ({
       day: d.dayNumber || 0,
       titleEs: d.titleEs || "",
       titleEn: d.titleEn || "",
-      descriptionEs: d.descriptionEs || [],
-      descriptionEn: d.descriptionEn || [],
+      descriptionEs: plainText(d.descriptionEs) || "",
+      descriptionEn: plainText(d.descriptionEn) || "",
     })),
     durationRange: item.durationRange || "",
     featured: item.featured || false,
