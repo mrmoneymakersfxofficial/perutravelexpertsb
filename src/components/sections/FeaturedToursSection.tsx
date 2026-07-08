@@ -55,7 +55,7 @@ export default function FeaturedToursSection({ sanityTours }: FeaturedToursSecti
           {featuredTours.map((tour, index) => {
             const name = locale === 'es' ? tour.nameEs : tour.nameEn;
             const desc = locale === 'es' ? tour.descriptionEs : tour.descriptionEn;
-            const diff = difficultyConfig[tour.difficulty];
+            const diff = difficultyConfig[tour.difficulty] || difficultyConfig.beginner;
             const diffLabel = locale === 'es' ? diff.es : diff.en;
             const isFav = isFavorite(tour.id);
             const waMsg = `Hola, estoy en la web revisando el tour "${name}" y deseo reservar.`;

@@ -18,7 +18,7 @@ import HeartIcon from "@sanity/icons/Heart";
 import QuestionMarkIcon from "@sanity/icons/HelpCircle";
 import ProjectIcon from "@sanity/icons/Clipboard";
 import { schemaTypes } from "./sanity/schema";
-import { STUDIO_TITLE, BRAND_COLORS } from "./sanity/lib/constants";
+import { STUDIO_TITLE } from "./sanity/lib/constants";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT || "";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";

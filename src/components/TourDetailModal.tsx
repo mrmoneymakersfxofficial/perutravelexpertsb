@@ -46,7 +46,7 @@ export default function TourDetailModal({ tour, open, onOpenChange }: TourDetail
   const description = locale === 'es' ? tour.descriptionEs : tour.descriptionEn;
   const includes    = locale === 'es' ? tour.includesEs : tour.includesEn;
   const itinerary   = locale === 'es' ? tour.itineraryEs : tour.itineraryEn;
-  const diff        = diffCfg[tour.difficulty];
+  const diff = diffCfg[tour.difficulty] || diffCfg.beginner;
   const diffLabel   = locale === 'es' ? diff.es : diff.en;
   const isFav       = isFavorite(tour.id);
   const images      = tour.gallery?.length ? [tour.image, ...tour.gallery] : [tour.image];

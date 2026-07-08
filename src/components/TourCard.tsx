@@ -34,7 +34,7 @@ export default function TourCard({ tour, locale }: TourCardProps) {
 
   const name = locale === 'es' ? tour.nameEs : tour.nameEn;
   const includes = locale === 'es' ? tour.includesEs : tour.includesEn;
-  const diff = difficultyConfig[tour.difficulty];
+  const diff = difficultyConfig[tour.difficulty] || difficultyConfig.beginner;
   const diffLabel = locale === 'es' ? diff.es : diff.en;
   const isFav = isFavorite(tour.id);
 
