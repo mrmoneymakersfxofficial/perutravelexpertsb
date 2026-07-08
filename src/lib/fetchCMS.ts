@@ -1,56 +1,60 @@
 import { getClientForDraft } from "@/lib/sanity.client";
 
 /**
- * Fetch data from Sanity CMS con fallback.
- * Siempre usa datos publicados durante el build (static generation).
- * En runtime, el draft mode se maneja via los server components (page.tsx) 
- * que llaman al adapter.
+ * Fetch de Sanity — usa siempre datos publicados.
+ * Seguro durante build (static generation).
  */
 export async function fetchCMS<T>(query: string): Promise<T | null> {
   try {
     if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && !process.env.NEXT_PUBLIC_SANITY_PROJECT) return null;
-
-    // Durante build (static generation), siempre usar cliente publicado
-    // draftMode() no está disponible fuera de request context
     const client = getClientForDraft(false);
     if (!client) return null;
     const data = await client.fetch<T>(query);
     return data ?? null;
-  } catch (error) {
-    console.warn("[CMS] Fetch failed, using fallback:", error);
+  } catch {
     return null;
   }
 }
 
 /**
- * Fetch con draft mode — solo usar en server components en runtime.
- * Requiere request context (draftMode() disponible).
+ * Fetch de Sanity CON soporte de Draft Mode para Visual Editing.
+ * 
+ * - En draft mode: usa sanityFetch (stega encoding activo → overlay funciona)
+ * - Sin draft mode: usa cliente publicado (como fetchCMS)
+ * - Durante build: captura error de draftMode() y usa publicado
+ * 
+ * Solo usar en server components (page.tsx).
  */
-export async function fetchCMSDraft<T>(query: string): Promise<T | null> {
+export async function fetchCMSDraft<T>(query: string): Promise<{ data: T | null; sourceMap?: any }> {
   try {
-    if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && !process.env.NEXT_PUBLIC_SANITY_PROJECT) return null;
+    if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && !process.env.NEXT_PUBLIC_SANITY_PROJECT) {
+      return { data: null };
+    }
 
+    // Intentar detectar draft mode — falla durante build, lo capturamos
     let isDraft = false;
     try {
       const { draftMode } = await import("next/headers");
       const dm = await draftMode();
       isDraft = dm.isEnabled;
     } catch {
-      // No request context (build time) — usar published
+      // Durante build (static generation) no hay request context
+      // Usar published
     }
 
     if (isDraft) {
+      // Draft mode: usar sanityFetch con stega encoding
       const { sanityFetch } = await import("@/sanity/live");
       const result = await sanityFetch<any>({ query });
-      return (result?.data ?? null) as T | null;
+      return { data: (result?.data ?? null) as T | null, sourceMap: result?.sourceMap };
     }
 
+    // Published: usar cliente normal
     const client = getClientForDraft(false);
-    if (!client) return null;
+    if (!client) return { data: null };
     const data = await client.fetch<T>(query);
-    return data ?? null;
-  } catch (error) {
-    console.warn("[CMS] Draft fetch failed, using fallback:", error);
-    return null;
+    return { data: data ?? null };
+  } catch {
+    return { data: null };
   }
 }

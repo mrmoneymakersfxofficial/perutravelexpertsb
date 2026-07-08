@@ -9,7 +9,7 @@
  * automáticamente cuando se configuran las variables de entorno.
  */
 
-import { fetchCMS } from "./fetchCMS";
+import { fetchCMSDraft } from "./fetchCMS";
 import * as queries from "@/sanity/queries";
 import {
   destinations as localDestinations,
@@ -177,7 +177,7 @@ function mapSanityProject(item: any): ProjectData {
 export async function getDestinations(): Promise<DestinationData[]> {
   if (!isSanityConfigured()) return localDestinations;
   try {
-    const data = await fetchCMS<any[]>(queries.destinationsQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.destinationsQuery);
     if (data && data.length > 0) return data.map(mapSanityDestination);
   } catch {}
   return localDestinations;
@@ -186,7 +186,7 @@ export async function getDestinations(): Promise<DestinationData[]> {
 export async function getDestinationBySlugFn(slug: string): Promise<DestinationData | null> {
   if (!isSanityConfigured()) return getDestinationBySlug(slug) || null;
   try {
-    const data = await fetchCMS<any>(queries.destinationBySlugQuery(slug));
+    const { data } = await fetchCMSDraft<any>(queries.destinationBySlugQuery(slug));
     if (data) return mapSanityDestination(data);
   } catch {}
   return getDestinationBySlug(slug) || null;
@@ -195,7 +195,7 @@ export async function getDestinationBySlugFn(slug: string): Promise<DestinationD
 export async function getAllTours(): Promise<TourData[]> {
   if (!isSanityConfigured()) return localTours;
   try {
-    const data = await fetchCMS<any[]>(queries.toursQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.toursQuery);
     if (data && data.length > 0) return data.map(mapSanityTour);
   } catch {}
   return localTours;
@@ -204,7 +204,7 @@ export async function getAllTours(): Promise<TourData[]> {
 export async function getFeaturedToursFn(): Promise<TourData[]> {
   if (!isSanityConfigured()) return getFeaturedTours();
   try {
-    const data = await fetchCMS<any[]>(queries.featuredToursQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.featuredToursQuery);
     if (data && data.length > 0) return data.map(mapSanityTour);
   } catch {}
   return getFeaturedTours();
@@ -213,7 +213,7 @@ export async function getFeaturedToursFn(): Promise<TourData[]> {
 export async function getTourBySlugFn(slug: string): Promise<TourData | null> {
   if (!isSanityConfigured()) return getTourBySlug(slug) || null;
   try {
-    const data = await fetchCMS<any>(queries.tourBySlugQuery(slug));
+    const { data } = await fetchCMSDraft<any>(queries.tourBySlugQuery(slug));
     if (data) return mapSanityTour(data);
   } catch {}
   return getTourBySlug(slug) || null;
@@ -222,7 +222,7 @@ export async function getTourBySlugFn(slug: string): Promise<TourData | null> {
 export async function getToursByDestinationFn(destSlug: string): Promise<TourData[]> {
   if (!isSanityConfigured()) return getToursByDestination(destSlug);
   try {
-    const data = await fetchCMS<any[]>(queries.toursByDestinationQuery(destSlug));
+    const { data } = await fetchCMSDraft<any[]>(queries.toursByDestinationQuery(destSlug));
     if (data && data.length > 0) return data.map(mapSanityTour);
   } catch {}
   return getToursByDestination(destSlug);
@@ -231,7 +231,7 @@ export async function getToursByDestinationFn(destSlug: string): Promise<TourDat
 export async function getCustomizedTours(): Promise<CustomizedTourData[]> {
   if (!isSanityConfigured()) return localCustomizedTours;
   try {
-    const data = await fetchCMS<any[]>(queries.customizedToursQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.customizedToursQuery);
     if (data && data.length > 0) return data.map(mapSanityCustomizedTour);
   } catch {}
   return localCustomizedTours;
@@ -240,7 +240,7 @@ export async function getCustomizedTours(): Promise<CustomizedTourData[]> {
 export async function getCustomizedTourBySlugFn(slug: string): Promise<CustomizedTourData | null> {
   if (!isSanityConfigured()) return getCustomizedTourBySlug(slug) || null;
   try {
-    const data = await fetchCMS<any>(queries.customizedTourBySlugQuery(slug));
+    const { data } = await fetchCMSDraft<any>(queries.customizedTourBySlugQuery(slug));
     if (data) return mapSanityCustomizedTour(data);
   } catch {}
   return getCustomizedTourBySlug(slug) || null;
@@ -249,7 +249,7 @@ export async function getCustomizedTourBySlugFn(slug: string): Promise<Customize
 export async function getCommunityTours(): Promise<CommunityTourData[]> {
   if (!isSanityConfigured()) return localCommunityTours;
   try {
-    const data = await fetchCMS<any[]>(queries.communityToursQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.communityToursQuery);
     if (data && data.length > 0) return data.map(mapSanityCommunityTour);
   } catch {}
   return localCommunityTours;
@@ -258,7 +258,7 @@ export async function getCommunityTours(): Promise<CommunityTourData[]> {
 export async function getCommunityTourBySlugFn(slug: string): Promise<CommunityTourData | null> {
   if (!isSanityConfigured()) return getCommunityTourBySlug(slug) || null;
   try {
-    const data = await fetchCMS<any>(queries.communityTourBySlugQuery(slug));
+    const { data } = await fetchCMSDraft<any>(queries.communityTourBySlugQuery(slug));
     if (data) return mapSanityCommunityTour(data);
   } catch {}
   return getCommunityTourBySlug(slug) || null;
@@ -267,7 +267,7 @@ export async function getCommunityTourBySlugFn(slug: string): Promise<CommunityT
 export async function getProjects(): Promise<ProjectData[]> {
   if (!isSanityConfigured()) return localProjects;
   try {
-    const data = await fetchCMS<any[]>(queries.projectsQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.projectsQuery);
     if (data && data.length > 0) return data.map(mapSanityProject);
   } catch {}
   return localProjects;
@@ -276,7 +276,7 @@ export async function getProjects(): Promise<ProjectData[]> {
 export async function getProjectBySlugFn(slug: string): Promise<ProjectData | null> {
   if (!isSanityConfigured()) return getProjectBySlug(slug) || null;
   try {
-    const data = await fetchCMS<any>(queries.projectBySlugQuery(slug));
+    const { data } = await fetchCMSDraft<any>(queries.projectBySlugQuery(slug));
     if (data) return mapSanityProject(data);
   } catch {}
   return getProjectBySlug(slug) || null;
@@ -285,49 +285,49 @@ export async function getProjectBySlugFn(slug: string): Promise<ProjectData | nu
 export async function getAllTestimonials() {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any[]>(queries.testimonialsQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.testimonialsQuery); return data;
   } catch { return null; }
 }
 
 export async function getFeaturedTestimonials() {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any[]>(queries.featuredTestimonialsQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.featuredTestimonialsQuery); return data;
   } catch { return null; }
 }
 
 export async function getStats() {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any[]>(queries.statsQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.statsQuery); return data;
   } catch { return null; }
 }
 
 export async function getTeamMembers() {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any[]>(queries.teamMembersQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.teamMembersQuery); return data;
   } catch { return null; }
 }
 
 export async function getFAQItems() {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any[]>(queries.faqQuery);
+    const { data } = await fetchCMSDraft<any[]>(queries.faqQuery); return data;
   } catch { return null; }
 }
 
 export async function getSiteSettings() {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any>(queries.siteSettingsQuery);
+    const { data } = await fetchCMSDraft<any>(queries.siteSettingsQuery); return data;
   } catch { return null; }
 }
 
 export async function getPageSections(page: string) {
   if (!isSanityConfigured()) return null;
   try {
-    return await fetchCMS<any[]>(queries.pageSectionsQuery(page));
+    const { data } = await fetchCMSDraft<any[]>(queries.pageSectionsQuery(page)); return data;
   } catch { return null; }
 }
 
