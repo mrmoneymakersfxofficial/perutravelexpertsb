@@ -8,7 +8,8 @@
     "deploy": "sanity deploy"
   },
   "dependencies": {
+    "@sanity/icons": "^5.0.0",
     "sanity": "^6.3.0",
-    "@sanity/icons": "^5.0.0"
+    "styled-components": "^6.4.3"
   }
 }
