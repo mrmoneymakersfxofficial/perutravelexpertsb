@@ -10,9 +10,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
-  serverExternalPackages: ["sanity"],
   // Usar webpack en vez de Turbopack (fix React #418 en Sanity Studio)
-  webpack: (config) => config,
   images: {
     remotePatterns: [
       // Sanity CDN
