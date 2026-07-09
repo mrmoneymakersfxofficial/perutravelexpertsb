@@ -1,39 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { VisualEditing as SanityVisualEditing } from "next-sanity/visual-editing";
 
 const STUDIO_URL = "https://www.sanity.io";
 
 /**
- * VisualEditing overlay — SOLO se renderiza dentro de un iframe
- * (cuando la Sanity Presentation Tool abre el sitio para edición visual).
+ * VisualEditing overlay — Siempre renderizado en Draft Mode.
  * 
- * Al hacer clic en contenido editable, redirige al Studio externo.
+ * @sanity/visual-editing maneja internamente:
+ * - Detectar si estamos dentro de un iframe (Presentation Tool)
+ * - Establecer el contexto stega ANTES de que React procese datos
+ * - Renderizar overlays en cada campo editable
+ * - Click → postMessage al studio para abrir el editor
+ * 
+ * NO USAR isIframe check porque el contexto stega debe establecerse
+ * antes de que React encuentre objetos {_type: 'stega'} en el contenido.
+ * Sin el contexto, React lanza error #418.
  */
 export function VisualEditing() {
-  const [isIframe, setIsIframe] = useState(false);
-
-  useEffect(() => {
-    try {
-      setIsIframe(window.self !== window.top);
-    } catch {
-      setIsIframe(true);
-    }
-  }, []);
-
-  if (!isIframe) return null;
-
   return (
     <>
       <SanityVisualEditing studioUrl={STUDIO_URL} />
+      {/* Indicador visible solo dentro del iframe */}
       <div
+        className="ve-badge"
         style={{
           position: "fixed",
-          bottom: 16, left: 16, zIndex: 9999,
-          background: "#D4A843", color: "#000",
-          fontSize: 10, padding: "4px 10px", borderRadius: 20,
-          fontWeight: 600, opacity: 0.7, pointerEvents: "none",
+          bottom: 16,
+          left: 16,
+          zIndex: 99999,
+          background: "#D4A843",
+          color: "#000",
+          fontSize: 10,
+          padding: "4px 10px",
+          borderRadius: 20,
+          fontWeight: 600,
+          opacity: 0.85,
         }}
       >
         ✎ Edit Mode

@@ -73,6 +73,7 @@ export default async function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: '#0F0F0F' }}
       >
+        {isDraftMode && <VisualEditing />}
         {isDraftMode && <SanityLive />}
         {isDraftMode && <SanityLiveWithToken includeDrafts />}
         <SchemaOrg />
@@ -97,7 +98,6 @@ export default async function RootLayout({
             </RecentlyViewedProvider>
           </FavoritesProvider>
         </LanguageProvider>
-        {isDraftMode && <VisualEditing />}
       </body>
     </html>
   );
