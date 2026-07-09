@@ -11,7 +11,7 @@ export const { sanityFetch, SanityLive } = projectId
         projectId, dataset, apiVersion: "2025-01-01", useCdn: false,
         perspective: "previewDrafts",
         token: process.env.SANITY_API_READ_TOKEN,
-        stega: { enabled: true, studioUrl: "https://perutravelexpertsb-cms.sanity.studio" },
+        stega: { enabled: true, studioUrl: "https://www.sanity.io" },
       }),
       serverToken: process.env.SANITY_API_READ_TOKEN,
       browserToken: process.env.NEXT_PUBLIC_SANITY_API_READ_TOKEN,

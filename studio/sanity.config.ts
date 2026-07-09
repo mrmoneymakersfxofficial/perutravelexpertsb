@@ -17,7 +17,7 @@ export default defineConfig({
     structureTool(),
     presentationTool({
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_PREVIEW_URL || "https://perutravelexpertsb.com",
+        origin: process.env.SANITY_STUDIO_PREVIEW_URL || "https://www.perutravelexpertsb.com",
         previewMode: {
           enable: "/api/draft-mode/enable",
           disable: "/api/draft-mode/disable",

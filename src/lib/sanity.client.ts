@@ -17,7 +17,7 @@ function createSanityClient(options?: { perspective?: "published" | "previewDraf
     perspective: isDraft ? "previewDrafts" : "published",
     token: isDraft ? process.env.SANITY_API_READ_TOKEN : undefined,
     // Stega encoding SOLO en draft mode — evita React error #418 en producción
-    stega: isDraft ? { enabled: true, studioUrl: "https://perutravelexpertsb-cms.sanity.studio" } : { enabled: false },
+    stega: isDraft ? { enabled: true, studioUrl: "https://www.sanity.io" } : { enabled: false },
   });
 }
 

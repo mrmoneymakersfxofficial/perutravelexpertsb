@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { VisualEditing as SanityVisualEditing } from "next-sanity/visual-editing";
 
-const STUDIO_URL = "https://perutravelexpertsb-cms.sanity.studio";
+const STUDIO_URL = "https://www.sanity.io";
 
 /**
  * VisualEditing overlay — SOLO se renderiza dentro de un iframe
