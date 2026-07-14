@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "### Component Section  \nThis is a **search results modal** (or dropdown) displaying tours filtered by the search term \"cusco\" (visible in the search bar at the top of the modal).\n\n\n### Tour Names, URLs/Slugs, and Details  \nAll tours are associated with \"Cusco\" (location) and include duration/pricing:  \n\n1. **City Tour Cusco**  \n   - URL/Slug: Not visible (modal does not show full URLs).  \n   - Details: 1 day, $69 per person.  \n\n2. **Maras – Moray – Ollantaytambo**  \n   - URL/Slug: Not visible.  \n   - Details: 1 day, $209 per person.  \n\n3. **Machu Picchu Signature Experience**  \n   - URL/Slug: Not visible.  \n   - Details: 1 day, $499 per person.  \n\n4. **Rainbow Mountain**  \n   - URL/Slug: Not visible.  \n   - Details: 1 day, $55 per person.  \n\n5. **Humantay Lake – Full Day Adventure from Cusco**  \n   - URL/Slug: Not visible.  \n   - Details: 1 day, $219 per person.  \n\n6. **Royal Inka Trail 2 Days**  \n   - URL/Slug: Not visible.  \n   - Details: 2 days, $999 per person.  \n\n7. **Inca Trail to Machu Picchu 4 Days / 3 Nights – Private Service**  \n   - URL/Slug: Not visible.  \n   - Details: 4 days, $1489 per person.  \n\n8. **Inca Trail to Machu Picchu 5 Days / 4 Nights – Private Service**  \n   - URL/Slug: Not visible.  \n   - Details: 5 days, $2529 per person.  \n\n\n### Layout  \n- **Modal Structure**: A white, rounded-corner modal overlaying the main page, with a search bar at the top (containing \"cusco\" and a close \"×\" button).  \n- **Tour Cards**: Each tour is displayed as a horizontal card with:  \n  - A small thumbnail image (left).  \n  - Tour name (bold text).  \n  - Location (\"cusco\") and duration (e.g., \"1 days\") in smaller text below the name.  \n  - Price (e.g., \"$69\") in bold, right-aligned, with \"per person\" in smaller text underneath.  \n\n\n### Search/Filter UI Elements  \n- **Search Bar**: At the top of the modal, with the query \"cusco\" pre-filled. Includes a magnifying glass icon (left) and a close \"×\" button (right) to dismiss the modal.  \n- **No Additional Filters**: The modal shows only search results; no visible filters (e.g., date, price range, duration) are present in this view.  \n\n\n### Tour Name Accuracy  \nAll tour names match real Peru destinations:  \n- \"City Tour Cusco\", \"Maras – Moray – Ollantaytambo\", \"Machu Picchu Signature Experience\", \"Rainbow Mountain\", \"Humantay Lake\", \"Royal Inka Trail\", and \"Inca Trail to Machu Picchu\" are legitimate Cusco/Machu Picchu tours.  \n- No incorrect or mismatched tour names were identified.  \n\n\n### Key Notes  \n- URLs/slugs are not visible in the modal (only the main page URL `peruexpertsb.com/#about` is shown in the browser bar).  \n- The layout is clean and focused on displaying search results, with no cluttered elements.  \n- Pricing and duration are clearly formatted for easy comparison.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1784057373,
+  "id": "2026071503291462e6c7de6f224fe0",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026071503291462e6c7de6f224fe0",
+  "usage": {
+    "completion_tokens": 781,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1533,
+    "prompt_tokens_details": {
+      "cached_tokens": 39
+    },
+    "total_tokens": 2314
+  }
+}

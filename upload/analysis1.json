@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "### Tour Names & URLs/Slugs:  \nNo tour names or URLs/slugs are visible in the screenshot. The cards/section below the search bar are blurred, so specific tour details cannot be identified.  \n\n\n### Component Section:  \nThis is the **hero section** (or a top-of-page search interface) of the Peru travel website. It includes a prominent search bar and popular search suggestions, typical of a homepage’s hero area designed to guide users to explore tours/destinations.  \n\n\n### Layout:  \n- A centered, white search bar with a magnifying glass icon and placeholder text (“Search tours, destinations...”).  \n- Below the search bar, a “POPULAR SEARCHES” section with clickable tags (e.g., “Machu Picchu,” “Cusco,” “Sacred Valley,” etc.).  \n- Blurred tour cards/sections below the search interface (content is not legible, but they appear to be a grid or list of tour options).  \n\n\n### Search/Filter UI Elements:  \n- **Search Bar**: A text input field with a search icon, allowing users to type queries for tours/destinations.  \n- **Popular Searches**: A row of clickable tags (e.g., “Machu Picchu,” “Inca Trail,” “Titicaca Lake”) that act as quick-search filters for common destinations.  \n- No additional filters (e.g., date pickers, price sliders, duration selectors) are visible in this screenshot.  \n\n\nNote: The blurred tour cards prevent identification of specific tour names or URLs, but the layout and search elements confirm this is a hero/search-focused section.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1784057354,
+  "id": "202607150328597a462ea00c37414d",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202607150328597a462ea00c37414d",
+  "usage": {
+    "completion_tokens": 334,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 2381,
+    "prompt_tokens_details": {
+      "cached_tokens": 8
+    },
+    "total_tokens": 2715
+  }
+}
