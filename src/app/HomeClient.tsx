@@ -32,7 +32,7 @@ export default function HomeClient({ featuredTours, testimonials, stats, setting
       <div className="section-transition-dark-light" />
       <WhyChooseUsSection />
       <div className="section-transition-light-dark" />
-      <FeaturedToursSection sanityTours={featuredTours} />
+      <FeaturedToursSection />
       <TestimonialsSection sanityTestimonials={testimonials} />
       <div className="section-transition-dark-gold" />
       <StatsSection sanityStats={stats} />
