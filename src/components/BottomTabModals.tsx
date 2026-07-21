@@ -90,7 +90,7 @@ function SearchMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
                 <div className="space-y-2">
                   {filteredTours.map((tour) => (
                     <Link
-                      href={`/tours/${tour.slug}`}
+                      href={`/our-tours/${tour.destination}/${tour.slug}`}
                       key={tour.id}
                       onClick={onClose}
                       className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#D4A843]/20 transition-all group"
@@ -139,9 +139,9 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
   const router = useRouter();
   const { favorites, toggleFavorite } = useFavorites();
 
-  const handleTourClick = (slug: string) => {
+  const handleTourClick = (slug: string, destination: string) => {
     onClose();
-    router.push(`/tours/${slug}`);
+    router.push(`/our-tours/${destination}/${slug}`);
   };
 
   const favoriteTours = useMemo(
@@ -155,10 +155,10 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
     toggleFavorite(id);
   };
 
-  const handleShare = (slug: string, name: string, e: React.MouseEvent | React.TouchEvent) => {
+  const handleShare = (slug: string, destination: string, name: string, e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    const fullUrl = `${window.location.origin}/tours/${slug}`;
+    const fullUrl = `${window.location.origin}/our-tours/${destination}/${slug}`;
     if (navigator.share) {
       navigator.share({ title: name, url: fullUrl }).catch(() => {
         fallbackCopy(fullUrl);
@@ -245,7 +245,7 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                   {favoriteTours.map((tour) => (
                     <div
                       key={tour.id}
-                      onClick={() => handleTourClick(tour.slug)}
+                      onClick={() => handleTourClick(tour.slug, tour.destination)}
                       className="flex items-center gap-3 p-2.5 bg-white/[0.02] hover:bg-white/[0.06] rounded-xl border border-white/5 hover:border-[#D4A843]/20 transition-all group cursor-pointer active:scale-[0.98]"
                     >
                       {/* Thumbnail */}
@@ -272,7 +272,7 @@ function FavoritesMiniModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                       {/* Action buttons — stopPropagation prevents navigation */}
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
-                          onClick={(e) => handleShare(tour.slug, tour.nameEn, e)}
+                          onClick={(e) => handleShare(tour.slug, tour.destination, tour.nameEn, e)}
                           className="p-2 bg-white/5 hover:bg-[#D4A843]/20 text-white/60 hover:text-[#D4A843] rounded-lg transition-colors active:scale-95"
                           aria-label="Share tour link"
                         >

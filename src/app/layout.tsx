@@ -15,8 +15,6 @@ import FloatingPanel from "@/components/FloatingPanel";
 import BottomTabModals from "@/components/BottomTabModals";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import ParticleTrail from "@/components/ParticleTrail";
-import { VisualEditing } from "@/components/VisualEditing";
-import { SanityLive } from "@/sanity/live";
 import { SanityLiveWithToken } from "@/components/SanityLiveWithToken";
 
 const playfair = Playfair_Display({
@@ -73,8 +71,6 @@ export default async function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: '#0F0F0F' }}
       >
-        {isDraftMode && <VisualEditing />}
-        {isDraftMode && <SanityLive />}
         {isDraftMode && <SanityLiveWithToken includeDrafts />}
         <SchemaOrg />
         <LanguageProvider>

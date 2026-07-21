@@ -28,7 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${pkg.nameEn} | PeruTravelExpertsB`,
       description: pkg.descriptionEn.slice(0, 160),
-      url: `${BASE_URL}/tour-packages/${slug}`,
+      url: `${BASE_URL}/customized-tours/${slug}`,
       siteName: 'PeruTravelExpertsB',
       type: 'article',
       images: [{ url: pkg.image, width: 1200, height: 630 }],

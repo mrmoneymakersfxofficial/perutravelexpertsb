@@ -10,44 +10,16 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
+  serverExternalPackages: ["sanity"],
   images: {
     remotePatterns: [
-      // Sanity CDN
-      ...(SANITY_PROJECT_ID
-        ? [
-            {
-              protocol: "https" as const,
-              hostname: "cdn.sanity.io",
-              pathname: `/images/${SANITY_PROJECT_ID}/**`,
-            },
-          ]
-        : []),
-      // Permitir cualquier subdominio de cdn.sanity.io
       {
         protocol: "https" as const,
         hostname: "cdn.sanity.io",
       },
     ],
     unoptimized: false,
-    formats: ["image/webp", "image/avif"],
-  },
-  async headers() {
-    return [
-      {
-        // CSP para el sitio público — excluye /admin
-        source: "/((?!admin).*)",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: [
-              `frame-ancestors 'self' https://*.sanity.dev https://*.sanity.build https://*.sanity.studio https://www.sanity.io https://*.api.sanity.io wss://*.api.sanity.io;`,
-              `connect-src 'self' https://*.sanity.io wss://*.sanity.io https://*.sanity.build https://*.api.sanity.io wss://*.api.sanity.io;`,
-              `img-src 'self' data: blob: https://cdn.sanity.io;`,
-            ].join(" "),
-          },
-        ],
-      },
-    ];
+    formats: ["image/webp"],
   },
   async redirects() {
     return [

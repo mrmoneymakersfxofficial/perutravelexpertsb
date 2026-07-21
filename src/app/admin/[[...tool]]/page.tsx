@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
 
 /**
- * Redirige al Sanity Studio desplegado en Sanity's CDN.
- * Tiene Presentation Tool con overlay Visual Editing.
+ * Redirects to the Sanity Studio deployed on Sanity's CDN.
+ * Uses Presentation Tool with Visual Editing overlay.
  */
 export default function AdminCatchAll() {
   redirect("https://perutravelexpertsb-cms.sanity.studio");

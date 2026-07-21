@@ -67,7 +67,7 @@ export default function SearchModal({ open, onOpenChange }: SearchModalProps) {
 
   const handleSelect = (tour: TourData) => {
     onOpenChange(false);
-    router.push(`/tours/${tour.slug}`);
+    router.push(`/our-tours/${tour.destination}/${tour.slug}`);
   };
 
   const handlePopularClick = (term: string) => {
