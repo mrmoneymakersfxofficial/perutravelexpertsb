@@ -87,7 +87,8 @@ export default function TourSlugClient({ tour }: TourSlugClientProps) {
     moderate: { es: 'Moderado', en: 'Moderate' },
     advanced: { es: 'Avanzado', en: 'Advanced' },
   };
-  const diffLabel = locale === 'es' ? diffConfig[tour.difficulty].es : diffConfig[tour.difficulty].en;
+  const diff = diffConfig[tour.difficulty] || diffConfig.moderate;
+  const diffLabel = locale === 'es' ? diff.es : diff.en;
 
   const whatsappMessage = `Hola, estoy en la web revisando el tour "${name}" y deseo reservar.`;
 
