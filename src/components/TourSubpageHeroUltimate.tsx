@@ -109,7 +109,7 @@ export default function TourSubpageHeroUltimate({
                 <span className="text-[10px] sm:text-xs font-extrabold tracking-widest uppercase px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-[#0F0F0F]"
                   style={{ background: 'linear-gradient(135deg, #D4A843, #B89020)' }}
                 >
-                  // {level}
+                  {level}
                 </span>
               )}
               {duration && (
